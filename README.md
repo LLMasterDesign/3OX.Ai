@@ -10,13 +10,22 @@ Think systemd for AI agents.
 
 ## Core Architecture
 
-**vec3 Kernel** - Six protected surfaces for agent runtime:
-- `rc/` - Immutable rules and configuration
-- `lib/` - Protected reference libraries
-- `dev/` - External adapters (I/O bridges)
-- `var/` - Runtime data (receipts, events, state)
-- `proc/` - Live introspection
-- `sys/` - Control knobs
+**6 Core Files + Sparkfile** - Every 3ox agent has 7 files:
+1. `sparkfile.md` - Comprehensive agent specification (the "prompt")
+2. `brain.rs` - Rust config (compiles to brain.exe)
+3. `tools.yml` - Tool registry
+4. `routes.json` - Operation routing
+5. `limits.json` - Resource limits
+6. `run.rb` - Ruby runtime
+7. `3ox.log` - Activity log
+
+All tiers (T1, T2, T3) include these 7 files.
+
+**vec3 Kernel** - Four protected surfaces for agent backend:
+- `rc/` - Immutable rules (rules.ref) and control knobs (sys.ref)
+- `lib/` - Protected reference libraries (read-only guides)
+- `dev/` - External adapters (I/O bridges, ops runners)
+- `var/` - Runtime data (receipts, events, inflight, status.ref)
 
 **Brain Compilation** - Agent configurations written in Rust, compiled to executables. Type-safe behavior rules, not prompt engineering.
 
@@ -67,9 +76,9 @@ Portable AI workspaces. Package an agent, its data, and state into a single unit
 ## Technical Details
 
 **Tier System:**
-- **T1**: File inference only. No vec3. Basic agents.
-- **T2**: Simple vec3 (6 core files + sparkfile). Brain compiles. Basic kernel.
-- **T3**: Full vec3 setup. Adapters, receipts, event streams. Production-ready.
+- **T1**: 6 core files + sparkfile.md (7 files). No vec3. File inference only. Basic logging.
+- **T2**: 7 files + basic vec3 (rc, lib, var). Brain compiles. Simple kernel.
+- **T3**: 7 files + full vec3 (rc, lib, dev, var). Adapters, receipts, event streams. Production-ready.
 
 **File Validation**: xxHash64 checksums on all operations.
 
