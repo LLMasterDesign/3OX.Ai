@@ -1,0 +1,12 @@
+# IO.MQ.PUBLISH :: Message Queue Publish Adapter
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+
+name: io.mq.publish
+role: publish messages to RabbitMQ queue, handle routing, ensure delivery
+inputs: queue_name, exchange, routing_key, message_payload, message_headers
+outputs: message_id, delivery_tag, receipt_ref
+constraints: queue_exists, exchange_exists, message_size_max, connection_pool
+receipts: required fields: timestamp, actor (mq), intent (publish), inputs_hash, trace_id
+failure_modes: queue_not_found, connection_lost, message_too_large, exchange_error
+

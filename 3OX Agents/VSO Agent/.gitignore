@@ -1,0 +1,27 @@
+# VSO.AGENT Public Git Ignore
+
+# Runtime files (user-specific)
+.3ox/3ox.log
+.3ox/vec3/var/receipts/*
+.3ox/vec3/var/events/*
+.3ox/vec3/var/inflight/*
+.3ox/vec3/var/status.ref
+
+# Compiled binaries
+.3ox/brain.exe
+.3ox/brain
+
+# Secrets (never commit)
+.3ox/vec3/rc/brot/*
+
+# User data directories
+Claims/
+Archive/
+Templates/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+

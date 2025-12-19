@@ -1,0 +1,35 @@
+# TOOLS.YML :: Available Tools for Python Runtime
+# Version: v2.1.0
+
+tools:
+  - name: FileValidator
+    function: validate_file(filepath)
+    returns: dict with path, hash, size, valid status
+    
+  - name: ReceiptGenerator
+    function: generate_receipt(filepath, operation)
+    returns: dict with file, operation, hash, timestamp, status
+    
+  - name: RouteOutput
+    function: route_output(operation, receipt)
+    returns: destination path string
+    
+  - name: LoadRoutes
+    function: load_routes()
+    returns: dict of routes from routes.json
+
+dependencies:
+  - xxhash (for xxh3_64_hexdigest)
+  - json (for routes.json parsing)
+  - pathlib (for file operations)
+  - datetime (for timestamps)
+
+routing:
+  critical_error: CMD.BRIDGE
+  deploy_ready: SYNTH.BASE
+  knowledge_update: OBSIDIAN.BASE
+  sync_request: RVNx.BASE
+  emergency: CMD.BRIDGE/EMERGENCY
+
+:: ∎
+

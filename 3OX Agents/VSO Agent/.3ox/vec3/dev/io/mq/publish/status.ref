@@ -1,0 +1,11 @@
+# IO.MQ.PUBLISH :: Status Snapshot
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+# INTENT: Current snapshot, overwrite allowed
+
+health: ok
+last_ok_ts: [auto-updated]
+last_error: none
+capabilities: publish_messages, route_to_queue, ensure_delivery
+version: ${VERSION}
+

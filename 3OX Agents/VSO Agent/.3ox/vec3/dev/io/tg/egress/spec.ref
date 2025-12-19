@@ -1,0 +1,12 @@
+# IO.TG.EGRESS :: Telegram Egress Adapter
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+
+name: io.tg.egress
+role: send messages to Telegram bot, format responses, handle delivery
+inputs: bot_token, chat_id, message_content, message_type, reply_to
+outputs: message_id, delivery_status, receipt_ref
+constraints: rate_limit_per_chat, message_size_max, retry_policy
+receipts: required fields: timestamp, actor (bot), intent (send_message), inputs_hash, trace_id
+failure_modes: rate_limit_exceeded, invalid_chat_id, message_too_large, network_error
+

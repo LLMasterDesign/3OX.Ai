@@ -1,0 +1,20 @@
+///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂ ::[0xA4]::
+// ▛//▞▞ ⟦⎊⟧ :: ⧗-25.131 // COMPILE-RUN.BUN :: Build Script ▞▞
+// ▛▞// Build.Runner :: ρ{Input}.φ{Bind}.τ{Output} ▹
+// //▞⋮⋮ ⟦📦⟧ :: [build] [compile] [run] [vec3boot] [⊢ ⇨ ⟿ ▷]
+// ⫸ 〔runtime.build.context〕
+
+import { $ } from "bun";
+
+console.log("Building Vec3Boot boot project...");
+await $`cd boot && cargo build --release`;
+
+console.log("Running vec3-boot executable...");
+const args = process.argv.slice(2);
+if (args.length > 0) {
+  await $`./boot/target/release/vec3-boot ${args.join(' ')}`;
+} else {
+  await $`./boot/target/release/vec3-boot`;
+}
+
+// :: ∎

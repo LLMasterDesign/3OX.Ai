@@ -1,0 +1,15 @@
+[workspace]
+resolver = "2"
+members = ["vec3.core", "boot", "3ox-cli"]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2021"
+authors = ["Lucius Larz Master"]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "version": "${VERSION}",
+    "updated": "${SIRIUS_TIME}",
+    "agent": "VSO.AGENT"
+  },
+  "routes": {
+    "file_organization": {
+      "target": "FileOrganizer",
+      "conditions": ["claim_number", "file_type"]
+    },
+    "evidence_tracking": {
+      "target": "EvidenceTracker",
+      "conditions": ["claim_number", "evidence_type"]
+    },
+    "deadline_tracking": {
+      "target": "DeadlineTracker",
+      "conditions": ["claim_number", "deadline_type"]
+    },
+    "web_search": {
+      "target": "WebSearch",
+      "conditions": ["query"]
+    },
+    "dbq_reference": {
+      "target": "DBQReference",
+      "conditions": ["condition"]
+    },
+    "va_rules_reference": {
+      "target": "VARulesReference",
+      "conditions": ["topic"]
+    },
+    "timeline_update": {
+      "target": "TimelineUpdater",
+      "conditions": ["claim_number", "event_type"]
+    },
+    "checklist_management": {
+      "target": "ChecklistManager",
+      "conditions": ["claim_number", "checklist_type"]
+    }
+  }
+}
+

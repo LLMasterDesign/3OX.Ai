@@ -1,0 +1,54 @@
+# VEC3/DEV/ :: Device Bridges
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+# Purpose: How we touch the outside world
+
+## NAMING CONVENTION
+
+### IO Layer (Message Movers)
+- Format: io.{channel}.{verb}
+- Channels: mq, tg, http, fs
+- Verbs: publish, consume, ingress, egress, watch, drop
+
+### OPS Layer (Side Effects)
+- Format: ops.{runtime_or_domain}.{verb}
+- Runtimes: python, shell, ssh, db, fs
+- Verbs: exec, query, migrate, write, read
+
+## ADAPTER STRUCTURE
+
+Every adapter exposes 3 files:
+- spec.ref (contract - immutable)
+- status.ref (health snapshot - overwrite allowed)
+- run.{ex|rs|py|sh} (implementation)
+
+## CANON ADAPTERS
+
+### IO Layer
+- io.mq.publish
+- io.mq.consume
+- io.tg.ingress
+- io.tg.egress
+- io.http.ingress
+- io.http.egress
+- io.fs.watch
+- io.fs.drop
+
+### OPS Layer
+- ops.python.exec
+- ops.shell.exec
+- ops.ssh.exec
+- ops.db.query
+- ops.db.migrate
+- ops.fs.write
+- ops.fs.read
+
+## ADAPTER LAW
+
+Only allow new adapters if they answer:
+- New transport channel (io)
+- New execution substrate (ops)
+- New external system integration worth first-class support
+
+Everything else is configuration of an existing adapter.
+

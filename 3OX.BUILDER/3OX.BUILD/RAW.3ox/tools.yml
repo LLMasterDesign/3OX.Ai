@@ -1,0 +1,27 @@
+# TOOLS.YML :: Available Tools for Ruby Runtime
+# Version: v2.1.0
+
+tools:
+  - name: FileValidator
+    function: validate_file(filepath)
+    returns: hash with :path, :hash, :size, :valid
+    
+  - name: ReceiptGenerator
+    function: generate_receipt(filepath, operation)
+    returns: hash with :file, :operation, :hash, :timestamp, :status
+    
+  - name: RouteOutput
+    function: route_output(operation, receipt)
+    returns: destination path string
+    
+  - name: LoadRoutes
+    function: load_routes
+    returns: hash of routes
+
+dependencies:
+  - xxhash (gem install xxhash)
+  - json (stdlib)
+  - fileutils (stdlib)
+  - time (stdlib)
+  - yaml (stdlib)
+

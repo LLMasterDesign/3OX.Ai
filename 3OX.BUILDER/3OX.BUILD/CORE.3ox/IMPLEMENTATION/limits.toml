@@ -1,0 +1,51 @@
+# LIMITS.TOML :: Python Runtime Limits
+# Version: v2.0.0
+
+[meta]
+version = "v2.0.0"
+runtime = "python"
+description = "Resource limits for Python .3ox runtime"
+
+[tokens.models.claude-sonnet-4]
+max_context = 200_000
+warning_threshold = 160_000
+critical_threshold = 180_000
+encoding = "o200k_base"
+cost_per_1k_input = 0.003
+cost_per_1k_output = 0.015
+
+[tokens.models.gpt-4o]
+max_context = 128_000
+warning_threshold = 102_400
+critical_threshold = 115_200
+encoding = "o200k_base"
+cost_per_1k_input = 0.0025
+cost_per_1k_output = 0.010
+
+[cost.per_session]
+max_tokens = 200_000
+max_duration_minutes = 60
+max_spend_usd = 5.00
+
+[resources.files]
+max_file_size_mb = 100
+max_total_size_gb = 10
+max_files_per_operation = 100
+backup_retention_days = 30
+
+[resources.routing]
+max_payload_size_mb = 10
+max_concurrent_routes = 5
+timeout_seconds = 30
+
+[emergency.thresholds]
+context_utilization_critical = 95
+disk_space_critical_mb = 100
+error_rate_critical = 0.1
+
+[emergency.actions]
+halt_on_critical_error = true
+auto_backup_on_emergency = true
+notify_cmd_bridge = true
+create_emergency_receipt = true
+

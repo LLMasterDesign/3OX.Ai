@@ -1,0 +1,11 @@
+# IO.TG.INGRESS :: Status Snapshot
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+# INTENT: Current snapshot, overwrite allowed
+
+health: ok
+last_ok_ts: [auto-updated]
+last_error: none
+capabilities: receive_messages, validate_webhook, route_to_queue
+version: ${VERSION}
+

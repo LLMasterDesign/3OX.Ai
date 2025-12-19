@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Super short commit alias
+exec "$(dirname "$0")/commit.sh" "$@"
+

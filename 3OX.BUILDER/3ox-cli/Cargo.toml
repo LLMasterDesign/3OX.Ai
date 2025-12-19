@@ -1,0 +1,13 @@
+[package]
+name = "ox3-cli"
+version = "1.0.0"
+edition = "2021"
+authors = ["Lucius Larz Master"]
+description = "3OX Micro CLI - Command line interface for 3OX agents"
+
+[[bin]]
+name = "3ox"
+path = "src/main.rs"
+
+[dependencies]
+

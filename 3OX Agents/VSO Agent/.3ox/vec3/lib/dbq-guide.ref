@@ -1,0 +1,51 @@
+# DBQ Guide :: Disability Benefits Questionnaire Reference
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+# Protected reference - read-only
+
+## Overview
+DBQ forms are used by VA to evaluate disability claims. Each condition has specific DBQ requirements.
+
+## Common DBQ Forms
+
+### Mental Health
+- **PTSD DBQ**: Requires diagnosis, stressor verification, symptom severity, functional impact
+- **Depression/Anxiety DBQ**: Requires diagnosis, symptom severity, treatment history, functional impact
+- **Sections**: Current diagnosis, symptoms, occupational/social impairment, treatment
+
+### Musculoskeletal
+- **Back Conditions DBQ**: Range of motion, pain, functional limitations
+- **Knee Conditions DBQ**: Range of motion, instability, functional impact
+- **Shoulder Conditions DBQ**: Range of motion, pain, functional limitations
+- **Sections**: Current diagnosis, range of motion measurements, functional impact
+
+### Respiratory
+- **Asthma DBQ**: FEV1/FVC measurements, medication requirements, functional impact
+- **Sleep Apnea DBQ**: Sleep study results, CPAP requirements, functional impact
+- **Sections**: Current diagnosis, test results, treatment requirements
+
+### Hearing/Tinnitus
+- **Hearing Loss DBQ**: Audiometric test results, speech discrimination
+- **Tinnitus DBQ**: Subjective report, impact on daily life
+- **Sections**: Test results, functional impact
+
+## DBQ Completion Requirements
+
+1. **Must be completed by qualified examiner**
+2. **Must include current diagnosis**
+3. **Must address all required sections**
+4. **Must include functional impact assessment**
+5. **Must be signed and dated**
+
+## Evidence Needed for DBQ
+
+- Current medical records
+- Treatment history
+- Test results (if applicable)
+- Functional impact documentation
+- Service connection evidence (for nexus)
+
+## Rating Criteria Reference
+
+DBQs align with 38 CFR Part 4 rating schedule. Each condition has specific rating percentages based on severity and functional impact.
+

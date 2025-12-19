@@ -1,0 +1,11 @@
+# IO.TG.EGRESS :: Status Snapshot
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+# INTENT: Current snapshot, overwrite allowed
+
+health: ok
+last_ok_ts: [auto-updated]
+last_error: none
+capabilities: send_messages, format_responses, handle_delivery
+version: ${VERSION}
+

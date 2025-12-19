@@ -1,0 +1,26 @@
+# VEC3/RC/SYS.REF :: System Control Knobs
+# Control knobs and capabilities
+# Write requires permission and receipts
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+# INTENT: Mutable knobs but still audited
+# This file can be modified but all changes must be logged and receipted
+
+## FEATURES
+web_search_enabled: true
+file_watcher_enabled: true
+deadline_alerts_enabled: true
+
+## RATE LIMITS
+max_web_searches_per_hour: 10
+max_file_operations_per_minute: 50
+
+## ROUTING POLICY
+default_evidence_location: Claims/[ClaimNumber]/Evidence/
+default_receipt_location: vec3/var/receipts/
+
+## FEATURE FLAGS
+enable_auto_organization: true
+enable_deadline_tracking: true
+enable_evidence_validation: true
+

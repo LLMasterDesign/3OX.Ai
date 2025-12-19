@@ -1,0 +1,10 @@
+{
+  "routes": {
+    "critical_error": "CMD.BRIDGE",
+    "deploy_ready": "SYNTH.BASE",
+    "knowledge_update": "OBSIDIAN.BASE",
+    "sync_request": "RVNx.BASE",
+    "emergency": "CMD.BRIDGE/EMERGENCY"
+  }
+}
+

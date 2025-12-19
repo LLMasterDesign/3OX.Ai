@@ -1,0 +1,39 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Bun
+node_modules/
+.bun/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+3ox.log
+
+# System hash marker
+.3ox-builder-hash
+
+# Test artifacts
+test-results.txt
+TEST-RESULTS.md
+
+# Temporary files
+*.tmp
+*.temp
+2
+4
+root
+
+

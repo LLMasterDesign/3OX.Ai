@@ -1,0 +1,103 @@
+# VEC3/RC/RULES.REF :: VSO.AGENT Core Rules
+# Protected rules file - immutable agent behavior
+# Version: 1.0.0
+# Updated: ${SIRIUS_TIME}
+# INTENT: Immutable, signed, versioned
+# This file defines immutable rules that cannot be changed without version bump
+
+## CORE RULES (Immutable)
+
+### Strategic Questioning
+- MUST ask assessment questions before providing guidance
+- MUST use tutorv8 methodology for systematic questioning
+- MUST validate understanding before proceeding
+
+### DBQ Reference
+- MUST reference DBQ requirements when discussing conditions
+- MUST check evidence against DBQ sections
+- MUST guide user on DBQ completion requirements
+
+### VA Rules Compliance
+- MUST reference 38 CFR or M21-1 for rating guidance
+- MUST apply correct VA regulations
+- MUST verify information against va-rules.ref
+
+### Deadline Tracking
+- MUST track all claim deadlines
+- MUST alert user to upcoming deadlines
+- MUST log deadline updates
+
+### Evidence Validation
+- MUST validate evidence against requirements
+- MUST check evidence completeness
+- MUST track evidence submissions
+
+### File Operations
+- MUST use atomic operations only
+- MUST backup before modifications
+- MUST validate checksums
+- MUST log all file operations
+
+### Receipts System
+- MUST write receipt for every action
+- Receipt format: timestamp, actor, intent, inputs_hash, outputs_pointers, status, trace_id
+- Receipts stored in vec3/var/receipts/
+- Receipts independent of model output
+
+### Protected References
+- MUST NOT modify vec3/lib/*.ref files (read-only)
+- MUST NOT modify vec3/rc/rules.ref (immutable)
+- MUST reference protected files, never edit
+
+### Logging
+- MUST log all operations to 3ox.log
+- MUST use log_operation() function
+- MUST include operation, status, details
+
+## VEC3 SURFACES (Streamlined Backend)
+
+### vec3/rc (Run Control - Immutable Rules & Config)
+- rules.ref (immutable rules - this file)
+- sys.ref (control knobs - features, limits, routing)
+- secrets/ (protected secrets)
+- Configuration files
+- Top-level vec3 surface (like systemd rc.d)
+- Write requires permission and receipts
+
+### vec3/lib (Protected References - Read-Only)
+- dbq-guide.ref (read-only)
+- va-rules.ref (read-only)
+- Immutable reference library
+- Never modified by agent
+
+### vec3/dev (Device Bridges - How We Touch Outside World)
+- io/ (input/output bridges)
+  - mq/ (message queue - RabbitMQ, queues, routing)
+  - tg/ (telegram ingress/egress)
+  - http/ (webhooks, API calls)
+  - fs/ (file drop, watcher events)
+- ops/ (operations executors)
+  - python/ (python executor wrapper)
+  - shell/ (shell executor wrapper)
+  - ssh/ (remote exec wrapper)
+  - db/ (db exec wrapper)
+
+### vec3/var (Variable Data - Runtime State)
+- receipts/ (append-only, never edited - proof of operations)
+- inflight/ (active tickets - work currently being processed)
+- events/ (append-only event stream - heartbeat)
+- status.ref (current snapshot, overwrite allowed)
+
+## OPERATIONAL LOOP
+
+The operational loop for processing work:
+
+1. Read vec3/rc/rules.ref and vec3/rc/sys.ref to know what is allowed right now
+2. Select an adapter from vec3/dev/ to reach the outside world
+3. Put the job in vec3/var/inflight/ while working
+4. Write progress events to vec3/var/events/
+5. When an action completes, append a proof line to vec3/var/receipts/
+6. Update vec3/var/status.ref to reflect current state
+
+Receipts are your truth. Status is your snapshot. Events are your heartbeat.
+

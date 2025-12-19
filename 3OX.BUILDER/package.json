@@ -1,0 +1,32 @@
+{
+  "name": "3ox-builder",
+  "version": "1.0.0",
+  "description": "3OX.Ai System Builder - Complete boot loader and cube initialization system",
+  "type": "module",
+  "bin": {
+    "3ox-builder": "./compile-run.bun"
+  },
+  "scripts": {
+    "build": "bun run compile-run.bun",
+    "start": "bun run compile-run.bun",
+    "setup": "ruby 3OX.BUILD/setup-3ox.rb"
+  },
+  "keywords": [
+    "3ox",
+    "ai",
+    "agent",
+    "boot",
+    "cube",
+    "builder"
+  ],
+  "author": "Lucius Larz Master",
+  "license": "PROPRIETARY",
+  "engines": {
+    "bun": ">=1.0.0",
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
+
+

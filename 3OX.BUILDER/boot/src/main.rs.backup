@@ -1,0 +1,355 @@
+use crossterm::{
+    cursor::{Hide, MoveTo, Show},
+    execute,
+    terminal::{Clear, ClearType},
+};
+use std::env;
+use std::io::{self, stdout, Write};
+use std::path::PathBuf;
+use std::thread::sleep;
+use std::time::Duration;
+use std::fs::OpenOptions;
+use std::process::Command;
+
+use brains_3ox_core::{
+    init_cube_context, load_face_map, load_limits, load_manifest,
+    load_routes, load_sparkfile, load_tools, validate_cube, CubeContext,
+};
+
+const HEADER: &str = r#"+-------------------------------------------------------+
+|                                                       |
+|   ██████╗  ██████╗ ██╗  ██╗       █████╗ ██╗          |
+|   ╚════██╗██╔═══██╗╚██╗██╔╝      ██╔══██╗╚═╝          |
+|    █████╔╝██║   ██║ ╚███╔╝       ███████║██║          |
+|    ╚═══██╗██║   ██║ ██╔██╗       ██╔══██║██║          |
+|   ██████╔╝╚██████╔╝██╔╝ ██╗  ██╗ ██║  ██║██║          |
+|   ╚═════╝  ╚═════╝ ╚═╝  ╚═╝  ╚═╝ ╚═╝  ╚═╝╚═╝          |
+|                                                       |
++-------------------------------------------------------+
+|  ▛▞  3 O X . A i   S Y S T E M   L O A D E R  ▞▞      |
++-------------------------------------------------------+
+|  3OX Loader v1.0                                      |
+|  Copyright (C) 2025 ZENS3N Systems                    |
+|  Created by Lucius Larz Master                        |
++-------------------------------------------------------+"#;
+
+fn progress_bar(filled: usize, total: usize) -> String {
+    let filled_chars: String = "▮".repeat(filled);
+    let empty_chars: String = "▯".repeat(total - filled);
+    format!("▛▞//{}{}▹", filled_chars, empty_chars)
+}
+
+fn main() -> std::io::Result<()> {
+    let mut stdout = stdout();
+    
+    // Get cube path from args or use current directory
+    let cube_root = env::args()
+        .nth(1)
+        .map(PathBuf::from)
+        .unwrap_or_else(|| env::current_dir().unwrap());
+    
+    // Hide cursor and clear screen
+    execute!(stdout, Hide, Clear(ClearType::All))?;
+    
+    // Print header
+    println!("{}", HEADER);
+    println!();
+    println!("///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///");
+    println!();
+    println!("Cube path: {}", cube_root.display());
+    println!();
+    
+    // Validate cube structure
+    print!("...validating{{cube}}   ");
+    for i in 0..=12 {
+        print!("\r...validating{{cube}}   {}", progress_bar(i, 12));
+        stdout.flush()?;
+        sleep(Duration::from_millis(50));
+    }
+    
+    let validation = validate_cube(&cube_root);
+    if let Err(e) = &validation {
+        println!();
+        println!("✗ Validation failed: {}", e);
+        execute!(stdout, Show)?;
+        return Ok(());
+    }
+    println!(" OK");
+    println!();
+    
+    // Load faces (classic boot style: header, items, then COMPLETE)
+    println!("...loading{{faces}}     {}", progress_bar(0, 12));
+    println!();
+    
+    let faces = [
+        ("brains.rs", cube_root.join("brains.rs").exists()),
+        ("run.rb", cube_root.join("run.rb").exists()),
+        ("tools.yml", load_tools(&cube_root).is_ok()),
+        ("routes.json", load_routes(&cube_root).is_ok()),
+        ("limits.toml", load_limits(&cube_root).is_ok()),
+        ("3ox.log", cube_root.join("3ox.log").exists()),
+    ];
+    
+    let mut face_count = 0;
+    for (i, (name, success)) in faces.iter().enumerate() {
+        sleep(Duration::from_millis(280));
+        let marker = if *success { "▣" } else { "✗" };
+        let filled = ((i + 1) * 12) / 6;
+        println!(" {} {:12} loading... {:<7} {}", progress_bar(filled, 12), name, if *success { "OK" } else { "FAIL" }, marker);
+        if *success { face_count += 1; }
+    }
+    
+    println!("...loading{{faces}}     {} COMPLETE", progress_bar(12, 12));
+    println!();
+    
+    // Bind vec3
+    println!("...binding{{vec3}}      {}", progress_bar(0, 12));
+    println!();
+    
+    let vec3_files = [
+        ("face.map.toml", load_face_map(&cube_root).is_ok()),
+        ("manifest.vec3", load_manifest(&cube_root).is_ok()),
+        ("agent.id", cube_root.join("vec3.core/agent.id").exists()),
+    ];
+
+    // Ignite core
+    println!("...igniting{{core}}     {}", progress_bar(0, 12));
+    println!();
+    
+    sleep(Duration::from_millis(500));
+    let sparkfile_ok = load_sparkfile(&cube_root).is_ok();
+    let core_marker = if sparkfile_ok { "◉" } else { "✗" };
+    println!(" {} sparkfile.md  loading... {:<7} {}", progress_bar(12, 12), if sparkfile_ok { "IGNITED" } else { "MISSING" }, core_marker);
+    
+    println!("...igniting{{core}}     {} COMPLETE", progress_bar(12, 12));
+    println!();
+    
+    let mut vec3_count = 0;
+    for (i, (name, success)) in vec3_files.iter().enumerate() {
+        sleep(Duration::from_millis(350));
+        let marker = if *success { "▣" } else { "✗" };
+        let status_text = if *success {
+            vec3_count += 1;
+            if i == 0 { "MAPPED" } else if i == 1 { "BOUND" } else { "LOCKED" }
+        } else { "MISS" };
+        let filled = ((i + 1) * 12) / 3;
+        println!(" {} {:12} binding... {:<6} {}", progress_bar(filled, 12), name, status_text, marker);
+    }
+    
+    println!("...binding{{vec3}}      {} COMPLETE", progress_bar(12, 12));
+    
+    println!();
+    println!("///▚▚▂▂▂▂▂▂▂▂▂▂▂▂▂▂");
+    println!();
+    
+    // Show register table
+    println!("+------------------+  +--------------------------------------+");
+    println!("|  CUBE STATUS     |  |  FACE REGISTER                       |");
+    println!("+------------------+  +--------------------------------------+");
+    println!("|                  |  |  FACE     DATA       VERSION   LOAD  |");
+    println!("|  Faces:    {}/6   |  |  ---   [----]         ----     ---  |", face_count);
+    
+    for (i, (name, success)) in faces.iter().enumerate() {
+        let marker = if *success { "▣" } else { "✗" };
+        let bar = if *success { "########" } else { "--------" };
+        println!("|  Core:     {}/1   |  |  {:03}   {:12} [{}] {}    |", 
+                 if sparkfile_ok { "1" } else { "0" },
+                 i + 1, 
+                 name, 
+                 bar, 
+                 marker);
+    }
+    
+    let core_marker = if sparkfile_ok { "◉" } else { "✗" };
+    let core_bar = if sparkfile_ok { "**********" } else { "--------" };
+    println!("|  Vec3:     {}/3   |  |  ---   ----          ----       ---  |", vec3_count);
+    println!("|                  |  |  007   sparkfile     [{}] {}    |", core_bar, core_marker);
+    println!("+------------------+  +--------------------------------------+");
+    println!();
+    
+    // Try full init
+    let cube_ok = init_cube_context(cube_root.clone()).is_ok();
+    println!("Cube integrity: {}", if cube_ok { "VERIFIED" } else { "INCOMPLETE" });
+    println!();
+    println!("///▚▚▂▂▂▂▂▂▂▂▂▂▂▂▂▂");
+    println!();
+    
+    if cube_ok {
+        println!("///▙▖▙▖▞▞▙▂▂▂▂▂▂| 3OX.Ai :: ONLINE |▂▂▂▂▂▂///");
+        println!("▛▞// 3OX.Ai ⫎▸ Cube loaded. All faces active. Core ignited.");
+    } else {
+        println!("///▙▖▙▖▞▞▙▂▂▂▂▂▂| 3OX.Ai :: PARTIAL |▂▂▂▂▂▂///");
+        println!("▛▞// 3OX.Ai ⫎▸ Cube partially loaded. Some faces missing.");
+    }
+    
+    println!("Awaiting operator command. :: 𝜵");
+    println!();
+    
+    // Call the shell script for sparkle animation
+    let _ = Command::new("bash")
+        .arg("CITADEL.BASE/!WORKDESK/Boot.Sequence/delta-boot-sparkle.sh")
+        .status();
+    
+    // Show cursor
+    execute!(stdout, Show)?;
+    
+    // If cube loaded successfully, show menu
+    if cube_ok {
+        if let Ok(cube) = init_cube_context(cube_root) {
+            show_task_menu(&cube)?;
+        }
+    }
+    
+    Ok(())
+}
+
+fn show_task_menu(cube: &CubeContext) -> std::io::Result<()> {
+    loop {
+        println!();
+        println!("▛▞ Task Menu:");
+        println!("1. Update List");
+        println!("2. Execute Command");
+        println!("3. Write Status Report");
+        println!("4. Help (Command Legend)");
+        println!("5. Exit");
+        print!("Select: ");
+        io::stdout().flush()?;
+        
+        let mut input = String::new();
+        io::stdin().read_line(&mut input)?;
+        
+        match input.trim() {
+            "1" => {
+                print!("Enter file path: ");
+                io::stdout().flush()?;
+                let mut file_path = String::new();
+                io::stdin().read_line(&mut file_path)?;
+                
+                print!("Enter item to add: ");
+                io::stdout().flush()?;
+                let mut item = String::new();
+                io::stdin().read_line(&mut item)?;
+                
+                match update_list(file_path.trim(), item.trim()) {
+                    Ok(_) => println!("✓ List updated successfully"),
+                    Err(e) => println!("✗ Error: {}", e),
+                }
+            }
+            "2" => {
+                print!("Enter command: ");
+                io::stdout().flush()?;
+                let mut cmd = String::new();
+                io::stdin().read_line(&mut cmd)?;
+                
+                match execute_command("sh", &["-c", cmd.trim()]) {
+                    Ok(output) => println!("Output:\n{}", output),
+                    Err(e) => println!("✗ Error: {}", e),
+                }
+            }
+            "3" => {
+                let default_path = cube.cube_root.join("status-report.txt");
+                println!("Default path: {}", default_path.display());
+                print!("Enter report path (or press Enter for default): ");
+                io::stdout().flush()?;
+                let mut report_path = String::new();
+                io::stdin().read_line(&mut report_path)?;
+                
+                let final_path = if report_path.trim().is_empty() {
+                    default_path.to_string_lossy().to_string()
+                } else {
+                    report_path.trim().to_string()
+                };
+                
+                match write_status_report(&final_path, cube) {
+                    Ok(_) => println!("✓ Status report written to: {}", final_path),
+                    Err(e) => println!("✗ Error: {}", e),
+                }
+            }
+            "4" => {
+                println!("\n▛▞ Command Legend:");
+                println!("\n📋 System Commands:");
+                println!("  /sparkfile       - Check if sparkfile exists in cube");
+                println!("  /status          - Display current cube status");
+                println!("  /validate        - Re-validate cube integrity");
+                println!("  /faces           - List all cube faces");
+                println!("\n🔧 File Operations:");
+                println!("  echo 'text' > file.txt    - Create/write to file");
+                println!("  cat file.txt              - Read file contents");
+                println!("  ls -la                    - List directory contents");
+                println!("\n💡 Tips:");
+                println!("  - Use absolute paths or relative from cube root");
+                println!("  - Status reports default to .3ox/status-report.txt");
+                println!("  - Press Enter on empty prompts to use defaults\n");
+            }
+            "5" => break,
+            _ => println!("Invalid selection"),
+        }
+    }
+    Ok(())
+}
+
+fn update_list(file_path: &str, item: &str) -> Result<(), String> {
+    let path = std::path::Path::new(file_path);
+    let mut file = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(path)
+        .map_err(|e| format!("Failed to open file: {}", e))?;
+    writeln!(file, "{}", item)
+        .map_err(|e| format!("Failed to write: {}", e))?;
+    Ok(())
+}
+
+fn execute_command(cmd: &str, args: &[&str]) -> Result<String, String> {
+    let output = Command::new(cmd)
+        .args(args)
+        .output()
+        .map_err(|e| format!("Failed to execute: {}", e))?;
+    if output.status.success() {
+        Ok(String::from_utf8_lossy(&output.stdout).to_string())
+    } else {
+        Err(String::from_utf8_lossy(&output.stderr).to_string())
+    }
+}
+
+fn write_status_report(path: &str, cube: &CubeContext) -> Result<(), String> {
+    use std::time::{SystemTime, UNIX_EPOCH};
+    let timestamp = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap()
+        .as_secs();
+    
+    let sparkfile_content = load_sparkfile(&cube.cube_root)
+        .unwrap_or_else(|_| "Sparkfile not available".to_string());
+    
+    let status = format!(
+        "///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///\n\
+         ▛//▞▞ ⟦⎊⟧ :: Status Report :: {} ▞▞\n\n\
+         Timestamp: {}\n\
+         Cube Root: {}\n\
+         Agent: {} ({})\n\
+         Workspace: {}\n\
+         Tools: {}\n\
+         Routes: {}\n\
+         Session ID: {}\n\n\
+         ▛▞ Sparkfile Configuration:\n\
+         {}\n\n\
+         ▛▞ Cube Integrity: VERIFIED\n\
+         ▛▞ Faces Active: 6\n\
+         ▛▞ Vec3 Status: BOUND\n\n\
+         :: ∎\n",
+        cube.agent_name,
+        timestamp,
+        cube.cube_root.display(),
+        cube.agent_name,
+        cube.agent_id,
+        cube.workspace,
+        cube.tools.tools.len(),
+        cube.routes.routes.len(),
+        cube.session_id,
+        sparkfile_content
+    );
+    std::fs::write(path, status)
+        .map_err(|e| format!("Failed to write report: {}", e))?;
+    Ok(())
+}

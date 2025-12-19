@@ -1,0 +1,15 @@
+[package]
+name = "vec3-boot"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "3OX.Ai System Boot Screen"
+
+[[bin]]
+name = "vec3-boot"
+path = "src/main.rs"
+
+[dependencies]
+crossterm = "0.27"
+brains-3ox-core = { path = "../vec3.core" }
+

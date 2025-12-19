@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "version": "v2.0.0",
+    "runtime": "ruby"
+  },
+  "resources": {
+    "files": {
+      "max_file_size_mb": 100,
+      "max_files_per_operation": 100
+    }
+  },
+  "emergency": {
+    "thresholds": {
+      "context_utilization_critical": 95,
+      "disk_space_critical_mb": 100
+    },
+    "actions": {
+      "halt_on_critical_error": true,
+      "auto_backup_on_emergency": true
+    }
+  }
+}
+

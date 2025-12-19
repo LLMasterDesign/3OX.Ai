@@ -1,0 +1,103 @@
+
+[Step] = faces{step}1-n
+
+{1.1}::
+▛▞///▞▞ 3OX::LOADER ▹
+...loading{faces}      ▛▞//▯▯▯▯▯▯▯▯▯▯▯▯▹ 0%
+
+brains.rs           [---------->]  0%  
+
+//▞▞ SYSTEM.STATUS
+
+{1.2}::
+▛▞///▞▞ 3OX::LOADER ▹
+...loading{faces}      ▛▞//▮▯▯▯▯▯▯▯▯▯▯▯▹ 10%
+
+brains.rs           [##########>]  100%  OK
+
+//▞▞ SYSTEM.STATUS
+
+{2.1}::
+▛▞///▞▞ 3OX::LOADER ▹
+...loading{faces}      ▛▞//▮▯▯▯▯▯▯▯▯▯▯▯▹ 10%
+
+run.rb           [---------->]  0%  
+
+//▞▞ SYSTEM.STATUS
+
+{2.2}::
+▛▞///▞▞ 3OX::LOADER ▹
+...loading{faces}      ▛▞//▮▮▯▯▯▯▯▯▯▯▯▯▹ 20%
+
+run.rb           [##########>]  100%  OK
+
+//▞▞ SYSTEM.STATUS
+
+...{step}to 6
+
+{6.2}::
+▛▞///▞▞ 3OX::LOADER ▹
+...loading{faces}      ▛▞//▮▮▮▮▮▮▯▯▯▯▯▯▹ 60%
+
+3ox.log           [##########>]  100%  OK
+
+//▞▞ SYSTEM.STATUS
+
+//▞ {faces}MAPPED             COMPLETE
+
+[Step] = vec3{step}1-n
+
+{9.2}::
+▛▞///▞▞ 3OX::LOADER ▹
+...binding{vec3}      ▛▞//▮▮▮▮▮▮▮▮▮▯▯▯▹ 85%
+
+sync.vec3.rb       [##########>]  100%  OK
+
+//▞▞ SYSTEM.STATUS
+
+//▞ {faces}MAPPED             COMPLETE
+//▞ {vec3}BINDED              COMPLETE
+
+[Step] = core{step}1
+
+{10.2}
+▛▞///▞▞ 3OX::LOADER ▹
+...igniting{core}      ▛▞//▮▮▮▮▮▮▮▮▮▮▯▯▹ 90%
+
+sparkfile.md       [##########>]  100%  OK
+
+//▞▞ SYSTEM.STATUS
+
+//▞ {faces}MAPPED             COMPLETE
+//▞ {vec3}BINDED              COMPLETE
+//▞ {core}STABLE              COMPLETE
+
+[Step] = lock{step}1-n
+
+{10.1}
+▛▞///▞▞ 3OX::LOADER ▹
+...engaging{lock}      ▛▞//▮▮▮▮▮▮▮▮▮▮▯▯▹ 90%
+
+cube.lock         [----------]   PENDING
+
+//▞▞ SYSTEM.STATUS
+
+3ox.faces      MAPPED     COMPLETE
+vec3.binding   ENGAGED    COMPLETE
+sparkfile.core STABLE     COMPLETE             
+
+{11}
+▛▞///▞▞ 3OX::LOADER ▹
+...{3OX}Initialized     ▛▞//▮▮▮▮▮▮▮▮▮▮▮▮▹ COMPLETE
+
+all files loaded...
+
+//▞▞ SYSTEM.STATUS
+
+//▞ {faces}MAPPED             COMPLETE
+//▞ {vec3}BINDED              COMPLETE
+//▞ {core}STABLE              COMPLETE
+
+:: ∎
+
+[/step] 

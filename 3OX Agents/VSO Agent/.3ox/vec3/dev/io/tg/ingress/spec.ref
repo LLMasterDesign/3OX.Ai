@@ -1,0 +1,12 @@
+# IO.TG.INGRESS :: Telegram Ingress Adapter
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+
+name: io.tg.ingress
+role: receive messages from Telegram bot, validate, route to internal queue
+inputs: bot_token, webhook_url, message_filters, routing_rules
+outputs: message_ref, sender_id, timestamp, receipt_ref
+constraints: rate_limit_per_user, message_size_max, webhook_timeout
+receipts: required fields: timestamp, actor (bot), intent (message_type), inputs_hash, trace_id
+failure_modes: webhook_timeout, invalid_token, rate_limit_exceeded, message_parse_error
+

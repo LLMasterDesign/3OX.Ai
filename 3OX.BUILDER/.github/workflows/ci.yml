@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        
+    - name: Install Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+        
+    - name: Build
+      run: cargo build --release
+      
+    - name: Build CLI
+      run: cargo build --release --bin 3ox
+      
+    - name: Check binary exists
+      run: |
+        test -f target/release/3ox && echo "✓ 3ox CLI built successfully"
+        test -f target/release/vec3-boot && echo "✓ vec3-boot built successfully"
+

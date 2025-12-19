@@ -1,0 +1,12 @@
+# OPS.PYTHON.EXEC :: Python Executor Adapter
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+
+name: ops.python.exec
+role: execute python entrypoint under limits and write receipts
+inputs: entrypoint_path, args, env_ref, workdir, limits
+outputs: stdout_ref, stderr_ref, exit_code, artifacts_dir
+constraints: network_policy, fs_scope, time_budget, memory_budget
+receipts: required fields: timestamp, actor (python), intent (exec), inputs_hash, outputs_pointers, trace_id
+failure_modes: timeout, import_error, venv_missing, permission_denied, memory_exceeded
+

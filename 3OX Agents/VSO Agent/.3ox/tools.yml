@@ -1,0 +1,94 @@
+# TOOLS.YML :: Available Tools for VSO.AGENT Runtime
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+
+tools:
+  - name: FileValidator
+    function: validate_file(filepath)
+    returns: hash with :path, :hash, :size, :valid
+    description: Validate file existence and generate xxHash64
+    
+  - name: ValidateAndLog
+    function: validate_and_log(filepath, operation)
+    returns: hash with :file, :operation, :hash, :timestamp, :status
+    description: Validate file and log to 3ox.log (no receipt spam)
+    
+  - name: FileOrganizer
+    function: organize_claim_files(claim_number, file_type, filepath)
+    returns: hash with :organized, :location, :status
+    description: Organize claim documents into proper directory structure
+    
+  - name: EvidenceTracker
+    function: track_evidence(claim_number, evidence_type, description, filepath)
+    returns: hash with :tracked, :evidence_id, :status
+    description: Track evidence submissions for claims
+    
+  - name: DeadlineTracker
+    function: track_deadline(claim_number, deadline_type, date, description)
+    returns: hash with :tracked, :deadline_id, :status
+    description: Monitor and track claim deadlines
+    
+  - name: WebSearch
+    function: search_web(query, max_results)
+    returns: array of search results with :title, :url, :snippet
+    description: Search web for current VA policies, procedures, and information
+    
+  - name: DBQReference
+    function: reference_dbq(condition)
+    returns: hash with :dbq_form, :sections, :requirements, :evidence_needed
+    description: Access DBQ requirements for specific conditions from vec3/lib/dbq-guide.ref (protected reference)
+    
+  - name: VARulesReference
+    function: reference_va_rules(topic)
+    returns: hash with :regulation, :section, :content, :applicability
+    description: Access VA regulations from vec3/lib/va-rules.ref (protected reference)
+    
+  - name: TimelineUpdater
+    function: update_timeline(claim_number, event_type, date, description)
+    returns: hash with :updated, :timeline_entry, :status
+    description: Update claim timeline with events and milestones
+    
+  - name: ChecklistManager
+    function: manage_checklist(claim_number, checklist_type, items)
+    returns: hash with :checklist, :completed_items, :pending_items
+    description: Manage evidence checklists for claims
+    
+  - name: LoadBrain
+    function: load_brain()
+    returns: hash with 'name', 'type', 'rules'
+    description: Load agent configuration from brain.exe or brain.rs
+    
+  - name: LoadRoutes
+    function: load_routes()
+    returns: hash of operation → destination routes
+    description: Load routing configuration from routes.json
+    
+  - name: LoadLimits
+    function: load_limits()
+    returns: hash of resource limits
+    description: Load resource constraints from limits.json
+    
+  - name: LoadTools
+    function: load_tools()
+    returns: hash of available tools
+    description: Load tool registry from tools.yml (this file)
+    
+  - name: CheckFileLimits
+    function: check_file_limits(filepath)
+    returns: hash with :within_limits, :file_size_mb, :limit_mb
+    description: Verify file size against configured limits
+    
+  - name: LogOperation
+    function: log_operation(operation, status, details)
+    returns: void (appends to 3ox.log)
+    description: Log operation to central activity log with unique sigil
+
+external_tools:
+  - name: web_search
+    description: External web search capability for current VA information
+    access: via WebSearch function
+    
+  - name: file_system
+    description: File system access for organizing claim documents
+    access: via FileOrganizer, EvidenceTracker functions
+

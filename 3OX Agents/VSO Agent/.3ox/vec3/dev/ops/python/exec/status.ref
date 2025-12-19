@@ -1,0 +1,11 @@
+# OPS.PYTHON.EXEC :: Status Snapshot
+# Version: ${VERSION}
+# Updated: ${SIRIUS_TIME}
+# INTENT: Current snapshot, overwrite allowed
+
+health: ok
+last_ok_ts: [auto-updated]
+last_error: none
+capabilities: execute_python, manage_venv, enforce_limits, capture_output
+version: ${VERSION}
+
