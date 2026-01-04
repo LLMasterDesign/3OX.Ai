@@ -1,0 +1,28 @@
+FROM ruby:3.2-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Rust toolchain
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+# Set working directory
+WORKDIR /app
+
+# Create logs directory
+RUN mkdir -p /app/logs
+
+# Copy agents directory
+COPY 3OX.SETS /agents
+
+# Set environment variables
+ENV 3OX_FREE_MODE=true
+ENV AGENT_HOME=/agents
+
+# Default command - this will be overridden by individual agent run.rb scripts
+CMD ["tail", "-f", "/dev/null"]

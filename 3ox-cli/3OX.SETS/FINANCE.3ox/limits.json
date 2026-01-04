@@ -1,0 +1,11 @@
+{
+  "max_memory_mb": 1024,
+  "max_cpu_percent": 75.0,
+  "max_disk_mb": 2048,
+  "timeout_seconds": 600,
+  "max_concurrent_tasks": 10,
+  "rate_limits": {
+    "api_calls_per_minute": 100,
+    "data_processing_per_hour": 1000
+  }
+}

@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # Rust Backend API
+  3ox-api:
+    build:
+      context: ./backend-rust
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./3OX.SETS:/app/3OX.SETS:ro
+      - ./logs:/app/logs
+    environment:
+      - 3OX_SETS_PATH=/app/3OX.SETS
+      - RUST_LOG=info
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+    depends_on:
+      - rabbitmq
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # RabbitMQ for agent communication
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=3ox
+      - RABBITMQ_DEFAULT_PASS=3ox123
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Agent Runtime Environment
+  3ox-agents:
+    build:
+      context: .
+      dockerfile: Dockerfile.agents
+    volumes:
+      - ./3OX.SETS:/agents:rw
+      - ./logs:/app/logs
+    environment:
+      - 3OX_FREE_MODE=true
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - RABBITMQ_USER=3ox
+      - RABBITMQ_PASS=3ox123
+    depends_on:
+      - rabbitmq
+    restart: unless-stopped
+
+volumes:
+  rabbitmq_data:
+
+networks:
+  default:
+    name: 3ox-network

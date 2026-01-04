@@ -1,0 +1,6 @@
+#!/bin/bash
+# Placeholder for brain.exe
+# In a real implementation, this would be a compiled Rust binary
+
+echo "Finance Agent Brain - Executable placeholder"
+echo "This would be the compiled Rust binary for the finance agent"

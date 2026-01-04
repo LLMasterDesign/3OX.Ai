@@ -1,0 +1,11 @@
+/workspace/3ox-cli/backend-rust/target/debug/deps/libderive_more-4088326516d9e47a.rmeta: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/as.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/mod.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/thiserror/mod.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/thiserror/aserror.rs
+
+/workspace/3ox-cli/backend-rust/target/debug/deps/libderive_more-4088326516d9e47a.rlib: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/as.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/mod.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/thiserror/mod.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/thiserror/aserror.rs
+
+/workspace/3ox-cli/backend-rust/target/debug/deps/derive_more-4088326516d9e47a.d: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/as.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/mod.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/thiserror/mod.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/thiserror/aserror.rs
+
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/lib.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/as.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/mod.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/thiserror/mod.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-2.0.1/src/vendor/thiserror/aserror.rs:

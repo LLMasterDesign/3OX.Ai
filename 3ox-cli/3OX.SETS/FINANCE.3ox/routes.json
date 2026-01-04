@@ -1,0 +1,48 @@
+{
+  "capabilities": [
+    "Market Analysis",
+    "Risk Assessment", 
+    "Portfolio Optimization",
+    "Real-time Data Processing"
+  ],
+  "endpoints": [
+    {
+      "path": "/analyze/market",
+      "method": "POST",
+      "description": "Analyze market data for trends and patterns",
+      "parameters": [
+        {
+          "name": "symbols",
+          "param_type": "array",
+          "required": true,
+          "description": "List of stock symbols to analyze"
+        },
+        {
+          "name": "timeframe",
+          "param_type": "string",
+          "required": false,
+          "description": "Analysis timeframe (1d, 1w, 1m, 1y)"
+        }
+      ]
+    },
+    {
+      "path": "/assess/risk",
+      "method": "POST", 
+      "description": "Assess portfolio risk metrics",
+      "parameters": [
+        {
+          "name": "portfolio",
+          "param_type": "object",
+          "required": true,
+          "description": "Portfolio holdings and weights"
+        }
+      ]
+    }
+  ],
+  "message_types": [
+    "market_data_request",
+    "analysis_result",
+    "risk_assessment",
+    "portfolio_update"
+  ]
+}
