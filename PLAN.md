@@ -208,4 +208,95 @@ Telegram
 Working Agent ✓
 ```
 
+────────────────────────────────────────────────
+## ARCHITECTURE AUDIT
+────────────────────────────────────────────────
+
+### Progression: 5 — 6 — 7 — 7 — 2
+
+```
+5TRATA (containment)   →  L2 .3ox (cube faces)  →  L3 .vec3 (kernel)  →  3OX.Ai (services)  →  Anchors
+       5                        6                        7                      7                   2
+```
+
+- **5TRATA**: CMD → Base → Station → Service → Agent
+- **L2**: Spark, Brains, Rules, Toolkit, Links, Pulse
+- **L3**: rc, lib, dev, var, bin, mem, proc
+- **3OX.Ai**: Arc, Pulse, Queue, Supervisor, Tape, Warden, Worker
+- **Anchors**: _meta (identity), _TRON (device runtime)
+
+### 3OX.Ai — 7 Modules
+
+| Module | Full Name | Role |
+|--------|-----------|------|
+| Arc | Archetype | Persona loading, personality traits, triggered scope shifts. `.arc` files + `.spec` presets. Makes agents sound human, not robotic. |
+| Tape | Tape | Append-only event journal. Elixir streaming. What happened, when. |
+| Warden | Warden | Policy enforcement, mutation control. Rust core. What's allowed. |
+| Pulse | Pulse | Heartbeat, liveness detection, keepalive. Is it alive. |
+| Supervisor | Supervisor | Process lifecycle management, Ruby script dispatch. Restart strategy. |
+| Worker | Worker | GenServer task execution. Does the actual work. |
+| Queue | Queue | Backpressure-aware work distribution, job scheduling. Who works next. |
+
+### Language Ownership
+
+| Language | Owns | Why |
+|----------|------|-----|
+| Rust | Warden, Brains | Security-critical policy + compiled identity. Must never fail. |
+| Elixir | Tape, Pulse, Arc | Event streaming, heartbeat, persona state. BEAM fault tolerance. |
+| Ruby | Supervisor, Worker | Orchestration glue, script dispatch. Flexible, rapid iteration. |
+| gRPC/Protobuf | Wire between all | Language-agnostic contracts. Rust, Elixir, Ruby all speak Protobuf. |
+| Markdown | Sparkfiles, contracts | Human-readable truth. No compilation, no parsing ambiguity. |
+
+### vec3 ↔ 3OX.Ai Mirror (7 — 7)
+
+| vec3 (inside cube) | 3OX.Ai (across cubes) | Relationship |
+|--------------------|----------------------|--------------|
+| rc/ — lifecycle | Supervisor | Both own startup, shutdown, restart |
+| lib/ — knowledge refs | Arc | Both hold what-to-BE knowledge (personas, references) |
+| dev/ — IO bridges | Queue | Both route work in/out (IO dispatch, job routing) |
+| var/ — state, spool | Tape | Both hold what-happened state (events, receipts) |
+| bin/ — executables | Worker | Both execute tasks (entry points, GenServer) |
+| mem/ — active state | Warden | Both hold hot rules (runtime policy, cache) |
+| proc/ — observation | Pulse | Both observe running state (process tracking, heartbeat) |
+
+### Sources
+
+**Arc / Archetype — persona systems for AI agents:**
+
+1. **CoALA** — Cognitive Architectures for Language Agents (Princeton, 2023).
+   Framework for language agent memory models and action spaces.
+   Informs how Arc structures persona memory vs. episodic memory.
+
+2. **Anthropic PSM** — "The Persona Selection Model" (2026).
+   LLMs learn to simulate diverse personas during pre-training;
+   post-training refines a specific persona. Validates Arc's approach
+   of treating agent identity as character-like entity with adjustable
+   personality traits, not rigid pattern matching.
+   → https://alignment.anthropic.com/2026/psm
+
+3. **Structured Personality Control** — arXiv:2601.10025 (Jan 2026).
+   Uses Jungian psychological types with three mechanisms:
+   dominant-auxiliary coordination for coherent expression,
+   reinforcement-compensation for contextual adaptation,
+   and reflection for long-term personality evolution.
+   Directly validates Arc's triggered trait modifiers and scope-shift design.
+
+**Queue / Large-Scale — backpressure and job distribution:**
+
+1. **Elixir Broadway + GenStage** — demand-driven backpressure pipelines.
+   Producer → ProducerConsumer → Consumer stages with demand flowing
+   upstream. Used at scale by Discord and Change.org.
+   GenStage's stage types map directly to Queue's role in 3OX.
+   → https://elixir-broadway.org
+
+2. **Uber uForwarder** — open-sourced Feb 2026.
+   Push-based Kafka consumer proxy serving 1,000+ downstream
+   microservices, processing trillions of messages daily across
+   multiple petabytes. Uses gRPC job routing, context-aware message
+   headers for region/tenant routing, and out-of-order offset commits
+   to prevent partition stalls. This is what Queue looks like at 200+
+   services scale.
+   → https://www.uber.com/blog/introducing-ufowarder
+   → https://github.com/uber/uForwarder
+
 :: ∎
