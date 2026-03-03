@@ -1,5 +1,8 @@
 // ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂| 3ox v1.0.0 | VEC3.LIB.RS |▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///
 // ▛//▞▞ ⟦⎊⟧ :: ⧗-25.122 // Vec3 Geometry Engine Binding ▞▞
+// status:[ACTIVE] ver:[1.0.0] created:[25.05.02]
+// doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+// Vec3 geometry engine — cube face binding
 
 /// Bind cube faces according to face.map.toml and manifest.vec3.toml
 /// 

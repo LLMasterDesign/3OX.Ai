@@ -1,8 +1,8 @@
 // ▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
 // ▛//▞▞ ⟦⎊⟧ :: ⧗-25.291 ▸ ρ{agent.brain}.φ{identity}.τ{rules}.λ{bind} ⫸ :: BRAIN.RS
-//
-// Agent Configuration and Rules
-// Version: v1.1.0
+// status:[ACTIVE] ver:[1.1.0] created:[25.10.18]
+// doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+// Agent configuration and rules — core 3ox runtime
 
 use std::env;
 

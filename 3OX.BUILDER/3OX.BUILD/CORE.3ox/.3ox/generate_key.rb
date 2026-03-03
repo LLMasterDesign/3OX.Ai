@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
-#
-# GENERATE_KEY.RB :: 3OX License Key Generator
-# Purpose: Create signed, machine-bound activation keys
-#
+# status:[ACTIVE] ver:[1.0.0] created:[25.10.18]
+# doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+# 3OX license key generator — signed, machine-bound activation keys
 
 require 'digest'
 require 'date'

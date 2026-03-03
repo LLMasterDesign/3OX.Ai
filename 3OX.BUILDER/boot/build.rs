@@ -1,5 +1,7 @@
 ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂ ::[0xA4]::
-// Build script to generate system hash for machine binding
+// status:[ACTIVE] ver:[1.0.0] created:[25.05.11]
+// doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+// Build script — system hash for machine binding
 
 use std::process::Command;
 use std::env;
