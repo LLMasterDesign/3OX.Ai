@@ -1,0 +1,28 @@
+# status:[ACTIVE] ver:[1.0.0] created:[26.03.03]
+# doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+# Changelog — framework-level change feed
+
+[[entry]]
+date    = "26.03.03"
+type    = "init"
+summary = "Elixir frontmatter spec locked (3ox.clip), colon notation"
+
+[[entry]]
+date    = "26.03.03"
+type    = "structure"
+summary = "L2 (6 files) + L3 (6 folders) canonical layout defined"
+
+[[entry]]
+date    = "26.03.03"
+type    = "infra"
+summary = "_TRON systemd services + device contract template"
+
+[[entry]]
+date    = "26.03.03"
+type    = "meta"
+summary = "_meta contracts: WHOAMI, NAMING, SESSION, CHANGELOG"
+
+[[entry]]
+date    = "26.03.03"
+type    = "agent"
+summary = "Money.Bagz live on VPS via TelePromptR + speaker-mesh"
