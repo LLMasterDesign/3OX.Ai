@@ -1,0 +1,21 @@
+{
+  "agent": "Money.Bagz",
+  "version": "1.0.0",
+  "routes": {
+    "default": "!0UT.BUDGET",
+    "reports": "!0UT.BUDGET/reports",
+    "alerts": "!0UT.BUDGET/alerts",
+    "tpr": "!0UT.BUDGET/tpr",
+    "logs": ".3ox"
+  },
+  "telegram": {
+    "chat_id": -1003184164777,
+    "allowed_chat_ids": [-1003184164777],
+    "allowed_topics": [735]
+  },
+  "mesh": {
+    "speaker": "speaker-mesh",
+    "config": "TPR.SPEAKER.MESH.json",
+    "route": "TPR.ROUTE.MAP.json"
+  }
+}
