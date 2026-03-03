@@ -1,0 +1,18 @@
+# status:[DRAFT] ver:[1.0.0] created:[26.03.03]
+# doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+# Naming contract — conventions for this cube
+
+[naming]
+style = "UPPER.DOT"              # AGENT.NAME, SERVICE.NAME
+separator = "."
+
+[extensions]
+service  = ".service"
+station  = ".station"
+agent    = ".agent"
+task     = ".task"
+watch    = ".watch"
+
+[staging]
+prefix   = "!"                   # !CMD.VPS, !LAUNCHPAD
+output   = "!0UT"                # !0UT.BUDGET, !0UT.AGENT

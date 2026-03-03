@@ -1,0 +1,8 @@
+# status:[DRAFT] ver:[1.0.0] created:[26.03.03]
+# doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+# Changelog — change feed for this cube
+
+[[entry]]
+date    = "26.03.03"
+type    = "init"
+summary = "Initial structure — L2 faces, L3 kernel, _meta contracts"

@@ -1,0 +1,18 @@
+# status:[DRAFT] ver:[1.0.0] created:[26.03.03]
+# doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+# Limits template — agent constraints and write policy
+
+[limits]
+max_tokens      = 4096
+max_context     = 128000
+timeout_seconds = 60
+
+[write_policy]
+allow_create = false
+allow_modify = false
+allow_delete = false
+protected    = [".3ox/", "_meta/"]
+
+[scope]
+allowed_dirs = ["."]
+denied_dirs  = [".."]
