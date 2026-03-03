@@ -13,8 +13,8 @@ FORMAT
 ────────────────────────────────────────────────
 
 ```elixir
-/// status[STATUS] ver[MAJOR.MINOR.PATCH] created[YY.MM.DD]
-/// doc[DOC_STATUS] modified[YY.MM.DD] auth[BASE]
+/// status:[STATUS] ver:[MAJOR.MINOR.PATCH] created:[YY.MM.DD]
+/// doc:[DOC_STATUS] modified:[YY.MM.DD] auth:[BASE]
 /// Purpose or title of the file
 ```
 
@@ -51,8 +51,8 @@ EXAMPLE
 ────────────────────────────────────────────────
 
 ```elixir
-/// status[RESEARCH] ver[1.0.0] created[25.12.14]
-/// doc[COMPLETE] modified[26.03.02] auth[ZEN.PRO]
+/// status:[RESEARCH] ver:[1.0.0] created:[25.12.14]
+/// doc:[COMPLETE] modified:[26.03.02] auth:[ZEN.PRO]
 /// BEAM/OTP architecture vs alternatives for always-on agent systems
 ```
 
