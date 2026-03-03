@@ -209,6 +209,101 @@ Working Agent ✓
 ```
 
 ────────────────────────────────────────────────
+## ONBOARDING & CRITICAL FILES
+────────────────────────────────────────────────
+
+### Boot Chain — what gets read on startup
+
+Sparkfile is the core entry point — like `.cursorrules` for Cursor.
+Everything chains from it:
+
+```
+sparkfile.md          ← READ FIRST — identity, config, contract
+  ├── soul.md         ← "read soul" — mission, values, why we persist
+  ├── brains.rs       ← "read brain" — personality, rules, brain type
+  ├── tools.yml       ← available capabilities
+  ├── routes.json     ← where output goes
+  ├── limits.toml     ← what's allowed, constraints
+  └── run.rb          ← entry point, executes on boot → writes 3ox.log
+```
+
+### Critical Files Users Should Know
+
+| File | Face | Touched On | Purpose |
+|------|------|------------|---------|
+| `sparkfile.md` | (1) Spark | First boot | Identity, origin, contract. THE config file. |
+| `soul.md` | (1) Spark | First boot | Mission, values, ongoing identity. Why we persist. |
+| `brains.rs` | (2) Brains | First boot | Personality type, rules, compiled to brain.exe |
+| `3ox.log` | (6) Pulse | Every run | Append-only operation log. Created on first run.rb execution. |
+| `skills.md` | (4) Toolkit | Agent setup | Available skills, onboarding guide for new capabilities |
+| `merkle.root` | _meta | Integrity check | Hash tree root for change verification |
+
+### Sparkfile as Embedded Loader
+
+Sparkfile works like a run-loader. On boot it reads:
+1. **soul.md** — loads the agent's purpose and identity anchor
+2. **brains.rs** — loads personality, rules, brain type
+3. **tools.yml + routes.json** — loads capabilities and routing
+4. **limits.toml** — loads constraints before any execution
+
+This is the same pattern from ChatGPT custom instructions:
+instruction slot → run-loader with snips → full markdown of what to do.
+Sparkfile IS the run-loader. Soul, brain, tools are the snips.
+
+### Arc Persona Files (separate from L2)
+
+`.spark` files and `.arc` files are Arc territory — persona presets:
+
+| Extension | Purpose | Loaded By |
+|-----------|---------|-----------|
+| `.spark` | Persona presets (tone, style, triggers) | Arc at runtime |
+| `.arc` | Full archetype definitions (upgraded glyph.bits) | Arc at runtime |
+| `.spec` | Personality specifications (Z3N.SPEC style) | Arc at boot |
+
+These live in `lib/` (vec3 kernel) — they are knowledge refs, not L2 faces.
+Arc loads them dynamically based on context and triggered trait modifiers.
+
+### Installation & Dependencies
+
+**Required:**
+- Ruby >= 3.2.0 (Supervisor, Workers, run.rb)
+- Rust stable 2021+ (Warden, Brains compilation)
+
+**Recommended:**
+- Bun >= 1.0.0 (build tooling, compile-run)
+- Elixir/OTP >= 1.16 (Tape, Pulse, Arc services — when running full stack)
+
+**Optional:**
+- Node.js >= 18 (alternative to Bun)
+- Protobuf compiler (gRPC cross-language contracts)
+
+**Install approach:**
+- Dependencies listed per-agent in `tools.yml` under a `deps:` key
+- `run.rb` checks deps on first boot, warns on missing
+- Full install script future: `3ox install` CLI or `bun run setup`
+- Each agent is self-contained — no global install required
+
+### Onboarding Flow (new agent, new user)
+
+```
+1. Clone or create agent directory
+2. Run: ruby .3ox/Pulse/run.rb
+   → Reads sparkfile.md (identity)
+   → Reads soul.md (purpose)
+   → Loads brains.rs (personality)
+   → Checks tools.yml (capabilities)
+   → Validates limits.toml (constraints)
+   → Creates 3ox.log (first entry)
+   → Ready.
+
+3. Connect to Telegram (optional):
+   → /teleprompter subkey signon AgentName
+   → /topic add AgentName
+   → Run sync-vps.sh to deploy
+   → Agent is live.
+```
+
+────────────────────────────────────────────────
 ## ARCHITECTURE AUDIT
 ────────────────────────────────────────────────
 
