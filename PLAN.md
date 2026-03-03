@@ -394,4 +394,64 @@ Arc loads them dynamically based on context and triggered trait modifiers.
    → https://www.uber.com/blog/introducing-ufowarder
    → https://github.com/uber/uForwarder
 
+────────────────────────────────────────────────
+## BUSINESS VISION
+────────────────────────────────────────────────
+
+### The Pitch — 100-Year System Lifecycle
+
+3OX.Ai is infrastructure for AI agents that outlasts any single model,
+any single company, any single decade. Model-agnostic, language-diverse
+(Rust/Elixir/Ruby), built on patterns that survived 50+ years
+(Unix FHS, BEAM/OTP, process supervision).
+
+- Unix is 55 and counting. Erlang/OTP is 38. These patterns endure.
+- 3OX owns the substrate, not the model. Models change. Substrates persist.
+- The 5-6-7-7-2 lattice is a fixed topology. Everything inside evolves.
+
+**Roadmap:**
+- v1: Substrate locked, agents running, Telegram as primary IO
+- v2: Stable + profitable — multi-device orchestration, SDK, public API
+- v3+: Federated agent networks, cross-instance communication
+
+### 3OX.Store — Netflix for AI
+
+**Free tier:** Build your own agents with sparkfile templates,
+community substrates, open-source L2/L3 specs, self-hosted.
+
+**Store:**
+- Pre-built agents (community or 3OX branded) — purchase once
+- Personality packs (.arc/.spark) — sold separately
+- Wallet refills — pay-per-use for premium LLM inference
+- Substrate chapters — released as community grows
+
+**Revenue:**
+```
+Free (self-host) → Store (pre-built) → Rental (per-use) → Enterprise
+     $0              $20-200            $5-50/session       Custom
+```
+
+### Investor Value
+
+1. Infrastructure play — owns the runtime layer between humans and AI
+2. Model-agnostic — works with any LLM, current or future
+3. Self-sustaining — agents generate logs, receipts, proof of life
+4. Community flywheel — users build agents → store grows → more users
+5. 100-year horizon — built on patterns older than the internet
+6. Existing traction — working agents on Telegram today
+
+### Agent Queue — ZENS3N Repo
+
+All agent work runs from `git@github.com:LLMasterDesign/ZENS3N.git`
+to keep 3OX.Ai stable. See `AGENT.QUEUE.md` in ZENS3N for task dispatch.
+
+────────────────────────────────────────────────
+## PHASE 5+ — WHAT'S NEXT
+────────────────────────────────────────────────
+
+**Immediate:** All agents coherent via TPR, logs functional, 1n3ox.ai updated
+**Short-term:** 3+ agents live, boot chain automated, investor pitch polished
+**Medium-term (Q2):** 3OX.Store alpha, community guide, SDK, Arc personas
+**Long-term (2027):** Multi-device _TRON, federated agents, v2 spec, revenue
+
 :: ∎
