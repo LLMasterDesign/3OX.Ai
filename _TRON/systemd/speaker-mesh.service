@@ -1,0 +1,20 @@
+# status:[ACTIVE] ver:[1.0.0] created:[26.03.01]
+# doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+# Speaker mesh — LLM inference and agent processing
+
+[Unit]
+Description=3OX Speaker Mesh — Agent LLM Processing
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/!CMD.VPS/TelePromptR
+ExecStart=/usr/bin/ruby tools/speaker_mesh.rb
+Restart=always
+RestartSec=5
+TimeoutStopSec=15
+Environment=LANG=en_US.UTF-8
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+# status:[DRAFT] ver:[1.0.0] created:[26.03.03]
+# doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+# WHOAMI watcher — monitors cube identity and drift
+
+[Unit]
+Description=3OX WHOAMI Watch — Identity Monitor
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/_TRON
+ExecStart=/usr/bin/ruby systemd/lifecycle/whoami.watch.rb
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
