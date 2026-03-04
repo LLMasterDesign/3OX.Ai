@@ -1,0 +1,24 @@
+# status:[ACTIVE] ver:[1.0.0] created:[26.03.03]
+# doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+# Naming contract — conventions for the 3OX.Ai framework
+
+[naming]
+style     = "UPPER.DOT"
+separator = "."
+
+[extensions]
+service  = ".service"
+station  = ".station"
+agent    = ".agent"
+task     = ".task"
+watch    = ".watch"
+clip     = ".clip"
+
+[staging]
+prefix   = "!"
+output   = "!0UT"
+
+[frontmatter]
+spec     = ".3ox/3ox.clip"
+format   = "field:[VALUE]"
+lines    = 3

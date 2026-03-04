@@ -1,0 +1,23 @@
+# status:[ACTIVE] ver:[1.0.0] created:[26.03.03]
+# doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+# Session checkpoint — framework-level resume state
+
+[checkpoint]
+last_sync    = "26.03.03"
+last_command = "substrate/elixir-frontmatter push"
+resume_from  = "Phase 1 complete — branches locked"
+
+[branches]
+substrate_frontmatter = "substrate/elixir-frontmatter"
+structure_3ox_core    = "structure/3ox-core"
+tron_systemd          = "tron/systemd"
+meta_logging          = "meta/logging"
+agents_live           = "agents/live"
+
+[truth]
+plan       = "PLAN.md"
+spec       = ".3ox/3ox.clip"
+contract   = "_TRON/_TRON.CONTRACT.toml"
+
+[drift]
+known = ["WSL not configured on Mac", "VPS _TRON layout minimal"]
