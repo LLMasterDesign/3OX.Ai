@@ -1,0 +1,19 @@
+# status:[DRAFT] ver:[1.0.0] created:[26.03.03]
+# doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+# Session checkpoint — resume state for this cube
+
+[checkpoint]
+last_sync    = ""
+last_command = ""
+resume_from  = ""
+
+[truth]
+sparkfile = ".3ox/(1)Spark/sparkfile.md"
+brain     = ".3ox/(2)Brains/brains.rs"
+limits    = ".3ox/(3)Rules/limits.toml"
+tools     = ".3ox/(4)Toolkit/tools.yml"
+routes    = ".3ox/(5)Links/routes.json"
+run       = ".3ox/(6)Pulse/run.rb"
+
+[drift]
+known = []

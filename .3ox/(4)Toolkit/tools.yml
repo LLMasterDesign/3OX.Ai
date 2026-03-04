@@ -1,0 +1,18 @@
+# status:[DRAFT] ver:[1.0.0] created:[26.03.03]
+# doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+# Tools template — agent capabilities
+
+tools:
+  - name: inference
+    type: llm
+    enabled: true
+
+  - name: search
+    type: read
+    enabled: false
+
+  - name: execute
+    type: script
+    enabled: false
+    runner: ruby
+    entry: run.rb

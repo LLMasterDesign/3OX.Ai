@@ -1,0 +1,59 @@
+///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///
+▛//▞▞ ⟦⎊⟧ :: ⧗-26.057 // WORKBOOK :: 3ox.clip ▞▞
+
+ELIXIR FRONTMATTER — Standard Snippet
+══════════════════════════════════════
+
+All elixir-fenced code blocks in this system use the following
+3-line frontmatter format. It is required on every file that
+carries an imprint banner.
+
+────────────────────────────────────────────────
+FORMAT
+────────────────────────────────────────────────
+
+```elixir
+/// status:[STATUS] ver:[MAJOR.MINOR.PATCH] created:[YY.MM.DD]
+/// doc:[DOC_STATUS] modified:[YY.MM.DD] auth:[BASE]
+/// Purpose or title of the file
+```
+
+────────────────────────────────────────────────
+LINE MAP
+────────────────────────────────────────────────
+
+LINE 1 — Identity
+  status    DRAFT | RESEARCH | ACTIVE | STABLE | ARCHIVED
+  ver       Semantic version of the content
+  created   Date first written (YY.MM.DD)
+
+LINE 2 — Lifecycle
+  doc       NONE | PARTIAL | COMPLETE
+  modified  Date last changed (YY.MM.DD)
+  auth      Originating base (ZEN.PRO | CITADEL | OBSIDIAN ...)
+
+LINE 3 — Purpose
+  Plain-text description of what this file is or does.
+
+────────────────────────────────────────────────
+RULES
+────────────────────────────────────────────────
+
+- status leads line 1 — it is what you check first.
+- created trails line 1, modified trails line 2.
+- auth updates with modified when a file changes base.
+- No file path — the imprint banner carries identity.
+- No authority/agent field — auth covers provenance.
+- Bracket notation only: field[VALUE]. No colons, no pipes.
+
+────────────────────────────────────────────────
+EXAMPLE
+────────────────────────────────────────────────
+
+```elixir
+/// status:[RESEARCH] ver:[1.0.0] created:[25.12.14]
+/// doc:[COMPLETE] modified:[26.03.02] auth:[ZEN.PRO]
+/// BEAM/OTP architecture vs alternatives for always-on agent systems
+```
+
+:: ∎
