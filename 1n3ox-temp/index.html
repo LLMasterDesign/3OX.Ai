@@ -1,0 +1,1379 @@
+<!--
+///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///
+▛//▞▞ ⟦⎊⟧ :: ⧗-26.064 // WORKBOOK :: 1n3ox.ai v4 ▞▞
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3OX.Ai :: Z3NSEN Systems</title>
+  <meta name="description" content="3OX.Ai :: Z3NSEN Systems :: model-agnostic substrate for permanent AI agents." />
+  <style>
+    :root {
+      --bg:     #080c14;
+      --deep:   #0c1220;
+      --panel:  #0f1a2e;
+      --card:   #111f36;
+      --border: #1b2e4a;
+      --brd2:   #243858;
+      --text:   #d8e8ff;
+      --muted:  #6e8fb5;
+      --dim:    #3a5478;
+      --cyan:   #5ddcff;
+      --violet: #9b8cff;
+      --green:  #3dffa0;
+      --amber:  #ffc44d;
+      --lime:   #7fff00;
+      --hot:    #ff3dac;
+      --hh:     34px;
+      --mono:   ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+      --sans:   Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
+
+    /* SCANLINES */
+    body::after  { content:''; position:fixed; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px); pointer-events:none; z-index:9000; }
+    /* DOT GRID */
+    body::before { content:''; position:fixed; inset:0; background-image:radial-gradient(circle,#1d3352 1px,transparent 1px); background-size:36px 36px; opacity:.3; z-index:0; pointer-events:none; }
+
+    /* ── SYS-HEADER ──────────────────────────────────── */
+    .sys-header {
+      position:fixed; top:0; left:0; right:0; height:var(--hh); z-index:500;
+      background:rgba(8,12,20,.97); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:0 1.4rem;
+      display:flex; align-items:center; justify-content:space-between;
+      font-family:var(--mono); font-size:.68rem; color:#7da8cb; letter-spacing:.04em;
+      overflow:hidden; white-space:nowrap;
+    }
+    .h-left  { display:flex; align-items:center; gap:.5rem; }
+    .h-glyph { color:#fff; font-weight:600; }
+    .h-sep   { color:var(--brd2); }
+    .h-brand { color:#fff; font-weight:600; letter-spacing:.06em; }
+    .h-lattice { color:var(--violet); letter-spacing:.18em; font-weight:600; }
+    .h-live  { color:var(--lime); animation:blink 2s ease infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .scroll-progress {
+      position:fixed; top:var(--hh); left:0; right:0; height:2px;
+      z-index:499; background:transparent;
+    }
+    .scroll-progress-fill {
+      height:100%; width:0%; background:var(--cyan);
+      transition:width .08s linear;
+    }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      position:relative; min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden; padding-top:var(--hh);
+    }
+    #hero-canvas { position:absolute; inset:0; width:100%; height:100%; z-index:1; }
+    .hero-content {
+      position:relative; z-index:2;
+      max-width:720px; padding:2rem 2rem 5rem;
+      text-align:center;
+    }
+    .hero-eyebrow {
+      font-family:var(--mono); font-size:.68rem; color:var(--cyan);
+      letter-spacing:.14em; margin-bottom:1.2rem; opacity:.65;
+    }
+    .hero-brand {
+      font-family:var(--mono); font-size:clamp(2.8rem,7vw,5rem);
+      font-weight:800; color:var(--cyan); letter-spacing:.06em;
+      margin-bottom:.5rem; line-height:1;
+    }
+    .hero-typed {
+      font-size:clamp(1.1rem,3vw,1.55rem); font-weight:600;
+      line-height:1.25; letter-spacing:-.02em;
+      color:#b8d4f0; margin-bottom:1.3rem; min-height:1.4em;
+    }
+    .hero-typed .em { color:var(--cyan); }
+    .hero-cursor  { display:inline-block; width:2px; height:.85em; background:var(--cyan); margin-left:2px; vertical-align:baseline; animation:blink 1s step-end infinite; }
+    .hero-sub     { font-size:.98rem; line-height:1.75; color:var(--muted); max-width:580px; margin:0 auto 2rem; }
+
+    .hero-cta { display:flex; gap:.65rem; flex-wrap:wrap; justify-content:center; align-items:flex-start; }
+    .btn { text-decoration:none; font-size:.88rem; padding:.65rem 1.3rem; border-radius:8px; transition:all .18s ease; display:inline-block; cursor:pointer; }
+    .btn-primary { background:var(--cyan); color:#03080f; font-weight:700; letter-spacing:.02em; border:none; }
+    .btn-primary:hover { box-shadow:0 0 22px rgba(93,220,255,.45); transform:translateY(-2px); }
+    .btn-ghost { border:1px solid var(--brd2); color:var(--text); background:rgba(15,26,46,.65); backdrop-filter:blur(8px); }
+    .btn-ghost:hover { border-color:var(--violet); transform:translateY(-2px); }
+    .btn-install { border:1px solid var(--brd2); color:var(--text); background:rgba(15,26,46,.65); backdrop-filter:blur(8px); font-size:.88rem; padding:.65rem 1.3rem; }
+    .btn-install:hover { border-color:var(--amber); color:var(--amber); transform:translateY(-2px); }
+
+    .install-wrap { position:relative; }
+    .install-panel {
+      display:none; position:absolute; top:calc(100% + .5rem); left:50%;
+      transform:translateX(-50%);
+      background:rgba(8,12,20,.97); border:1px solid var(--border);
+      border-radius:10px; padding:.7rem .9rem; white-space:nowrap;
+      z-index:100; min-width:300px; backdrop-filter:blur(16px);
+    }
+    .install-panel.open { display:block; }
+    .install-row { display:flex; align-items:center; gap:.7rem; padding:.3rem 0; border-bottom:1px solid var(--border); }
+    .install-row:last-child { border-bottom:none; }
+    .install-platform { font-family:var(--mono); font-size:.65rem; color:var(--dim); min-width:52px; }
+    .install-code { font-family:var(--mono); font-size:.73rem; color:var(--cyan); }
+
+    .hero-scroll {
+      position:absolute; bottom:1.8rem; left:50%; transform:translateX(-50%);
+      z-index:2; font-family:var(--mono); font-size:.6rem;
+      color:var(--dim); letter-spacing:.1em;
+      display:flex; flex-direction:column; align-items:center; gap:.35rem;
+    }
+    .scroll-line { width:1px; height:32px; background:linear-gradient(to bottom,var(--dim),transparent); animation:sdrop 2s ease infinite; }
+    @keyframes sdrop { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+    /* ── LAYOUT ──────────────────────────────────────── */
+    .wrap { max-width:1080px; margin:0 auto; padding:4rem 1.4rem 6rem; position:relative; z-index:10; }
+    .block { margin-bottom:2rem; opacity:0; transform:translateY(20px); transition:opacity .5s ease,transform .5s ease; }
+    .block.visible { opacity:1; transform:translateY(0); }
+    @media(prefers-reduced-motion:reduce) {
+      .block { opacity:1; transform:none; transition:none; }
+    }
+
+    /* ── BLOCK-HEAD ──────────────────────────────────── */
+    .block-head {
+      display:flex; align-items:center; gap:.6rem;
+      margin-bottom:1.2rem; padding:.48rem .9rem .48rem .8rem;
+      background:rgba(8,12,20,.88); backdrop-filter:blur(14px);
+      border:1px solid var(--border); border-left:2px solid rgba(255,255,255,0.82);
+      border-radius:8px; font-family:var(--mono); font-size:.68rem; letter-spacing:.04em;
+    }
+    .bh-glyph { color:#fff; font-weight:600; white-space:nowrap; }
+    .bh-num   { color:var(--lime); opacity:.8; min-width:2.4rem; }
+    .bh-title { font-size:.85rem; font-weight:600; color:var(--text); letter-spacing:.01em; }
+    .bh-sig   { color:var(--lime); opacity:.82; margin-left:auto; font-size:.63rem; white-space:nowrap; }
+
+    /* ── CUBE HEX ────────────────────────────────────── */
+    .cube-hex-wrap {
+      position:relative; width:100%; max-width:580px;
+      margin:0 auto;
+      /* maintain aspect ratio 600:560 */
+      aspect-ratio:600/560;
+    }
+    .hex-svg {
+      position:absolute; inset:0; width:100%; height:100%;
+      pointer-events:none; overflow:visible;
+    }
+    .hex-svg line { stroke:var(--border); stroke-width:1; }
+    .hex-svg line.perim { stroke:var(--brd2); stroke-width:1.2; opacity:.5; }
+    .hex-svg line.cross { opacity:.18; }
+
+    .face-node {
+      position:absolute; width:22%;
+      transform:translate(-50%,-50%);
+      background:var(--card); border:1px solid var(--border);
+      border-radius:10px; padding:.6rem .7rem;
+      transition:border-color .2s,box-shadow .2s;
+    }
+    .face-node:hover { border-color:var(--violet); box-shadow:0 0 12px rgba(155,140,255,.14); }
+    .face-node.n-spark   { left:50%;  top:11.6%; border-top:2px solid var(--cyan); }
+    .face-node.n-toolkit { left:81%;  top:30.9%; }
+    .face-node.n-links   { left:81%;  top:69.1%; }
+    .face-node.n-pulse   { left:50%;  top:88.4%; border-bottom:2px solid var(--green); }
+    .face-node.n-rules   { left:19%;  top:69.1%; }
+    .face-node.n-brains  { left:19%;  top:30.9%; border-left:2px solid var(--violet); }
+
+    .fn-glyph { font-family:var(--mono); font-size:.58rem; color:var(--violet); margin-bottom:.2rem; opacity:.75; }
+    .fn-name  { font-size:.8rem; font-weight:700; color:var(--text); margin-bottom:.15rem; }
+    .fn-files { font-family:var(--mono); font-size:.62rem; color:#7da8cb; line-height:1.65; }
+
+    /* mobile fallback */
+    .cube-hex-fallback { display:none; grid-template-columns:repeat(3,1fr); gap:.5rem; }
+    @media (max-width:580px) {
+      .cube-hex-wrap { display:none; }
+      .cube-hex-fallback { display:grid; }
+    }
+    .face-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:.75rem; }
+    .face-card .fn-glyph,.face-card .fn-name,.face-card .fn-files { /* inherit from .fn-* */ }
+
+    /* ── VEC3 TREE ───────────────────────────────────── */
+    .vec3-tree {
+      background:var(--deep); border:1px solid var(--border);
+      border-left:2px solid var(--cyan); border-radius:10px;
+      padding:1rem 1.2rem; font-family:var(--mono); font-size:.8rem; line-height:2;
+    }
+    .vec3-root  { color:var(--muted); margin-bottom:.2rem; }
+    .vec3-entry { display:flex; gap:.6rem; }
+    .vec3-tree-chr { color:var(--dim); }
+    .vec3-dir   { color:var(--cyan); min-width:52px; }
+    .vec3-desc  { color:#7da8cb; }
+
+    /* ── ANCHORS :: equal height ─────────────────────── */
+    .anchors {
+      display:grid; grid-template-columns:1fr 36px 1fr;
+      align-items:stretch; gap:0;
+    }
+    .anchor-card {
+      border:1px solid var(--border); border-radius:10px; padding:1rem 1.1rem;
+      display:flex; flex-direction:column;
+    }
+    .anchor-card.meta { background:#0c1a30; border-color:#1e4070; }
+    .anchor-card.tron { background:#0c1828; border-color:#1a3458; }
+    .anchor-bridge {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      font-family:var(--mono); font-size:.63rem; color:var(--dim); gap:3px;
+    }
+    .anchor-bridge .ab-line { width:1px; flex:1; background:var(--border); }
+    .a-label { font-family:var(--mono); font-size:.62rem; color:var(--dim); letter-spacing:.1em; margin-bottom:.35rem; }
+    .a-title { font-size:.95rem; font-weight:700; margin-bottom:.45rem; }
+    .anchor-card.meta .a-title { color:var(--cyan); }
+    .anchor-card.tron .a-title { color:var(--violet); }
+    .a-files { font-family:var(--mono); font-size:.7rem; color:#7da8cb; line-height:1.9; flex:1; }
+
+    @media (max-width:600px) {
+      .anchors { grid-template-columns:1fr; }
+      .anchor-bridge { display:none; }
+    }
+
+    /* ── SERVICES ────────────────────────────────────── */
+    .svc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:.5rem; }
+    .svc-card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:.8rem .95rem; display:flex; flex-direction:column; gap:.25rem; }
+    .svc-top  { display:flex; align-items:center; gap:.45rem; }
+    .svc-dot  { width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); flex-shrink:0; animation:blink 2.5s ease infinite; }
+    .svc-name { font-size:.84rem; font-weight:600; color:var(--text); }
+    .svc-desc { font-size:.76rem; color:var(--muted); padding-left:1rem; }
+
+    /* ── SERVICE MESH LAYOUT ─────────────────────────── */
+    .mesh-wrap { display:flex; flex-direction:column; gap:1rem; }
+
+    .mesh-tier-label {
+      font-family:var(--mono); font-size:.6rem; color:var(--dim);
+      letter-spacing:.12em; text-transform:uppercase; margin-bottom:.3rem;
+    }
+
+    .mesh-triad { display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; }
+    .mesh-triad .svc-card {
+      background:#0c1728; border-color:var(--brd2);
+      border-top:2px solid var(--lime);
+    }
+    .mesh-triad .svc-name { color:var(--lime); font-size:.88rem; letter-spacing:.04em; }
+    .mesh-triad .svc-lang {
+      font-family:var(--mono); font-size:.58rem; color:var(--dim);
+      letter-spacing:.08em; padding-left:1rem;
+    }
+
+    .mesh-divider {
+      display:flex; align-items:center; gap:.6rem;
+      font-family:var(--mono); font-size:.58rem; color:var(--dim);
+      letter-spacing:.1em;
+    }
+    .mesh-divider::before, .mesh-divider::after {
+      content:''; flex:1; height:1px; background:var(--border);
+    }
+
+    .mesh-flow { display:grid; grid-template-columns:repeat(4,1fr); gap:.5rem; }
+    .mesh-flow .svc-card { position:relative; }
+    .mesh-flow .svc-card:not(:last-child)::after {
+      content:'→'; position:absolute; right:-.42rem; top:50%;
+      transform:translateY(-50%); font-family:var(--mono); font-size:.7rem;
+      color:var(--dim); z-index:1;
+    }
+
+    @media(max-width:640px) {
+      .mesh-triad { grid-template-columns:1fr; }
+      .mesh-flow  { grid-template-columns:1fr 1fr; }
+      .mesh-flow .svc-card::after { display:none; }
+    }
+
+    /* ── 5TRATA ──────────────────────────────────────── */
+    .strata { border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .strata-row { display:grid; grid-template-columns:2.4rem 1fr; border-bottom:1px solid var(--border); }
+    .strata-row:last-child { border-bottom:none; }
+    .strata-idx  { font-family:var(--mono); font-size:.63rem; color:var(--dim); display:flex; align-items:center; justify-content:center; background:var(--deep); border-right:1px solid var(--border); }
+    .strata-body { padding:.7rem .95rem; background:var(--panel); }
+    .strata-row:first-child .strata-body { background:#111f38; }
+    .s-label { font-family:var(--mono); font-size:.8rem; font-weight:600; color:var(--text); margin-bottom:.15rem; }
+    .strata-row:first-child .s-label { color:var(--cyan); }
+    .s-desc  { font-size:.8rem; color:var(--muted); }
+
+    /* ── TRON ────────────────────────────────────────── */
+    .tron-inner {
+      background:#09101e; border:1px solid #1a2e4a;
+      border-left:2px solid var(--violet); border-radius:10px; padding:1.3rem;
+    }
+    .tron-states { display:flex; align-items:center; flex-wrap:wrap; gap:0; font-family:var(--mono); font-size:.78rem; margin-bottom:1.1rem; }
+    .tron-state  { background:var(--deep); border:1px solid var(--border); border-radius:6px; padding:.38rem .75rem; color:var(--muted); transition:color .25s,border-color .25s,box-shadow .25s; }
+    .tron-arrow  { color:var(--dim); padding:0 .3rem; font-size:.68rem; transition:color .25s; }
+    .tron-props  { display:grid; grid-template-columns:repeat(3,1fr); gap:.45rem; font-family:var(--mono); font-size:.76rem; }
+    .tron-prop        { background:var(--deep); border:1px solid var(--border); border-radius:8px; padding:.55rem .85rem; color:var(--muted); }
+    .tron-prop strong { color:var(--text); display:block; margin-bottom:.12rem; font-size:.78rem; }
+    .tron-prop.prime  { border-color:var(--brd2); background:#0c1728; }
+    .tron-prop.prime strong { color:var(--lime); letter-spacing:.08em; font-size:.8rem; }
+
+    /* ── BOOT STEPS ──────────────────────────────────── */
+    .boot-steps { list-style:none; border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .boot-step  { display:grid; grid-template-columns:2.4rem 1fr; border-bottom:1px solid var(--border); }
+    .boot-step:last-child { border-bottom:none; }
+    .step-n     { background:var(--deep); border-right:1px solid var(--border); display:flex; align-items:flex-start; justify-content:center; padding-top:.9rem; font-family:var(--mono); font-size:.62rem; color:var(--dim); }
+    .step-b     { padding:.85rem .95rem; font-size:.86rem; color:var(--muted); line-height:1.65; background:var(--panel); }
+    .step-b strong { color:var(--text); display:block; margin-bottom:.12rem; }
+    .step-b code { font-family:var(--mono); font-size:.76rem; color:var(--cyan); background:#0a1525; border:1px solid #1a2e4a; border-radius:4px; padding:.08rem .3rem; }
+
+    /* ── REPOS ───────────────────────────────────────── */
+    .repo-links { display:flex; gap:.65rem; flex-wrap:wrap; }
+    .repo-link  { text-decoration:none; border:1px solid var(--brd2); background:var(--panel); border-radius:9px; padding:.65rem 1rem; transition:all .15s ease; }
+    .repo-link:hover { border-color:var(--violet); transform:translateY(-2px); box-shadow:0 4px 14px rgba(155,140,255,.12); }
+    .repo-link span { font-family:var(--mono); font-size:.8rem; color:var(--text); }
+
+    /* ── CONVICTION STRIP ───────────────────────────── */
+    .conviction {
+      max-width:860px; margin:0 auto; padding:0 1.4rem 1.5rem;
+      position:relative; z-index:10;
+    }
+    .conviction-line {
+      font-size:clamp(1rem,2.5vw,1.3rem);
+      font-weight:500; line-height:1.7; color:var(--muted);
+      text-align:center; margin-bottom:1.8rem;
+    }
+    .conviction-line strong { color:#fff; font-weight:600; }
+    .conviction-line .em    { color:var(--cyan); font-weight:600; }
+
+    .value-card {
+      padding:1.2rem 0;
+      font-family:var(--sans); font-size:clamp(.92rem,2.2vw,1.05rem);
+      color:var(--muted); line-height:1.8;
+      margin:1.5rem 0;
+      text-align:center;
+    }
+    .value-card strong { color:#fff; font-weight:600; }
+    .value-card .em    { color:var(--cyan); font-weight:600; }
+    .value-card .vc-typed { display:inline; }
+    .value-card .vc-cursor {
+      display:inline-block; width:2px; height:.9em;
+      background:var(--cyan); margin-left:2px;
+      vertical-align:baseline; animation:blink 1s step-end infinite;
+    }
+
+    .core-algo {
+      background:#060a12; border:1px solid var(--border);
+      border-left:2px solid var(--lime); border-radius:10px;
+      padding:1.2rem 1.4rem; overflow-x:auto;
+    }
+    .core-algo-label {
+      font-family:var(--mono); font-size:.62rem; color:var(--lime);
+      letter-spacing:.12em; text-transform:uppercase;
+      margin-bottom:.9rem; opacity:.75;
+    }
+    .core-algo pre {
+      font-family:var(--mono); font-size:.78rem; line-height:1.85;
+      color:#8aadd0; margin:0; white-space:pre; tab-size:2;
+    }
+    .core-algo pre .kw  { color:var(--violet); }
+    .core-algo pre .fn  { color:var(--cyan); }
+    .core-algo pre .cm  { color:var(--dim); font-style:italic; }
+    .core-algo pre .str { color:var(--lime); }
+    .core-algo pre .op  { color:var(--amber); }
+
+    /* ── PROOF STRIP ──────────────────────────────────── */
+    .proof-strip {
+      display:flex; gap:.6rem; margin-top:.8rem;
+      overflow-x:auto; scroll-snap-type:x mandatory;
+      padding-bottom:.4rem;
+      -webkit-overflow-scrolling:touch;
+    }
+    .proof-strip::-webkit-scrollbar { height:4px; }
+    .proof-strip::-webkit-scrollbar-track { background:var(--deep); border-radius:2px; }
+    .proof-strip::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+    .proof-card {
+      flex:0 0 280px; scroll-snap-align:start;
+      background:#060a12; border:1px solid var(--border);
+      border-radius:10px; padding:.8rem 1rem;
+      font-family:var(--mono); font-size:.72rem;
+    }
+    .proof-card:first-child { border-top:2px solid var(--cyan); }
+    .proof-card:nth-child(2) { border-top:2px solid var(--violet); }
+    .proof-card:nth-child(3) { border-top:2px solid var(--lime); }
+    .proof-card:nth-child(4) { border-top:2px solid var(--amber); }
+
+    .pc-label {
+      font-size:.6rem; color:#8aadd0; letter-spacing:.1em;
+      text-transform:uppercase; margin-bottom:.5rem; font-weight:600;
+    }
+    .pc-line { line-height:1.75; color:#7da8cb; }
+    .pc-line .pk { color:var(--muted); }
+    .pc-line .pv { color:var(--cyan); }
+    .pc-line .po { color:var(--lime); }
+    .pc-line .ph { color:var(--dim); }
+    .pc-line .pi { color:var(--violet); }
+
+    /* ── HIRO ─────────────────────────────────────────── */
+    .hiro {
+      margin-bottom:1rem; padding-left:.8rem;
+      border-left:1px solid var(--border);
+      font-family:var(--mono); font-size:.76rem; line-height:1.7;
+    }
+    .hiro-intent { color:var(--muted); }
+    .hiro-role   { color:var(--cyan); padding-left:1.2rem; }
+
+    .section-end {
+      font-family:var(--mono); font-size:.6rem; color:var(--dim);
+      letter-spacing:.1em; margin-top:.8rem; text-align:left;
+    }
+
+    /* ── CONTRAST BRIDGE ──────────────────────────────── */
+    .contrast-bridge {
+      max-width:920px; margin:0 auto; padding:1.5rem 1.4rem 2rem;
+      position:relative; z-index:10;
+    }
+    .contrast-split {
+      display:grid; grid-template-columns:1fr 1fr; gap:0;
+      border:1px solid var(--border); border-radius:12px; overflow:hidden;
+    }
+    .contrast-col {
+      padding:1.4rem 1.5rem;
+      font-family:var(--mono); font-size:.78rem; line-height:1.85;
+    }
+    .contrast-col.pain {
+      background:#0a0e18; border-right:1px solid var(--border);
+    }
+    .contrast-col.fix {
+      background:#060c14;
+    }
+    .contrast-label {
+      font-size:.58rem; letter-spacing:.12em; text-transform:uppercase;
+      margin-bottom:.8rem; font-weight:600;
+    }
+    .contrast-col.pain .contrast-label { color:var(--hot); }
+    .contrast-col.fix  .contrast-label { color:var(--lime); }
+    .contrast-item {
+      display:flex; align-items:flex-start; gap:.5rem;
+      margin-bottom:.4rem;
+    }
+    .contrast-col.pain .contrast-item { color:#7a8da8; }
+    .contrast-col.fix  .contrast-item { color:#9cc4e4; }
+    .contrast-mark {
+      flex-shrink:0; margin-top:.15rem; font-size:.7rem;
+    }
+    .contrast-col.pain .contrast-mark { color:var(--hot); }
+    .contrast-col.fix  .contrast-mark { color:var(--lime); }
+    .contrast-footer {
+      text-align:center; padding:.7rem; font-family:var(--mono);
+      font-size:.68rem; color:var(--dim); letter-spacing:.06em;
+      border-top:1px solid var(--border); background:#080c14;
+    }
+    .contrast-footer strong { color:var(--cyan); }
+
+    @media(max-width:600px) {
+      .contrast-split { grid-template-columns:1fr; }
+      .contrast-col.pain { border-right:none; border-bottom:1px solid var(--border); }
+    }
+
+    /* ── FACE TOOLTIP (centered in hex via JS) ─────────── */
+    .face-node:hover { z-index:200; cursor:default; }
+    #hex-tip {
+      display:none; position:fixed; z-index:400;
+      width:260px;
+      background:rgba(8,12,20,.97); border:1px solid var(--brd2);
+      border-top:2px solid var(--violet);
+      border-radius:10px; padding:1rem 1.1rem;
+      font-family:var(--mono); pointer-events:none;
+      transform:translate(-50%,-50%);
+    }
+    #hex-tip.show { display:block; }
+
+    .ft-name  { font-size:.82rem; font-weight:700; color:var(--text); margin-bottom:.15rem; }
+    .ft-glyph { font-size:.54rem; color:var(--violet); margin-bottom:.4rem; opacity:.7; }
+    .ft-desc  { font-size:.7rem; color:var(--muted); line-height:1.7; margin-bottom:.4rem; }
+    .ft-files { font-size:.63rem; color:#7da8cb; line-height:1.7; }
+    .ft-files span { color:var(--cyan); }
+
+    @media(max-width:580px) {
+      #hex-tip { display:none !important; }
+    }
+
+    /* ── CLOSING CTA ─────────────────────────────────── */
+    .cta-close {
+      margin-top:1rem; padding:3rem 1.6rem;
+      border:1px solid var(--brd2); border-radius:14px;
+      background:rgba(12,18,32,.75); backdrop-filter:blur(16px);
+      text-align:center;
+      transition:box-shadow .6s ease;
+    }
+    .cta-close.glow {
+      box-shadow:0 0 40px rgba(93,220,255,.1), 0 0 80px rgba(93,220,255,.04);
+    }
+    .cta-close h2 {
+      font-size:clamp(1.2rem,3vw,1.5rem); font-weight:700; color:#fff;
+      margin-bottom:.6rem; line-height:1.3;
+    }
+    .cta-close p {
+      font-size:.94rem; color:var(--muted); margin-bottom:1.6rem;
+      max-width:500px; margin-left:auto; margin-right:auto; line-height:1.7;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    .page-footer {
+      margin-top:4rem;
+      border-top:1px solid var(--border);
+      background:var(--deep);
+      padding:2.8rem 0 2rem;
+      font-family:var(--mono);
+    }
+    .footer-inner {
+      max-width:1080px; margin:0 auto; padding:0 1.4rem;
+    }
+    .footer-top {
+      display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:2rem;
+      padding-bottom:2rem;
+      border-bottom:1px solid var(--border);
+    }
+    .footer-col h4 {
+      font-size:.72rem; font-weight:600; color:#fff;
+      letter-spacing:.1em; text-transform:uppercase;
+      margin-bottom:.9rem;
+    }
+    .footer-col p {
+      font-size:.78rem; color:#8aadd0; line-height:1.75;
+    }
+    .footer-col nav { display:flex; flex-direction:column; gap:.5rem; }
+    .footer-col nav a {
+      text-decoration:none; font-size:.78rem; color:#8aadd0;
+      transition:color .15s;
+    }
+    .footer-col nav a:hover { color:var(--lime); }
+    .footer-brand-lg {
+      display:flex; align-items:center; gap:.5rem;
+      margin-bottom:.7rem;
+    }
+    .footer-brand-lg .f-glyph { color:#fff; font-weight:700; font-size:.88rem; }
+    .footer-brand-lg .f-name  { color:#fff; font-weight:700; font-size:1rem; letter-spacing:.05em; }
+
+    .footer-bottom {
+      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.6rem;
+      padding-top:1.3rem;
+    }
+    .footer-copy { font-size:.68rem; color:#5a7a9a; }
+    .footer-status {
+      display:flex; align-items:center; gap:.4rem;
+      font-size:.68rem; color:#8aadd0;
+    }
+    .f-dot { width:6px; height:6px; border-radius:50%; background:var(--lime); box-shadow:0 0 6px var(--lime); animation:blink 2s ease infinite; flex-shrink:0; }
+    .footer-sig { font-size:.58rem; color:var(--dim); letter-spacing:.04em; }
+
+    @media(max-width:640px) {
+      .footer-top { grid-template-columns:1fr; }
+    }
+
+    code { font-family:var(--mono); font-size:.8rem; color:var(--cyan); background:#0a1525; border:1px solid #1a2e4a; border-radius:4px; padding:.08rem .3rem; }
+  </style>
+</head>
+<body>
+
+<!-- SYS-HEADER -->
+<header class="sys-header">
+  <div class="h-left">
+    <span class="h-glyph">▛▞ //</span>
+    <span class="h-sep">::</span>
+    <span class="h-brand">Z3NSEN Systems</span>
+    <span class="h-sep">::</span>
+    3OX.Ai
+    <span class="h-sep">::</span>
+    1n3ox.ai
+  </div>
+  <div class="h-lattice">5 :: 6 :: 7 :: 7 :: 2</div>
+  <div><span class="h-live">●</span>&nbsp;<span style="color:var(--lime);font-weight:600;">LIVE</span>&nbsp;· ⧗-26.064</div>
+</header>
+<div class="scroll-progress"><div class="scroll-progress-fill" id="scroll-fill"></div></div>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">▛▞ // ⟦⎊⟧ :: Z3NSEN Systems</div>
+    <div class="hero-brand">3OX.Ai</div>
+    <p class="hero-typed" id="hero-typed"><span class="hero-cursor"></span></p>
+    <p class="hero-sub">
+      3OX.Ai is a fixed-shape, model-agnostic substrate for running AI agents as durable systems.
+      Swap models, move devices, evolve capabilities — 3OX holds its shape.
+      Built to outlast any single model, team, or cloud provider.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://github.com/LLMasterDesign/ZENS3N" target="_blank" rel="noreferrer">Get the repo</a>
+      <a class="btn btn-ghost" href="#why">Architecture</a>
+      <div class="install-wrap">
+        <button class="btn btn-install" id="install-toggle">Install ↓</button>
+        <div class="install-panel" id="install-panel">
+          <div class="install-row"><span class="install-platform">macOS</span><span class="install-code">brew install bun</span></div>
+          <div class="install-row"><span class="install-platform">Linux</span><span class="install-code">curl -fsSL https://bun.sh/install | bash</span></div>
+          <div class="install-row"><span class="install-platform">Windows</span><span class="install-code">irm bun.sh/install.ps1 | iex</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<div class="conviction">
+  <p class="conviction-line">
+    Every AI agent built today will break when its model is deprecated.<br>
+    3OX is the fix — a <span class="em">fixed-shape substrate</span> that holds identity, policy, and runtime<br>
+    <strong>independent of any single model, cloud, or framework.</strong>
+  </p>
+  <div class="core-algo">
+    <div class="core-algo-label">▛▞ // triad invariant — the algo that makes 3OX agentic</div>
+    <pre><span class="kw">fn</span> <span class="fn">mutate</span>(box, change) <span class="op">→</span> receipt {
+  <span class="cm">// Nothing is real unless it passes through the gate</span>
+  proposal  <span class="op">=</span> <span class="fn">3ox.propose</span>(change, box.hash_before)
+  <span class="fn">warden.validate</span>(proposal, box.rules, box.imprint)
+
+  <span class="cm">// Every mutation produces a triad — this is the heartbeat</span>
+  event     <span class="op">=</span> <span class="fn">tape.append</span>({ action, actor, path, hash_before, hash_after })
+  state     <span class="op">=</span> <span class="fn">pulse.advance</span>(box.state, event)
+  receipt   <span class="op">=</span> <span class="fn">pulse.emit_receipt</span>(event, state, merkle.root)
+
+  <span class="cm">// The system is alive when work occurs. No timers.</span>
+  <span class="cm">// If nothing changes, nothing beats. Dormant, not dead.</span>
+  <span class="cm">// If something changes, it produces proof chains. That is aliveness.</span>
+  <span class="kw">return</span> receipt
+}</pre>
+  </div>
+
+  <div class="value-card" style="margin-top:1.4rem;">
+    LangChain gives you chains. CrewAI gives you roles. AutoGPT gives you loops.<br>
+    None of them give you <span class="em">persistence</span>, <span class="em">proof</span>, or <span class="em">internal services</span>.<br>
+    <strong>3OX is the infrastructure layer they all assume exists.</strong>
+  </div>
+
+  <div class="block-head" id="proof" style="max-width:920px; margin:0 auto 0;">
+    <span class="bh-glyph">▛▞ //</span>
+    <span class="bh-title">Proof of Work</span>
+    <span class="bh-sig">3ox commit → receipt → merkle</span>
+  </div>
+  <div class="hiro" style="max-width:920px; margin:0 auto 1rem;">
+    <div class="hiro-intent">One commit. Four artifacts. Chained, append-only, tamper-evident.</div>
+    <div class="hiro-role">If there is no proof, it didn't happen.</div>
+  </div>
+
+  <div class="proof-strip">
+    <div class="proof-card">
+      <div class="pc-label">receipt · (6)Pulse/receipts/</div>
+      <div class="pc-line"><span class="pk">receipt_id   </span><span class="pi">receipt_1771000076_4159</span></div>
+      <div class="pc-line"><span class="pk">workflow_id  </span><span class="pv">FORGE.LIFECYCLE</span></div>
+      <div class="pc-line"><span class="pk">verb         </span><span class="po">RETENTION</span></div>
+      <div class="pc-line"><span class="pk">scope_root   </span><span class="pv">!WORKDESK</span></div>
+      <div class="pc-line"><span class="pk">mode         </span><span class="pv">dryrun</span></div>
+      <div class="pc-line"><span class="pk">timestamp    </span><span class="ph">1771000076</span></div>
+    </div>
+    <div class="proof-card">
+      <div class="pc-label">pulse · event stream</div>
+      <div class="pc-line"><span class="pk">event_id </span><span class="pi">evt_26.056_4a8f</span></div>
+      <div class="pc-line"><span class="pk">action   </span><span class="po">commit</span></div>
+      <div class="pc-line"><span class="pk">actor    </span><span class="pv">cursor.agent</span></div>
+      <div class="pc-line"><span class="pk">path     </span><span class="pv">!WORKDESK/soul.md</span></div>
+      <div class="pc-line"><span class="pk">outbound </span><span class="ph">sha256:7a3f..c8e1</span></div>
+      <div class="pc-line"><span class="pk">internal </span><span class="ph">xxh128:0b2d..9f74</span></div>
+    </div>
+    <div class="proof-card">
+      <div class="pc-label">merkle · _meta/merkle.root</div>
+      <div class="pc-line"><span class="pk">root  </span><span class="po">sha256:7274d738..e7f9f1</span></div>
+      <div class="pc-line"><span class="pk">algo  </span><span class="pv">sha256</span></div>
+      <div class="pc-line"><span class="pk">scope </span><span class="pv">pulse</span></div>
+      <div class="pc-line"><span class="pk">count </span><span class="pv">42</span></div>
+      <div class="pc-line"><span class="pk">chain </span><span class="ph">sha256:9e2b..03fd</span></div>
+    </div>
+    <div class="proof-card">
+      <div class="pc-label">log · (6)Pulse/3ox.log</div>
+      <div class="pc-line"><span class="ph">2026-02-25T14:32:05Z</span></div>
+      <div class="pc-line"><span class="pk">event   </span><span class="po">RETENTION</span></div>
+      <div class="pc-line"><span class="pk">actor   </span><span class="pv">cursor.agent</span></div>
+      <div class="pc-line"><span class="pk">target  </span><span class="pv">!WORKDESK</span></div>
+      <div class="pc-line"><span class="pk">receipt </span><span class="pi">receipt_1771000076_4159</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="why" class="contrast-bridge">
+  <div class="block-head" style="margin-bottom:0;">
+    <span class="bh-glyph">▛▞ //</span>
+    <span class="bh-title">Why 3OX</span>
+    <span class="bh-sig">the gap no one else fills</span>
+  </div>
+  <div class="hiro" style="margin-bottom:.8rem;">
+    <div class="hiro-intent">Frameworks give you tools. 3OX gives you the substrate.</div>
+    <div class="hiro-role">Between your code and permanent operation.</div>
+  </div>
+  <div class="contrast-split">
+    <div class="contrast-col pain">
+      <div class="contrast-label">Without 3OX</div>
+      <div class="contrast-item"><span class="contrast-mark">×</span> Agent dies when the process stops</div>
+      <div class="contrast-item"><span class="contrast-mark">×</span> State scattered across Redis, Postgres, memory</div>
+      <div class="contrast-item"><span class="contrast-mark">×</span> No proof any operation happened</div>
+      <div class="contrast-item"><span class="contrast-mark">×</span> Framework upgrades break everything</div>
+    </div>
+    <div class="contrast-col fix">
+      <div class="contrast-label">With 3OX</div>
+      <div class="contrast-item"><span class="contrast-mark">→</span> Agent persists across restarts, crashes, model swaps</div>
+      <div class="contrast-item"><span class="contrast-mark">→</span> State lives inside 3OX — no external dependencies</div>
+      <div class="contrast-item"><span class="contrast-mark">→</span> Every mutation produces a cryptographic receipt</div>
+      <div class="contrast-item"><span class="contrast-mark">→</span> Fixed shape. Swap models, nothing breaks.</div>
+    </div>
+  </div>
+  <div class="contrast-footer">The infrastructure layer that agent frameworks assume exists — <strong>but doesn't.</strong></div>
+</div>
+
+<div style="max-width:920px; margin:0 auto; padding:0 1.4rem;">
+  <div class="value-card">
+    You don't need another framework. You need the substrate underneath all of them — <span class="em">persistence</span>, <span class="em">proof</span>, and <span class="em">services</span> that run whether the model is GPT, Claude, Gemini, or something that doesn't exist yet. <strong>That is 3OX.</strong>
+  </div>
+</div>
+
+<main class="wrap" id="main">
+
+  <!-- 01 :: RUNNING TODAY -->
+  <div class="block">
+    <div class="block-head">
+      <span class="bh-glyph">▛▞ //</span>
+      <span class="bh-num">01</span>
+      <span class="bh-title">Running Today</span>
+      <span class="bh-sig">● LIVE · ⧗</span>
+    </div>
+    <div class="hiro">
+      <div class="hiro-intent">Not a whitepaper. These agents are live right now.</div>
+      <div class="hiro-role">What other frameworks leave to you.</div>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card"><div class="svc-top"><div class="svc-dot"></div><div class="svc-name">Money.Bagz</div></div><div class="svc-desc">Agent responding live in Telegram.</div></div>
+      <div class="svc-card"><div class="svc-top"><div class="svc-dot"></div><div class="svc-name">TelePromptR</div></div><div class="svc-desc">Routes inbound messages by topic and command to the correct agent.</div></div>
+      <div class="svc-card"><div class="svc-top"><div class="svc-dot"></div><div class="svc-name">speaker-mesh</div></div><div class="svc-desc">Inference bridge. Streaming responses across model backends.</div></div>
+      <div class="svc-card"><div class="svc-top"><div class="svc-dot"></div><div class="svc-name">3ox CLI + Vec3Boot</div></div><div class="svc-desc">Rust workspace. Build and boot tooling for 3OX agents.</div></div>
+    </div>
+    <div class="section-end">:: ∎</div>
+  </div>
+
+  <!-- 02 :: CUBE FACES -->
+  <div class="block">
+    <div class="block-head">
+      <span class="bh-glyph">▛▞ //</span>
+      <span class="bh-num">02 · 6</span>
+      <span class="bh-title">3OX Faces — Agent Identity &amp; Execution</span>
+      <span class="bh-sig">ρ{identity}.φ{policy}.τ{run}</span>
+    </div>
+    <div class="hiro">
+      <div class="hiro-intent">One fixed shape holds identity, policy, and execution. Models change, 3OX doesn't.</div>
+      <div class="hiro-role">The 6-face contract every agent inherits.</div>
+    </div>
+
+    <!-- Hexagonal / metatron layout -->
+    <div class="cube-hex-wrap">
+      <svg class="hex-svg" viewBox="0 0 600 560" preserveAspectRatio="xMidYMid meet">
+        <!-- Perimeter edges -->
+        <line class="perim" x1="300" y1="65"  x2="486" y2="173"/>
+        <line class="perim" x1="486" y1="173" x2="486" y2="387"/>
+        <line class="perim" x1="486" y1="387" x2="300" y2="495"/>
+        <line class="perim" x1="300" y1="495" x2="114" y2="387"/>
+        <line class="perim" x1="114" y1="387" x2="114" y2="173"/>
+        <line class="perim" x1="114" y1="173" x2="300" y2="65"/>
+        <!-- Cross connections -->
+        <line class="cross" x1="300" y1="65"  x2="300" y2="495"/>
+        <line class="cross" x1="486" y1="173" x2="114" y2="387"/>
+        <line class="cross" x1="486" y1="387" x2="114" y2="173"/>
+        <line class="cross" x1="300" y1="65"  x2="486" y2="387"/>
+        <line class="cross" x1="300" y1="65"  x2="114" y2="387"/>
+        <line class="cross" x1="486" y1="173" x2="300" y2="495"/>
+        <line class="cross" x1="486" y1="173" x2="114" y2="173"/>
+        <line class="cross" x1="486" y1="387" x2="114" y2="387"/>
+        <line class="cross" x1="300" y1="495" x2="114" y2="173"/>
+      </svg>
+
+      <div class="face-node n-spark" data-tip="spark">
+        <div class="fn-glyph">▛▞ // Spark</div>
+        <div class="fn-name">Spark</div>
+        <div class="fn-files">sparkfile.md<br>soul.md<br>AGENTS.md</div>
+      </div>
+      <div class="face-node n-toolkit" data-tip="toolkit">
+        <div class="fn-glyph">▛▞ // Toolkit</div>
+        <div class="fn-name">Toolkit</div>
+        <div class="fn-files">Tools/tools.yml<br>Skills/skills.md</div>
+      </div>
+      <div class="face-node n-links" data-tip="links">
+        <div class="fn-glyph">▛▞ // Links</div>
+        <div class="fn-name">Links</div>
+        <div class="fn-files">Routes/<br>routes.json</div>
+      </div>
+      <div class="face-node n-pulse" data-tip="pulse">
+        <div class="fn-glyph">▛▞ // Pulse</div>
+        <div class="fn-name">Pulse</div>
+        <div class="fn-files">3ox.log<br>receipts/</div>
+      </div>
+      <div class="face-node n-rules" data-tip="rules">
+        <div class="fn-glyph">▛▞ // Rules</div>
+        <div class="fn-name">Rules</div>
+        <div class="fn-files">limits.toml<br>write_policy</div>
+      </div>
+      <div class="face-node n-brains" data-tip="brains">
+        <div class="fn-glyph">▛▞ // Brains</div>
+        <div class="fn-name">Brains</div>
+        <div class="fn-files">brains.rs<br>→ brains binary</div>
+      </div>
+    </div>
+
+    <div id="hex-tip">
+      <div class="ft-name" id="ht-name"></div>
+      <div class="ft-glyph" id="ht-glyph"></div>
+      <div class="ft-desc" id="ht-desc"></div>
+      <div class="ft-files" id="ht-files"></div>
+    </div>
+
+    <!-- Mobile fallback -->
+    <div class="cube-hex-fallback">
+      <div class="face-card"><div class="fn-glyph">Spark</div><div class="fn-name">Spark</div><div class="fn-files">sparkfile.md · soul.md</div></div>
+      <div class="face-card"><div class="fn-glyph">Brains</div><div class="fn-name">Brains</div><div class="fn-files">brains.rs → binary</div></div>
+      <div class="face-card"><div class="fn-glyph">Rules</div><div class="fn-name">Rules</div><div class="fn-files">limits.toml</div></div>
+      <div class="face-card"><div class="fn-glyph">Toolkit</div><div class="fn-name">Toolkit</div><div class="fn-files">tools.yml · skills.md</div></div>
+      <div class="face-card"><div class="fn-glyph">Links</div><div class="fn-name">Links</div><div class="fn-files">routes.json</div></div>
+      <div class="face-card"><div class="fn-glyph">Pulse</div><div class="fn-name">Pulse</div><div class="fn-files">3ox.log · receipts/</div></div>
+    </div>
+    <div class="section-end">:: ∎</div>
+  </div>
+
+  <!-- 03 :: VEC3 KERNEL -->
+  <div class="block">
+    <div class="block-head">
+      <span class="bh-glyph">▛▞ //</span>
+      <span class="bh-num">03 · 7</span>
+      <span class="bh-title">vec3 Kernel — Runtime Directories</span>
+      <span class="bh-sig">.3ox/.vec3/</span>
+    </div>
+    <div class="hiro">
+      <div class="hiro-intent">Persistent runtime. Survives restarts, crashes, model swaps.</div>
+      <div class="hiro-role">Process, memory, state, and executables inside every 3OX.</div>
+    </div>
+    <div class="vec3-tree">
+      <div class="vec3-root">.vec3/</div>
+      <div class="vec3-entry"><span class="vec3-tree-chr">├──</span><span class="vec3-dir">rc/</span><span class="vec3-desc">run.rb, lifecycle entry scripts</span></div>
+      <div class="vec3-entry"><span class="vec3-tree-chr">├──</span><span class="vec3-dir">lib/</span><span class="vec3-desc">metatron, warden, elixir modules</span></div>
+      <div class="vec3-entry"><span class="vec3-tree-chr">├──</span><span class="vec3-dir">dev/</span><span class="vec3-desc">io, ops, deploy helpers</span></div>
+      <div class="vec3-entry"><span class="vec3-tree-chr">├──</span><span class="vec3-dir">var/</span><span class="vec3-desc">wrkdsk, agent.events.jsonl, state</span></div>
+      <div class="vec3-entry"><span class="vec3-tree-chr">├──</span><span class="vec3-dir">bin/</span><span class="vec3-desc">CLI tools, brains, 3ox executables</span></div>
+      <div class="vec3-entry"><span class="vec3-tree-chr">├──</span><span class="vec3-dir">mem/</span><span class="vec3-desc">agent memory store</span></div>
+      <div class="vec3-entry"><span class="vec3-tree-chr">└──</span><span class="vec3-dir">proc/</span><span class="vec3-desc">process registry</span></div>
+    </div>
+    <div class="section-end">:: ∎</div>
+  </div>
+
+  <div class="block">
+    <div class="value-card">
+      Unix is 55 years old. Erlang/OTP is 38. 3OX is built on patterns that survived the mainframe era, the PC era, the cloud era, and the AI era. <strong>Models change. Substrates persist.</strong>
+    </div>
+  </div>
+
+  <!-- 04 :: ANCHORS -->
+  <div class="block">
+    <div class="block-head">
+      <span class="bh-glyph">▛▞ //</span>
+      <span class="bh-num">04 · 2</span>
+      <span class="bh-title">Anchors — Identity &amp; Runtime</span>
+      <span class="bh-sig">_meta · _TRON</span>
+    </div>
+    <div class="hiro">
+      <div class="hiro-intent">Two anchors. Provable identity and governed execution.</div>
+      <div class="hiro-role">_meta holds truth. _TRON holds contracts.</div>
+    </div>
+    <div class="anchors">
+      <div class="anchor-card meta">
+        <div class="a-label">ANCHOR 01 · IDENTITY</div>
+        <div class="a-title">_meta</div>
+        <div class="a-files">Z3N.PRO.ID              · operational identity
+SESSION.CHECKPOINT.toml · resume anchor
+merkle.root             · integrity hash
+receipts/               · audit trail</div>
+      </div>
+      <div class="anchor-bridge">
+        <div class="ab-line"></div>
+        <span>::</span>
+        <div class="ab-line"></div>
+      </div>
+      <div class="anchor-card tron">
+        <div class="a-label">ANCHOR 02 · RUNTIME</div>
+        <div class="a-title">_TRON</div>
+        <div class="a-files">systemd/lifecycle/proto/v1/
+  state.guard.proto    · FSM contracts
+  receipt.emit.proto   · single writer
+  queue.dispatch.proto · phase dispatch
+  PROTO.LOCK.toml      · sealed version</div>
+      </div>
+    </div>
+    <div class="section-end">:: ∎</div>
+  </div>
+
+  <!-- 05 :: SERVICE MESH -->
+  <div class="block">
+    <div class="block-head">
+      <span class="bh-glyph">▛▞ //</span>
+      <span class="bh-num">05 · 7</span>
+      <span class="bh-title">Service Mesh — Coordination Layer</span>
+      <span class="bh-sig">ρ{route}.φ{govern}.τ{emit}</span>
+    </div>
+    <div class="hiro">
+      <div class="hiro-intent">Internal services. No external dependencies.</div>
+      <div class="hiro-role">TPW Triad governs. Pipeline executes.</div>
+    </div>
+    <div class="mesh-wrap">
+      <div>
+        <div class="mesh-tier-label">TPW Triad — Core Governors</div>
+        <div class="mesh-triad">
+          <div class="svc-card">
+            <div class="svc-top"><div class="svc-dot"></div><div class="svc-name">TAPE</div></div>
+            <div class="svc-desc">Append-only receipt stream. Audit source. Never truncated.</div>
+            <div class="svc-lang">Elixir / OTP</div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-top"><div class="svc-dot"></div><div class="svc-name">PULSE</div></div>
+            <div class="svc-desc">Event emitter. Writes receipts, feeds merkle, drives the log.</div>
+            <div class="svc-lang">Ruby</div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-top"><div class="svc-dot"></div><div class="svc-name">WARDEN</div></div>
+            <div class="svc-desc">Policy enforcer. Approves transitions, guards write policy.</div>
+            <div class="svc-lang">Rust</div>
+          </div>
+        </div>
+      </div>
+      <div class="mesh-divider">execution pipeline</div>
+      <div>
+        <div class="mesh-flow">
+          <div class="svc-card">
+            <div class="svc-top"><div class="svc-dot"></div><div class="svc-name">Arc</div></div>
+            <div class="svc-desc">Inference routing. Directs to the right model or agent.</div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-top"><div class="svc-dot"></div><div class="svc-name">Queue</div></div>
+            <div class="svc-desc">Task dispatch. Phase-aware, proto-bound.</div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-top"><div class="svc-dot"></div><div class="svc-name">Worker</div></div>
+            <div class="svc-desc">Executes tasks under Warden approval.</div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-top"><div class="svc-dot"></div><div class="svc-name">Supervisor</div></div>
+            <div class="svc-desc">Orchestrates via declared contracts only.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-end">:: ∎</div>
+  </div>
+
+  <!-- 06 :: 5TRATA -->
+  <div class="block">
+    <div class="block-head">
+      <span class="bh-glyph">▛▞ //</span>
+      <span class="bh-num">06 · 5</span>
+      <span class="bh-title">5TRATA — Containment Chain</span>
+      <span class="bh-sig">ρ{contain}.φ{chain}.τ{scope}</span>
+    </div>
+    <div class="hiro">
+      <div class="hiro-intent">Containment from root command down to single agent. Nothing floats unscoped.</div>
+      <div class="hiro-role">Five-layer hierarchy that governs where anything can exist.</div>
+    </div>
+    <div class="strata">
+      <div class="strata-row"><div class="strata-idx">L0</div><div class="strata-body"><div class="s-label">CMD</div><div class="s-desc">Root command layer. All scopes descend from here. Cross-device authority.</div></div></div>
+      <div class="strata-row"><div class="strata-idx">L1</div><div class="strata-body"><div class="s-label">Base</div><div class="s-desc">A named environment — ZENS3N.PRO, CITADEL, OBSIDIAN. Owns its 3OX and TRON contracts.</div></div></div>
+      <div class="strata-row"><div class="strata-idx">L2</div><div class="strata-body"><div class="s-label">Station</div><div class="s-desc">A logical grouping within a Base. Organizes services and routing domains.</div></div></div>
+      <div class="strata-row"><div class="strata-idx">L3</div><div class="strata-body"><div class="s-label">Service</div><div class="s-desc">A running process — TelePromptR, speaker-mesh, Warden. Bound to proto contracts.</div></div></div>
+      <div class="strata-row"><div class="strata-idx">L4</div><div class="strata-body"><div class="s-label">Agent</div><div class="s-desc">The leaf. One 3OX, one identity, one persona. Swappable model, fixed contract.</div></div></div>
+    </div>
+    <div class="section-end">:: ∎</div>
+  </div>
+
+  <div class="block">
+    <div class="value-card">
+      Every agent framework assumes infrastructure exists that doesn't. No persistence. No proof. No internal services. <strong>3OX is that infrastructure.</strong>
+    </div>
+  </div>
+
+  <!-- 07 :: TRON -->
+  <div class="block" id="tron-block">
+    <div class="block-head">
+      <span class="bh-glyph">▛▞ //</span>
+      <span class="bh-num">07</span>
+      <span class="bh-title">TRON — Contract-Governed Runtime</span>
+      <span class="bh-sig">replaces cron</span>
+    </div>
+    <div class="hiro">
+      <div class="hiro-intent">Replaces cron with deterministic state transitions.</div>
+      <div class="hiro-role">Six phases. Nothing skipped. Nothing unwitnessed.</div>
+    </div>
+    <div class="tron-inner">
+      <div class="tron-states" id="tron-chain">
+        <span class="tron-state">TRACK</span>
+        <span class="tron-arrow">→</span>
+        <span class="tron-state">PLAN</span>
+        <span class="tron-arrow">→</span>
+        <span class="tron-state">DRY_RUN</span>
+        <span class="tron-arrow">→</span>
+        <span class="tron-state">FIX</span>
+        <span class="tron-arrow">→</span>
+        <span class="tron-state">EXECUTE</span>
+        <span class="tron-arrow">→</span>
+        <span class="tron-state">SEAL</span>
+      </div>
+      <div class="tron-props">
+        <div class="tron-prop prime"><strong>WARDEN</strong>approves every transition</div>
+        <div class="tron-prop prime"><strong>TAPE</strong>carries append-only events</div>
+        <div class="tron-prop prime"><strong>PULSE</strong>writes receipts + merkle</div>
+        <div class="tron-prop"><strong>Principle</strong>single authority per concern</div>
+        <div class="tron-prop"><strong>Worker</strong>executes</div>
+        <div class="tron-prop"><strong>Supervisor</strong>orchestrates via contracts</div>
+      </div>
+    </div>
+    <div class="section-end">:: ∎</div>
+  </div>
+
+  <!-- 08 :: BOOT -->
+  <div class="block">
+    <div class="block-head">
+      <span class="bh-glyph">▛▞ //</span>
+      <span class="bh-num">08</span>
+      <span class="bh-title">Boot An Agent</span>
+      <span class="bh-sig">▛▞ // BOOT</span>
+    </div>
+    <div class="hiro">
+      <div class="hiro-intent">Four commands from clone to live agent.</div>
+      <div class="hiro-role">The shortest path to a running 3OX.</div>
+    </div>
+    <ol class="boot-steps">
+      <li class="boot-step"><div class="step-n">01</div><div class="step-b"><strong>Clone and enter</strong><code>git clone git@github.com:LLMasterDesign/ZENS3N.git</code></div></li>
+      <li class="boot-step"><div class="step-n">02</div><div class="step-b"><strong>Scaffold A 3OX</strong><code>ruby 3OX.Ai/3OX.BUILDER/setup-3ox.rb ./MyAgent GUARDIAN Sentinel</code></div></li>
+      <li class="boot-step"><div class="step-n">03</div><div class="step-b"><strong>Boot the chain</strong><code>ruby .3ox/.vec3/rc/run.rb</code> — loads sparkfile → soul → brains → tools → routes → limits → 3ox.log</div></li>
+      <li class="boot-step"><div class="step-n">04</div><div class="step-b"><strong>Deploy to VPS</strong>Sync 3OX, merge TelePromptR config, restart TRON lifecycle services.</div></li>
+    </ol>
+    <div class="section-end">:: ∎</div>
+  </div>
+
+  <!-- 09 :: REPOS -->
+  <div class="block">
+    <div class="block-head">
+      <span class="bh-glyph">▛▞ //</span>
+      <span class="bh-num">09</span>
+      <span class="bh-title">Open Source</span>
+      <span class="bh-sig">github.com/LLMasterDesign</span>
+    </div>
+    <div class="hiro">
+      <div class="hiro-intent">Full source. No vendor lock-in. Fork it, own it.</div>
+      <div class="hiro-role">Inspect every line. Trust nothing you can't read.</div>
+    </div>
+    <div class="repo-links">
+      <a class="repo-link" href="https://github.com/LLMasterDesign/3OX.Ai" target="_blank" rel="noreferrer"><span>github.com / LLMasterDesign / 3OX.Ai</span></a>
+      <a class="repo-link" href="https://github.com/LLMasterDesign/ZENS3N" target="_blank" rel="noreferrer"><span>github.com / LLMasterDesign / ZENS3N</span></a>
+    </div>
+    <div class="section-end">:: ∎</div>
+  </div>
+
+  <div class="block">
+    <div class="value-card">
+      Your agents will outlast GPT-4, GPT-5, and whatever comes after. <strong>3OX holds its shape.</strong>
+    </div>
+  </div>
+
+  <!-- CLOSING CTA -->
+  <div class="block">
+    <div class="cta-close">
+      <h2>Stop losing agents every time the model changes.</h2>
+      <p>One 3OX. One identity. Every model. Four commands to a running agent that outlasts any provider, any framework, any era.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/LLMasterDesign/ZENS3N" target="_blank" rel="noreferrer">Get the repo</a>
+        <a class="btn btn-ghost" href="#why">Architecture</a>
+        <div class="install-wrap">
+          <button class="btn btn-install" id="install-toggle-2">Install ↓</button>
+          <div class="install-panel" id="install-panel-2">
+            <div class="install-row"><span class="install-platform">macOS</span><span class="install-code">brew install bun</span></div>
+            <div class="install-row"><span class="install-platform">Linux</span><span class="install-code">curl -fsSL https://bun.sh/install | bash</span></div>
+            <div class="install-row"><span class="install-platform">Windows</span><span class="install-code">irm bun.sh/install.ps1 | iex</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-col">
+          <div class="footer-brand-lg">
+            <span class="f-glyph">▛▞ //</span>
+            <span class="f-name">Z3NSEN Systems</span>
+          </div>
+          <p>
+            Model-agnostic substrate for long-lived AI agents.
+            Fixed-shape. Contract-governed. Built to outlast
+            any single model, team, or cloud provider.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <nav>
+            <a href="#why">Architecture</a>
+            <a href="#tron-block">TRON Runtime</a>
+            <a href="https://github.com/LLMasterDesign/3OX.Ai" target="_blank" rel="noreferrer">3OX.Ai</a>
+            <a href="https://github.com/LLMasterDesign/ZENS3N" target="_blank" rel="noreferrer">ZENS3N</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <nav>
+            <a href="https://github.com/LLMasterDesign/ZENS3N" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="#">Documentation</a>
+            <a href="#">Changelog</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Z3NSEN Systems. All rights reserved.</div>
+        <div class="footer-status">
+          <div class="f-dot"></div>
+          <span>All systems operational</span>
+        </div>
+        <div class="footer-sig">///▙▖▙▖▞▞▙▂▂▂/// ▛▞ ⟦⎊⟧ :: ∎</div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ── THREE.JS HERO CUBE ────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+  camera.position.z = 3.2;
+
+  function resize() {
+    const w = canvas.parentElement.clientWidth, h = canvas.parentElement.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function mkCube(size, color, opacity) {
+    const e = new THREE.EdgesGeometry(new THREE.BoxGeometry(size, size, size));
+    const m = new THREE.LineBasicMaterial({ color, transparent: true, opacity });
+    return new THREE.LineSegments(e, m);
+  }
+
+  const outerCube = mkCube(1.5, 0x5ddcff, 0.55); scene.add(outerCube);
+  const outerMat  = outerCube.material;
+  const glowCube  = mkCube(1.57, 0x5ddcff, 0.11); scene.add(glowCube);
+  const innerCube = mkCube(0.85, 0x9b8cff, 0.70); scene.add(innerCube);
+  const coreCube  = mkCube(0.28, 0xffc44d, 0.85); scene.add(coreCube);
+
+  const n = 320, p = new Float32Array(n * 3);
+  for (let i = 0; i < n * 3; i++) p[i] = (Math.random() - 0.5) * 9;
+  const pg = new THREE.BufferGeometry();
+  pg.setAttribute('position', new THREE.BufferAttribute(p, 3));
+  scene.add(new THREE.Points(pg, new THREE.PointsMaterial({ color: 0x2a4a6a, size: 0.025, transparent: true, opacity: 0.6 })));
+
+  let f = 0;
+  (function animate() {
+    requestAnimationFrame(animate); f++;
+    outerCube.rotation.x += 0.0025; outerCube.rotation.y += 0.004;
+    glowCube.rotation.x = outerCube.rotation.x; glowCube.rotation.y = outerCube.rotation.y;
+    innerCube.rotation.x -= 0.003; innerCube.rotation.y += 0.0055;
+    coreCube.rotation.x += 0.006;  coreCube.rotation.y -= 0.004;
+    outerMat.opacity = 0.42 + Math.sin(f * 0.02) * 0.1;
+    renderer.render(scene, camera);
+  })();
+})();
+
+// ── TYPEWRITER ────────────────────────────────────────────
+(function () {
+  const el     = document.getElementById('hero-typed');
+  const cursor = el.querySelector('.hero-cursor');
+  const segs   = [
+    { text: 'Infrastructure for ', em: false },
+    { text: 'permanent',           em: true  },
+    { text: ' AI agents.',         em: false  }
+  ];
+  let si = 0, ci = 0;
+
+  function type() {
+    if (si >= segs.length) return;
+    ci++;
+    if (ci > segs[si].text.length) { si++; ci = 0; if (si >= segs.length) return; }
+    let html = '';
+    for (let s = 0; s < segs.length; s++) {
+      const t = s < si ? segs[s].text : s === si ? segs[s].text.slice(0, ci) : '';
+      if (!t) break;
+      html += segs[s].em ? `<span class="em">${t}</span>` : t;
+    }
+    el.innerHTML = html;
+    el.appendChild(cursor);
+    setTimeout(type, 44 + Math.random() * 26);
+  }
+  setTimeout(type, 800);
+})();
+
+// ── TRON SCROLL-BASED ─────────────────────────────────────
+(function () {
+  const block  = document.getElementById('tron-block');
+  const states = Array.from(block.querySelectorAll('.tron-state'));
+  const arrows = Array.from(block.querySelectorAll('.tron-arrow'));
+  let last = -1;
+
+  function update() {
+    const rect = block.getBoundingClientRect();
+    const vh   = window.innerHeight;
+    // start when section is 40% into viewport, SEAL lights when 80% scrolled through
+    const enter = vh * 0.6;
+    const raw   = (enter - rect.top) / (rect.height * 0.8);
+    const p     = Math.max(0, Math.min(1, raw));
+    const idx   = Math.round(p * (states.length - 1));
+    if (idx === last) return;
+    last = idx;
+    states.forEach((s, i) => {
+      const on = i <= idx;
+      s.style.color       = on ? '#5ddcff' : '';
+      s.style.borderColor = on ? '#5ddcff' : '';
+      s.style.boxShadow   = on ? '0 0 10px rgba(93,220,255,.28)' : '';
+    });
+    arrows.forEach((a, i) => { a.style.color = i < idx ? '#5ddcff' : ''; });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+// ── SCROLL REVEAL (staggered) ────────────────────────────
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var pending = [];
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      pending.push(e.target);
+      obs.unobserve(e.target);
+    });
+    pending.forEach(function (el, i) {
+      el.style.transitionDelay = (i * 80) + 'ms';
+      el.classList.add('visible');
+    });
+    if (pending.length) setTimeout(function () { pending = []; }, 600);
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.block').forEach(function (b) { obs.observe(b); });
+})();
+
+// ── INSTALL TOGGLE ────────────────────────────────────────
+document.getElementById('install-toggle').addEventListener('click', function (e) {
+  e.stopPropagation();
+  document.getElementById('install-panel').classList.toggle('open');
+});
+document.getElementById('install-toggle-2').addEventListener('click', function (e) {
+  e.stopPropagation();
+  document.getElementById('install-panel-2').classList.toggle('open');
+});
+document.addEventListener('click', function () {
+  document.getElementById('install-panel').classList.remove('open');
+  document.getElementById('install-panel-2').classList.remove('open');
+});
+
+// ── HEX TOOLTIP (centered in hex shape) ──────────────────
+(function () {
+  var tips = {
+    spark:   { n:'Spark',   g:'▛▞ // Face 01 · Top',          d:'Origin and identity. sparkfile.md defines who the agent is. soul.md carries its mission. AGENTS.md boots Cursor.',                        f:'<span>sparkfile.md</span> · identity<br><span>soul.md</span> · mission<br><span>AGENTS.md</span> · boot' },
+    brains:  { n:'Brains',  g:'▛▞ // Face 02 · Left',         d:'Persona engine. brains.rs is a TOML preset that compiles to binary. Edit the preset, recompile, system updates.',                       f:'<span>brains.rs</span> · TOML preset<br><span>brains</span> · compiled binary' },
+    rules:   { n:'Rules',   g:'▛▞ // Face 03 · Bottom-Left',  d:'Guardrails. limits.toml sets rate limits and caps. write_policy controls mutation scope. Warden enforces at commit.',                    f:'<span>limits.toml</span> · guardrails<br><span>write_policy.toml</span> · mutation scope' },
+    toolkit: { n:'Toolkit', g:'▛▞ // Face 04 · Top-Right',    d:'Modular capabilities. Tools are executable scripts. Skills are knowledge modules. 3OX manager updates all locations.',                   f:'<span>Tools/tools.yml</span> · tool registry<br><span>Skills/skills.md</span> · skill registry' },
+    links:   { n:'Links',   g:'▛▞ // Face 05 · Bottom-Right', d:'External wiring. routes.json maps incoming requests to internal handlers and outbound services.',                                        f:'<span>Routes/routes.json</span> · routing map' },
+    pulse:   { n:'Pulse',   g:'▛▞ // Face 06 · Bottom',       d:'Heartbeat and audit. 3ox.log captures events. receipts/ stores cryptographic proof of every mutation via the Triad.',                    f:'<span>3ox.log</span> · event stream<br><span>receipts/</span> · sha256 proof chain' }
+  };
+  var tip = document.getElementById('hex-tip');
+  var wrap = document.querySelector('.cube-hex-wrap');
+  if (!tip || !wrap) return;
+  var elN = document.getElementById('ht-name');
+  var elG = document.getElementById('ht-glyph');
+  var elD = document.getElementById('ht-desc');
+  var elF = document.getElementById('ht-files');
+
+  document.querySelectorAll('[data-tip]').forEach(function (node) {
+    node.addEventListener('mouseenter', function () {
+      var d = tips[node.getAttribute('data-tip')];
+      if (!d) return;
+      elN.textContent = d.n;
+      elG.textContent = d.g;
+      elD.textContent = d.d;
+      elF.innerHTML = d.f;
+      var r = wrap.getBoundingClientRect();
+      tip.style.left = (r.left + r.width / 2) + 'px';
+      tip.style.top = (r.top + r.height / 2) + 'px';
+      tip.classList.add('show');
+    });
+    node.addEventListener('mouseleave', function () {
+      tip.classList.remove('show');
+    });
+  });
+})();
+
+// ── VALUE CARD TYPEWRITER ON SCROLL ───────────────────────
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cards = document.querySelectorAll('.value-card');
+  cards.forEach(function (card) {
+    var html = card.innerHTML.trim();
+    card.innerHTML = '<span class="vc-typed"></span><span class="vc-cursor"></span>';
+    card.dataset.fullHtml = html;
+    card.dataset.typed = '0';
+  });
+
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting || e.target.dataset.typed === '1') return;
+      e.target.dataset.typed = '1';
+      var full = e.target.dataset.fullHtml;
+      var el = e.target.querySelector('.vc-typed');
+      var cursor = e.target.querySelector('.vc-cursor');
+      var i = 0;
+      var tags = false;
+      function step() {
+        if (i >= full.length) { cursor.style.display = 'none'; return; }
+        var ch = full[i];
+        if (ch === '<') tags = true;
+        if (tags) {
+          var close = full.indexOf('>', i);
+          if (close > -1) { el.innerHTML = full.slice(0, close + 1); i = close + 1; tags = false; }
+          else { i++; }
+          step();
+          return;
+        }
+        el.innerHTML = full.slice(0, i + 1);
+        i++;
+        setTimeout(step, 18 + Math.random() * 12);
+      }
+      step();
+    });
+  }, { threshold: 0.5 });
+  cards.forEach(function (c) { obs.observe(c); });
+})();
+
+// ── CTA GLOW ON SCROLL ───────────────────────────────────
+(function () {
+  var cta = document.querySelector('.cta-close');
+  if (!cta) return;
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { cta.classList.toggle('glow', e.isIntersecting); });
+  }, { threshold: 0.3 });
+  obs.observe(cta);
+})();
+
+// ── SCROLL PROGRESS ──────────────────────────────────────
+(function () {
+  var fill = document.getElementById('scroll-fill');
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    fill.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
