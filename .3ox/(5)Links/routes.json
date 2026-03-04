@@ -1,0 +1,14 @@
+{
+  "agent": "AGENT_NAME",
+  "version": "1.0.0",
+  "routes": {
+    "telegram": {
+      "chat_id": null,
+      "thread_id": null
+    },
+    "mesh": {
+      "speaker": "speaker-mesh",
+      "config": "TPR.SPEAKER.MESH.json"
+    }
+  }
+}
