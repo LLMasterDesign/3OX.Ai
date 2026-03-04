@@ -1,0 +1,32 @@
+# status:[ACTIVE] ver:[1.0.0] created:[26.01.02]
+# doc:[COMPLETE] modified:[26.03.03] auth:[ZEN.PRO]
+# Money.Bagz tools — agent capabilities
+
+tools:
+  - name: inference
+    type: llm
+    enabled: true
+
+  - name: budget-update
+    type: script
+    enabled: true
+    runner: ruby
+    entry: run.rb budget-update
+
+  - name: teleprompt
+    type: script
+    enabled: true
+    runner: ruby
+    entry: run.rb teleprompt
+
+  - name: analyze
+    type: script
+    enabled: true
+    runner: ruby
+    entry: run.rb analyze
+
+  - name: alerts
+    type: script
+    enabled: true
+    runner: ruby
+    entry: run.rb alerts

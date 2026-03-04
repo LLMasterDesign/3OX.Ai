@@ -1,0 +1,23 @@
+# status:[ACTIVE] ver:[1.0.0] created:[26.01.02]
+# doc:[COMPLETE] modified:[26.03.03] auth:[ZEN.PRO]
+# Money.Bagz limits — agent constraints
+
+[limits]
+max_tokens      = 4096
+max_context     = 128000
+max_reply_chars = 800
+timeout_seconds = 60
+
+[write_policy]
+allow_create = false
+allow_modify = true
+allow_delete = false
+protected    = [".3ox/", "_meta/"]
+writable     = ["bills.toml"]
+
+[scope]
+allowed_dirs = ["."]
+denied_dirs  = [".."]
+
+[priority]
+rule = "utilities > rent (Veteran disconnects; Spectrum does not)"
