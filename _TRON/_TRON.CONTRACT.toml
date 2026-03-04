@@ -1,0 +1,36 @@
+# status:[ACTIVE] ver:[1.0.0] created:[26.03.03]
+# doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+# _TRON contract — per-device runtime configuration
+
+# ── Device Identity ──────────────────────────────────
+[device]
+name = "CMD.VPS"
+host = "5.78.109.54"
+role = "runtime"                    # runtime | build | mobile
+
+# ── Paths ────────────────────────────────────────────
+[paths]
+tron_root   = "/root/_TRON"
+cmd_root    = "/root/!CMD.VPS"
+tpr_root    = "/root/!CMD.VPS/TelePromptR"
+agents_root = "/root/_TRON/Agents"
+
+# ── Services ─────────────────────────────────────────
+[services]
+speaker_mesh = { status = "active", unit = "speaker-mesh.service" }
+teleprompter = { status = "active", unit = "teleprompter.service" }
+whoami_watch = { status = "draft",  unit = "whoami.watch.service" }
+
+# ── Registered Agents ────────────────────────────────
+[agents.money_bagz]
+name   = "Money.Bagz"
+path   = "/root/!CMD.VPS/BudgetR"
+status = "active"
+glyph  = "💰"
+
+# ── Known Devices ────────────────────────────────────
+# Copy this file per device, update [device] and [paths]
+
+# CMD.VPS   — runtime (Telegram agents live here)
+# ZEN.PRO   — build (Mac, Cursor, manufacturer)
+# ZENS3N.CMD — WSL (full _TRON, 5TRATA)

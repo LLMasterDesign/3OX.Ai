@@ -1,0 +1,19 @@
+# status:[ACTIVE] ver:[1.0.0] created:[26.03.01]
+# doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+# Teleprompter — Telegram gateway and message routing
+
+[Unit]
+Description=3OX TelePromptR — Telegram Gateway
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/!CMD.VPS/TelePromptR
+ExecStart=/usr/bin/ruby 3ox.station/vec3/bin/teleprompter.rb
+Restart=always
+RestartSec=5
+Environment=LANG=en_US.UTF-8
+
+[Install]
+WantedBy=multi-user.target
