@@ -5,9 +5,9 @@
 ⫸ 〔runtime.3ox.builder.context〕
 
 ```elixir
-/// Status: [ACTIVE] | Version: 1.0.0 | Authority: Lucius.Larz.Master | Created: 2025.12.13
-/// 3OX.Ai is the substrate. Vec3Boot is the kernel loader.
-/// This document locks semantics. Drift is treated as a fault.
+/// status:[ACTIVE] ver:[1.0.0] created:[25.12.13]
+/// doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+/// 3OX.Ai substrate and Vec3Boot kernel loader — semantics locked
 ```
 
 //▞▞⋮⋮ 💽 [RUN] :: LOADER

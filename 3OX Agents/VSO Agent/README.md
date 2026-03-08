@@ -2,6 +2,12 @@
 
 ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///
 
+```elixir
+/// status:[ACTIVE] ver:[1.0.0] created:[25.05.11]
+/// doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+/// VSO Agent — AI-powered Veterans Service Officer
+```
+
 ## Agent: VSO.AGENT → Veterans Service Officer
 
 ▛▞// VSO.AGENT ⫎▸

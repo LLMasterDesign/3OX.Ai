@@ -1,5 +1,7 @@
 ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂ ::[0xA4]::
-// 3OX CLI - Micro CLI for 3OX agents
+// status:[ACTIVE] ver:[1.0.0] created:[25.05.11]
+// doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+// 3OX CLI — micro CLI for 3OX agents
 
 use std::env;
 use std::path::{Path, PathBuf};

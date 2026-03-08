@@ -1,5 +1,8 @@
 ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
-▛//▞▞ ⟦⎊⟧ :: ⧗-25.291 ▸ ρ{agent.brain}.φ{identity}.τ{rules}.λ{bind} ⫸ :: BRAIN.RS
+// ▛//▞▞ ⟦⎊⟧ :: ⧗-25.291 ▸ ρ{agent.brain}.φ{identity}.τ{rules}.λ{bind} ⫸ :: BRAIN.RS
+// status:[ACTIVE] ver:[1.1.0] created:[25.10.18]
+// doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+// Agent configuration and rules — implementation reference
 
 /// Brain Type: Defines agent personality and approach
 #[derive(Debug, Clone)]
