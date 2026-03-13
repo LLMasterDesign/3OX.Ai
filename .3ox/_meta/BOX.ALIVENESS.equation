@@ -1,0 +1,45 @@
+///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///
+▛//▞▞ ⟦⎊⟧ :: ⧗-26.072 // WORKBOOK :: BOX.ALIVENESS.equation ▞▞
+
+```elixir
+/// status:[DRAFT] ver:[1.0.0] created:[26.03.13]
+/// doc:[PARTIAL] modified:[26.03.13] auth:[3OX.AI]
+/// Box-aliveness equation — state and aliveness invariant for 3ox
+```
+
+─────────────────────────────────────────────────────────────────
+BOX-ALIVENESS EQUATION — Refined for 3ox
+─────────────────────────────────────────────────────────────────
+
+Pulse(t)   ≔ Δt → εt → σt
+Tape(t)    ≔ ρt → μt
+Warden(t)  ≔ Verify(Pulse(t), Tape(t))
+Box₃(t)    ≔ ⟨Pulse(t), Tape(t), Warden(t)⟩
+
+ValidBox₃(t) ≔ I[Pulse(t)]·I[Tape(t)]·I[Warden(t)] = 1
+Authoritative(t) ≔ I[CanonSource(t)]·ValidBox₃(t) = 1
+Success(t) ≔ Authoritative(t)·I[Goal(t)=reached] = 1
+Repeatable(C) ≔ ∀t ∈ Runs(C), ValidBox₃(t)=1 under same law
+
+─────────────────────────────────────────────────────────────────
+REFINEMENTS
+─────────────────────────────────────────────────────────────────
+
+I[x] ≔ indicator: 1 if x passes structural + hash check, else 0
+I[x] ≔ (structure_valid(x) ∧ hash_chain_valid(x)) ? 1 : 0
+
+CanonSource(t) ≔ cube root + _meta contract present
+CanonSource(t) ≔ path(.3ox) ∧ exists(_meta/WHOAMI.md) ∧ exists(_meta/SESSION.CHECKPOINT.toml)
+
+Goal(t)=reached ≔ route completed with receipt
+Goal(t)=reached ≔ ∃r ∈ Tape(t) : r.status=COMPLETE ∧ r.intent=route(t).intent
+
+─────────────────────────────────────────────────────────────────
+3OX MAPPING
+─────────────────────────────────────────────────────────────────
+
+Pulse  → (6)Pulse: run.rb, 3ox.log, receipts/
+Tape   → vec3/var/receipts/, event stream, merkle.root
+Warden → limits.toml, write_policy, validate at commit
+
+:: ∎
