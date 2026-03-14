@@ -6,6 +6,7 @@
 require 'json'
 require 'fileutils'
 require 'time'
+require 'digest'
 
 ROOT = File.expand_path('..', __dir__)
 PULSE_ROOT = File.join(__dir__, '(6)Pulse')
@@ -16,6 +17,9 @@ PID_FILE = File.join(RUNTIME, 'station.pid')
 STATUS_FILE = File.join(RUNTIME, 'status.json')
 QUEUE_FILE = File.join(QUEUE_DIR, 'jobs.json')
 ACTIVITY_LOG = File.join(LOG_DIR, 'station.log')
+WHOAMI_FILE = File.join(__dir__, '_meta', 'WHOAMI.md')
+SESSION_CHECKPOINT_FILE = File.join(__dir__, '_meta', 'SESSION.CHECKPOINT.toml')
+LIMITS_FILE = File.join(__dir__, '(3)Rules', 'limits.toml')
 
 HEARTBEAT_SECONDS = (ENV['THREEOX_HEARTBEAT_SECONDS'] || '5').to_i
 MAX_STREAM_LINES = (ENV['THREEOX_STREAM_LINES'] || '5').to_i
@@ -250,6 +254,65 @@ def show_status
   puts JSON.pretty_generate(status)
 end
 
+def hashed(path)
+  Digest::SHA256.hexdigest(File.read(path))
+end
+
+def pulse_valid?
+  status = load_json(STATUS_FILE, nil)
+  status.is_a?(Hash) && status['updated_at'] && status['services'].is_a?(Hash)
+end
+
+def tape_valid?
+  queue = load_json(QUEUE_FILE, nil)
+  queue.is_a?(Hash) && queue['jobs'].is_a?(Array)
+end
+
+def warden_valid?
+  File.exist?(LIMITS_FILE) && !File.read(LIMITS_FILE).strip.empty?
+end
+
+def canon_source?
+  File.directory?(__dir__) && File.exist?(WHOAMI_FILE) && File.exist?(SESSION_CHECKPOINT_FILE)
+end
+
+def goal_reached?
+  status = load_json(STATUS_FILE, base_status)
+  status.dig('last_completed_job', 'status') == 'completed'
+end
+
+def aliveness_report
+  report = {
+    'timestamp' => now,
+    'hashes' => {
+      'status_sha256' => File.exist?(STATUS_FILE) ? hashed(STATUS_FILE) : nil,
+      'queue_sha256' => File.exist?(QUEUE_FILE) ? hashed(QUEUE_FILE) : nil,
+      'limits_sha256' => File.exist?(LIMITS_FILE) ? hashed(LIMITS_FILE) : nil
+    },
+    'invariants' => {
+      'pulse' => pulse_valid?,
+      'tape' => tape_valid?,
+      'warden' => warden_valid?,
+      'valid_box3' => false,
+      'authoritative' => false,
+      'goal_reached' => goal_reached?,
+      'success' => false
+    }
+  }
+
+  report['invariants']['valid_box3'] =
+    report['invariants']['pulse'] && report['invariants']['tape'] && report['invariants']['warden']
+  report['invariants']['authoritative'] = report['invariants']['valid_box3'] && canon_source?
+  report['invariants']['success'] = report['invariants']['authoritative'] && report['invariants']['goal_reached']
+  report
+end
+
+def check_aliveness
+  report = aliveness_report
+  puts JSON.pretty_generate(report)
+  exit(report.dig('invariants', 'authoritative') ? 0 : 1)
+end
+
 def run_once(command, args)
   job = {
     'id' => "job-#{Time.now.to_i}-#{rand(1000..9999)}",
@@ -283,9 +346,11 @@ when 'once'
   run_once(command_name, command_args)
 when 'teleprompt', 'analyze'
   run_once(command, args)
+when 'aliveness'
+  check_aliveness
 else
   puts <<~USAGE
-    Usage: ruby .3ox/run.rb [start|stop|status|queue|once|teleprompt|analyze]
+    Usage: ruby .3ox/run.rb [start|stop|status|queue|once|teleprompt|analyze|aliveness]
 
     start                      # start station supervisor loop in background
     stop                       # stop station supervisor loop
@@ -294,6 +359,7 @@ else
     once <cmd> [args...]       # run one job synchronously
     teleprompt [args...]       # convenience wrapper (once teleprompt)
     analyze [args...]          # convenience wrapper (once analyze)
+    aliveness                  # evaluate Box aliveness contract invariants
   USAGE
   exit 1
 end

@@ -42,4 +42,22 @@ Pulse  → (6)Pulse: run.rb, 3ox.log, receipts/
 Tape   → vec3/var/receipts/, event stream, merkle.root
 Warden → limits.toml, write_policy, validate at commit
 
+
+
+─────────────────────────────────────────────────────────────────
+RUNTIME CHECK
+─────────────────────────────────────────────────────────────────
+
+Executable check:
+
+```bash
+ruby .3ox/run.rb aliveness
+```
+
+Pass condition:
+- authoritative = true
+- valid_box3 = true
+
+Failure means one or more of Pulse/Tape/Warden/Canon source is broken.
+
 :: ∎
