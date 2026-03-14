@@ -51,7 +51,7 @@ RUNTIME CHECK
 Executable check:
 
 ```bash
-ruby .3ox/run.rb aliveness
+ruby .vec3/rc/run.rb aliveness
 ```
 
 Pass condition:
