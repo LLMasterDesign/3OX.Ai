@@ -1,0 +1,6 @@
+.git
+.gitignore
+*.log
+node_modules
+target
+.3ox/(6)Pulse/runtime

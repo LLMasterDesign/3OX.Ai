@@ -25,7 +25,7 @@ This folder now hosts a deploy-ready static landing page for **3ox.store**.
 
 1. **Deploy**: From repo root, run `1n3ox-temp/sync-3ox-store.sh`
 2. **VPS path**: `/var/www/3ox.store/` (or `/root/!CMD.VPS/3ox-store/`)
-3. **Nginx**: See `!Z3N.PRO.OPS/DEPLOY.3OX.STORE.md` for server block config
+3. **Nginx**: Use `nginx.3ox.store.conf` in this folder — copy to `/etc/nginx/sites-available/` and enable
 
 ## Notes
 

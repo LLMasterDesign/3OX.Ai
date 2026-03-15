@@ -86,6 +86,10 @@ Portable AI workspaces. Package an agent, its data, and state into a single unit
 
 **Languages**: Ruby runtime, Rust brain configs, SXSL markup.
 
+## Deployment Readiness
+
+**Before going live:** See [`_meta/DEPLOY.READINESS.md`](_meta/DEPLOY.READINESS.md) for platform matrix, pre-flight checklist, and known gaps.
+
 ## Get Started
 
 Clone an agent:
