@@ -25,21 +25,25 @@ fn find_3ox_dir(start: &Path) -> Option<PathBuf> {
 
 fn run_agent(agent_path: &Path) -> std::io::Result<()> {
     let dot3ox = agent_path.join(".3ox");
-    let run_rb = dot3ox.join("run.rb");
-    
-    if run_rb.exists() {
-        // Run Ruby agent
-        println!("▛▞ Running 3OX agent: {}", agent_path.display());
-        let status = Command::new("ruby")
-            .arg(&run_rb)
-            .current_dir(agent_path)
-            .status()?;
-        
-        std::process::exit(status.code().unwrap_or(1));
+    let run_rb = dot3ox.join(".vec3").join("rc").join("run.rb");
+    let run_rb_fallback = dot3ox.join("run.rb");
+
+    let run_rb = if run_rb.exists() {
+        run_rb
+    } else if run_rb_fallback.exists() {
+        run_rb_fallback
     } else {
-        eprintln!("✗ No run.rb found in {}", dot3ox.display());
+        eprintln!("✗ No run.rb found in {} or {}", dot3ox.join(".vec3/rc").display(), dot3ox.display());
         std::process::exit(1);
-    }
+    };
+
+    println!("▛▞ Running 3OX agent: {}", agent_path.display());
+    let status = Command::new("ruby")
+        .arg(&run_rb)
+        .current_dir(agent_path)
+        .status()?;
+
+    std::process::exit(status.code().unwrap_or(1));
 }
 
 fn show_log(agent_path: &Path) -> std::io::Result<()> {
@@ -72,7 +76,7 @@ fn show_status(agent_path: &Path) -> std::io::Result<()> {
         ("tools.yml", "tools.yml"),
         ("routes.json", "routes.json"),
         ("limits.toml", "limits.json"),
-        ("run.rb", "run.rb"),
+        (".vec3/rc/run.rb", "run.rb"),
         ("sparkfile.md", "sparkfile.md"),
     ];
     

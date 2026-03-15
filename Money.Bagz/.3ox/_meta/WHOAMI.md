@@ -23,7 +23,7 @@
 | Step | Command |
 |------|---------|
 | Sync | `bash .3ox/sync-vps.sh` |
-| Refresh | `ruby .3ox/.vec3/rc/run.rb teleprompt` or `ruby .3ox/run.rb teleprompt` |
+| Refresh | `ruby .3ox/.vec3/rc/run.rb teleprompt` |
 | Restart | `systemctl restart speaker-mesh` |
 
 :: ∎

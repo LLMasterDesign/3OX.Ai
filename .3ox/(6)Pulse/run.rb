@@ -16,7 +16,7 @@ script_for = {
 
 script_name = script_for[command]
 if script_name.nil?
-  puts "Usage: ruby .3ox/run.rb [teleprompt|analyze]"
+  puts "Usage: ruby .3ox/.vec3/rc/run.rb [teleprompt|analyze]"
   exit 1
 end
 

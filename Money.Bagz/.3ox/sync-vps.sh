@@ -23,7 +23,7 @@ rsync -avz --delete \
 
 echo ""
 echo "▛▞ REFRESH MONEY.BAGZ (teleprompt + update TPR config)"
-ssh "${SSH_OPTS[@]}" "$VPS" "cd $VPS_BUDGET && ruby .3ox/run.rb teleprompt && cd !0UT.BUDGET/tpr && TPR_ZENS3N=$TPR_REPO bash merge.sh"
+ssh "${SSH_OPTS[@]}" "$VPS" "cd $VPS_BUDGET && ruby .3ox/.vec3/rc/run.rb teleprompt && cd !0UT.BUDGET/tpr && TPR_ZENS3N=$TPR_REPO bash merge.sh"
 
 echo ""
 echo "▛▞ RESTART speaker-mesh"

@@ -18,8 +18,8 @@
 | Component | Platform | How to Run |
 |-----------|----------|------------|
 | **3OX.BUILDER** | Linux, macOS, WSL | `cd 3OX.BUILDER` → `make build` → `make install-cli` |
-| **VSO Agent** | Any (Ruby 3.2+, Rust) | `cd "3OX Agents/VSO Agent"` → `ruby .3ox/run.rb` |
-| **Root station** | Linux, macOS | `ruby .3ox/run.rb start` (supervisor) or `ruby .3ox/run.rb teleprompt` |
+| **VSO Agent** | Any (Ruby 3.2+, Rust) | `cd "3OX Agents/VSO Agent"` → `ruby .3ox/.vec3/rc/run.rb` |
+| **Root station** | Linux, macOS | `ruby .3ox/.vec3/rc/run.rb start` (supervisor) or `ruby .3ox/.vec3/rc/run.rb teleprompt` |
 | **3ox.store landing** | VPS + nginx | `bash 1n3ox-temp/sync-3ox-store.sh` → serve `/var/www/3ox.store` |
 | **systemd units** | Linux (VPS) | `_TRON/systemd/*.service` — copy to `/etc/systemd/system/` |
 
@@ -63,8 +63,8 @@ cd 3OX.Ai
 
 ### 2. Test root station (no VPS)
 ```bash
-ruby .3ox/run.rb status
-ruby .3ox/run.rb teleprompt   # May show fallback if scripts missing — OK
+ruby .3ox/.vec3/rc/run.rb status
+ruby .3ox/.vec3/rc/run.rb teleprompt   # May show fallback if scripts missing — OK
 ```
 
 ### 3. Test 3OX.BUILDER
@@ -78,13 +78,13 @@ make install-cli
 ### 4. Test VSO Agent
 ```bash
 cd "3OX Agents/VSO Agent"
-ruby .3ox/run.rb
+ruby .3ox/.vec3/rc/run.rb
 ```
 
 ### 5. Test Money.Bagz (local)
 ```bash
 cd Money.Bagz
-ruby .3ox/run.rb teleprompt   # Must not crash
+ruby .3ox/.vec3/rc/run.rb teleprompt   # Must not crash
 ```
 
 ### 6. VPS deploy (if TelePromptR already there)
@@ -103,8 +103,7 @@ bash .3ox/sync-vps.sh
 
 | Path | Purpose |
 |------|---------|
-| `.3ox/.vec3/rc/run.rb` | Canonical run — station supervisor |
-| `.3ox/run.rb` | Wrapper (loads .vec3/rc/run.rb) |
+| `.3ox/.vec3/rc/run.rb` | Canonical run — station supervisor or agent entry |
 | `.3ox/(6)Pulse/run.rb` | Pulse dispatcher (teleprompt, analyze) |
 | `Money.Bagz/.3ox/scripts/` | Money.Bagz scripts (teleprompt, analyze, alerts, budget-update) |
 | `_TRON/systemd/` | systemd unit files |
@@ -129,7 +128,7 @@ bash .3ox/sync-vps.sh
 # Linux/macOS/WSL
 git clone https://github.com/LLMasterDesign/3OX.Ai.git && cd 3OX.Ai
 cd 3OX.BUILDER && make build && make install-cli
-cd .. && ruby .3ox/run.rb status
+cd .. && ruby .3ox/.vec3/rc/run.rb status
 ```
 
 :: ∎
