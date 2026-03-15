@@ -38,7 +38,7 @@ Goal(t)=reached ≔ ∃r ∈ Tape(t) : r.status=COMPLETE ∧ r.intent=route(t).i
 3OX MAPPING
 ─────────────────────────────────────────────────────────────────
 
-Pulse  → (6)Pulse: run.rb, 3ox.log, receipts/
+Pulse  → (6)Pulse + .vec3/rc/run.rb, 3ox.log, receipts/
 Tape   → vec3/var/receipts/, event stream, merkle.root
 Warden → limits.toml, write_policy, validate at commit
 

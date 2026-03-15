@@ -103,7 +103,8 @@ bash .3ox/sync-vps.sh
 
 | Path | Purpose |
 |------|---------|
-| `.3ox/run.rb` | Root station supervisor |
+| `.3ox/.vec3/rc/run.rb` | Canonical run — station supervisor |
+| `.3ox/run.rb` | Wrapper (loads .vec3/rc/run.rb) |
 | `.3ox/(6)Pulse/run.rb` | Pulse dispatcher (teleprompt, analyze) |
 | `Money.Bagz/.3ox/scripts/` | Money.Bagz scripts (teleprompt, analyze, alerts, budget-update) |
 | `_TRON/systemd/` | systemd unit files |

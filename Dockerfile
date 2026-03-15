@@ -19,4 +19,4 @@ WORKDIR /app
 COPY . .
 
 # Default: run root station
-CMD ["ruby", ".3ox/run.rb", "status"]
+CMD ["ruby", ".3ox/.vec3/rc/run.rb", "status"]
