@@ -6,3 +6,15 @@
 date    = "26.03.03"
 type    = "init"
 summary = "Initial structure — L2 faces, L3 kernel, _meta contracts"
+
+
+[[entry]]
+date    = "26.03.13"
+type    = "update"
+summary = "Added box-aliveness runtime check command to .3ox/run.rb and linked contract check usage"
+
+
+[[entry]]
+date    = "26.03.13"
+type    = "fix"
+summary = "Moved box-aliveness runtime contract check to .vec3/rc/run.rb and delegated .3ox/run.rb aliveness"

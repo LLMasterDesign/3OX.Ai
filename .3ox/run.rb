@@ -250,6 +250,7 @@ def show_status
   puts JSON.pretty_generate(status)
 end
 
+
 def run_once(command, args)
   job = {
     'id' => "job-#{Time.now.to_i}-#{rand(1000..9999)}",
@@ -283,9 +284,11 @@ when 'once'
   run_once(command_name, command_args)
 when 'teleprompt', 'analyze'
   run_once(command, args)
+when 'aliveness'
+  exec('ruby', File.join(ROOT, '.vec3', 'rc', 'run.rb'), 'aliveness')
 else
   puts <<~USAGE
-    Usage: ruby .3ox/run.rb [start|stop|status|queue|once|teleprompt|analyze]
+    Usage: ruby .3ox/run.rb [start|stop|status|queue|once|teleprompt|analyze|aliveness]
 
     start                      # start station supervisor loop in background
     stop                       # stop station supervisor loop
@@ -294,6 +297,7 @@ else
     once <cmd> [args...]       # run one job synchronously
     teleprompt [args...]       # convenience wrapper (once teleprompt)
     analyze [args...]          # convenience wrapper (once analyze)
+    aliveness                  # delegate to .vec3/rc/run.rb aliveness
   USAGE
   exit 1
 end
