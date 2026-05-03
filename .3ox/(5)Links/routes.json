@@ -31,7 +31,45 @@
         "examples_invalid": ["0xTGX", "TPW", "ENC.v1", "k00_in_hex_slot"]
       },
       "reuse_theme": "fixed_spine_change_hex_only_for_10000_plus_docs",
-      "glyph_density": "prefer_no_blank_space_visual_rhythm_glyphs_carry_semantics"
+      "glyph_density": "prefer_no_blank_space_visual_rhythm_glyphs_carry_semantics",
+      "context_line": {
+        "role": "fleet_triple_not_in_banner_hex_use_this_line",
+        "pattern": "⫸ 〔runtime.binding.context〕",
+        "binding": "replace_runtime_binding_context_with_bracketed_triple",
+        "triple_slots_in_brackets": {
+          "capacity": "243_per_box_27_kappa_plus_216_xi_when_split",
+          "form_examples": [
+            "⫸ 〔Ω9f2a〕〔κk00〕〔ξE042〕",
+            "⫸ 〔Ω9f2a〕〔κk12〕〔ξE000〕",
+            "⫸ 〔Ω9f2a〕〔ξE215〕"
+          ],
+          "bracket_rule": "each_segment_one_meaning_seal_kind_slot_no_english_in_seals_use_hex_or_slot_ids"
+        },
+        "note": "banner_line_1_hex_stays_hex_alphabet_only_triple_disambiguates_themed_3ox_agents"
+      },
+      "banner_hex_top_three": [
+        {
+          "id": "packed_16",
+          "banner_tail": "::0xHHLL::",
+          "meaning": "high_byte_agent_ordinal_low_byte_slot_0_to_242",
+          "token_weight": 2,
+          "fleet_strength_100": 78
+        },
+        {
+          "id": "packed_20",
+          "banner_tail": "::0xHHHHH::",
+          "meaning": "flat_global_id_agent12bit_times_243_plus_slot_single_lookup",
+          "token_weight": 2,
+          "fleet_strength_100": 88
+        },
+        {
+          "id": "packed_24",
+          "banner_tail": "::0xHHHHHH::",
+          "meaning": "flat_id_plus_headroom_kappa_xi_or_version_bits",
+          "token_weight": 3,
+          "fleet_strength_100": 90
+        }
+      ]
     },
     "layers": {
       "gensing": "eternal_readable_law_headers_first",
