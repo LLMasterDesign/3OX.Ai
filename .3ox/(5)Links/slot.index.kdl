@@ -9,7 +9,7 @@ document {
   law "hash.internal.daemon" "xxh128"
   law "hash.external.boundary" "sha256"
   law "inference.context" "single_slot_hydrate_not_full_pipeline"
-  law "gensing.banner" "glyph_spine_then_::hexcode::_hex_is_hex_alphabet_only"
+  law "gensing.line1" "glyph_spine_tiny_hex_chip_max_four_digits_long_ids_in_registry_only"
   law "gensing.context_line" "triple_on_line_starting_with_u23A8_bracket_runtime_binding_context"
   law "gensing.slot_brackets" "kappa_xi_slot_ids_inside_brackets_243_capacity_per_box"
   law "gensing.layers" "readable_law_then_kdl_index_then_runtime_by_path"

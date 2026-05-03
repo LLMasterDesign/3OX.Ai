@@ -27,8 +27,19 @@
       "hex_slot_rules": {
         "alphabet_in_code_only": "0123456789abcdefABCDEFx",
         "no_mnemonic_words_inside_hex_token": true,
-        "examples_valid": ["0xA4", "A4", "00", "DEADBEEF", "0x1F2"],
-        "examples_invalid": ["0xTGX", "TPW", "ENC.v1", "k00_in_hex_slot"]
+        "line_1_hex_max_digits": 4,
+        "line_1_never": [
+          "ten_or_more_spaced_hex_as_first_line",
+          "long_packed_id_as_banner_chip"
+        ],
+        "line_1_always": [
+          "glyph_spine_dominant_future_aesthetic",
+          "closed_::_delimiters_parse_safe",
+          "tiny_lex_chip_only_between_outer_::"
+        ],
+        "full_precision_lookup": "routes_json_slot_index_kdl_machine_row_not_first_line_banner",
+        "examples_valid_line_1": ["0xA4", "A4", "00", "0x1F"],
+        "examples_invalid": ["0xTGX", "TPW", "ENC.v1", "k00_in_hex_slot", "DEADBEEF_on_line_1_chip"]
       },
       "reuse_theme": "fixed_spine_change_hex_only_for_10000_plus_docs",
       "glyph_density": "prefer_no_blank_space_visual_rhythm_glyphs_carry_semantics",
@@ -47,29 +58,35 @@
         },
         "note": "banner_line_1_hex_stays_hex_alphabet_only_triple_disambiguates_themed_3ox_agents"
       },
-      "banner_hex_top_three": [
-        {
-          "id": "packed_16",
-          "banner_tail": "::0xHHLL::",
-          "meaning": "high_byte_agent_ordinal_low_byte_slot_0_to_242",
-          "token_weight": 2,
-          "fleet_strength_100": 78
-        },
-        {
-          "id": "packed_20",
-          "banner_tail": "::0xHHHHH::",
-          "meaning": "flat_global_id_agent12bit_times_243_plus_slot_single_lookup",
-          "token_weight": 2,
-          "fleet_strength_100": 88
-        },
-        {
-          "id": "packed_24",
-          "banner_tail": "::0xHHHHHH::",
-          "meaning": "flat_id_plus_headroom_kappa_xi_or_version_bits",
-          "token_weight": 3,
-          "fleet_strength_100": 90
-        }
-      ]
+      "banner_hex_top_three": {
+        "note": "these_are_registry_or_row_encodings_not_the_visual_first_line_chip",
+        "options": [
+          {
+            "id": "packed_16",
+            "encoding": "0xHHLL",
+            "meaning": "high_byte_agent_ordinal_low_byte_slot_0_to_242",
+            "token_weight": 2,
+            "fleet_strength_100": 78,
+            "where_to_store": "routes_maps_machine_index_footer_optional"
+          },
+          {
+            "id": "packed_20",
+            "encoding": "0xHHHHH",
+            "meaning": "flat_global_id_agent12bit_times_243_plus_slot",
+            "token_weight": 2,
+            "fleet_strength_100": 88,
+            "where_to_store": "routes_maps_machine_index_footer_optional"
+          },
+          {
+            "id": "packed_24",
+            "encoding": "0xHHHHHH",
+            "meaning": "flat_id_plus_headroom_kappa_xi_or_version_bits",
+            "token_weight": 3,
+            "fleet_strength_100": 90,
+            "where_to_store": "routes_maps_machine_index_footer_optional"
+          }
+        ]
+      }
     },
     "layers": {
       "gensing": "eternal_readable_law_headers_first",
