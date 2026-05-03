@@ -5,6 +5,11 @@
     "map_toml": "map.toml",
     "slot_index_kdl": "slot.index.kdl"
   },
+  "inference_serving": {
+    "mode": "single_slot",
+    "policy": "resolve_slot_then_read_slot_scope_only",
+    "omit_context": ["full_pipeline_watch", "cross_slot_live_stream"]
+  },
   "slot_index": {
     "k00": {
       "name": "KERNEL.RESERVE",

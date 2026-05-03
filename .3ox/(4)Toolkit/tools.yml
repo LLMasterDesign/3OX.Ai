@@ -6,6 +6,12 @@ tools:
   - name: inference
     type: llm
     enabled: true
+    # One slot per turn: hydrate from that slot’s artifacts only — not full pipeline watch.
+    serving: single_slot
+    hydrate_from:
+      - slot.receipt_tail
+      - slot.status_snapshot
+      - slot.runtime_log_slice
 
   - name: search
     type: read

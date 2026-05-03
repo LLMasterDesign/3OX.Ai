@@ -6,6 +6,9 @@
 document {
   law "slot.id.kernel" "k00..k26"
   law "slot.id.entity" "E000..E215"
+  law "hash.internal.daemon" "xxh128"
+  law "hash.external.boundary" "sha256"
+  law "inference.context" "single_slot_hydrate_not_full_pipeline"
 
   slot id=k00 class=kernel {
     name "KERNEL.RESERVE"
