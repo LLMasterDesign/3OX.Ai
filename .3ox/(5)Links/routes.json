@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "links": {
     "map_toml": "map.toml",
-    "slot_index_kdl": "slot.index.kdl"
+    "slot_index_kdl": "slot.index.kdl",
+    "hex_index_json": "hex.index.json"
   },
   "inference_serving": {
     "mode": "single_slot",
@@ -42,7 +43,7 @@
           "closed_::_delimiters_parse_safe",
           "exactly_three_hex_digits_in_chip"
         ],
-        "full_precision_lookup": "codebook_4096_entries_in_routes_json_sparse_ok",
+        "full_precision_lookup": "hex_index_json_only_merge_claims_there",
         "examples_valid_line_1": ["0x000", "0x02A", "0x0A4", "0xFFF"],
         "examples_invalid": ["0xTGX", "0x42", "0xA4F2", "0xG5H", "k00_in_hex_slot"]
       },
@@ -64,18 +65,17 @@
         "note": "banner_line_1_hex_stays_hex_alphabet_only_triple_disambiguates_themed_3ox_agents"
       },
       "codebook_4096": {
-        "role": "static_map_of_all_work_one_canonical_row_per_code_sparse_population_ok",
+        "role": "static_address_space_all_work_sparse_claims_in_hex_index_json",
+        "index_file": "hex.index.json",
         "banner_chip": {
           "pattern": "::0xHHH::",
           "bits": 12,
           "count": 4096
         },
-        "entries": {
-          "0x02A": {
-            "note": "example_slot_42_decimal_maps_to_three_hex_digits",
-            "slot": "E042",
-            "route_key": "etrios.core"
-          }
+        "row_contract": {
+          "chip_in_doc": "bare_minimum_::0xHHH::_on_line_1_only",
+          "metadata": "lives_in_hex_index_entries_and_elsewhere_never_in_chip",
+          "real_time_validation": "parse_chip_then_lookup_entries_if_claimed_expect_minimal_row"
         }
       }
     },

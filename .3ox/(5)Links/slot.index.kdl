@@ -10,7 +10,7 @@ document {
   law "hash.external.boundary" "sha256"
   law "inference.context" "single_slot_hydrate_not_full_pipeline"
   law "gensing.line1" "glyph_spine_then_::0xHHH::_exactly_three_hex_digits_twelve_bits"
-  law "codebook.4096" "routes_json_sparse_entries_0x000_to_0xFFF_all_work_map"
+  law "codebook.4096" "hex_index_json_sparse_claims_0x000_to_0xFFF_single_merge_target"
   law "gensing.context_line" "triple_on_line_starting_with_u23A8_bracket_runtime_binding_context"
   law "gensing.slot_brackets" "kappa_xi_slot_ids_inside_brackets_243_capacity_per_box"
   law "gensing.layers" "readable_law_then_kdl_index_then_runtime_by_path"

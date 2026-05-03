@@ -6,6 +6,7 @@
 [files]
 routes_json      = "routes.json"
 slot_index_kdl   = "slot.index.kdl"
+hex_index_json   = "hex.index.json"
 
 [dirs]
 adapters_hint    = "../(4)Toolkit/adapters"
