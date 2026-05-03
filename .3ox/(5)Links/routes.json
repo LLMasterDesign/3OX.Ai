@@ -15,8 +15,8 @@
       "status": "draft_lucius_banner_spine_hex_only_in_code_slot",
       "role": "doc_key_for_index_lookup_before_bulk_body",
       "banner_line_1": {
-        "spine": "///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂ ::[HEX]::",
-        "note": "glyph_row_then_::[hex]::_closes_lex_anchor_same_line"
+        "spine": "///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂ ::0xHHH::",
+        "note": "glyph_row_then_::0xHHH::_three_hex_digits_after_0x_always_12bit_codebook"
       },
       "colon_switch": {
         "meaning": "focus_phase_delimiter_not_free_whitespace",
@@ -27,19 +27,24 @@
       "hex_slot_rules": {
         "alphabet_in_code_only": "0123456789abcdefABCDEFx",
         "no_mnemonic_words_inside_hex_token": true,
-        "line_1_hex_max_digits": 4,
+        "canonical_chip": "::0xHHH::",
+        "digits_after_0x": 3,
+        "leading_zero_pad": true,
+        "range_inclusive": ["0x000", "0xFFF"],
+        "distinct_codes": 4096,
         "line_1_never": [
+          "wrong_digit_count_after_0x",
           "ten_or_more_spaced_hex_as_first_line",
-          "long_packed_id_as_banner_chip"
+          "non_hex_letters_G_H_K_in_chip"
         ],
         "line_1_always": [
           "glyph_spine_dominant_future_aesthetic",
           "closed_::_delimiters_parse_safe",
-          "tiny_lex_chip_only_between_outer_::"
+          "exactly_three_hex_digits_in_chip"
         ],
-        "full_precision_lookup": "routes_json_slot_index_kdl_machine_row_not_first_line_banner",
-        "examples_valid_line_1": ["0xA4", "A4", "00", "0x1F"],
-        "examples_invalid": ["0xTGX", "TPW", "ENC.v1", "k00_in_hex_slot", "DEADBEEF_on_line_1_chip"]
+        "full_precision_lookup": "codebook_4096_entries_in_routes_json_sparse_ok",
+        "examples_valid_line_1": ["0x000", "0x02A", "0x0A4", "0xFFF"],
+        "examples_invalid": ["0xTGX", "0x42", "0xA4F2", "0xG5H", "k00_in_hex_slot"]
       },
       "reuse_theme": "fixed_spine_change_hex_only_for_10000_plus_docs",
       "glyph_density": "prefer_no_blank_space_visual_rhythm_glyphs_carry_semantics",
@@ -58,34 +63,20 @@
         },
         "note": "banner_line_1_hex_stays_hex_alphabet_only_triple_disambiguates_themed_3ox_agents"
       },
-      "banner_hex_top_three": {
-        "note": "these_are_registry_or_row_encodings_not_the_visual_first_line_chip",
-        "options": [
-          {
-            "id": "packed_16",
-            "encoding": "0xHHLL",
-            "meaning": "high_byte_agent_ordinal_low_byte_slot_0_to_242",
-            "token_weight": 2,
-            "fleet_strength_100": 78,
-            "where_to_store": "routes_maps_machine_index_footer_optional"
-          },
-          {
-            "id": "packed_20",
-            "encoding": "0xHHHHH",
-            "meaning": "flat_global_id_agent12bit_times_243_plus_slot",
-            "token_weight": 2,
-            "fleet_strength_100": 88,
-            "where_to_store": "routes_maps_machine_index_footer_optional"
-          },
-          {
-            "id": "packed_24",
-            "encoding": "0xHHHHHH",
-            "meaning": "flat_id_plus_headroom_kappa_xi_or_version_bits",
-            "token_weight": 3,
-            "fleet_strength_100": 90,
-            "where_to_store": "routes_maps_machine_index_footer_optional"
+      "codebook_4096": {
+        "role": "static_map_of_all_work_one_canonical_row_per_code_sparse_population_ok",
+        "banner_chip": {
+          "pattern": "::0xHHH::",
+          "bits": 12,
+          "count": 4096
+        },
+        "entries": {
+          "0x02A": {
+            "note": "example_slot_42_decimal_maps_to_three_hex_digits",
+            "slot": "E042",
+            "route_key": "etrios.core"
           }
-        ]
+        }
       }
     },
     "layers": {
@@ -105,7 +96,8 @@
     "E042": {
       "name": "ETRIOS.CORE",
       "class": "ξ",
-      "route_key": "etrios.core"
+      "route_key": "etrios.core",
+      "code_4096": "0x02A"
     }
   },
   "maps": {
