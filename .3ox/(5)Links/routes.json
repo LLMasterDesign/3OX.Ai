@@ -12,11 +12,28 @@
   },
   "gensing": {
     "lex_anchor": {
+      "status": "draft_options_not_approved",
       "role": "doc_key_for_index_lookup_before_bulk_body",
-      "max_tokens": 4,
-      "forms": ["0xNN", "0xNNNN", "::[NAME.vN]::", "〘0xTAG〙"],
-      "placement": "banner_line_1_trailing",
-      "note": "not_required_hex_any_short_stable_key_under_4_tokens"
+      "token_count_rule": "whitespace_delimited_segments_brackets_and_colon_runs_count_as_segments",
+      "placement_suggestion": "banner_line_1_trailing",
+      "examples_2_tokens": [
+        "[0xA4] ::",
+        ":: v1",
+        "〘TGX〙 κ",
+        "[E042] ξ"
+      ],
+      "examples_3_tokens": [
+        ":: [0xA4] ::",
+        "[EXC.v1] :: κ",
+        "〘0xA4〙 :: φ",
+        ":: [k00] κ"
+      ],
+      "examples_4_tokens": [
+        ":: [0xA4] :: κ",
+        ":: [TPW.w1] :: ξ",
+        "[ENC.v1] :: :: ρ",
+        "〘0xA4〙 :: E042 κ"
+      ]
     },
     "layers": {
       "gensing": "eternal_readable_law_headers_first",
