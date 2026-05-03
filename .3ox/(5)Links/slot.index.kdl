@@ -9,6 +9,9 @@ document {
   law "hash.internal.daemon" "xxh128"
   law "hash.external.boundary" "sha256"
   law "inference.context" "single_slot_hydrate_not_full_pipeline"
+  law "gensing.lex_anchor" "banner_key_max_4_tokens_hex_or_tag"
+  law "gensing.layers" "readable_law_then_kdl_index_then_runtime_by_path"
+  law "encoder.exc_marker" "xi_EXC_cell_belongs_in_doc_stream"
 
   slot id=k00 class=kernel {
     name "KERNEL.RESERVE"

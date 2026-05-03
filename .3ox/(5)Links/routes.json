@@ -10,6 +10,23 @@
     "policy": "resolve_slot_then_read_slot_scope_only",
     "omit_context": ["full_pipeline_watch", "cross_slot_live_stream"]
   },
+  "gensing": {
+    "lex_anchor": {
+      "role": "doc_key_for_index_lookup_before_bulk_body",
+      "max_tokens": 4,
+      "forms": ["0xNN", "0xNNNN", "::[NAME.vN]::", "〘0xTAG〙"],
+      "placement": "banner_line_1_trailing",
+      "note": "not_required_hex_any_short_stable_key_under_4_tokens"
+    },
+    "layers": {
+      "gensing": "eternal_readable_law_headers_first",
+      "kdl": "precompile_index",
+      "elixir": "runtime_only_when_spec_points_source_not_encoder_bulk"
+    },
+    "markers": {
+      "exc_cell": "ξ [EXC] ::"
+    }
+  },
   "slot_index": {
     "k00": {
       "name": "KERNEL.RESERVE",
