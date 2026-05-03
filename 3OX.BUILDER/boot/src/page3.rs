@@ -10,7 +10,7 @@ use brains_3ox_core::{
 pub fn show_page3(cube: &CubeContext) -> std::io::Result<()> {
     // Check for sparkfile on entry
     let sparkfile_path = cube.cube_root.join(".3ox").join("sparkfile.md");
-    if !exists(&sparkfile_path) {
+    if !exists(&sparkfile_path).unwrap_or(false) {
         println!("\n▛▞ Sparkfile Missing:");
         println!("   No sparkfile.md found at: {}", sparkfile_path.display());
         print!("   Would you like to set up this 3OX cube now? (y/N): ");
@@ -253,7 +253,7 @@ fn setup_3ox_interactive(cube_root: &PathBuf) -> Result<(), String> {
     ];
     
     let setup_script = possible_paths.iter()
-        .find(|p| exists(p))
+        .find(|p| exists(p).unwrap_or(false))
         .ok_or_else(|| "Could not find setup-3ox.rb script".to_string())?;
     
     // Execute setup script
