@@ -1,0 +1,20 @@
+// status:[DRAFT] ver:[1.0.0] created:[26.05.03]
+// doc:[PARTIAL] modified:[26.05.03] auth:[3OX.AI]
+// Slot registry: κ kernel k00..k26 (27) · ξ entity E000..E215 (216)
+// One identity per slot — not one file per slot.
+
+document {
+  law "slot.id.kernel" "k00..k26"
+  law "slot.id.entity" "E000..E215"
+
+  slot id=k00 class=kernel {
+    name "KERNEL.RESERVE"
+    note "warden-adjacent reserve; expand with real κ identities"
+  }
+
+  slot id=E042 class=entity {
+    name "ETRIOS.CORE"
+    route_key "etrios.core"
+    note "example ξ slot; wire routes.json maps + tools.yml allowlist"
+  }
+}

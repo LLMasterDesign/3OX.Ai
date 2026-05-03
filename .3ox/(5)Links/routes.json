@@ -1,6 +1,28 @@
 {
   "agent": "AGENT_NAME",
   "version": "1.0.0",
+  "links": {
+    "map_toml": "map.toml",
+    "slot_index_kdl": "slot.index.kdl"
+  },
+  "slot_index": {
+    "k00": {
+      "name": "KERNEL.RESERVE",
+      "class": "κ"
+    },
+    "E042": {
+      "name": "ETRIOS.CORE",
+      "class": "ξ",
+      "route_key": "etrios.core"
+    }
+  },
+  "maps": {
+    "trigger": {},
+    "intent": {
+      "etrios.core": "E042"
+    },
+    "command": {}
+  },
   "routes": {
     "telegram": {
       "chat_id": null,
@@ -9,6 +31,10 @@
     "mesh": {
       "speaker": "speaker-mesh",
       "config": "TPR.SPEAKER.MESH.json"
+    },
+    "etrios.core": {
+      "slot": "E042",
+      "description": "example route bound to entity slot E042"
     }
   }
 }

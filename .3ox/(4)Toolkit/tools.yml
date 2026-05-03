@@ -16,3 +16,14 @@ tools:
     enabled: false
     runner: ruby
     entry: run.rb
+
+# Slot allowlists (κ kernel k00..k26 · ξ entity E000..E215) — see (5)Links/slot.index.kdl
+slots:
+  k00:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  E042:
+    allowed_tools: [inference]
+    allowed_adapters: []
+    allowed_scopes: []
