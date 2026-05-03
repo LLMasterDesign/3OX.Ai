@@ -12,28 +12,26 @@
   },
   "gensing": {
     "lex_anchor": {
-      "status": "draft_options_not_approved",
+      "status": "draft_lucius_banner_spine_hex_only_in_code_slot",
       "role": "doc_key_for_index_lookup_before_bulk_body",
-      "token_count_rule": "whitespace_delimited_segments_brackets_and_colon_runs_count_as_segments",
-      "placement_suggestion": "banner_line_1_trailing",
-      "examples_2_tokens": [
-        "[0xA4] ::",
-        ":: v1",
-        "〘TGX〙 κ",
-        "[E042] ξ"
-      ],
-      "examples_3_tokens": [
-        ":: [0xA4] ::",
-        "[EXC.v1] :: κ",
-        "〘0xA4〙 :: φ",
-        ":: [k00] κ"
-      ],
-      "examples_4_tokens": [
-        ":: [0xA4] :: κ",
-        ":: [TPW.w1] :: ξ",
-        "[ENC.v1] :: :: ρ",
-        "〘0xA4〙 :: E042 κ"
-      ]
+      "banner_line_1": {
+        "spine": "///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂ ::[HEX]::",
+        "note": "glyph_row_then_::[hex]::_closes_lex_anchor_same_line"
+      },
+      "colon_switch": {
+        "meaning": "focus_phase_delimiter_not_free_whitespace",
+        "pattern": "Banner :: HexSlot :: end_of_hex_banner_region",
+        "brackets_optional": true,
+        "comment": "experimented_with_::_[_hex_]_::_bracketed_form_may_drop_if_redundant"
+      },
+      "hex_slot_rules": {
+        "alphabet_in_code_only": "0123456789abcdefABCDEFx",
+        "no_mnemonic_words_inside_hex_token": true,
+        "examples_valid": ["0xA4", "A4", "00", "DEADBEEF", "0x1F2"],
+        "examples_invalid": ["0xTGX", "TPW", "ENC.v1", "k00_in_hex_slot"]
+      },
+      "reuse_theme": "fixed_spine_change_hex_only_for_10000_plus_docs",
+      "glyph_density": "prefer_no_blank_space_visual_rhythm_glyphs_carry_semantics"
     },
     "layers": {
       "gensing": "eternal_readable_law_headers_first",
