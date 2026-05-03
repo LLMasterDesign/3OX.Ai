@@ -6,6 +6,59 @@
     "slot_index_kdl": "slot.index.kdl",
     "hex_index_json": "hex.index.json"
   },
+  "exc_boundary": {
+    "handoff_version": "research-v1",
+    "definition": "EXC_is_non_executing_boundary_one_bounded_replayable_unit",
+    "semantic_tuple": {
+      "EXC": ["id", "PHENO", "PiCO", "PRISM", "Ξ", "ν", "π_optional"],
+      "PHENO": ["ρ", "φ", "τ"],
+      "PiCO": ["⊢", "⇨", "⟿", "▷"],
+      "pi_note": "π_reserved_optional_lower_control_v1_absence_does_not_invalidate"
+    },
+    "surfaces_one_identity": {
+      "law": "1_EXC_identity_=_1_.exc_+_1_.kdl_+_1_.exs_not_weighted_triple",
+      "exc": {
+        "role": "canonical_truth_human_llm_source",
+        "may_redefine_meaning": false
+      },
+      "kdl": {
+        "role": "deterministic_structural_skeleton_parser_mirror",
+        "may_redefine_meaning": false,
+        "generation": "mechanical_from_exc_or_proven_equivalent_only"
+      },
+      "exs": {
+        "role": "replaceable_execution_validates_against_boundary",
+        "may_redefine_meaning": false
+      },
+      "dominance": "if_kdl_or_exs_diverges_from_exc_then_exc_wins"
+    },
+    "invariants_v1": [
+      "boundary_identity_id_present",
+      "PHENO_complete_ordered_rho_phi_tau",
+      "PiCO_complete_ordered_ingest_validate_carry_emit",
+      "PRISM_literal_PRISM",
+      "Xi_fixed_verify_source_revalidate_rho_phi_tau",
+      "nu_present_with_body",
+      "token_bodies_single_line_opaque_placement_validated_not_inner_domain"
+    ],
+    "validation_outcomes": {
+      "PASS": "all_core_checks_true",
+      "FALLBACK": "core_failed_but_nu_present_explicit_degraded",
+      "FAIL": "core_failed_and_nu_absent_or_unusable"
+    },
+    "replay": {
+      "same_canonical_exc_same_validator_impl": "receipt_equality_expected",
+      "same_canonical_exc_different_validator_or_impl": "boundary_equal_receipt_not_guaranteed"
+    },
+    "wire_and_packages": {
+      "note": "grpc_exc_proto_and_excR_package_are_out_of_tree_place_inst_proto_when_added",
+      "map_toml_keys": ["proto_spec_hint", "exc_runtime_faces_hint"]
+    },
+    "slot_index_research_placeholder": {
+      "note": "handoff_used_1_to_216_receipt_slot_align_with_xi_E000_E215_or_hex_codebook_separately",
+      "global_key": "exc_id_primary_routing_coordinate_slot_index_secondary"
+    }
+  },
   "inference_serving": {
     "mode": "single_slot",
     "policy": "resolve_slot_then_read_slot_scope_only",
@@ -81,7 +134,8 @@
     },
     "layers": {
       "gensing": "eternal_readable_law_headers_first",
-      "kdl": "precompile_index",
+      "exc": "canonical_boundary_text_normative_separate_from_chip_metadata",
+      "kdl": "precompile_index_derived_from_exc_when_applicable",
       "elixir": "runtime_only_when_spec_points_source_not_encoder_bulk"
     },
     "markers": {

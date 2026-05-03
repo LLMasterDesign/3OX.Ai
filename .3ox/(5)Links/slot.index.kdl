@@ -15,6 +15,10 @@ document {
   law "gensing.slot_brackets" "kappa_xi_slot_ids_inside_brackets_243_capacity_per_box"
   law "gensing.layers" "readable_law_then_kdl_index_then_runtime_by_path"
   law "encoder.exc_marker" "xi_EXC_cell_belongs_in_doc_stream"
+  law "exc.boundary" "non_executing_container_identity_PHENO_PiCO_PRISM_Xi_nu_pi_optional"
+  law "exc.surfaces" "exc_canonical_kdl_deterministic_skeleton_exs_replaceable_one_identity_three_files"
+  law "exc.dominance" "on_divergence_exc_text_wins_over_kdl_and_exs"
+  law "exc.validation" "boundary_checks_only_not_domain_execution_PASS_FALLBACK_FAIL_per_handoff"
 
   slot id=k00 class=kernel {
     name "KERNEL.RESERVE"
