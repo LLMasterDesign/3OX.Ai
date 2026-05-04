@@ -24,8 +24,8 @@ no.receipt.per.tick
 receipt.only.on.higher.loop.collapse
 
 ▞▞ MAP
-hex{0x000}→slot{k00}→.3ox/(3)Rules/exc/tpw/Axis.Warden.gensing.md
-hex{0x001}→slot{k01}→.3ox/(3)Rules/exc/tpw/Axis.Tape.gensing.md
-hex{0x002}→slot{k02}→.3ox/(3)Rules/exc/tpw/Axis.Pulse.gensing.md
+hex{0x000}→slot{k00}→.3ox/(3)Rules/exc/tpw/Axis.Warden.spec.md
+hex{0x001}→slot{k01}→.3ox/(3)Rules/exc/tpw/Axis.Tape.spec.md
+hex{0x002}→slot{k02}→.3ox/(3)Rules/exc/tpw/Axis.Pulse.spec.md
 
 :: ∎

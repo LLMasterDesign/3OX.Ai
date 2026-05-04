@@ -86,7 +86,7 @@ Job completion, validation result, EXC outcome → **RECEIPT** → append **TAPE
 Line 1 chip `::0xHHH::` → **lookup** `hex.index.json` → optional cluster (`HIRO` / `ME` / core doc paths), `slot`, `route_key`.
 
 - **Canonical EXC (machine):** `.3ox/(3)Rules/exc/Axis.Warden.exc` (+ `.kdl`, `.exs` shim) — **`exc_validate`** target.
-- **Gensing job docs (human+loader):** `.3ox/(3)Rules/exc/tpw/*.gensing.md` — line-1 **`::0x000::` … `::0x003::`**, **`⫸`** context, **`▞▞ JOB`** per block; hex rows **`0x000`–`0x003`** in **`hex.index.json`**. Spin order in doc: **k00 Warden → k01 Tape → k02 Pulse** (matches **`core.axis`** map).
+- **Gensing-format job specs (Markdown):** `.3ox/(3)Rules/exc/tpw/*.spec.md` — line-1 **`::0x000::` … `::0x003::`**, **`⫸`** context, **`▞▞ JOB`** per block; hex rows **`0x000`–`0x003`** in **`hex.index.json`**. Spin order in doc: **k00 Warden → k01 Tape → k02 Pulse** (matches **`core.axis`** map).
 
 - **Center 0/1 flip?** Not mandatory in schema. If you want a **single bit** of “phase” for diagrams, treat it as **parity of ticks** or a **`status.json` field** you own — it is **telemetry**, not a second truth source. The **stream-of-consciousness** picture fits **L1**: lots of small updates; **collapse** (L2 **RECEIPT**) only when something **must** be witnessed (job done, validation, seal).
 

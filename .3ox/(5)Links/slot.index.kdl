@@ -11,7 +11,7 @@ document {
   law "hash" "internal_xxh3_frame_xxh128_daemon_external_sha256"
   law "ladder" "27_core_81_route_ring_216_xi_243_envelope_729_archive"
   law "xi.proof" "E101_Leo_validates_encoder_not_Core_seat"
-  law "tpw.gensing" "Axis_TPW_gensing_md_under_exc_tpw_hex_0x000_to_0x003"
+  law "tpw.spec" "Axis_TPW_gensing_syntax_in_spec_md_under_exc_tpw_hex_0x000_to_0x003"
 
   slot id=k00 class=kernel { name "AXIS.WARDEN" }
   slot id=k26 class=kernel { name "SYSTEM.PATCH" }
