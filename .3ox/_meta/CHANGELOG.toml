@@ -34,3 +34,8 @@ summary = "3OX.SPIN is the canonical handle for the Core{Axis} rotor (formerly T
 date    = "26.05.04"
 type    = "canon"
 summary = "Locked .vec3/ as 7 surfaces: rc, lib, dev, var, proto, proc, mem. New _meta/VEC3.SURFACES.md is the source of truth. Materialized .vec3/{proto, proc/{workers,queue,agents,self,kernel}, mem/{hot,deep,context}} on disk. Place vs authority duality: proc is the process plane, Supervisor (k21) owns lifecycle; .vec3/var/receipts/ is a mirror, Tape (k01) writes authoritative receipts; .vec3/mem/ is owned by Core{Encode}.Memory (k07) via Project Orion. PLAN.md L3 row updated 6→7 surfaces. README.md kernel section rewritten. bin/ and ops/ deferred for deprecation in a follow-up PR (content folds into dev/)."
+
+[[entry]]
+date    = "26.05.04"
+type    = "canon"
+summary = "ARCHITECTURE.SPEC.md admitted to canon (status ACTIVE) after Lucius ruled on three open conflicts. Q1: daemons are process classes, slots are identity authorities — two planes. First three daemons were Warden/Tape/Pulse; Queue and Worker came later; Supervisor was originally Gatekeeper. Scheduler/Queue/Worker interaction model deferred. Q2: BEAM/Elixir for Tape (k01) and PRISM+; Lisp for Supervisor (k21) and entity cores at .vec3/proc/agents/. Q3: brains.rs (plural) is correct. NAMING.CONTRACT.toml gains [core.daemons] and [core.languages] tables and two new [core.deprecated] entries (Gatekeeper→Supervisor, Lisp→Tape supersession)."

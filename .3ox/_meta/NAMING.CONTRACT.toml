@@ -33,6 +33,24 @@ note        = "The rotor is the clock — Pulse edges arrive only on spin."
 "TPW.SPIN"   = "renamed to 3OX.SPIN; rotor walks Core{Axis}"
 "TPW Triad"  = "renamed to Core{Axis} (3OX.SPIN Triad)"
 ".../tpw/"   = "renamed to .../axis/ under .3ox/(3)Rules/exc/"
+"Gatekeeper" = "renamed to Supervisor; lives at Core{System}.Daemon (k21); was the first daemon, alongside Warden / Tape / Pulse"
+"Lisp→Tape"  = "superseded by ARCHITECTURE.SPEC §10: Tape (k01) is BEAM/Elixir; Lisp moves to Supervisor (k21) continuity host + .vec3/proc/agents/ entity cores"
+
+[core.daemons]
+note  = "Daemons are runtime process classes. κ27 slots are identity authorities. Two different planes — see _meta/ARCHITECTURE.SPEC.md §3 + ARCHITECTURE.RECONCILIATION.md Conflict 1."
+first = ["Warden", "Tape", "Pulse"]    # κ00–k02 daemons; first three at boot
+later = ["Queue", "Worker"]            # added after the first three
+"Supervisor.formerly" = "Gatekeeper"
+"Scheduler.status"    = "TBD — Scheduler / Queue / Worker interaction model not yet locked; see ARCHITECTURE.RECONCILIATION.md §Conflict 1 future work"
+
+[core.languages]
+"Warden.k00"    = "Rust"
+"Tape.k01"      = "Elixir/BEAM"
+"Pulse.k02"     = "Elixir/BEAM"        # JSONL on the wire, not authority
+"Supervisor.k21" = "Lisp"               # continuity host
+"PRISM+"        = "Elixir/BEAM"
+"Worker"        = "Lisp invoker"        # hot-loads forms into Supervisor's host
+"Raven.cores"   = "Lisp"                # entity cores at .vec3/proc/agents/
 
 [extensions]
 service  = ".service"
