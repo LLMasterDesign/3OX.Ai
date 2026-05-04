@@ -1,0 +1,51 @@
+# status:[ACTIVE] ver:[0.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# Cargo workspace build + test (3OX.BUILDER) — keeps Rust 1.85+ path green.
+
+name: cargo
+
+on:
+  push:
+    branches: [main, '3ox.agent/**']
+    paths:
+      - '3OX.BUILDER/**'
+      - '.github/workflows/cargo.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '3OX.BUILDER/**'
+      - '.github/workflows/cargo.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 3OX.BUILDER
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install stable Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+          rustc --version
+          cargo --version
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            3OX.BUILDER/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('3OX.BUILDER/Cargo.lock', '3OX.BUILDER/**/Cargo.toml') }}
+
+      - name: cargo build --release
+        run: cargo build --release --workspace
+
+      - name: cargo test --release
+        run: cargo test --release --workspace
+
+      - name: Smoke test 3ox CLI
+        run: ./target/release/3ox help

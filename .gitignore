@@ -16,3 +16,6 @@
 # Pid files / logs
 *.pid
 *.log
+
+# Cargo build artifacts (Cargo.lock is intentionally tracked for binary crates)
+**/target/

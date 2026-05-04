@@ -6,15 +6,15 @@
 
 import { $ } from "bun";
 
-console.log("Building Vec3Boot boot project...");
-await $`cd boot && cargo build --release`;
+console.log("Building Vec3Boot boot project (workspace)...");
+await $`cargo build --release`;
 
 console.log("Running vec3-boot executable...");
 const args = process.argv.slice(2);
 if (args.length > 0) {
-  await $`./boot/target/release/vec3-boot ${args.join(' ')}`;
+  await $`./target/release/vec3-boot ${args.join(' ')}`;
 } else {
-  await $`./boot/target/release/vec3-boot`;
+  await $`./target/release/vec3-boot`;
 }
 
 // :: ∎
