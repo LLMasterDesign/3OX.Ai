@@ -18,6 +18,7 @@ Build a **complete, enforceable encoder** for 3OX that:
 - Supports **EXC** as a non-executing boundary (`.exc` canonical, `.kdl` derived, `.exs` validates/executes).
 - Coexists with **GlyphBit / HIRO / .ME (ClassicMD)** and **Gensing** (glyph line + context line) without merging dialects prematurely.
 - Integrates **WARDEN** (limits), **TAPE** (ordered receipts), **PULSE** (live state), and **MAP** (Links) as already sketched in `.3ox`.
+- Binds the **encoder ring** to **3OX.Core{}** — **27** protected **`κ`** seats (**`k00`..`k26`**) for **Axis**, **Encode**, **Ring**, **System**; see **`routes.json` `core`** and **`_meta/3OX.CORE.RESEARCH.md`**.
 
 ## 2. Goals
 

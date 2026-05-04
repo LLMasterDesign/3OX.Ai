@@ -22,9 +22,113 @@ tools:
     runner: ruby
     entry: run.rb
 
-# Slot allowlists — skill Lion.Gate lives under (4)Toolkit/skills/Lion.Gate/
+# Slot allowlists — κ k00..k26 = 3OX.Core; expand per seat as policies land
 slots:
   k00:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k01:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k02:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k03:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k04:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k05:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k06:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k07:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k08:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k09:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k10:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k11:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k12:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k13:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k14:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k15:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k16:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k17:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k18:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k19:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k20:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k21:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k22:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k23:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k24:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k25:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  k26:
     allowed_tools: []
     allowed_adapters: []
     allowed_scopes: []
