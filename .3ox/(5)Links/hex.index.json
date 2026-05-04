@@ -15,6 +15,39 @@
     "rule_no_silent_overwrite": "if_entries_key_exists_new_claim_must_match_owner_or_use_explicit_handoff"
   },
   "entries": {
+    "0x000": {
+      "code": "0x000",
+      "owner": "3OX.AI",
+      "title": "TPW.WARDEN.gensing",
+      "slot": "k00",
+      "route_key": "core.axis.warden",
+      "files": [".3ox/(3)Rules/exc/tpw/Axis.Warden.gensing.md"]
+    },
+    "0x001": {
+      "code": "0x001",
+      "owner": "3OX.AI",
+      "title": "TPW.TAPE.gensing",
+      "slot": "k01",
+      "route_key": "core.axis.tape",
+      "files": [".3ox/(3)Rules/exc/tpw/Axis.Tape.gensing.md"]
+    },
+    "0x002": {
+      "code": "0x002",
+      "owner": "3OX.AI",
+      "title": "TPW.PULSE.gensing",
+      "slot": "k02",
+      "route_key": "core.axis.pulse",
+      "files": [".3ox/(3)Rules/exc/tpw/Axis.Pulse.gensing.md"]
+    },
+    "0x003": {
+      "code": "0x003",
+      "owner": "3OX.AI",
+      "title": "TPW.SPIN.bundle",
+      "slot": "k00",
+      "route_key": "core.axis.warden",
+      "note": "composite L1 rotor doc; primary slot k00",
+      "files": [".3ox/(3)Rules/exc/tpw/TPW.SPIN.gensing.md"]
+    },
     "0x02A": {
       "code": "0x02A",
       "owner": "3OX.AI",

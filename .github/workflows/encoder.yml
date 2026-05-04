@@ -19,6 +19,13 @@ jobs:
       - name: Validate fixture doc line-1 chip
         run: python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.md
 
+      - name: TPW Axis Gensing line-1 chips (0x000-0x003)
+        run: |
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Warden.gensing.md
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Tape.gensing.md
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Pulse.gensing.md
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/TPW.SPIN.gensing.md
+
       - name: Encoder MAP dry run (receipt + tape)
         run: python3 scripts/encoder_dry_run.py --code 0x02A
 

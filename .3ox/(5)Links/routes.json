@@ -101,7 +101,10 @@
         ".3ox/(3)Rules/limits.toml",
         ".3ox/(3)Rules/exc/Axis.Warden.exc",
         ".3ox/(3)Rules/exc/Axis.Warden.kdl",
-        ".3ox/(3)Rules/exc/Axis.Warden.exs"
+        ".3ox/(3)Rules/exc/Axis.Warden.exs",
+        ".3ox/(3)Rules/exc/tpw/Axis.Warden.gensing.md",
+        "hex:0x000",
+        "hex:0x003"
       ]
     },
     "k01": {
@@ -109,14 +112,24 @@
       "class": "κ",
       "core": { "sector": "Axis", "seat": "Tape" },
       "route_key": "core.axis.tape",
-      "anchors": [".3ox/(6)Pulse/runtime/queue/jobs.json", "runtime/tape/tape.jsonl"]
+      "anchors": [
+        ".3ox/(6)Pulse/runtime/queue/jobs.json",
+        "runtime/tape/tape.jsonl",
+        ".3ox/(3)Rules/exc/tpw/Axis.Tape.gensing.md",
+        "hex:0x001"
+      ]
     },
     "k02": {
       "name": "AXIS.PULSE",
       "class": "κ",
       "core": { "sector": "Axis", "seat": "Pulse" },
       "route_key": "core.axis.pulse",
-      "anchors": [".3ox/(6)Pulse/runtime/status.json", ".3ox/run.rb"]
+      "anchors": [
+        ".3ox/(6)Pulse/runtime/status.json",
+        ".3ox/run.rb",
+        ".3ox/(3)Rules/exc/tpw/Axis.Pulse.gensing.md",
+        "hex:0x002"
+      ]
     },
     "k03": {
       "name": "ENCODE.INTENT",
@@ -301,6 +314,10 @@
   },
   "maps": {
     "hex": {
+      "0x000": "k00",
+      "0x001": "k01",
+      "0x002": "k02",
+      "0x003": "k00",
       "0x02A": "E042",
       "0x101": "E101"
     },
