@@ -21,10 +21,10 @@ jobs:
 
       - name: TPW Axis Gensing line-1 chips (0x000-0x003)
         run: |
-          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Warden.spec.md
-          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Tape.spec.md
-          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Pulse.spec.md
-          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/TPW.SPIN.spec.md
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Warden.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Tape.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Pulse.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/TPW.SPIN.spec
 
       - name: Encoder MAP dry run (receipt + tape)
         run: python3 scripts/encoder_dry_run.py --code 0x02A

@@ -102,7 +102,7 @@
         ".3ox/(3)Rules/exc/Axis.Warden.exc",
         ".3ox/(3)Rules/exc/Axis.Warden.kdl",
         ".3ox/(3)Rules/exc/Axis.Warden.exs",
-        ".3ox/(3)Rules/exc/tpw/Axis.Warden.spec.md",
+        ".3ox/(3)Rules/exc/tpw/Axis.Warden.spec",
         "hex:0x000",
         "hex:0x003"
       ]
@@ -115,7 +115,7 @@
       "anchors": [
         ".3ox/(6)Pulse/runtime/queue/jobs.json",
         "runtime/tape/tape.jsonl",
-        ".3ox/(3)Rules/exc/tpw/Axis.Tape.spec.md",
+        ".3ox/(3)Rules/exc/tpw/Axis.Tape.spec",
         "hex:0x001"
       ]
     },
@@ -127,7 +127,7 @@
       "anchors": [
         ".3ox/(6)Pulse/runtime/status.json",
         ".3ox/run.rb",
-        ".3ox/(3)Rules/exc/tpw/Axis.Pulse.spec.md",
+        ".3ox/(3)Rules/exc/tpw/Axis.Pulse.spec",
         "hex:0x002"
       ]
     },
