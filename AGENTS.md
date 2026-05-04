@@ -20,9 +20,12 @@ Binaries output to `3OX.BUILDER/target/release/` (NOT `boot/target/release/` as 
 
 From workspace root (`/workspace`):
 
-- `ruby .3ox/run.rb once noop` — run a synchronous noop job (validates Ruby runtime)
+- `ruby .vec3/rc/run.rb aliveness` — evaluate Box aliveness contract invariants (the canonical runtime entry point lives in `.vec3/rc/`, not `.3ox/run.rb`)
+- `ruby .3ox/run.rb once noop` — run a synchronous noop job via the station supervisor (legacy convenience wrapper)
 - `ruby .3ox/run.rb status` — show station status JSON
 - `/workspace/3OX.BUILDER/target/release/3ox help` — show CLI help
+
+**Note:** The authoritative runtime is `.vec3/rc/run.rb`. The `.3ox/run.rb` is a station supervisor that delegates to `(6)Pulse/run.rb` for actual work.
 
 ### Important Gotchas
 
