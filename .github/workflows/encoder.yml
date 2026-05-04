@@ -39,6 +39,19 @@ jobs:
           python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A7.spec
           python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A8.spec
 
+      - name: Ring.B kernel specs line-1 chips (0x120-0x129)
+        run: |
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.BUNDLE.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B0.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B1.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B2.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B3.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B4.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B5.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B6.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B7.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B8.spec
+
       - name: Encoder MAP dry run (receipt + tape)
         run: python3 scripts/encoder_dry_run.py --code 0x02A
 

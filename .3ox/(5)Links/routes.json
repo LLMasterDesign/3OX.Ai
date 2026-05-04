@@ -298,63 +298,119 @@
       "class": "κ",
       "core": { "sector": "System", "seat": "Meta" },
       "route_key": "core.system.meta",
-      "anchors": ["_meta/", "ENCODER.*.md", ".ME cards"]
+      "ring_b": "B0.SUPERVISOR",
+      "anchors": [
+        "_meta/",
+        "ENCODER.*.md",
+        ".ME cards",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B0.spec",
+        "hex:0x121",
+        "hex:0x120"
+      ]
     },
     "k19": {
       "name": "SYSTEM.TRON",
       "class": "κ",
       "core": { "sector": "System", "seat": "Tron" },
       "route_key": "core.system.tron",
-      "anchors": ["_TRON/", "systemd units"]
+      "ring_b": "B1.WARDEN",
+      "anchors": [
+        "_TRON/",
+        "systemd units",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B1.spec",
+        "hex:0x122"
+      ]
     },
     "k20": {
       "name": "SYSTEM.CHMOD",
       "class": "κ",
       "core": { "sector": "System", "seat": "Chmod" },
       "route_key": "core.system.chmod",
-      "anchors": ["limits.toml write_policy", "scope"]
+      "ring_b": "B2.QUEUE",
+      "anchors": [
+        "limits.toml write_policy",
+        "scope",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B2.spec",
+        "hex:0x123"
+      ]
     },
     "k21": {
       "name": "SYSTEM.DAEMON",
       "class": "κ",
       "core": { "sector": "System", "seat": "Daemon" },
       "route_key": "core.system.daemon",
-      "anchors": [".3ox/run.rb station", "HEARTBEAT"]
+      "ring_b": "B3.WORKER",
+      "anchors": [
+        ".3ox/run.rb station",
+        "HEARTBEAT",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B3.spec",
+        "hex:0x124"
+      ]
     },
     "k22": {
       "name": "SYSTEM.CAGE",
       "class": "κ",
       "core": { "sector": "System", "seat": "Cage" },
       "route_key": "core.system.cage",
-      "anchors": ["sandbox policy", "denied_dirs"]
+      "ring_b": "B4.TAPE",
+      "anchors": [
+        "sandbox policy",
+        "denied_dirs",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B4.spec",
+        "hex:0x125"
+      ]
     },
     "k23": {
       "name": "SYSTEM.ROUTE",
       "class": "κ",
       "core": { "sector": "System", "seat": "Route" },
       "route_key": "core.system.route",
-      "anchors": ["(5)Links", "mesh telegram routes"]
+      "ring_b": "B5.PULSE",
+      "anchors": [
+        "(5)Links",
+        "mesh telegram routes",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B5.spec",
+        "hex:0x126"
+      ]
     },
     "k24": {
       "name": "SYSTEM.HASH",
       "class": "κ",
       "core": { "sector": "System", "seat": "Hash" },
       "route_key": "core.system.hash",
-      "anchors": [".vec3/rc/run.rb aliveness hashes", "xxh3 internal / sha256 external per limits.toml"]
+      "ring_b": "B6.ROUTER",
+      "anchors": [
+        ".vec3/rc/run.rb aliveness hashes",
+        "xxh3 internal / sha256 external per limits.toml",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B6.spec",
+        "hex:0x127"
+      ]
     },
     "k25": {
       "name": "SYSTEM.VAULT",
       "class": "κ",
       "core": { "sector": "System", "seat": "Vault" },
       "route_key": "core.system.vault",
-      "anchors": ["protected paths", "receipts_tron"]
+      "ring_b": "B7.BRIDGE",
+      "anchors": [
+        "protected paths",
+        "receipts_tron",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B7.spec",
+        "hex:0x128"
+      ]
     },
     "k26": {
       "name": "SYSTEM.PATCH",
       "class": "κ",
       "core": { "sector": "System", "seat": "Patch" },
       "route_key": "core.system.patch",
-      "anchors": ["controlled updates", "PR merge gates"]
+      "ring_b": "B8.SCHEDULER",
+      "anchors": [
+        "controlled updates",
+        "PR merge gates",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B8.spec",
+        "hex:0x129"
+      ]
     },
     "E042": {
       "name": "ETRIOS.CORE",
@@ -385,6 +441,16 @@
       "0x117": "k15",
       "0x118": "k16",
       "0x119": "k17",
+      "0x120": "k18",
+      "0x121": "k18",
+      "0x122": "k19",
+      "0x123": "k20",
+      "0x124": "k21",
+      "0x125": "k22",
+      "0x126": "k23",
+      "0x127": "k24",
+      "0x128": "k25",
+      "0x129": "k26",
       "0x02A": "E042",
       "0x101": "E101"
     },

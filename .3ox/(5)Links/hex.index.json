@@ -6,11 +6,17 @@
     "banner_form": "::0xHHH::",
     "key_regex": "^0x[0-9A-Fa-f]{3}$",
     "leading_zero_pad": true,
-    "range_inclusive": ["0x000", "0xFFF"]
+    "range_inclusive": [
+      "0x000",
+      "0xFFF"
+    ]
   },
   "validation": {
     "role": "single_source_of_truth_for_chip_claims",
-    "chip_row_minimal": ["code", "owner"],
+    "chip_row_minimal": [
+      "code",
+      "owner"
+    ],
     "metadata_separate_from_chip": true,
     "rule_no_silent_overwrite": "if_entries_key_exists_new_claim_must_match_owner_or_use_explicit_handoff"
   },
@@ -21,7 +27,9 @@
       "title": "TPW.WARDEN.spec",
       "slot": "k00",
       "route_key": "core.axis.warden",
-      "files": [".3ox/(3)Rules/exc/tpw/Axis.Warden.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/tpw/Axis.Warden.spec"
+      ]
     },
     "0x001": {
       "code": "0x001",
@@ -29,7 +37,9 @@
       "title": "TPW.TAPE.spec",
       "slot": "k01",
       "route_key": "core.axis.tape",
-      "files": [".3ox/(3)Rules/exc/tpw/Axis.Tape.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/tpw/Axis.Tape.spec"
+      ]
     },
     "0x002": {
       "code": "0x002",
@@ -37,7 +47,9 @@
       "title": "TPW.PULSE.spec",
       "slot": "k02",
       "route_key": "core.axis.pulse",
-      "files": [".3ox/(3)Rules/exc/tpw/Axis.Pulse.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/tpw/Axis.Pulse.spec"
+      ]
     },
     "0x003": {
       "code": "0x003",
@@ -46,7 +58,9 @@
       "slot": "k00",
       "route_key": "core.axis.warden",
       "note": "composite L1 rotor doc; primary slot k00",
-      "files": [".3ox/(3)Rules/exc/tpw/TPW.SPIN.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/tpw/TPW.SPIN.spec"
+      ]
     },
     "0x110": {
       "code": "0x110",
@@ -55,7 +69,9 @@
       "slot": "k09",
       "route_key": "core.ring.intake",
       "note": "Ring.A A0..A8 index; primary slot k09",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.BUNDLE.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.BUNDLE.spec"
+      ]
     },
     "0x111": {
       "code": "0x111",
@@ -64,7 +80,9 @@
       "slot": "k09",
       "route_key": "core.ring.intake",
       "ring_a": "A0",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A0.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A0.spec"
+      ]
     },
     "0x112": {
       "code": "0x112",
@@ -73,7 +91,9 @@
       "slot": "k10",
       "route_key": "core.ring.validate",
       "ring_a": "A1",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A1.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A1.spec"
+      ]
     },
     "0x113": {
       "code": "0x113",
@@ -82,7 +102,9 @@
       "slot": "k11",
       "route_key": "core.ring.encode",
       "ring_a": "A2",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A2.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A2.spec"
+      ]
     },
     "0x114": {
       "code": "0x114",
@@ -91,7 +113,9 @@
       "slot": "k12",
       "route_key": "core.ring.route",
       "ring_a": "A3",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A3.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A3.spec"
+      ]
     },
     "0x115": {
       "code": "0x115",
@@ -100,7 +124,9 @@
       "slot": "k13",
       "route_key": "core.ring.execute",
       "ring_a": "A4",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A4.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A4.spec"
+      ]
     },
     "0x116": {
       "code": "0x116",
@@ -109,7 +135,9 @@
       "slot": "k14",
       "route_key": "core.ring.observe",
       "ring_a": "A5",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A5.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A5.spec"
+      ]
     },
     "0x117": {
       "code": "0x117",
@@ -118,7 +146,9 @@
       "slot": "k15",
       "route_key": "core.ring.digest",
       "ring_a": "A6",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A6.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A6.spec"
+      ]
     },
     "0x118": {
       "code": "0x118",
@@ -127,7 +157,9 @@
       "slot": "k16",
       "route_key": "core.ring.commit",
       "ring_a": "A7",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A7.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A7.spec"
+      ]
     },
     "0x119": {
       "code": "0x119",
@@ -136,7 +168,119 @@
       "slot": "k17",
       "route_key": "core.ring.recover",
       "ring_a": "A8",
-      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A8.spec"]
+      "files": [
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A8.spec"
+      ]
+    },
+    "0x120": {
+      "code": "0x120",
+      "owner": "3OX.AI",
+      "title": "RING.B.bundle",
+      "slot": "k18",
+      "route_key": "core.system.meta",
+      "note": "Ring.B B0..B8 index; primary slot k18",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.BUNDLE.spec"
+      ]
+    },
+    "0x121": {
+      "code": "0x121",
+      "owner": "3OX.AI",
+      "title": "RING.B.B0.SUPERVISOR",
+      "slot": "k18",
+      "route_key": "core.system.meta",
+      "ring_b": "B0",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B0.spec"
+      ]
+    },
+    "0x122": {
+      "code": "0x122",
+      "owner": "3OX.AI",
+      "title": "RING.B.B1.WARDEN",
+      "slot": "k19",
+      "route_key": "core.system.tron",
+      "ring_b": "B1",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B1.spec"
+      ]
+    },
+    "0x123": {
+      "code": "0x123",
+      "owner": "3OX.AI",
+      "title": "RING.B.B2.QUEUE",
+      "slot": "k20",
+      "route_key": "core.system.chmod",
+      "ring_b": "B2",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B2.spec"
+      ]
+    },
+    "0x124": {
+      "code": "0x124",
+      "owner": "3OX.AI",
+      "title": "RING.B.B3.WORKER",
+      "slot": "k21",
+      "route_key": "core.system.daemon",
+      "ring_b": "B3",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B3.spec"
+      ]
+    },
+    "0x125": {
+      "code": "0x125",
+      "owner": "3OX.AI",
+      "title": "RING.B.B4.TAPE",
+      "slot": "k22",
+      "route_key": "core.system.cage",
+      "ring_b": "B4",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B4.spec"
+      ]
+    },
+    "0x126": {
+      "code": "0x126",
+      "owner": "3OX.AI",
+      "title": "RING.B.B5.PULSE",
+      "slot": "k23",
+      "route_key": "core.system.route",
+      "ring_b": "B5",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B5.spec"
+      ]
+    },
+    "0x127": {
+      "code": "0x127",
+      "owner": "3OX.AI",
+      "title": "RING.B.B6.ROUTER",
+      "slot": "k24",
+      "route_key": "core.system.hash",
+      "ring_b": "B6",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B6.spec"
+      ]
+    },
+    "0x128": {
+      "code": "0x128",
+      "owner": "3OX.AI",
+      "title": "RING.B.B7.BRIDGE",
+      "slot": "k25",
+      "route_key": "core.system.vault",
+      "ring_b": "B7",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B7.spec"
+      ]
+    },
+    "0x129": {
+      "code": "0x129",
+      "owner": "3OX.AI",
+      "title": "RING.B.B8.SCHEDULER",
+      "slot": "k26",
+      "route_key": "core.system.patch",
+      "ring_b": "B8",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B8.spec"
+      ]
     },
     "0x02A": {
       "code": "0x02A",
@@ -159,7 +303,10 @@
         "glyphbits/Leo/Leo.ME.yaml",
         ".3ox/(4)Toolkit/skills/Lion.Gate/skill.base"
       ],
-      "summon_tags": ["#lion", "#gatekeeper"]
+      "summon_tags": [
+        "#lion",
+        "#gatekeeper"
+      ]
     }
   }
 }

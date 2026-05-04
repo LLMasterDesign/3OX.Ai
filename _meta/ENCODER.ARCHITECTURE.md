@@ -72,6 +72,8 @@ flowchart TB
 
 **Larger ladder (policy):** 27 Core → 81 route ring → 216 ξ cube → **243** envelope (216+27) → **729** archive — see **`_meta/3OX.CORE.RESEARCH.md`**.
 
+- **Ring.B (daemon / services lane B0–B8):** `.3ox/(3)Rules/exc/ring-b/*.spec` — chips **`0x121`–`0x129`** map to **`k18`–`k26`** (Core{System}); bundle **`0x120`** / `Ring.B.BUNDLE.spec`.
+
 **Proof only:** **Leo** (`E101`, `0x101`) is a **ξ** GlyphBit path to validate the encoder; it is **not** a **`κ`** Core seat.
 
 ## 4. Data planes
