@@ -178,63 +178,120 @@
       "class": "κ",
       "core": { "sector": "Ring", "seat": "Intake" },
       "route_key": "core.ring.intake",
-      "anchors": ["encoder layer 0 RAW", "1 SPARK"]
+      "ring_a": "A0.PHENO.LEGEND",
+      "anchors": [
+        "encoder layer 0 RAW",
+        "1 SPARK",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A0.spec",
+        "hex:0x111"
+      ]
     },
     "k10": {
       "name": "RING.VALIDATE",
       "class": "κ",
       "core": { "sector": "Ring", "seat": "Validate" },
       "route_key": "core.ring.validate",
-      "anchors": ["encoder_validate.py", "exc_validate.py", "warden checks"]
+      "ring_a": "A1.INPUT.GATE",
+      "anchors": [
+        "encoder_validate.py",
+        "exc_validate.py",
+        "warden checks",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A1.spec",
+        "hex:0x112"
+      ]
     },
     "k11": {
       "name": "RING.ENCODE",
       "class": "κ",
       "core": { "sector": "Ring", "seat": "Encode" },
       "route_key": "core.ring.encode",
-      "anchors": ["layers 2-4 PHENO PiCO PRISM", "GlyphBit / EXC"]
+      "ring_a": "A2.BIND.GATE",
+      "anchors": [
+        "layers 2-4 PHENO PiCO PRISM",
+        "GlyphBit / EXC",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A2.spec",
+        "hex:0x113"
+      ]
     },
     "k12": {
       "name": "RING.ROUTE",
       "class": "κ",
       "core": { "sector": "Ring", "seat": "Route" },
       "route_key": "core.ring.route",
-      "anchors": ["layer 5 MAP", "encoder_dry_run.py"]
+      "ring_a": "A3.OUTPUT.GATE",
+      "anchors": [
+        "layer 5 MAP",
+        "encoder_dry_run.py",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A3.spec",
+        "hex:0x114"
+      ]
     },
     "k13": {
       "name": "RING.EXECUTE",
       "class": "κ",
       "core": { "sector": "Ring", "seat": "Execute" },
       "route_key": "core.ring.execute",
-      "anchors": [".3ox/run.rb run_job", "Toolkit .exs"]
+      "ring_a": "A4.LOOP.CORE",
+      "anchors": [
+        ".3ox/run.rb run_job",
+        "Toolkit .exs",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A4.spec",
+        "hex:0x115"
+      ]
     },
     "k14": {
       "name": "RING.OBSERVE",
       "class": "κ",
       "core": { "sector": "Ring", "seat": "Observe" },
       "route_key": "core.ring.observe",
-      "anchors": ["layer 8 PULSE", "status.json", "logs/"]
+      "ring_a": "A5.PiCO.TRACE",
+      "anchors": [
+        "layer 8 PULSE",
+        "status.json",
+        "logs/",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A5.spec",
+        "hex:0x116"
+      ]
     },
     "k15": {
       "name": "RING.DIGEST",
       "class": "κ",
       "core": { "sector": "Ring", "seat": "Digest" },
       "route_key": "core.ring.digest",
-      "anchors": ["xxh3 frame / xxh128 inter-daemon", "receipt hashes"]
+      "ring_a": "A6.PRISM.SHAPE",
+      "anchors": [
+        "xxh3 frame / xxh128 inter-daemon",
+        "receipt hashes",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A6.spec",
+        "hex:0x117"
+      ]
     },
     "k16": {
       "name": "RING.COMMIT",
       "class": "κ",
       "core": { "sector": "Ring", "seat": "Commit" },
       "route_key": "core.ring.commit",
-      "anchors": ["layer 7 TAPE append", "git / explicit handoff policy"]
+      "ring_a": "A7.METADEX",
+      "anchors": [
+        "layer 7 TAPE append",
+        "git / explicit handoff policy",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A7.spec",
+        "hex:0x118"
+      ]
     },
     "k17": {
       "name": "RING.RECOVER",
       "class": "κ",
       "core": { "sector": "Ring", "seat": "Recover" },
       "route_key": "core.ring.recover",
-      "anchors": ["layer 9 LOOP", "ν fallback", "SESSION.CHECKPOINT"]
+      "ring_a": "A8.QED.SEAL",
+      "anchors": [
+        "layer 9 LOOP",
+        "ν fallback",
+        "SESSION.CHECKPOINT",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A8.spec",
+        "hex:0x119"
+      ]
     },
     "k18": {
       "name": "SYSTEM.META",
@@ -318,6 +375,16 @@
       "0x001": "k01",
       "0x002": "k02",
       "0x003": "k00",
+      "0x110": "k09",
+      "0x111": "k09",
+      "0x112": "k10",
+      "0x113": "k11",
+      "0x114": "k12",
+      "0x115": "k13",
+      "0x116": "k14",
+      "0x117": "k15",
+      "0x118": "k16",
+      "0x119": "k17",
       "0x02A": "E042",
       "0x101": "E101"
     },

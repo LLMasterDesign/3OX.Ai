@@ -48,6 +48,96 @@
       "note": "composite L1 rotor doc; primary slot k00",
       "files": [".3ox/(3)Rules/exc/tpw/TPW.SPIN.spec"]
     },
+    "0x110": {
+      "code": "0x110",
+      "owner": "3OX.AI",
+      "title": "RING.A.bundle",
+      "slot": "k09",
+      "route_key": "core.ring.intake",
+      "note": "Ring.A A0..A8 index; primary slot k09",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.BUNDLE.spec"]
+    },
+    "0x111": {
+      "code": "0x111",
+      "owner": "3OX.AI",
+      "title": "RING.A.A0.PHENO.LEGEND",
+      "slot": "k09",
+      "route_key": "core.ring.intake",
+      "ring_a": "A0",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A0.spec"]
+    },
+    "0x112": {
+      "code": "0x112",
+      "owner": "3OX.AI",
+      "title": "RING.A.A1.INPUT.GATE",
+      "slot": "k10",
+      "route_key": "core.ring.validate",
+      "ring_a": "A1",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A1.spec"]
+    },
+    "0x113": {
+      "code": "0x113",
+      "owner": "3OX.AI",
+      "title": "RING.A.A2.BIND.GATE",
+      "slot": "k11",
+      "route_key": "core.ring.encode",
+      "ring_a": "A2",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A2.spec"]
+    },
+    "0x114": {
+      "code": "0x114",
+      "owner": "3OX.AI",
+      "title": "RING.A.A3.OUTPUT.GATE",
+      "slot": "k12",
+      "route_key": "core.ring.route",
+      "ring_a": "A3",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A3.spec"]
+    },
+    "0x115": {
+      "code": "0x115",
+      "owner": "3OX.AI",
+      "title": "RING.A.A4.LOOP.CORE",
+      "slot": "k13",
+      "route_key": "core.ring.execute",
+      "ring_a": "A4",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A4.spec"]
+    },
+    "0x116": {
+      "code": "0x116",
+      "owner": "3OX.AI",
+      "title": "RING.A.A5.PiCO.TRACE",
+      "slot": "k14",
+      "route_key": "core.ring.observe",
+      "ring_a": "A5",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A5.spec"]
+    },
+    "0x117": {
+      "code": "0x117",
+      "owner": "3OX.AI",
+      "title": "RING.A.A6.PRISM.SHAPE",
+      "slot": "k15",
+      "route_key": "core.ring.digest",
+      "ring_a": "A6",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A6.spec"]
+    },
+    "0x118": {
+      "code": "0x118",
+      "owner": "3OX.AI",
+      "title": "RING.A.A7.METADEX",
+      "slot": "k16",
+      "route_key": "core.ring.commit",
+      "ring_a": "A7",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A7.spec"]
+    },
+    "0x119": {
+      "code": "0x119",
+      "owner": "3OX.AI",
+      "title": "RING.A.A8.QED.SEAL",
+      "slot": "k17",
+      "route_key": "core.ring.recover",
+      "ring_a": "A8",
+      "files": [".3ox/(3)Rules/exc/ring-a/Ring.A.A8.spec"]
+    },
     "0x02A": {
       "code": "0x02A",
       "owner": "3OX.AI",
