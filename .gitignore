@@ -13,6 +13,12 @@
 !**/.raven/outbox/.gitkeep
 !**/.raven/tape/.gitkeep
 
+# TPR fragments are emitted on every teleprompt; keep the dir, ignore the JSON.
+**/!0UT.SIDEKIK/tpr/*.json
+**/!0UT.SIDEKIK/tpr/handoff/*
+!**/!0UT.SIDEKIK/tpr/.gitkeep
+!**/!0UT.SIDEKIK/tpr/handoff/.gitkeep
+
 # Pid files / logs
 *.pid
 *.log

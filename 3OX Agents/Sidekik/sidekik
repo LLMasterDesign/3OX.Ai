@@ -15,21 +15,29 @@ RAVEN="$HERE/raven.rb"
 case "${1:-help}" in
   say)
     shift; ruby "$PULSE" triage "$@"; ruby "$PULSE" dispatch; ruby "$PULSE" status ;;
-  note)   shift; ruby "$PULSE" note "$@" ;;
-  status) ruby "$PULSE" status ;;
-  up)     ruby "$RAVEN" start ;;
-  down)   ruby "$RAVEN" stop ;;
-  tick)   ruby "$RAVEN" tick ;;
-  alive)  ruby "$RAVEN" aliveness ;;
+  note)       shift; ruby "$PULSE" note "$@" ;;
+  status)     ruby "$PULSE" status ;;
+  teleprompt|tpr) ruby "$PULSE" teleprompt ;;
+  sync)       bash "$HERE/sync-vps.sh" ;;
+  up)         ruby "$RAVEN" start ;;
+  down)       ruby "$RAVEN" stop ;;
+  tick)       ruby "$RAVEN" tick ;;
+  alive)      ruby "$RAVEN" aliveness ;;
   help|*)
     cat <<EOF
 sidekik — Raven Suite CLI
-  say "<intent>"   triage + dispatch + status
-  note "<text>"    append to tape
-  status           snapshot
-  up|down          start|stop supervisor (background)
-  tick             one supervisor cycle
-  alive            local Box-aliveness check
+  say "<intent>"     triage + dispatch + status
+  note "<text>"      append to tape
+  status             snapshot
+  teleprompt | tpr   regenerate TPR speaker + route fragments
+  sync               rsync to VPS, run TPR merge, restart speaker-mesh
+  up | down          start | stop supervisor (background)
+  tick               one supervisor cycle
+  alive              local Box-aliveness check
+
+NOTE: TPR (TelePromptR) is the only Telegram speaker. Agents emit
+TPR.SPEAKER.MESH.json + TPR.ROUTE.MAP.json fragments and let TPR's
+merge.sh fold them into the master config on the VPS.
 EOF
     ;;
 esac
