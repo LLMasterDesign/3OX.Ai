@@ -52,6 +52,9 @@ jobs:
       - name: Validate hex.index.json
         run: python3 scripts/encoder_validate.py
 
+      - name: Warden twelve laws (limits.toml)
+        run: python3 scripts/warden_laws_validate.py
+
       - name: TPW Gensing line-1 chips (0x000-0x003)
         run: |
           python3 scripts/encoder_validate.py --doc "$TPW_WARDEN"
