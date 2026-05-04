@@ -1,0 +1,24 @@
+# status:[DRAFT] ver:[1.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# Edge-trigger for the TPR handoff consumer.
+#
+# Fires tpr-handoff.service whenever the agent handoff dir changes.
+# This is the "rotary encoder" wiring: TPW.SPIN (Warden→Tape→Pulse,
+# hex 0x003 / k00) emits the edge; we ride it. NO timers — the rotor
+# itself is the clock.
+#
+# Add one PathChanged= line per registered agent. Example below shows
+# Sidekik. Money.Bagz, VSO.Agent, etc. each get their own line.
+[Unit]
+Description=Edge-trigger TPR handoff consumer when an agent writes a handoff
+After=network.target
+
+[Path]
+PathChanged=/root/_TRON/Agents/Sidekik/!0UT.SIDEKIK/tpr/handoff
+# PathChanged=/root/!CMD.VPS/BudgetR/!0UT.BUDGET/tpr/handoff
+# PathChanged=/root/_TRON/Agents/VSO/!0UT.VSO/tpr/handoff
+Unit=tpr-handoff.service
+MakeDirectory=true
+
+[Install]
+WantedBy=multi-user.target

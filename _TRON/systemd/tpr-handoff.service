@@ -1,0 +1,19 @@
+# status:[DRAFT] ver:[1.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# TPR handoff consumer (edge-triggered).
+#
+# Triggered by tpr-handoff.path when an agent writes a handoff JSON, or
+# directly by TelePromptR's rotor at TPW.SPIN edge. Type=oneshot so each
+# rotor edge maps to exactly one drain pass — no background timers.
+[Unit]
+Description=TPR handoff consumer (edge-triggered, oneshot per rotor edge)
+After=network.target
+PartOf=tpr-handoff.path
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/!CMD.VPS/TelePromptR
+ExecStart=/usr/bin/ruby /root/_TRON/TelePromptR/bin/tpr_handoff.rb
+Environment=TPR_AGENTS_REGISTRY=/etc/tpr/agents.json
+StandardOutput=append:/var/log/tpr-handoff.log
+StandardError=append:/var/log/tpr-handoff.log

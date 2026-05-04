@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://3ox.ai/_TRON/TelePromptR/handoff.schema.json",
+  "title": "tpr.handoff",
+  "type": "object",
+  "required": ["kind", "id", "from_agent", "to_agent", "subagent_path", "text", "created_at"],
+  "additionalProperties": false,
+  "properties": {
+    "kind":           { "const": "tpr.handoff" },
+    "schema_version": { "type": "string", "default": "1" },
+    "id":             { "type": "string", "minLength": 1 },
+    "in_reply_to":    { "type": "string" },
+    "from_agent":     { "type": "string", "minLength": 1 },
+    "to_agent":       { "type": "string", "minLength": 1 },
+    "subagent_path":  { "type": "string", "minLength": 1 },
+    "topics_hint":    { "type": "array",  "items": { "type": "string" } },
+    "classified_key": { "type": "string" },
+    "text":           { "type": "string", "minLength": 1 },
+    "created_at":     { "type": "string", "format": "date-time" },
+    "consumer":       { "type": "string" },
+    "merge_via":      { "type": "string" },
+    "speaker_unit":   { "type": "string" }
+  }
+}

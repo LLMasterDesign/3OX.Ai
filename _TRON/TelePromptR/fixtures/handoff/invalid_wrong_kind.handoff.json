@@ -1,0 +1,9 @@
+{
+  "kind": "telegram.message",
+  "id": "bad.h.fixt-wk",
+  "from_agent": "3OX.Sidekik",
+  "to_agent": "money_bagz",
+  "subagent_path": "Money.Bagz",
+  "text": "some text",
+  "created_at": "2026-05-04T08:09:26Z"
+}
