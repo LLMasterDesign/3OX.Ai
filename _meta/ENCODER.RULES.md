@@ -27,6 +27,14 @@ python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.m
 
 **Expected:** `ok: .3ox/(5)Links/hex.index.json — …` and `ok: doc scripts/encoder_fixtures/valid_line1.md — chip 0x0A4 …`; exit code **0**.
 
+**Example (27-slot Core chamber):**
+
+```bash
+python3 scripts/core_slots_validate.py
+```
+
+**Expected:** `ok: 3OX.Core{} — 27 κ slots …`; exit code **0**.
+
 ## A. Hex & line 1 (Gensing chip)
 
 | ID | Rule | Gate |
@@ -36,6 +44,7 @@ python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.m
 | H3 | Long packed IDs **MUST NOT** replace the chip on line 1; full precision lives in `hex.index.json` or registry rows. | Review |
 | H4 | If a document **claims** a code, **`hex.index.json`** `entries` **MUST** contain that key with at least `code` and `owner`. | CI |
 | H5 | Silent overwrite of an existing `entries[key]` **MUST NOT** occur without owner handoff or explicit merge policy. | Review |
+| H6 | **`routes.json` `core`** maps **must** list **exactly once** each **`k00`..`k26`** and **`slot_index`** must hold matching **`κ`** rows. | CI |
 
 ## B. Encoder layers 0–9
 
@@ -93,6 +102,7 @@ python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.m
 - `_meta/ENCODER.RECEIPT.schema.json` — RECEIPT v1 JSON Schema
 - `scripts/exc_fixtures/encoder_minimal.exc` — minimal normative EXC v1 (DRAKON-inspired bodies)
 - `scripts/exc_validate.py` — boundary check for `.exc`
+- `scripts/core_slots_validate.py` — 3OX.Core{} κ chamber vs `routes.json`
 - `.3ox/(5)Links/routes.json`, `hex.index.json`
 - `.3ox/(3)Rules/limits.toml`
 

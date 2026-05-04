@@ -11,7 +11,7 @@
 
 ## Phase 0 — Lock semantics (docs only)
 
-- [ ] Freeze **encoder layer** names 0–9 and one-line contracts (this repo: PRD + ARCHITECTURE + RULES).
+- [x] **3OX.Core{}** — `routes.json` `core` + `slot_index` **k00..k26**; validate with **`python3 scripts/core_slots_validate.py`** (CI).
 - [ ] Document **16 × 256** hex continent strategy (default seed: `0x0**` kernel/infra, `0x1**` GlyphBit, `0x2**` Genesis; reserve `0x3**`–`0xF**` in PLAN appendix).
 - [ ] Align **HIRO / ME / core document** triad with `hex.index.json` optional fields (`exc_surfaces`, `files[]` when added).
 
