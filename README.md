@@ -21,7 +21,7 @@ Think systemd for AI agents.
 
 All tiers (T1, T2, T3) include these 7 files.
 
-**`.vec3/` Kernel** - Seven protected runtime surfaces, sibling of `.3ox/` at every cube root. `.3ox/` declares the agent (six face files); `.vec3/` runs it (seven surface folders). See [`_meta/VEC3.SURFACES.md`](_meta/VEC3.SURFACES.md) for the full canon.
+**`.vec3/` Kernel** - Seven protected runtime surfaces, sibling of `.3ox/` at every cube root. `.3ox/` declares the agent (six face files); `.vec3/` runs it (seven surface folders). See [`_meta/canon/VEC3.SURFACES.md`](_meta/canon/VEC3.SURFACES.md) for the full canon.
 
 | Surface | Role | One-line meaning |
 |---|---|---|
@@ -33,7 +33,7 @@ All tiers (T1, T2, T3) include these 7 files.
 | `.vec3/proc/` | process | Workers, queue, self, internal agents, kernel — process plane (Supervisor still owns lifecycle) |
 | `.vec3/mem/` | continuity | `hot/`, `deep/`, `context/` — what the system remembers, not what it is currently doing |
 
-Place ≠ authority. `.vec3/var/receipts/` is a mirror; **Tape** owns receipt writing. `.vec3/proc/workers/` holds manifests; **Supervisor** owns lifecycle. `.vec3/rc/rules.ref` is a file; **Warden** enforces. The full ownership map lives in `_meta/VEC3.SURFACES.md`.
+Place ≠ authority. `.vec3/var/receipts/` is a mirror; **Tape** owns receipt writing. `.vec3/proc/workers/` holds manifests; **Supervisor** owns lifecycle. `.vec3/rc/rules.ref` is a file; **Warden** enforces. The full ownership map lives in `_meta/canon/VEC3.SURFACES.md`.
 
 **Brain Compilation** - Agent configurations written in Rust, compiled to executables. Type-safe behavior rules, not prompt engineering.
 

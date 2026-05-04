@@ -33,7 +33,7 @@ summary = "3OX.SPIN is the canonical handle for the Core{Axis} rotor (formerly T
 [[entry]]
 date    = "26.05.04"
 type    = "canon"
-summary = "Locked .vec3/ as 7 surfaces: rc, lib, dev, var, proto, proc, mem. New _meta/VEC3.SURFACES.md is the source of truth. Materialized .vec3/{proto, proc/{workers,queue,agents,self,kernel}, mem/{hot,deep,context}} on disk. Place vs authority duality: proc is the process plane, Supervisor (k21) owns lifecycle; .vec3/var/receipts/ is a mirror, Tape (k01) writes authoritative receipts; .vec3/mem/ is owned by Core{Encode}.Memory (k07) via Project Orion. PLAN.md L3 row updated 6→7 surfaces. README.md kernel section rewritten. bin/ and ops/ deferred for deprecation in a follow-up PR (content folds into dev/)."
+summary = "Locked .vec3/ as 7 surfaces: rc, lib, dev, var, proto, proc, mem. New _meta/canon/VEC3.SURFACES.md is the source of truth. Materialized .vec3/{proto, proc/{workers,queue,agents,self,kernel}, mem/{hot,deep,context}} on disk. Place vs authority duality: proc is the process plane, Supervisor (k21) owns lifecycle; .vec3/var/receipts/ is a mirror, Tape (k01) writes authoritative receipts; .vec3/mem/ is owned by Core{Encode}.Memory (k07) via Project Orion. PLAN.md L3 row updated 6→7 surfaces. README.md kernel section rewritten. bin/ and ops/ deferred for deprecation in a follow-up PR (content folds into dev/)."
 
 [[entry]]
 date    = "26.05.04"
