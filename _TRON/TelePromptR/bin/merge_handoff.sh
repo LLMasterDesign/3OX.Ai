@@ -8,12 +8,14 @@
 # fragments into the master TPR config, source this script (or call it
 # at the tail) so any pending tpr.handoff records are processed too.
 #
-# Wiring (existing merge.sh):
+# Wiring (existing merge.sh; rides TPW.SPIN — the rotor IS the clock):
 #   # ... existing fragment merge ...
 #   bash "$(dirname "$0")/merge_handoff.sh"
 #
-# Or from systemd timer / one-shot service (recommended):
+# Or from a systemd path-unit edge trigger (oneshot per filesystem edge,
+# no timer):
 #   ExecStart=/usr/bin/ruby /root/_TRON/TelePromptR/bin/tpr_handoff.rb
+# paired with tpr-handoff.path (PathChanged=<agent handoff dir>).
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

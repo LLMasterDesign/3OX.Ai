@@ -1,12 +1,18 @@
 #!/usr/bin/env ruby
 # status:[ACTIVE] ver:[1.0.0] created:[26.05.04]
 # doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
-# tpr_handoff — process all registered agent handoff dirs once.
+# tpr_handoff — drain registered agent handoff dirs ONCE per invocation.
+#
+# Designed to ride the rotor. TPW.SPIN is the rotary encoder (hex 0x003,
+# slot k00); Pulse (k02) is the aliveness edge. Each invocation = one
+# edge. NO timers. Caller is the rotor:
+#   - TelePromptR's merge.sh (rotor tail), or
+#   - systemd path-unit on the agent handoff dir (filesystem edge).
 #
 # Usage:
-#   ruby bin/tpr_handoff.rb                       # uses /etc/tpr/agents.json or _TRON config
+#   ruby bin/tpr_handoff.rb                       # one drain pass
+#   ruby bin/tpr_handoff.rb --edge                # explicit "one edge" alias
 #   ruby bin/tpr_handoff.rb --agents agents.json  # explicit registry
-#   ruby bin/tpr_handoff.rb --once                # alias of default
 #
 # agents.json:
 # {
@@ -35,10 +41,10 @@ DEFAULT_REGISTRY_CANDIDATES = [
 
 opts = { registry: nil, dry_run: false }
 OptionParser.new do |o|
-  o.banner = 'Usage: tpr_handoff.rb [--agents PATH] [--dry-run]'
+  o.banner = 'Usage: tpr_handoff.rb [--agents PATH] [--edge] [--dry-run]'
   o.on('--agents PATH', 'agents.json registry path') { |v| opts[:registry] = v }
-  o.on('--dry-run',     'parse + validate, no writes') { opts[:dry_run] = true }
-  o.on('--once',        'process once and exit (default)') { }
+  o.on('--edge',        'drain one rotor edge (default)')  { }
+  o.on('--dry-run',     'parse + validate, no writes')     { opts[:dry_run] = true }
 end.parse!
 
 registry_path = opts[:registry] || DEFAULT_REGISTRY_CANDIDATES.find { |p| p && File.file?(p) }
