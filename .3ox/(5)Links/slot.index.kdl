@@ -14,6 +14,7 @@ document {
   law "tpw.spec" "Axis_TPW_gensing_syntax_in_spec_under_exc_tpw_hex_0x000_to_0x003"
   law "ring.a" "Ring_A_specs_hex_0x111_to_0x119_bundle_0x110_maps_k09_k17"
   law "ring.b" "Ring_B_specs_hex_0x121_to_0x129_bundle_0x120_maps_k18_k26"
+  law "ring.c" "Ring_C_specs_hex_0x131_to_0x139_bundle_0x130_maps_Encode_k03_k08_C6_C8_stack_on_k05_k06_k08"
 
   slot id=k00 class=kernel { name "AXIS.WARDEN" }
   slot id=k26 class=kernel { name "SYSTEM.PATCH" }

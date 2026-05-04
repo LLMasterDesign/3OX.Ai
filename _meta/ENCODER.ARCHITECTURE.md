@@ -74,6 +74,8 @@ flowchart TB
 
 - **Ring.B (daemon / services lane B0–B8):** `.3ox/(3)Rules/exc/ring-b/*.spec` — chips **`0x121`–`0x129`** map to **`k18`–`k26`** (Core{System}); bundle **`0x120`** / `Ring.B.BUNDLE.spec`.
 
+- **Ring.C (contract surfaces C0–C8):** `.3ox/(3)Rules/exc/ring-c/*.spec` — chips **`0x131`–`0x139`** map to **Core{Encode} `k03`–`k08`** (C0→Intent … C5→Seal); bundle **`0x130`**. **C6**, **C7**, **C8** are **second chips** on **`k05`**, **`k06`**, **`k08`** alongside C2, C3, C5 (nine contracts, six seats). Stub contract bodies live under `.3ox/(3)Rules/contracts/`. **Axis TPW (`0x000`–`0x002`) stays normative** for authorization and spin; Ring.C does not override Warden/Tape/Pulse law.
+
 **Proof only:** **Leo** (`E101`, `0x101`) is a **ξ** GlyphBit path to validate the encoder; it is **not** a **`κ`** Core seat.
 
 ## 4. Data planes

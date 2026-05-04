@@ -136,42 +136,97 @@
       "class": "κ",
       "core": { "sector": "Encode", "seat": "Intent" },
       "route_key": "core.encode.intent",
-      "anchors": [".3ox/(1)Spark/sparkfile.md", "maps.intent"]
+      "ring_c": "C0.UNIVERSAL.ENVELOPE",
+      "anchors": [
+        ".3ox/(1)Spark/sparkfile.md",
+        "maps.intent",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C0.spec",
+        "hex:0x131",
+        "hex:0x130"
+      ]
     },
     "k04": {
       "name": "ENCODE.AUTHORITY",
       "class": "κ",
       "core": { "sector": "Encode", "seat": "Authority" },
       "route_key": "core.encode.authority",
-      "anchors": [".3ox/_meta/WHOAMI.md", "exc_boundary", "owner in hex.index"]
+      "ring_c": "C1.VEC3.RUNTIME",
+      "anchors": [
+        ".3ox/_meta/WHOAMI.md",
+        "exc_boundary",
+        "owner in hex.index",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C1.spec",
+        ".3ox/(3)Rules/contracts/c1_vec3_runtime.md",
+        "hex:0x132"
+      ]
     },
     "k05": {
       "name": "ENCODE.STATE",
       "class": "κ",
       "core": { "sector": "Encode", "seat": "State" },
       "route_key": "core.encode.state",
-      "anchors": ["RECEIPT v1", "encoder.map in receipt"]
+      "ring_c": "C2.MAP.POINTER+C6.ARC.MODE",
+      "anchors": [
+        "RECEIPT v1",
+        "encoder.map in receipt",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C2.spec",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C6.spec",
+        ".3ox/(3)Rules/contracts/c2_map_pointer.toml",
+        ".3ox/(3)Rules/contracts/c6_arc_mode.toml",
+        "hex:0x133",
+        "hex:0x137"
+      ]
     },
     "k06": {
       "name": "ENCODE.ROUTE",
       "class": "κ",
       "core": { "sector": "Encode", "seat": "Route" },
       "route_key": "core.encode.route",
-      "anchors": ["routes.json", "maps.hex", "slot_index"]
+      "ring_c": "C3.RECEIPT.SCHEMA+C7.SYNTAX.BRIDGE",
+      "anchors": [
+        "routes.json",
+        "maps.hex",
+        "slot_index",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C3.spec",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C7.spec",
+        ".3ox/(3)Rules/contracts/c3_receipt_schema.json",
+        ".3ox/(3)Rules/contracts/c7_syntax_bridge.kdl",
+        "hex:0x134",
+        "hex:0x138"
+      ]
     },
     "k07": {
       "name": "ENCODE.MEMORY",
       "class": "κ",
       "core": { "sector": "Encode", "seat": "Memory" },
       "route_key": "core.encode.memory",
-      "anchors": ["hex.index.json entries", "TAPE tape.jsonl"]
+      "ring_c": "C4.EVENT.CONTRACT",
+      "anchors": [
+        "hex.index.json entries",
+        "TAPE tape.jsonl",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C4.spec",
+        ".3ox/(3)Rules/contracts/c4_event_contract.exs",
+        "hex:0x135"
+      ]
     },
     "k08": {
       "name": "ENCODE.SEAL",
       "class": "κ",
       "core": { "sector": "Encode", "seat": "Seal" },
       "route_key": "core.encode.seal",
-      "anchors": ["sha256 external", "xxh3 frame", "EXC Ξ line", "HIRO seal sections"]
+      "ring_c": "C5.PACK.CONTRACT+C8.MIGRATION.ARCHIVE",
+      "anchors": [
+        "sha256 external",
+        "xxh3 frame",
+        "EXC Ξ line",
+        "HIRO seal sections",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C5.spec",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C8.spec",
+        ".3ox/(3)Rules/contracts/c5_pack_contract.yml",
+        ".3ox/(3)Rules/contracts/c8_migration_archive.md",
+        "hex:0x136",
+        "hex:0x139"
+      ]
     },
     "k09": {
       "name": "RING.INTAKE",
@@ -451,6 +506,16 @@
       "0x127": "k24",
       "0x128": "k25",
       "0x129": "k26",
+      "0x130": "k03",
+      "0x131": "k03",
+      "0x132": "k04",
+      "0x133": "k05",
+      "0x134": "k06",
+      "0x135": "k07",
+      "0x136": "k08",
+      "0x137": "k05",
+      "0x138": "k06",
+      "0x139": "k08",
       "0x02A": "E042",
       "0x101": "E101"
     },

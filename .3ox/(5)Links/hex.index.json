@@ -282,6 +282,128 @@
         ".3ox/(3)Rules/exc/ring-b/Ring.B.B8.spec"
       ]
     },
+    "0x130": {
+      "code": "0x130",
+      "owner": "3OX.AI",
+      "title": "RING.C.bundle",
+      "slot": "k03",
+      "route_key": "core.encode.intent",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.BUNDLE.spec"
+      ],
+      "note": "Ring.C C0..C8 index; primary slot k03"
+    },
+    "0x131": {
+      "code": "0x131",
+      "owner": "3OX.AI",
+      "title": "RING.C.C0.UNIVERSAL.ENVELOPE",
+      "slot": "k03",
+      "route_key": "core.encode.intent",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C0.spec",
+        ".3ox/(3)Rules/contracts/c0_universal_envelope.schema.json"
+      ],
+      "ring_c": "C0"
+    },
+    "0x132": {
+      "code": "0x132",
+      "owner": "3OX.AI",
+      "title": "RING.C.C1.VEC3.RUNTIME",
+      "slot": "k04",
+      "route_key": "core.encode.authority",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C1.spec",
+        ".3ox/(3)Rules/contracts/c1_vec3_runtime.md"
+      ],
+      "ring_c": "C1"
+    },
+    "0x133": {
+      "code": "0x133",
+      "owner": "3OX.AI",
+      "title": "RING.C.C2.MAP.POINTER",
+      "slot": "k05",
+      "route_key": "core.encode.state",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C2.spec",
+        ".3ox/(3)Rules/contracts/c2_map_pointer.toml"
+      ],
+      "ring_c": "C2"
+    },
+    "0x134": {
+      "code": "0x134",
+      "owner": "3OX.AI",
+      "title": "RING.C.C3.RECEIPT.SCHEMA",
+      "slot": "k06",
+      "route_key": "core.encode.route",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C3.spec",
+        ".3ox/(3)Rules/contracts/c3_receipt_schema.json"
+      ],
+      "ring_c": "C3"
+    },
+    "0x135": {
+      "code": "0x135",
+      "owner": "3OX.AI",
+      "title": "RING.C.C4.EVENT.CONTRACT",
+      "slot": "k07",
+      "route_key": "core.encode.memory",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C4.spec",
+        ".3ox/(3)Rules/contracts/c4_event_contract.exs"
+      ],
+      "ring_c": "C4"
+    },
+    "0x136": {
+      "code": "0x136",
+      "owner": "3OX.AI",
+      "title": "RING.C.C5.PACK.CONTRACT",
+      "slot": "k08",
+      "route_key": "core.encode.seal",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C5.spec",
+        ".3ox/(3)Rules/contracts/c5_pack_contract.yml"
+      ],
+      "ring_c": "C5"
+    },
+    "0x137": {
+      "code": "0x137",
+      "owner": "3OX.AI",
+      "title": "RING.C.C6.ARC.MODE",
+      "slot": "k05",
+      "route_key": "core.encode.state",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C6.spec",
+        ".3ox/(3)Rules/contracts/c6_arc_mode.toml"
+      ],
+      "ring_c": "C6",
+      "note": "secondary chip on k05 with C2"
+    },
+    "0x138": {
+      "code": "0x138",
+      "owner": "3OX.AI",
+      "title": "RING.C.C7.SYNTAX.BRIDGE",
+      "slot": "k06",
+      "route_key": "core.encode.route",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C7.spec",
+        ".3ox/(3)Rules/contracts/c7_syntax_bridge.kdl"
+      ],
+      "ring_c": "C7",
+      "note": "secondary chip on k06 with C3"
+    },
+    "0x139": {
+      "code": "0x139",
+      "owner": "3OX.AI",
+      "title": "RING.C.C8.MIGRATION.ARCHIVE",
+      "slot": "k08",
+      "route_key": "core.encode.seal",
+      "files": [
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C8.spec",
+        ".3ox/(3)Rules/contracts/c8_migration_archive.md"
+      ],
+      "ring_c": "C8",
+      "note": "secondary chip on k08 with C5"
+    },
     "0x02A": {
       "code": "0x02A",
       "owner": "3OX.AI",
