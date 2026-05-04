@@ -27,7 +27,7 @@
 >   recorded in `[core.deprecated]` for searchability.
 >
 > The full reconciliation lives in
-> [`_meta/ARCHITECTURE.RECONCILIATION.md`](ARCHITECTURE.RECONCILIATION.md).
+> [`_meta/canon/ARCHITECTURE.RECONCILIATION.md`](ARCHITECTURE.RECONCILIATION.md).
 
 ---
 
