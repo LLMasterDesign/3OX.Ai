@@ -1,5 +1,5 @@
 use crossterm::{
-    cursor::{MoveTo, Show, position},
+    cursor::{MoveTo, Show},
     execute,
     terminal::{Clear, ClearType, disable_raw_mode, enable_raw_mode},
     event::read,
