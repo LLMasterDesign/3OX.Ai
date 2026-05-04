@@ -66,6 +66,11 @@ System grouping:
 - Control[4] → Chmod, Daemon, Cage, Route
 - Seal[3]    → Hash, Vault, Patch
 
+Rotor:
+- 3OX.SPIN → rotary encoder of Core{Axis}; walks Warden → Tape → Pulse.
+- Bundle spec: .3ox/(3)Rules/exc/axis/3OX.SPIN.spec  (hex 0x003, slot k00)
+- The rotor is the clock — Pulse edges arrive only on spin, not on a wall-clock tick.
+
 
 
 ─────────────────────────────────────────────────────────────────

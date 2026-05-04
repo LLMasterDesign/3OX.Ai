@@ -92,6 +92,24 @@ inside that chamber, e.g. `3OX.Core{Axis}`, not `3OX.Axis`.
 | Tape | memory, encoding, digest trail | Lisp |
 | Pulse | liveness, daemon state, execution flow | Elixir |
 
+#### Rotor: `3OX.SPIN`
+
+The rotary encoder of `Core{Axis}` is **`3OX.SPIN`**. One spin = one
+walk of `Warden → Tape → Pulse`. It is the system's only clock —
+edges arrive on spin, never on a wall-clock tick.
+
+| Field | Value |
+|-------|-------|
+| Spec | `.3ox/(3)Rules/exc/axis/3OX.SPIN.spec` |
+| Hex | `0x003` |
+| Slot | `k00` |
+| Bundle title | `3OX.SPIN.bundle` (in `hex.index.json`) |
+| Edge sources | operator CLI · systemd `path` units · TPR `merge.sh` tail |
+
+`3OX.SPIN` was previously labelled `TPW.SPIN` and lived under
+`.3ox/(3)Rules/exc/tpw/`. Renamed to match the canonical `Core{Axis}`
+hierarchy in this PR's sibling `3ox-spin-rename` PR.
+
 ### Encode[6]
 
 | Slot | Duty |

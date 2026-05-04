@@ -24,5 +24,12 @@ ring    = ["Intake", "Validate", "Encode", "Route", "Execute", "Observe", "Diges
 system  = ["Meta", "Tron", "Chmod", "Daemon", "Cage", "Route", "Hash", "Vault", "Patch"]
 slots   = 27
 
+[core.rotor]
+name = "3OX.SPIN"
+walks = "Core{Axis}"
+spec  = ".3ox/(3)Rules/exc/axis/3OX.SPIN.spec"
+hex   = "0x003"
+slot  = "k00"
+
 [drift]
 known = []
