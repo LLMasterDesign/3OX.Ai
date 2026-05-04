@@ -1,0 +1,11 @@
+{
+  "_doc": "Optional override map. resolve_topic order: to_agent → classified_key → topics_hint[0] → to_agent.",
+  "to_agent": {
+    "money_bagz": "bills",
+    "vso_agent":  "va"
+  },
+  "classified_key": {
+    "budget":     "bills",
+    "disability": "va"
+  }
+}

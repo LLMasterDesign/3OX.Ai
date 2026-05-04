@@ -1,0 +1,12 @@
+{
+  "_doc": "TPR handoff agents registry — copy to /etc/tpr/agents.json on the VPS, edit per-agent handoff_dir paths.",
+  "runtime_root": "/root/!CMD.VPS/TelePromptR/var",
+  "route_map": "/root/!CMD.VPS/TelePromptR/route.map.json",
+  "stale_after_hours": 72,
+  "agents": [
+    {
+      "name": "3OX.Sidekik",
+      "handoff_dir": "/root/_TRON/Agents/Sidekik/!0UT.SIDEKIK/tpr/handoff"
+    }
+  ]
+}
