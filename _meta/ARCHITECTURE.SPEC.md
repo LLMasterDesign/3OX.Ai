@@ -2,14 +2,31 @@
 ▛//▞▞ ⟦⎊⟧ :: ⧗-26.124 // 3OX.AI :: FULL ARCHITECTURE FREEZE ▞▞
 
 ```elixir
-/// status:[DRAFT] ver:[1.0.0] created:[26.05.04]
+/// status:[ACTIVE] ver:[1.0.1] created:[26.05.04]
 /// doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
 /// 3OX.AI full architecture freeze — captured verbatim from Lucius's dictation
 ```
 
-> **Status note (added by repo, not by author):** This is the verbatim spec
-> as dictated by Lucius. Three open conflicts with prior canon need ruling
-> before this is promoted from DRAFT to ACTIVE. See
+> **Resolution log (added by repo, not by author):** This spec was admitted
+> to canon on 26.05.04 after Lucius ruled on the three open conflicts:
+>
+> - **Q1 — Daemons vs slots:** Daemons are runtime process classes; κ27 slots
+>   are identity authorities. Two different planes. κ00–k02 (Warden, Tape,
+>   Pulse) are the *scripts* by which TPW (now `3OX.SPIN`) makes the rotor
+>   run; the daemons of the same name are how those slots stay alive at boot
+>   even when the rotor isn't yet turning. Warden, Tape, and Pulse were the
+>   first three daemons; Queue and Worker were added later. The full
+>   Scheduler/Queue/Worker interaction model is **not yet locked** — see
+>   `ARCHITECTURE.RECONCILIATION.md` §Future work.
+> - **Q2 — Language triad:** BEAM (Elixir) for Tape; Lisp for Supervisor.
+>   The earlier "Core Research Note" assignment of Lisp→Tape is superseded
+>   and deprecated in `_meta/NAMING.CONTRACT.toml [core.deprecated]`.
+> - **Q3 — `brain.rs` vs `brains.rs`:** Repo wins. `brains.rs` (plural) is
+>   correct and stays.
+> - **Naming hygiene:** "Supervisor" supersedes the older title "Gatekeeper"
+>   recorded in `[core.deprecated]` for searchability.
+>
+> The full reconciliation lives in
 > [`_meta/ARCHITECTURE.RECONCILIATION.md`](ARCHITECTURE.RECONCILIATION.md).
 
 ---

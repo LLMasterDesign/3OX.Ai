@@ -2,9 +2,9 @@
 ▛//▞▞ ⟦⎊⟧ :: ⧗-26.124 // _META :: ARCHITECTURE.RECONCILIATION ▞▞
 
 ```elixir
-/// status:[DRAFT] ver:[0.1.0] created:[26.05.04]
+/// status:[ACTIVE] ver:[1.0.0] created:[26.05.04]
 /// doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
-/// Reconciliation between ARCHITECTURE.SPEC.md and existing canon (κ27, Warden 12, .vec3 7-surfaces, edge-only, Box₃, 3OX.SPIN)
+/// Reconciliation between ARCHITECTURE.SPEC.md and existing canon — all three conflicts resolved
 ```
 
 # Reconciliation: Architecture Freeze ↔ Existing Canon
@@ -54,88 +54,70 @@ silently overwritten.
 
 ---
 
-## Open conflicts (awaiting Lucius ruling)
+## Resolved conflicts
 
-### Conflict 1 — "6 daemons" vs κ27 + missing Scheduler
+All three open conflicts ruled on by Lucius on 26.05.04. Each resolution is recorded below with quoted reasoning so the decision is auditable.
 
-**The problem.** §3 lists six daemons: Supervisor, Warden, Queue, Worker, Tape, Pulse. But:
-- Warden (k00), Tape (k01), Pulse (k02) are `Core{Axis}` slots — not `Core{System}` daemons.
-- Supervisor maps cleanly to `Core{System}.Daemon` (k21).
-- **Queue and Worker aren't in κ27 at all.**
-- §6 + §18 reference a Scheduler that's *not* in §3.
+### Conflict 1 — "6 daemons" vs κ27 + missing Scheduler — RESOLVED ✅
 
-So either κ27 is wrong, or "daemon" means something different from "slot."
+> Lucius: *"Yes daemon are seperate. κ00–02 are the scripts for how TPW makes everything run. While their daemons keep it all functional at first. I believe they need daemons for aliveness even if the rotary is working… they were the first 3 daemons and Queue and Worker came next. Supervisor was Gatekeeper but we don't use that title anymore."*
 
-**Proposed reading (consistent with PR #34 place-vs-authority duality):**
+**Ruling:** Daemons are **runtime process classes**. Slots in κ27 are **identity authorities**. They are different planes. The κ00–k02 slot specs are the *scripts* by which the rotor runs (3OX.SPIN walks Warden → Tape → Pulse). The daemons of the same name are how those slots stay alive *at boot, before the rotor turns*. The two are complementary: slot governs meaning, daemon supplies aliveness.
 
-> Daemons are **runtime process classes**. Slots are **identity authorities**. They are different planes.
+**History:** Warden, Tape, and Pulse were the first three daemons. Queue and Worker were added later. The Supervisor daemon was originally called **Gatekeeper** — that title is deprecated and recorded in `_meta/NAMING.CONTRACT.toml [core.deprecated]`.
 
-Daemons live at `.vec3/proc/{workers,queue,kernel,…}` (place). Slots in κ27 *govern* what daemons may do (authority). Mapping:
+**Authority mapping (resolved):**
 
 | Daemon (process class) | Lives at (`.vec3/proc/`) | κ27 authority |
 |---|---|---|
-| Supervisor | `proc/self/`, `proc/kernel/` | `Core{System}.Daemon` (k21) |
+| Supervisor *(formerly Gatekeeper)* | `proc/self/`, `proc/kernel/` | `Core{System}.Daemon` (k21) |
 | Warden | (in-process gate, no proc dir) | `Core{Axis}.Warden` (k00) |
 | Queue | `proc/queue/` | `Core{Ring}.Intake` (k09) + `Core{Ring}.Route` (k12) |
 | Worker | `proc/workers/` | `Core{Ring}.Execute` (k13) |
 | Tape | (writer, no proc dir) | `Core{Axis}.Tape` (k01) |
 | Pulse | (observer, no proc dir) | `Core{Axis}.Pulse` (k02) |
-| **Scheduler** | (system-level, `_TRON/systemd/`) | `Core{Axis}.Pulse` (k02) — emits the rotor's CLOCK_EVENT |
 
-Under this reading: §3's "6 daemons" is correct as a *cube-runtime* count, and Scheduler is a 7th process class living one tier up at `_TRON/systemd/` (since it's machine-scale, not cube-scale). §3 should be amended to read "6 cube daemons + Scheduler at system tier" so §6/§18 don't read as orphans.
-
-**Alternatives:**
-- (b) Promote Queue and Worker into κ27 as new System slots (would expand to k27/k28, breaking the locked 27-slot chamber — **not viable**).
-- (c) Fold Scheduler into Supervisor (cleanest if no 7th daemon, but then §18 hard-line "only Scheduler may emit CLOCK_EVENT" needs a rewrite).
-
-**Status:** OPEN — awaiting Lucius ruling. Recommendation: (a).
+**Open / future work** (Lucius: *"I'm not sure how scheduler / worker / queue all work together yet"*):
+- The Scheduler daemon mentioned in §6/§18 (the only emitter of `CLOCK_EVENT`) does **not yet** have a locked relationship to Queue and Worker. Its physical location, slot governance, and whether it lives at the cube tier or the system tier (`_TRON/systemd/`) are deferred until Lucius designs that interaction. This is not a bug in the spec — it is a deliberate "to be designed" surface.
+- When that interaction is locked, a follow-up PR will: (a) add Scheduler to the daemon table above, (b) update `_meta/EVENT.SOURCES.md` (queued in the New Concepts list, item N4), (c) decide whether `CLOCK_EVENT` enters at `Core{Axis}.Pulse` (k02) or somewhere else.
 
 ---
 
-### Conflict 2 — Language triad
+### Conflict 2 — Language triad — RESOLVED ✅
 
-**The problem.** Two of Lucius's messages give different language assignments for `Core{Axis}`:
+> Lucius: *"BEAM is right for TAPe and lisp for Supervisor."*
 
-| Slot | 3OX.Core{} Research Note (earlier dictation) | Architecture Freeze §10 (this spec) |
-|---|---|---|
-| Warden (k00) | Rust | Rust ✓ same |
-| Tape (k01) | **Lisp** | **Elixir** |
-| Pulse (k02) | Elixir | (not assigned; doc treats Pulse as JSONL stream surface) |
-| (cognition surface) | — | **Lisp** (Raven / entity cores, Supervisor-resident, Worker-invoked) |
-
-The earlier triad was "one language per Axis seat." The Freeze repositions Lisp from a runtime language for k01 Tape into a *cognition* surface owned by Supervisor (continuity) and Worker (invocation), and gives Tape to Elixir along with PRISM+.
-
-**Proposed reading (because it's actually internally consistent):**
-
-Elixir/BEAM is genuinely good at high-concurrency append-first streams (Tape) *and* hot transformation pipelines (PRISM+). Lisp's strengths — symbolic reasoning, hot-loadable forms — are wasted on receipt-writing but ideal for `.vec3/proc/agents/` entity cores. So the Freeze isn't a contradiction; it's a *promotion* of Lisp out of the data plane and into the cognition plane:
+**Ruling:** Architecture Freeze §10 supersedes the earlier "3OX.Core{} Research Note" triad. Final assignment:
 
 ```
-Warden  (k00) ← Rust          (compiled strict guards)
-Tape    (k01) ← Elixir        (BEAM append-first concurrency)
-Pulse   (k02) ← JSONL/Elixir  (telemetry stream surface)
-PRISM+        ← Elixir        (output shaping, snips at .vec3/lib/snips/)
-Raven cores   ← Lisp          (symbolic cognition; lives at .vec3/proc/agents/)
+Warden    (k00, daemon)    ← Rust          (compiled strict guards)
+Tape      (k01, daemon)    ← Elixir/BEAM   (append-first concurrency)
+Pulse     (k02, daemon)    ← Elixir/BEAM   (telemetry; JSONL on the wire, not authority)
+PRISM+    (output layer)   ← Elixir/BEAM   (output shaping, snips at .vec3/lib/snips/)
+Supervisor (k21 daemon)    ← Lisp          (continuity host; hot-loadable cognition forms)
+Raven cores / entity cores ← Lisp          (symbolic substrate, lives at .vec3/proc/agents/)
+Worker    (job execution)  ← Lisp invoker  (hot-loads forms into Supervisor's host)
 ```
 
-If accepted, this gets recorded explicitly in `_meta/NAMING.CONTRACT.toml [core.deprecated]` so the supersession is auditable.
+This is a *promotion* of Lisp out of the data plane and into the cognition / continuity plane. Tape moves to Elixir alongside PRISM+ because BEAM is the right substrate for high-concurrency append-first streams.
 
-**Status:** OPEN — awaiting Lucius ruling. Recommendation: accept the Freeze.
+**Recorded in:** `_meta/NAMING.CONTRACT.toml [core.deprecated]` — the earlier Lisp→Tape assignment is now an auditable deprecation entry.
 
 ---
 
-### Conflict 3 — `brain.rs` vs `brains.rs`
+### Conflict 3 — `brain.rs` vs `brains.rs` — RESOLVED ✅
 
-§8.2 L2 lists `brain.rs` (singular). Repo uses `brains.rs` (plural, locked in PR #6 since March):
+> Lucius: *"Brains was correct my bad."*
 
-```
-.3ox/(2)Brains/brains.rs
-Money.Bagz/.3ox/(2)Brains/brains.rs
-3OX Agents/Sidekik/.3ox/(2)Brains/brains.rs
-```
+**Ruling:** Repo wins. `brains.rs` (plural) stays. The Architecture Spec is edited to match the repo. No file moves required.
 
-**Proposed reading:** doc typo. Keep repo as `brains.rs`.
+---
 
-**Status:** OPEN — awaiting Lucius ruling. Recommendation: doc edit, not repo rename.
+## Naming hygiene applied alongside the rulings
+
+In the course of Q1, Lucius mentioned: *"Supervisor was Gatekeeper but we don't use that title anymore."* Recorded explicitly:
+
+- `_meta/NAMING.CONTRACT.toml [core.deprecated]` gains `"Gatekeeper" = "renamed to Supervisor; lives at Core{System}.Daemon (k21)"` so future writers don't reach for the old title.
 
 ---
 
@@ -169,11 +151,11 @@ These sections of the spec confirm and reinforce existing canon. No PR needed �
 
 ## Process going forward
 
-1. **This PR (#TBD): DRAFT.** Captures the spec verbatim + this reconciliation. Does not alter any other repo file. Does not promote the spec to ACTIVE.
-2. **Lucius rules on Conflicts 1, 2, 3.**
-3. **Resolution PR:** edit `ARCHITECTURE.SPEC.md` to the resolved form, lift DRAFT mark, apply resolutions where they touch other files (e.g. update `NAMING.CONTRACT.toml [core.deprecated]` for Lisp triad change, formalize the daemon-vs-slot duality in `VEC3.SURFACES.md`). Merge.
-4. **Eight follow-up PRs** (one per row in "New concepts" table) — small, scoped, each can be reviewed independently.
+1. ~~Capture the spec verbatim + dissect.~~ ✅ done in PR #35.
+2. ~~Lucius rules on Conflicts 1, 2, 3.~~ ✅ done 26.05.04. All three resolved above.
+3. **This commit:** lifts the DRAFT mark on `ARCHITECTURE.SPEC.md`, records resolutions, applies the auditable supersessions in `_meta/NAMING.CONTRACT.toml [core.deprecated]` (Lisp→Tape and Gatekeeper→Supervisor).
+4. **Eight follow-up PRs** (one per row in "New concepts" table) — small, scoped, each can be reviewed independently. Of these, **N4 (Event sources)** carries an explicit dependency on Lucius's future Scheduler/Queue/Worker design ruling, so it should land last in the sequence.
 
-The spec stays DRAFT until step 3.
+The spec is now `ACTIVE`. The Scheduler/Queue/Worker interaction model remains the only design surface explicitly marked "to be designed."
 
 :: ∎
