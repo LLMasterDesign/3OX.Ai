@@ -1,0 +1,22 @@
+# status:[DRAFT] ver:[0.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# Raven Suite supervisor for 3OX.Sidekik (CMD.VPS / WSL).
+# Install: copy to /etc/systemd/system/raven.service, edit paths, daemon-reload.
+[Unit]
+Description=Raven Suite supervisor (3OX.Sidekik)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/_TRON/Agents/Sidekik
+ExecStart=/usr/bin/env ruby raven.rb tick
+Restart=always
+RestartSec=5
+Environment=RAVEN_INTERVAL=5
+Environment=SIDEKIK_OPERATOR=lucius
+StandardOutput=append:/root/_TRON/Agents/Sidekik/.3ox/(6)Pulse/runtime/logs/raven.log
+StandardError=append:/root/_TRON/Agents/Sidekik/.3ox/(6)Pulse/runtime/logs/raven.log
+
+[Install]
+WantedBy=multi-user.target
