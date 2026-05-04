@@ -56,14 +56,14 @@ _TRON/systemd/
 
 ## Why no timer
 
-The rotor **is** the clock. TPW.SPIN (Warden → Tape → Pulse, hex
-`0x003`, slot `k00`) is the rotary encoder — every spin is an edge,
-and the Pulse axis (`hex:0x002`, k02) emits aliveness on that edge.
-Polling on a wall-clock tick would be a parallel clock fighting the
-rotor. So the consumer only runs when:
+The rotor **is** the clock. **3OX.SPIN** (hex `0x003`, slot `k00`) is
+the rotary encoder; it walks **Core{Axis}** — Warden → Tape → Pulse —
+and every spin is an edge. The Pulse axis (`hex:0x002`, k02) emits
+aliveness on that edge. Polling on a wall-clock tick would be a
+parallel clock fighting the rotor. So the consumer only runs when:
 
 1. **An agent writes a handoff** (filesystem edge → systemd `path` unit), or
-2. **TelePromptR's rotor itself invokes it** at TPW.SPIN edge (e.g. via the existing `merge.sh` tail).
+2. **TelePromptR's rotor itself invokes it** at 3OX.SPIN edge (e.g. via the existing `merge.sh` tail).
 
 That's it. No background daemons, no timers, no polling.
 

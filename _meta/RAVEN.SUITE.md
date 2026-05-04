@@ -87,7 +87,7 @@ cd "3OX Agents/Sidekik"
 
 ## Why no clocks
 
-The rotor is the clock. TPW.SPIN (Warden → Tape → Pulse, hex `0x003`,
+The rotor is the clock. **3OX.SPIN** walks **Core{Axis}** (Warden → Tape → Pulse, hex `0x003`,
 slot `k00`) is the rotary encoder; the Pulse axis (k02, hex `0x002`)
 emits the aliveness edge, and Ring.C.C4 codifies the rule literally as
 `law{event_driven_not_polling}`. So nothing in this Suite loops, sleeps,
@@ -97,7 +97,7 @@ or polls. Edges arrive from one of three places:
 - **Filesystem edge** — systemd path-unit `raven.path` watches
   `.raven/inbox` and fires `raven.service` (Type=oneshot) per change.
 - **Rotor tail** — TelePromptR's `merge.sh` invokes the cube at
-  TPW.SPIN edge as part of its existing per-agent fan-out.
+  3OX.SPIN edge as part of its existing per-agent fan-out.
 
 There is no `raven up` / `raven down`, no PID file, no `RAVEN_INTERVAL`,
 no background process to keep alive.
@@ -132,7 +132,7 @@ being assembled. Below is the honest verdict per layer.
 | **Sidekik scripts** | ✅ MVP | `triage`, `dispatch`, `note`, `status`, `teleprompt` round-trip works locally (verified on this branch). |
 | **TPR (TelePromptR) integration** | ✅ wired | `scripts/teleprompt.rb` emits `TPR.SPEAKER.MESH.json` + `TPR.ROUTE.MAP.json`. `sync-vps.sh` mirrors Money.Bagz pattern: rsync → `merge.sh` → `systemctl restart speaker-mesh`. Telegram chat/topic IDs in `(5)Links/routes.json` are blank until Lucius binds Sidekik to a topic. |
 | **Sub-agent fan-out** | ✅ via TPR handoff | `dispatch.rb` writes a `tpr.handoff` receipt under `!0UT.SIDEKIK/tpr/handoff/` for each non-self route. TPR consumes the handoff and re-routes to the sub-agent's topic; speaker-mesh handles inference. No agent-to-agent shell-out. |
-| **EXC boundary surfaces** | 🟡 research | `routes.json → exc_boundary` documents the contract; concrete `.exc/.kdl/.exs` files live under `.3ox/(3)Rules/exc/` for TPW + Ring A. Encoder validates line-1 chip; semantic round-trip is not yet enforced in CI. |
+| **EXC boundary surfaces** | 🟡 research | `routes.json → exc_boundary` documents the contract; concrete `.exc/.kdl/.exs` files live under `.3ox/(3)Rules/exc/` for Core{Axis} (3OX.SPIN) + Ring A. Encoder validates line-1 chip; semantic round-trip is not yet enforced in CI. |
 | **3OX.BUILDER (`brain.exe` compile path)** | ✅ green | PR #26 merged: cargo workspace builds + tests on stable rustc, CI workflow added. |
 
 ### What's missing to call this "production daily-driver"

@@ -3,7 +3,7 @@
 # TPR handoff consumer (edge-triggered).
 #
 # Triggered by tpr-handoff.path when an agent writes a handoff JSON, or
-# directly by TelePromptR's rotor at TPW.SPIN edge. Type=oneshot so each
+# directly by TelePromptR's rotor at 3OX.SPIN edge. Type=oneshot so each
 # rotor edge maps to exactly one drain pass — no background timers.
 [Unit]
 Description=TPR handoff consumer (edge-triggered, oneshot per rotor edge)

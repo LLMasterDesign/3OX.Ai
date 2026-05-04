@@ -3,9 +3,9 @@
 # doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
 # sidekik — friendly CLI front for 3OX.Sidekik (Raven Suite).
 #
-# Edge-only. NO daemon. NO polling. The rotor is the clock — TPW.SPIN
-# (hex 0x003 / k00) drives Pulse (k02) edges. Each command here
-# triggers exactly one edge.
+# Edge-only. NO daemon. NO polling. The rotor is the clock — 3OX.SPIN
+# (hex 0x003 / k00) walks Core{Axis} (Warden → Tape → Pulse) and
+# drives Pulse (k02) edges. Each command here triggers exactly one edge.
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PULSE="$HERE/.3ox/(6)Pulse/run.rb"
@@ -32,7 +32,7 @@ sidekik — Raven Suite CLI (edge-only, no clocks)
   tick | edge | once    fire one rotor edge (dispatch + status)
   alive                 local Box-aliveness check
 
-The rotor (TPW.SPIN) is the clock. Background supervisors and timers
+The rotor (3OX.SPIN, walking Core{Axis}) is the clock. Background supervisors and timers
 were removed — every action is one edge. Wire automatic edges via the
 systemd path-unit pair: raven.path (PathChanged=.raven/inbox) →
 raven.service (Type=oneshot).

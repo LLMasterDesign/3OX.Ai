@@ -5,9 +5,9 @@
 #
 # Each invocation = one rotor edge. Drains the inbox, writes status,
 # exits. NO loops. NO sleep. NO daemon. NO PID files. The rotor is
-# the clock — TPW.SPIN (hex 0x003 / k00) drives Pulse (k02) edges,
-# and either the systemd path-unit on .raven/inbox or the operator
-# CLI invokes us per edge.
+# the clock — 3OX.SPIN (hex 0x003 / k00) walks Core{Axis} (Warden →
+# Tape → Pulse) and drives Pulse (k02) edges. Either the systemd
+# path-unit on .raven/inbox or the operator CLI invokes us per edge.
 
 require 'json'
 require 'time'

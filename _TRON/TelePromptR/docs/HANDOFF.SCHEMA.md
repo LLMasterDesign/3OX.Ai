@@ -71,7 +71,7 @@ can collapse the lifecycle.
 
 ## Consumer behaviour
 
-The consumer rides the rotor — **one invocation = one TPW.SPIN edge**.
+The consumer rides the rotor — **one invocation = one 3OX.SPIN edge** (Core{Axis} walks Warden → Tape → Pulse).
 No timers. The rotor (or a filesystem `path` unit on the handoff dir)
 is what triggers the drain. See README §"Why no timer".
 
