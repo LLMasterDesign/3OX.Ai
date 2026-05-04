@@ -6,11 +6,17 @@
     "banner_form": "::0xHHH::",
     "key_regex": "^0x[0-9A-Fa-f]{3}$",
     "leading_zero_pad": true,
-    "range_inclusive": ["0x000", "0xFFF"]
+    "range_inclusive": [
+      "0x000",
+      "0xFFF"
+    ]
   },
   "validation": {
     "role": "single_source_of_truth_for_chip_claims",
-    "chip_row_minimal": ["code", "owner"],
+    "chip_row_minimal": [
+      "code",
+      "owner"
+    ],
     "metadata_separate_from_chip": true,
     "rule_no_silent_overwrite": "if_entries_key_exists_new_claim_must_match_owner_or_use_explicit_handoff",
     "note": "unlisted_keys_are_unclaimed_real_time_check_chip_against_this_object"
@@ -18,7 +24,12 @@
   "exc_boundary": {
     "handoff_version": "research-v1",
     "relation_to_chip": "line_1_hex_is_address_only_exc_metadata_lives_in_entries_or_exc_files",
-    "optional_entry_fields": ["exc_id", "exc_surfaces", "validator_version", "impl_version"],
+    "optional_entry_fields": [
+      "exc_id",
+      "exc_surfaces",
+      "validator_version",
+      "impl_version"
+    ],
     "exc_surfaces_shape": {
       "exc": "path_or_uri_to_canonical_exc",
       "kdl": "path_to_derived_kdl",
@@ -26,6 +37,47 @@
     }
   },
   "entries": {
+    "0x000": {
+      "code": "0x000",
+      "owner": "3OX.AI",
+      "title": "TPW.WARDEN.spec",
+      "slot": "k00",
+      "route_key": "core.axis.warden",
+      "files": [
+        ".3ox/(3)Rules/exc/tpw/Axis.Warden.spec"
+      ]
+    },
+    "0x001": {
+      "code": "0x001",
+      "owner": "3OX.AI",
+      "title": "TPW.TAPE.spec",
+      "slot": "k01",
+      "route_key": "core.axis.tape",
+      "files": [
+        ".3ox/(3)Rules/exc/tpw/Axis.Tape.spec"
+      ]
+    },
+    "0x002": {
+      "code": "0x002",
+      "owner": "3OX.AI",
+      "title": "TPW.PULSE.spec",
+      "slot": "k02",
+      "route_key": "core.axis.pulse",
+      "files": [
+        ".3ox/(3)Rules/exc/tpw/Axis.Pulse.spec"
+      ]
+    },
+    "0x003": {
+      "code": "0x003",
+      "owner": "3OX.AI",
+      "title": "TPW.SPIN.bundle",
+      "slot": "k00",
+      "route_key": "core.axis.warden",
+      "files": [
+        ".3ox/(3)Rules/exc/tpw/TPW.SPIN.spec"
+      ],
+      "note": "composite L1 rotor doc; primary slot k00"
+    },
     "0x02A": {
       "code": "0x02A",
       "owner": "3OX.AI",

@@ -1,0 +1,24 @@
+# Encoder validation — hex index + Gensing line-1 chips
+name: encoder
+
+on:
+  push:
+    branches: [main, '3ox.agent/**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate hex.index.json
+        run: python3 scripts/encoder_validate.py
+
+      - name: TPW Axis Gensing line-1 chips (0x000-0x003)
+        run: |
+          python3 scripts/encoder_validate.py --doc '.3ox/(3)Rules/exc/tpw/Axis.Warden.spec'
+          python3 scripts/encoder_validate.py --doc '.3ox/(3)Rules/exc/tpw/Axis.Tape.spec'
+          python3 scripts/encoder_validate.py --doc '.3ox/(3)Rules/exc/tpw/Axis.Pulse.spec'
+          python3 scripts/encoder_validate.py --doc '.3ox/(3)Rules/exc/tpw/TPW.SPIN.spec'
