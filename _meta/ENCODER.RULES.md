@@ -21,4 +21,12 @@ CI: `python3 scripts/warden_laws_validate.py` · `python3 scripts/core_slots_val
 
 Full `summary` and `violation` strings live in TOML only (single source of truth).
 
+## Project Orion (memory loop)
+
+- **Seat:** **ENCODE.MEMORY** → **`k07`** (same κ as Ring C **C4** event contract; Orion is an additional memory-pipeline lens).
+- **Hex band:** **`0x140`** bundle · **`0x141`–`0x147`** seven slots (`O1`…`O7`).
+- **Pipeline:** `RAW → TRIAD → GRAPH → RETRIEVE → RESPOND → RECEIPT → LOOP` — **TRIAD** = **core belt of 3 beacons** (compress after bind, before graph).
+- **Specs:** `.3ox/(3)Rules/exc/orion/*.spec` · **Registry:** `routes.json` → `gensing.orion` (steps 1–9 folded into seven slots + bundle).
+- **Law:** `slot.index.kdl` → **`orion.memory`**.
+
 :: ∎

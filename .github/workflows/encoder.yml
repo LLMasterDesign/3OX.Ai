@@ -46,6 +46,14 @@ jobs:
       RC_C6: .3ox/(3)Rules/exc/ring-c/Ring.C.C6.spec
       RC_C7: .3ox/(3)Rules/exc/ring-c/Ring.C.C7.spec
       RC_C8: .3ox/(3)Rules/exc/ring-c/Ring.C.C8.spec
+      OR_BUNDLE: .3ox/(3)Rules/exc/orion/Orion.BUNDLE.spec
+      OR_O1: .3ox/(3)Rules/exc/orion/Orion.O1.spec
+      OR_O2: .3ox/(3)Rules/exc/orion/Orion.O2.spec
+      OR_O3: .3ox/(3)Rules/exc/orion/Orion.O3.spec
+      OR_O4: .3ox/(3)Rules/exc/orion/Orion.O4.spec
+      OR_O5: .3ox/(3)Rules/exc/orion/Orion.O5.spec
+      OR_O6: .3ox/(3)Rules/exc/orion/Orion.O6.spec
+      OR_O7: .3ox/(3)Rules/exc/orion/Orion.O7.spec
     steps:
       - uses: actions/checkout@v4
 
@@ -103,3 +111,14 @@ jobs:
           python3 scripts/encoder_validate.py --doc "$RC_C6"
           python3 scripts/encoder_validate.py --doc "$RC_C7"
           python3 scripts/encoder_validate.py --doc "$RC_C8"
+
+      - name: Orion memory loop Gensing line-1 chips (0x140-0x147)
+        run: |
+          python3 scripts/encoder_validate.py --doc "$OR_BUNDLE"
+          python3 scripts/encoder_validate.py --doc "$OR_O1"
+          python3 scripts/encoder_validate.py --doc "$OR_O2"
+          python3 scripts/encoder_validate.py --doc "$OR_O3"
+          python3 scripts/encoder_validate.py --doc "$OR_O4"
+          python3 scripts/encoder_validate.py --doc "$OR_O5"
+          python3 scripts/encoder_validate.py --doc "$OR_O6"
+          python3 scripts/encoder_validate.py --doc "$OR_O7"

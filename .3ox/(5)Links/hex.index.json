@@ -420,6 +420,95 @@
       "ring_c": "C8",
       "note": "secondary on k08 with C5"
     },
+    "0x140": {
+      "code": "0x140",
+      "owner": "3OX.AI",
+      "title": "ORION.bundle",
+      "slot": "k07",
+      "route_key": "core.encode.memory",
+      "files": [
+        ".3ox/(3)Rules/exc/orion/Orion.BUNDLE.spec"
+      ],
+      "orion": "bundle",
+      "note": "Orion O1..O7 memory loop; primary seat k07"
+    },
+    "0x141": {
+      "code": "0x141",
+      "owner": "3OX.AI",
+      "title": "ORION.O1",
+      "slot": "k07",
+      "route_key": "core.encode.memory",
+      "files": [
+        ".3ox/(3)Rules/exc/orion/Orion.O1.spec"
+      ],
+      "orion": "O1"
+    },
+    "0x142": {
+      "code": "0x142",
+      "owner": "3OX.AI",
+      "title": "ORION.O2",
+      "slot": "k07",
+      "route_key": "core.encode.memory",
+      "files": [
+        ".3ox/(3)Rules/exc/orion/Orion.O2.spec"
+      ],
+      "orion": "O2"
+    },
+    "0x143": {
+      "code": "0x143",
+      "owner": "3OX.AI",
+      "title": "ORION.O3",
+      "slot": "k07",
+      "route_key": "core.encode.memory",
+      "files": [
+        ".3ox/(3)Rules/exc/orion/Orion.O3.spec"
+      ],
+      "orion": "O3"
+    },
+    "0x144": {
+      "code": "0x144",
+      "owner": "3OX.AI",
+      "title": "ORION.O4",
+      "slot": "k07",
+      "route_key": "core.encode.memory",
+      "files": [
+        ".3ox/(3)Rules/exc/orion/Orion.O4.spec"
+      ],
+      "orion": "O4"
+    },
+    "0x145": {
+      "code": "0x145",
+      "owner": "3OX.AI",
+      "title": "ORION.O5",
+      "slot": "k07",
+      "route_key": "core.encode.memory",
+      "files": [
+        ".3ox/(3)Rules/exc/orion/Orion.O5.spec"
+      ],
+      "orion": "O5"
+    },
+    "0x146": {
+      "code": "0x146",
+      "owner": "3OX.AI",
+      "title": "ORION.O6",
+      "slot": "k07",
+      "route_key": "core.encode.memory",
+      "files": [
+        ".3ox/(3)Rules/exc/orion/Orion.O6.spec"
+      ],
+      "orion": "O6"
+    },
+    "0x147": {
+      "code": "0x147",
+      "owner": "3OX.AI",
+      "title": "ORION.O7",
+      "slot": "k07",
+      "route_key": "core.encode.memory",
+      "files": [
+        ".3ox/(3)Rules/exc/orion/Orion.O7.spec"
+      ],
+      "orion": "O7"
+    },
     "0x02A": {
       "code": "0x02A",
       "owner": "3OX.AI",

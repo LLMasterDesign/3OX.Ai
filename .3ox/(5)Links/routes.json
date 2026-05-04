@@ -177,6 +177,28 @@
     },
     "markers": {
       "exc_cell": "\u03be [EXC] ::"
+    },
+    "orion": {
+      "pipeline": "RAW \u2192 TRIAD \u2192 GRAPH \u2192 RETRIEVE \u2192 RESPOND \u2192 RECEIPT \u2192 LOOP",
+      "belt": "TRIAD = core belt of 3 beacons (compress bound context before graph)",
+      "seat": "ENCODE.MEMORY",
+      "slot": "k07",
+      "hex_range": [
+        "0x140",
+        "0x147"
+      ],
+      "steps": [
+        "1.detect_signal",
+        "2.bind_context",
+        "3.compress_triad",
+        "4.link_graph",
+        "5.score_relevance",
+        "6.retrieve",
+        "7.generate_output",
+        "8.write_receipt",
+        "9.reinforce_or_decay"
+      ],
+      "note": "Nine micro-steps fold into seven Gensing slots; TRIAD is the 3-beacon belt."
     }
   },
   "slot_index": {
@@ -310,9 +332,17 @@
         "tape.jsonl",
         ".3ox/(3)Rules/exc/ring-c/Ring.C.C4.spec",
         "hex:0x135",
-        "ring_c:C4"
+        "ring_c:C4",
+        ".3ox/(3)Rules/exc/orion/Orion.BUNDLE.spec",
+        "hex:0x140",
+        ".3ox/(3)Rules/exc/orion/Orion.O1.spec",
+        "hex:0x141",
+        ".3ox/(3)Rules/exc/orion/Orion.O7.spec",
+        "hex:0x147",
+        "orion:pipeline"
       ],
-      "ring_c": "C4.EVENT.CONTRACT"
+      "ring_c": "C4.EVENT.CONTRACT",
+      "orion": "O1..O7.memory.loop"
     },
     "k08": {
       "name": "ENCODE.SEAL",
@@ -687,7 +717,15 @@
       "0x137": "k05",
       "0x138": "k06",
       "0x139": "k08",
-      "0x02A": "E042"
+      "0x02A": "E042",
+      "0x140": "k07",
+      "0x141": "k07",
+      "0x142": "k07",
+      "0x143": "k07",
+      "0x144": "k07",
+      "0x145": "k07",
+      "0x146": "k07",
+      "0x147": "k07"
     },
     "hex_note": "only_codes_listed_in_hex_index_json_entries_may_appear_claim_new_rows_before_new_map_keys"
   },
