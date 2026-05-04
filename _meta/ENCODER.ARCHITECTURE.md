@@ -68,6 +68,8 @@ flowchart TB
 | **Core{Ring}** | Intake … Recover | encoder layers **0–9** as the operational ring |
 | **Core{System}** | Meta … Patch (Anchor 2 / Control 4 / Seal 3) | `_meta`, `_TRON`, policy, daemon, cage, links, hash policy, vault, patch |
 
+- **Ring.A (kernel lane A0–A8):** `.3ox/(3)Rules/exc/ring-a/*.spec` — chips **`0x111`–`0x119`** map to **`k09`–`k17`** (Core{Ring}); bundle index **`0x110`** / `Ring.A.BUNDLE.spec`.
+
 **Larger ladder (policy):** 27 Core → 81 route ring → 216 ξ cube → **243** envelope (216+27) → **729** archive — see **`_meta/3OX.CORE.RESEARCH.md`**.
 
 **Proof only:** **Leo** (`E101`, `0x101`) is a **ξ** GlyphBit path to validate the encoder; it is **not** a **`κ`** Core seat.
