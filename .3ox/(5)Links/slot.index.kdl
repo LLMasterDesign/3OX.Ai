@@ -21,6 +21,9 @@ document {
   law "exc.validation" "boundary_checks_only_not_domain_execution_PASS_FALLBACK_FAIL_per_handoff"
 
   law "core.seats" "canonical_k00_k26_names_in_routes_json_slot_index_core_map"
+  law "ring.a" "Ring_A_specs_hex_0x111_to_0x119_bundle_0x110_maps_k09_k17"
+  law "ring.b" "Ring_B_specs_hex_0x121_to_0x129_bundle_0x120_maps_k18_k26"
+  law "ring.c" "Ring_C_specs_hex_0x131_to_0x139_bundle_0x130_maps_Encode_k03_k08"
 
   slot id=k00 class=kernel {
     name "AXIS.WARDEN"
@@ -31,6 +34,8 @@ document {
     name "SYSTEM.PATCH"
     note "System seal seat; see routes.json slot_index.k26"
   }
+
+  slot id=E042 class=entity {
     name "ETRIOS.CORE"
     route_key "etrios.core"
     note "example ξ slot; wire routes.json maps + tools.yml allowlist"
