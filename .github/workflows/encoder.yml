@@ -55,6 +55,9 @@ jobs:
       - name: Warden twelve laws (limits.toml)
         run: python3 scripts/warden_laws_validate.py
 
+      - name: 3OX.Core{} slot chamber (k00..k26)
+        run: python3 scripts/core_slots_validate.py
+
       - name: TPW Gensing line-1 chips (0x000-0x003)
         run: |
           python3 scripts/encoder_validate.py --doc "$TPW_WARDEN"

@@ -2,7 +2,7 @@
 
 Authoritative source: **`.3ox/(3)Rules/limits.toml`** → **`[warden]`**, **`[warden.field]`**, **`[[warden.law]]`** (12 rows).
 
-CI: `python3 scripts/warden_laws_validate.py`
+CI: `python3 scripts/warden_laws_validate.py` · `python3 scripts/core_slots_validate.py`
 
 | # | Code | Violation (summary) |
 |---|------|------------------------|
