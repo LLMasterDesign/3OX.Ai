@@ -1,7 +1,7 @@
 ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂ ::0x002::
-▛//▞▞ ⟦⎊⟧ :: ⧗-26.124 // 3OX :: TPW AXIS.PULSE ▞▞
+▛//▞▞ ⟦⎊⟧ :: ⧗-26.124 // 3OX :: Core{Axis} PULSE ▞▞
 ▛▞// Pulse :: signal.aliveness ▹
-//▞⋮⋮ ⟦⚙️⟧ :: [tpw] [k02] [κ.spec]
+//▞⋮⋮ ⟦⚙️⟧ :: [axis] [k02] [κ.spec]
 ⫸ 〔Ω002〕〔κk02〕
 
 ▛///▞ κ [EXC] :: AXIS.PULSE
