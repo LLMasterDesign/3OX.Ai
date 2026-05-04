@@ -28,6 +28,18 @@ path   = "/root/!CMD.VPS/BudgetR"
 status = "active"
 glyph  = "💰"
 
+[agents.sidekik]
+name     = "3OX.Sidekik"
+path     = "/root/_TRON/Agents/Sidekik"
+status   = "draft"
+glyph    = "🦅"
+suite    = "Raven"
+slot     = "E043"
+hex_chip = "0x02B"
+speaker  = "speaker-mesh"
+gateway  = "teleprompter"
+note     = "Talks to Telegram only via TPR. teleprompt emits TPR.SPEAKER.MESH.json + TPR.ROUTE.MAP.json."
+
 # ── Known Devices ────────────────────────────────────
 # Copy this file per device, update [device] and [paths]
 
