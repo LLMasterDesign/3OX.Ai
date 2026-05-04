@@ -189,11 +189,11 @@
       },
       "route_key": "core.axis.warden",
       "anchors": [
-        "TPW",
-        ".3ox/(3)Rules/exc/tpw/Axis.Warden.spec",
+        "3OX.SPIN",
+        ".3ox/(3)Rules/exc/axis/Axis.Warden.spec",
         "hex:0x000",
         "hex:0x003",
-        ".3ox/(3)Rules/exc/tpw/TPW.SPIN.spec"
+        ".3ox/(3)Rules/exc/axis/3OX.SPIN.spec"
       ]
     },
     "k01": {
@@ -205,7 +205,7 @@
       },
       "route_key": "core.axis.tape",
       "anchors": [
-        ".3ox/(3)Rules/exc/tpw/Axis.Tape.spec",
+        ".3ox/(3)Rules/exc/axis/Axis.Tape.spec",
         "hex:0x001"
       ]
     },
@@ -218,7 +218,7 @@
       },
       "route_key": "core.axis.pulse",
       "anchors": [
-        ".3ox/(3)Rules/exc/tpw/Axis.Pulse.spec",
+        ".3ox/(3)Rules/exc/axis/Axis.Pulse.spec",
         "hex:0x002"
       ]
     },
