@@ -83,6 +83,28 @@ Job completion, validation result, EXC outcome → **RECEIPT** → append **TAPE
 **Hex plane**  
 Line 1 chip `::0xHHH::` → **lookup** `hex.index.json` → optional cluster (`HIRO` / `ME` / core doc paths), `slot`, `route_key`.
 
+### 4.1 TPW rotor (Axis triad — continuous)
+
+**TPW** = **Warden ∧ Tape ∧ Pulse** as the **L1** motor: it **keeps spinning** (heartbeat, queue shape, limits file present) **without** a receipt every tick. Nothing is “wrong” if no user message arrives; the rotor is **alive**, not **finished**.
+
+- **Center 0/1 flip?** Not mandatory in schema. If you want a **single bit** of “phase” for diagrams, treat it as **parity of ticks** or a **`status.json` field** you own — it is **telemetry**, not a second truth source. The **stream-of-consciousness** picture fits **L1**: lots of small updates; **collapse** (L2 **RECEIPT**) only when something **must** be witnessed (job done, validation, seal).
+
+### 4.2 “5 ring” vs **Core{Ring}[9]** vs **18**
+
+These are **different counts**; same page if we name them:
+
+| Name | Count | What it is |
+|------|------:|------------|
+| **TPW + PiCO spine (encode lane)** | **3 + 4 = 7** | Axis triad **+** four PiCO moves (⊢⇨⟿▷) as the **tight** “turn intent into motion” spine (often drawn as one compact ring in diagrams). |
+| **Core{Ring}** (κ seats **k09–k17**) | **9** | **One** full operation sequence in **3OX.Core{}**: Intake → … → Recover — **authoritative** in `routes.json`. |
+| **18** | **9 + 9** | **Not** a third ring of seats: it is a **useful narrative** = run the **nine** once for **encode / draft**, then run the **nine** again for **commit / seal** (two **passes** over the same ring, two **receipts** if you want proof). **27** stays the **Core{} chamber** size. |
+
+So: **TPW powers the cheap continuous side**; the **nine** is the **discrete law path**; **“18”** = **two passes** of that path when you separate **draft** from **commit**, not **9+9 new slots**.
+
+### 4.3 Encoder → inference (pre-feed / automate before ask)
+
+The encoder **should** push a **thin stream** upstream of the model: **MAP-resolved** one-liners (hex row, slot, last receipt digest, pulse mode) so **inference** can stay **single-slot** and **low-token** — work is **prepared** before the user “asks,” without pretending the model already ran the full job.
+
 ## 5. Hashing
 
 - **Internal frame:** **xxh3** — fast local integrity (3OX Core research).  
