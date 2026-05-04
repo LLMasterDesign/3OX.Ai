@@ -6,6 +6,11 @@ tools:
   - name: inference
     type: llm
     enabled: true
+    serving: single_slot
+    hydrate_from:
+      - slot.receipt_tail
+      - slot.status_snapshot
+      - slot.runtime_log_slice
 
   - name: search
     type: read
@@ -16,3 +21,19 @@ tools:
     enabled: false
     runner: ruby
     entry: run.rb
+
+# Slot allowlists — skill Lion.Gate lives under (4)Toolkit/skills/Lion.Gate/
+slots:
+  k00:
+    allowed_tools: []
+    allowed_adapters: []
+    allowed_scopes: []
+  E042:
+    allowed_tools: [inference]
+    allowed_adapters: []
+    allowed_scopes: []
+  E101:
+    allowed_tools: [inference]
+    allowed_skills: [Lion.Gate]
+    allowed_adapters: []
+    allowed_scopes: []

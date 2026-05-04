@@ -22,6 +22,21 @@
       "slot": "E042",
       "route_key": "etrios.core",
       "note": "baseline row for validator; MAP dry-run resolves to etrios.core"
+    },
+    "0x101": {
+      "code": "0x101",
+      "owner": "Lucius.Larz",
+      "title": "Leo",
+      "slot": "E101",
+      "route_key": "lion.gate",
+      "glyphBitId": "LEONIS",
+      "skill": "Lion.Gate",
+      "files": [
+        "glyphbits/Leo/Leo.Bit.md",
+        "glyphbits/Leo/Leo.ME.yaml",
+        ".3ox/(4)Toolkit/skills/Lion.Gate/skill.base"
+      ],
+      "summon_tags": ["#lion", "#gatekeeper"]
     }
   }
 }

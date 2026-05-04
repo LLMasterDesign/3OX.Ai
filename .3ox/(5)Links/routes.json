@@ -15,14 +15,21 @@
       "name": "ETRIOS.CORE",
       "class": "ξ",
       "route_key": "etrios.core"
+    },
+    "E101": {
+      "name": "LEONIS.GATE",
+      "class": "ξ",
+      "route_key": "lion.gate"
     }
   },
   "maps": {
     "hex": {
-      "0x02A": "E042"
+      "0x02A": "E042",
+      "0x101": "E101"
     },
     "intent": {
-      "etrios.core": "E042"
+      "etrios.core": "E042",
+      "lion.gate": "E101"
     }
   },
   "routes": {
@@ -37,6 +44,11 @@
     "etrios.core": {
       "slot": "E042",
       "description": "example route bound to entity slot E042"
+    },
+    "lion.gate": {
+      "slot": "E101",
+      "skill": "Lion.Gate",
+      "description": "LEONIS keeper — Leo.Bit.md + skill Lion.Gate; summon #lion #gatekeeper"
     }
   }
 }
