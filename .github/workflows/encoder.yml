@@ -21,3 +21,6 @@ jobs:
 
       - name: Encoder MAP dry run (receipt + tape)
         run: python3 scripts/encoder_dry_run.py --code 0x02A
+
+      - name: EXC v1 minimal boundary (fixture)
+        run: python3 scripts/exc_validate.py scripts/exc_fixtures/encoder_minimal.exc

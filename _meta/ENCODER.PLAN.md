@@ -35,8 +35,8 @@
 
 ## Phase 3 — EXC boundary (optional v1.1)
 
+- [x] Minimal **`.exc` fixture** + **`scripts/exc_validate.py`** (PHENO, PiCO, PRISM, Ξ inner text, ν; optional `--canonical` for round-trip).
 - [ ] Add `inst/proto/exc.v1.proto` or document-only until codegen.
-- [ ] Minimal **Validate** path: canonical `.exc` text → check invariants from `routes.json` `exc_boundary`.
 - [ ] Deterministic `.kdl` emit from `.exc` (script or small lib).
 
 **Exit:** Golden-file test: sample `.exc` → PASS; mutated → FALLBACK/FAIL per matrix in RULES.

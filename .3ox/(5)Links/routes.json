@@ -4,6 +4,12 @@
   "links": {
     "hex_index_json": "hex.index.json"
   },
+  "exc_boundary": {
+    "handoff_version": "research-v1",
+    "fixture_canonical_exc": "scripts/exc_fixtures/encoder_minimal.exc",
+    "validate_command": "python3 scripts/exc_validate.py scripts/exc_fixtures/encoder_minimal.exc",
+    "note": "exc_validate.py implements v1 checks from ENCODER handoff; routes.json may omit full exc_boundary block until expanded"
+  },
   "slot_index": {
     "E042": {
       "name": "ETRIOS.CORE",
