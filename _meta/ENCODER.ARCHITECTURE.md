@@ -63,7 +63,7 @@ flowchart TB
 
 | Sector | Seats | Repo role |
 |--------|------:|-------------|
-| **Core{Axis}** | Warden, Tape, Pulse | limits / queue+tape / status+station |
+| **Core{Axis}** | Warden, Tape, Pulse | **Warden EXC triple:** `.3ox/(3)Rules/exc/Axis.Warden.{exc,kdl,exs}` + `limits.toml` |
 | **Core{Encode}** | Intent … Seal | spark, authority, receipt state, MAP, memory index, seal |
 | **Core{Ring}** | Intake … Recover | encoder layers **0–9** as the operational ring |
 | **Core{System}** | Meta … Patch (Anchor 2 / Control 4 / Seal 3) | `_meta`, `_TRON`, policy, daemon, cage, links, hash policy, vault, patch |

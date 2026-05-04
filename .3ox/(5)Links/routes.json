@@ -86,7 +86,10 @@
     "handoff_version": "research-v1",
     "fixture_canonical_exc": "scripts/exc_fixtures/encoder_minimal.exc",
     "validate_command": "python3 scripts/exc_validate.py scripts/exc_fixtures/encoder_minimal.exc",
-    "note": "exc_validate.py implements v1 checks from ENCODER handoff; routes.json may omit full exc_boundary block until expanded"
+    "axis_warden_exc": ".3ox/(3)Rules/exc/Axis.Warden.exc",
+    "axis_warden_validate": "python3 scripts/exc_validate.py .3ox/(3)Rules/exc/Axis.Warden.exc --canonical .3ox/(3)Rules/exc/Axis.Warden.exc",
+    "axis_warden_exs": "python3 .3ox/(3)Rules/exc/Axis.Warden.exs",
+    "note": "exc_validate.py implements v1 checks; Axis.Warden is first production κ EXC (k00)"
   },
   "slot_index": {
     "k00": {
@@ -94,7 +97,12 @@
       "class": "κ",
       "core": { "sector": "Axis", "seat": "Warden" },
       "route_key": "core.axis.warden",
-      "anchors": [".3ox/(3)Rules/limits.toml", "[hashing]"]
+      "anchors": [
+        ".3ox/(3)Rules/limits.toml",
+        ".3ox/(3)Rules/exc/Axis.Warden.exc",
+        ".3ox/(3)Rules/exc/Axis.Warden.kdl",
+        ".3ox/(3)Rules/exc/Axis.Warden.exs"
+      ]
     },
     "k01": {
       "name": "AXIS.TAPE",

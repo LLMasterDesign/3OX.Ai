@@ -25,5 +25,10 @@ jobs:
       - name: EXC v1 minimal boundary (fixture)
         run: python3 scripts/exc_validate.py scripts/exc_fixtures/encoder_minimal.exc
 
+      - name: EXC Axis.Warden (k00) canonical + limits shim
+        run: |
+          python3 scripts/exc_validate.py .3ox/(3)Rules/exc/Axis.Warden.exc --canonical .3ox/(3)Rules/exc/Axis.Warden.exc
+          python3 .3ox/(3)Rules/exc/Axis.Warden.exs
+
       - name: 3OX.Core{} slot chamber (k00..k26)
         run: python3 scripts/core_slots_validate.py
