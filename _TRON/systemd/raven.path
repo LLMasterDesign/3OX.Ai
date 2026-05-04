@@ -1,0 +1,18 @@
+# status:[DRAFT] ver:[0.3.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# Edge-trigger for the Raven Suite supervisor.
+#
+# Fires raven.service whenever .raven/inbox changes — i.e. when an
+# intent has just been written by triage. This is the "ride the rotor"
+# wiring inside the cube: TPW.SPIN drives, we ride. NO timer.
+[Unit]
+Description=Edge-trigger Raven Suite when an intent lands in .raven/inbox
+After=network.target
+
+[Path]
+PathChanged=/root/_TRON/Agents/Sidekik/.raven/inbox
+Unit=raven.service
+MakeDirectory=true
+
+[Install]
+WantedBy=multi-user.target

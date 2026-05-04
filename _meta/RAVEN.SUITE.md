@@ -31,15 +31,16 @@ Money.Bagz: `bash sync-vps.sh`.
 
 The **Raven Suite** is the operator-facing runtime for **3OX.Sidekik** —
 Lucius's daily-driver agent. It sits on top of the existing 3OX kernel
-(`.3ox` + `.vec3`) and adds: an inbox/outbox/tape, a supervisor loop
-(`raven.rb`), and a small CLI (`sidekik`).
+(`.3ox` + `.vec3`) and adds: an inbox/outbox/tape, an edge-driven
+supervisor (`raven.rb`, oneshot per rotor edge), and a small CLI
+(`sidekik`).
 
 ## Layout
 
 ```
 3OX Agents/Sidekik/
 ├── sidekik                       # bash CLI
-├── raven.rb                      # supervisor loop
+├── raven.rb                      # edge-driven supervisor (oneshot per edge)
 ├── sync-vps.sh                   # rsync + TPR merge + speaker-mesh restart
 ├── .raven/
 │   ├── inbox/                    # *.intent.json, written by triage
@@ -81,10 +82,25 @@ cd "3OX Agents/Sidekik"
 ./sidekik status                        # → fresh snapshot
 ./sidekik teleprompt                    # → regenerate TPR fragments
 ./sidekik sync                          # → rsync to VPS + TPR merge + restart speaker-mesh
-./sidekik up                            # detach raven supervisor (interval=5s)
-./sidekik down                          # stop supervisor
-./sidekik tick                          # one cycle, no detach
-./sidekik alive                         # local Box-aliveness verdict
+./sidekik tick                          # → fire one rotor edge (dispatch + status)
+./sidekik alive                         # → local Box-aliveness verdict
+
+## Why no clocks
+
+The rotor is the clock. TPW.SPIN (Warden → Tape → Pulse, hex `0x003`,
+slot `k00`) is the rotary encoder; the Pulse axis (k02, hex `0x002`)
+emits the aliveness edge, and Ring.C.C4 codifies the rule literally as
+`law{event_driven_not_polling}`. So nothing in this Suite loops, sleeps,
+or polls. Edges arrive from one of three places:
+
+- **Operator CLI** — `./sidekik tick` (or `say`, `note`, etc.).
+- **Filesystem edge** — systemd path-unit `raven.path` watches
+  `.raven/inbox` and fires `raven.service` (Type=oneshot) per change.
+- **Rotor tail** — TelePromptR's `merge.sh` invokes the cube at
+  TPW.SPIN edge as part of its existing per-agent fan-out.
+
+There is no `raven up` / `raven down`, no PID file, no `RAVEN_INTERVAL`,
+no background process to keep alive.
 ```
 
 Root kernel aliveness still owns the global verdict:

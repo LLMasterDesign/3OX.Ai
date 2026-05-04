@@ -13,3 +13,9 @@ ver  = "0.2.0"
 date = "26.05.04"
 auth = "ZEN.PRO"
 note = "TPR-first integration. teleprompt.rb emits TPR.SPEAKER.MESH.json + TPR.ROUTE.MAP.json under !0UT.SIDEKIK/tpr/. dispatch.rb writes tpr.handoff receipts for sub-agent fan-outs (no agent-to-agent shell-out). sync-vps.sh mirrors Money.Bagz pattern. routes.json gains tpr block; tools.yml gains teleprompt tool + tpr/mesh adapters in slot E043. Registered in _TRON/_TRON.CONTRACT.toml."
+
+[[entry]]
+ver  = "0.3.0"
+date = "26.05.04"
+auth = "ZEN.PRO"
+note = "Edge-only. Removed the wall-clock supervisor loop introduced in 0.1.0: raven.rb no longer forks a daemon or sleeps; each invocation drains one rotor edge and exits. Dropped sidekik up/down commands and RAVEN_INTERVAL. _TRON/systemd/raven.service is now Type=oneshot, paired with new raven.path (PathChanged=.raven/inbox). Honors Ring.C.C4 law{event_driven_not_polling} and Warden law #10 PULSE_VISIBILITY (no silent running services)."
