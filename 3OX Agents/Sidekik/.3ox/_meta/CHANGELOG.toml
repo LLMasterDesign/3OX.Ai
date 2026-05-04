@@ -7,3 +7,9 @@ ver  = "0.1.0"
 date = "26.05.04"
 auth = "ZEN.PRO"
 note = "Cube scaffolded under Raven Suite. Slot E043 claimed (hex 0x02B). Six L2 faces + _meta + .vec3 kernel folders + Raven inbox/outbox/tape."
+
+[[entry]]
+ver  = "0.2.0"
+date = "26.05.04"
+auth = "ZEN.PRO"
+note = "TPR-first integration. teleprompt.rb emits TPR.SPEAKER.MESH.json + TPR.ROUTE.MAP.json under !0UT.SIDEKIK/tpr/. dispatch.rb writes tpr.handoff receipts for sub-agent fan-outs (no agent-to-agent shell-out). sync-vps.sh mirrors Money.Bagz pattern. routes.json gains tpr block; tools.yml gains teleprompt tool + tpr/mesh adapters in slot E043. Registered in _TRON/_TRON.CONTRACT.toml."
