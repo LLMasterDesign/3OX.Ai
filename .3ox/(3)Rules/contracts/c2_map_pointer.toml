@@ -1,0 +1,11 @@
+# status:[DRAFT] auth:[3OX.AI]
+# C2 map pointer — stub TOML (law: truth_requires_pointer).
+
+[pointer]
+topic = "example.topic"
+file = ""
+slice = ""
+expected_hash = ""
+
+[law]
+truth_requires_pointer = true

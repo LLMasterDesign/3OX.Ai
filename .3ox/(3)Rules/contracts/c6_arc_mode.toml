@@ -1,0 +1,10 @@
+# status:[DRAFT] auth:[3OX.AI]
+# C6 arc mode — stub TOML (law: existence_has_frequency).
+
+[arc]
+intensity = 1
+retention = "default"
+reactivity = "normal"
+
+[spark]
+vector = "neutral"

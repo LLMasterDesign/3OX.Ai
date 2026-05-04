@@ -16,3 +16,90 @@ protected    = [".3ox/", "_meta/"]
 [scope]
 allowed_dirs = ["."]
 denied_dirs  = [".."]
+
+# Hashing: fast frame / inter-daemon vs stable external receipts (3OX Core research).
+[hashing]
+internal_frame    = "xxh3"
+internal_daemon   = "xxh128"
+external_boundary = "sha256"
+
+# Warden field laws — non-bypassable; verdict + receipts must reflect violation class.
+[warden]
+version = "1"
+
+[warden.field]
+kernel_slots = 27
+entity_encoder_slots = 216
+total = 243
+
+[[warden.law]]
+id = 1
+code = "SLOT_CAP"
+summary = "No process may create κ or ξ identities beyond declared field (27 + 216 = 243)."
+violation = "deny and emit violation receipt"
+
+[[warden.law]]
+id = 2
+code = "KERNEL_PROTECTION"
+summary = "No user-facing ξ may modify κ k00–k26; κ read-only unless owner-authorized and migration-sealed."
+violation = "deny"
+
+[[warden.law]]
+id = 3
+code = "WARDEN_FIRST"
+summary = "Any mutation must pass Warden before execution; no Worker, Route, Tool, Adapter, or System service may mutate state directly."
+violation = "block execution"
+
+[[warden.law]]
+id = 4
+code = "DECLARED_CAPABILITY"
+summary = "A slot may only use tools, adapters, paths, and scopes declared in its contract; no declaration means no permission."
+violation = "deny by default"
+
+[[warden.law]]
+id = 5
+code = "SLOT_IDENTITY"
+summary = "One slot equals one function identity; files are faces of a slot, not separate identities."
+violation = "reject registration"
+
+[[warden.law]]
+id = 6
+code = "ROUTE_DETERMINISM"
+summary = "Same normalized intent and same state must resolve to the same route; ambiguous resolution halts or rejects."
+violation = "no execution"
+
+[[warden.law]]
+id = 7
+code = "NO_RAW_MUTATION"
+summary = "No runtime file, adapter, script, or daemon may write outside approved state surfaces (vec3, _TRON, or slot MAP)."
+violation = "deny"
+
+[[warden.law]]
+id = 8
+code = "RECEIPT_COLLAPSE"
+summary = "External output, side effect, checkpoint, migration, denial, or error must collapse into a receipt; micro-spin exempt."
+violation = "degraded state"
+
+[[warden.law]]
+id = 9
+code = "TAPE_INTEGRITY"
+summary = "Proof records append-only; no overwrite, deletion, or silent correction; corrections via new compensating receipt."
+violation = "critical fault"
+
+[[warden.law]]
+id = 10
+code = "PULSE_VISIBILITY"
+summary = "Every daemon and active kernel ring must expose aliveness; no silent running service."
+violation = "degraded or restart"
+
+[[warden.law]]
+id = 11
+code = "MIGRATION_SEAL"
+summary = "Changes to kernel law, PHENO meaning, slot identity, or receipt schema require migration seal; patch code may change, meaning may not silently change."
+violation = "reject upgrade"
+
+[[warden.law]]
+id = 12
+code = "FAIL_CLOSED"
+summary = "If Warden cannot decide, deny; unclear permission is not permission."
+violation = "default law (none)"

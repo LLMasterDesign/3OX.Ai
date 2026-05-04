@@ -1,0 +1,24 @@
+exc "exc://core-axis-warden-v1" {
+  pheno {
+    rho "read://.3ox/(3)Rules/limits.toml#limits+write_policy+scope+hashing+warden"
+    phi "preserve://write_policy.order+protected.paths+deny_overrides"
+    tau "emit://warden.verdict+policy_digest_refs"
+  }
+
+  pico {
+    ingest "ingest://limits.paths+meta.contracts"
+    validate "validate://scope+write_policy+token+bounds"
+    carry "carry://warden.context+internal_frame_vs_external_boundary"
+    emit "emit://PASS|FALLBACK+reason_code"
+  }
+
+  prism "PRISM"
+
+  check {
+    xi "verify.source ∙ re-validate{ρ φ τ}"
+  }
+
+  fallback {
+    nu "fallback://read-only-warden+deny-all-writes-on-parse-fail"
+  }
+}

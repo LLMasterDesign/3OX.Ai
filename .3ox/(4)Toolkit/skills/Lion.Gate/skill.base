@@ -1,0 +1,13 @@
+# skill:Lion.Gate
+# Keeper glyph — loads Leo GlyphBit (gate voice).
+
+skill_id: Lion.Gate
+version: "1.0"
+bit_md: ../../../../glyphbits/Leo/Leo.Bit.md
+me_yaml: ../../../../glyphbits/Leo/Leo.ME.yaml
+hex_code: "0x101"
+summon_tags: ["#lion", "#gatekeeper"]
+
+note: >
+  Host loads bit_md when this skill is invoked; no code execution —
+  instruction surface only (ClassicMD / HIRO sections).

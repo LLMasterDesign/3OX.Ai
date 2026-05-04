@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://3ox.ai/contracts/c0_universal_envelope.schema.json",
+  "title": "C0 Universal Envelope",
+  "description": "Stub — Ring.C C0; portable request with mandatory trace (law: all_calls_have_trace).",
+  "type": "object",
+  "required": ["caller", "trace_id", "intent"],
+  "properties": {
+    "caller": { "type": "object" },
+    "trace_id": { "type": "string", "minLength": 1 },
+    "intent": { "type": "object" },
+    "constraints": { "type": "object" },
+    "payload": {}
+  },
+  "additionalProperties": true
+}
