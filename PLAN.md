@@ -107,6 +107,10 @@ Every `.3ox/` must have `_meta/` with:
 | `WHOAMI.md` | Identity, TRON path, lifecycle service |
 | `NAMING.CONTRACT.toml` | Naming rules, extensions, staging |
 | `SESSION.CHECKPOINT.toml` | Resume state, truth paths, drift |
+| `ENCODER.PRD.md` | Encoder product requirements (layers 0–9, hex, EXC) |
+| `ENCODER.PLAN.md` | Phased delivery plan for encoder implementation |
+| `ENCODER.ARCHITECTURE.md` | Diagrams + component map for encoder |
+| `ENCODER.RULES.md` | Normative rules and CI merge gates |
 | `CHANGELOG.toml` | Change feed |
 
 ────────────────────────────────────────────────

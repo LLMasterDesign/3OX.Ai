@@ -1,0 +1,7 @@
+// status:[DRAFT] auth:[3OX.AI]
+// C7 syntax bridge — stub KDL (law: translation_must_not_change_meaning).
+
+document {
+  law "surfaces" "gensing_kdl_toml_json"
+  law "rule" "reject_ambiguous_map"
+}

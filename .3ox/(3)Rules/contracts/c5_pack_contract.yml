@@ -1,0 +1,7 @@
+# status:[DRAFT] auth:[3OX.AI]
+# C5 pack contract — stub YAML (law: undeclared_capability_denied).
+
+pack_id: example.pack.stub
+version: "0.0.1"
+capabilities: []
+golden_tests: []
