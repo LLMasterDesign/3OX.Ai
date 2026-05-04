@@ -16,3 +16,8 @@ protected    = [".3ox/", "_meta/"]
 [scope]
 allowed_dirs = ["."]
 denied_dirs  = [".."]
+
+# Hashing: fast digests on hot daemon↔daemon paths vs stable external receipts.
+[hashing]
+internal_daemon   = "xxh128"   # inter-daemon / in-box hot verification
+external_boundary = "sha256"   # receipts, export, third-party verify

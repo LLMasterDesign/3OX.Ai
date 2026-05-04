@@ -1,0 +1,43 @@
+{
+  "codebook_version": "1",
+  "codebook_bits": 12,
+  "codebook_size": 4096,
+  "chip": {
+    "banner_form": "::0xHHH::",
+    "key_regex": "^0x[0-9A-Fa-f]{3}$",
+    "leading_zero_pad": true,
+    "range_inclusive": ["0x000", "0xFFF"]
+  },
+  "validation": {
+    "role": "single_source_of_truth_for_chip_claims",
+    "chip_row_minimal": ["code", "owner"],
+    "metadata_separate_from_chip": true,
+    "rule_no_silent_overwrite": "if_entries_key_exists_new_claim_must_match_owner_or_use_explicit_handoff",
+    "note": "unlisted_keys_are_unclaimed_real_time_check_chip_against_this_object"
+  },
+  "exc_boundary": {
+    "handoff_version": "research-v1",
+    "relation_to_chip": "line_1_hex_is_address_only_exc_metadata_lives_in_entries_or_exc_files",
+    "optional_entry_fields": ["exc_id", "exc_surfaces", "validator_version", "impl_version"],
+    "exc_surfaces_shape": {
+      "exc": "path_or_uri_to_canonical_exc",
+      "kdl": "path_to_derived_kdl",
+      "exs": "path_to_runtime_implementation"
+    }
+  },
+  "entries": {
+    "0x02A": {
+      "code": "0x02A",
+      "owner": "3OX.AI",
+      "title": "ETRIOS.CORE.example",
+      "slot": "E042",
+      "route_key": "etrios.core",
+      "exc_id": null,
+      "exc_surfaces": {
+        "exc": null,
+        "kdl": null,
+        "exs": null
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+# status:[DRAFT] ver:[1.0.0] created:[26.05.03]
+# doc:[PARTIAL] modified:[26.05.03] auth:[3OX.AI]
+# Links layer — canonical paths for routing artifacts (file management map).
+# Paths are relative to this directory: .3ox/(5)Links/
+
+[files]
+routes_json      = "routes.json"
+slot_index_kdl   = "slot.index.kdl"
+hex_index_json   = "hex.index.json"
+
+[dirs]
+adapters_hint    = "../(4)Toolkit/adapters"
+skills_hint      = "../(4)Toolkit/skills"
+receipts_pulse   = "../(6)Pulse/receipts"
+receipts_tron    = "../../_TRON/receipts"
+
+# EXC handoff: wire spec and generated stubs live out-of-tree until added.
+[exc_handoff]
+proto_spec_hint        = "inst/proto/exc.v1.proto_when_package_added"
+exc_runtime_faces_hint = "../(4)Toolkit/runtime.faces"
