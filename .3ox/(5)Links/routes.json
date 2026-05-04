@@ -1,6 +1,9 @@
 {
   "agent": "AGENT_NAME",
   "version": "1.0.0",
+  "links": {
+    "hex_index_json": "hex.index.json"
+  },
   "routes": {
     "telegram": {
       "chat_id": null,

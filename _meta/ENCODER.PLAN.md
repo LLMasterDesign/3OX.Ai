@@ -19,8 +19,8 @@
 
 ## Phase 1 — Validation shell
 
-- [ ] Implement **chip linter**: first line matches glyph spine + `::0xHHH::`; reject wrong length / non-hex.
-- [ ] Implement **index gate**: claimed codes exist in `hex.index.json`; `owner` present; optional conflict detector.
+- [ ] Implement **chip linter**: first line matches glyph spine + `::0xHHH::`; reject wrong length / non-hex. **Script:** `python3 scripts/encoder_validate.py --doc <path>` (chip-only on line 1).
+- [ ] Implement **index gate**: claimed codes exist in `hex.index.json`; `owner` present. **Script:** `python3 scripts/encoder_validate.py`.
 - [ ] Wire **one** CI step or `scripts/encoder_validate.sh` (language TBD) invoked from Makefile or `.github/workflows` if present.
 
 **Exit:** PR fails if sample corpus has invalid chips or missing index rows for claimed codes.

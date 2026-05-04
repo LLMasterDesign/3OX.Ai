@@ -11,6 +11,22 @@
 
 Rules use **MUST** / **SHOULD** / **MAY** (RFC 2119 sense). Violations block **merge** or **release** per the gate column.
 
+## Z. Agent conduct (Cursor / human implementers)
+
+| ID | Rule | Gate |
+|----|------|------|
+| Z1 | Before **running code or shell commands**, the agent **MUST** show **preview** (what + why), **example** (expected command shape or sample I/O), then **run**, then **validate** (exit code / output / file check). | Review |
+| Z2 | Read-only inspection **SHOULD** state intent in one line before the tool call. | Review |
+
+**Example (validate hex index + fixture doc):**
+
+```bash
+python3 scripts/encoder_validate.py
+python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.md
+```
+
+**Expected:** `ok: .3ox/(5)Links/hex.index.json — …` and `ok: doc scripts/encoder_fixtures/valid_line1.md — chip 0x0A4 …`; exit code **0**.
+
 ## A. Hex & line 1 (Gensing chip)
 
 | ID | Rule | Gate |
