@@ -24,6 +24,7 @@ document {
   law "ring.a" "Ring_A_specs_hex_0x111_to_0x119_bundle_0x110_maps_k09_k17"
   law "ring.b" "Ring_B_specs_hex_0x121_to_0x129_bundle_0x120_maps_k18_k26"
   law "ring.c" "Ring_C_specs_hex_0x131_to_0x139_bundle_0x130_maps_Encode_k03_k08"
+  law "orion.belt" "omicron_names_memory_field_heat_moves_retention_tier_belt_orders_graph_entry_Omega_proves_change"
 
   slot id=k00 class=kernel {
     name "AXIS.WARDEN"

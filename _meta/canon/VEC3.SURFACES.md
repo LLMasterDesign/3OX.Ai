@@ -173,7 +173,7 @@ handle** the rest of Orion is allowed to treat as **one unit**.
 |--------|------|-------------------|------|
 | **1 — Scope** | *What world is in play* | Task envelope, session id, allowed namespaces, time box | Fit in **one** opaque scope record (no prose dump). |
 | **2 — Shard** | *What meaning is carried* | Compressed summary, embedding id, or pointer into `mem/deep/` | Be **loss-bounded**: if it cannot be compressed without losing a Warden-required fact, **stop** and widen Scope or refuse (fail closed). |
-| **3 — Latch** | *How continuity attaches* | Hash or cursor tying this triad to the **last valid receipt** or prior graph node | Never empty when crossing a boundary; **O6 RECEIPT** may supersede the latch for the next orbit. |
+| **3 — Latch** | *How continuity attaches* | **ο{Capsule}** — hashable replay handle, or cursor tying this triad to the **last valid receipt** or prior graph node | Never empty when crossing a boundary; **O6 RECEIPT** may supersede the latch for the next orbit. After **Ω{Commit}**, the capsule must not mutate (ZenOS **ο** rule). |
 
 **Invariants**
 
@@ -183,16 +183,24 @@ handle** the rest of Orion is allowed to treat as **one unit**.
    **Latch**, not inlined.
 2. **Order:** **Scope → Shard → Latch** is normative. **O3 GRAPH** may
    only consume a triad that passed **O2 TRIAD** validation.
-3. **Place vs authority:** The belt may be **materialized** under
+3. **ο premise:** Anything carrying **`ο{}`** is a **memory field**
+   candidate: retention may **upgrade or downgrade** (hot ↔ deep ↔
+   context) under **λ{Governance}** and Orion **O7** weights — **not** by
+   silently rewriting sealed capsules post-**Ω**.
+4. **Place vs authority:** The belt may be **materialized** under
    **`mem/hot/`** (e.g. `orion.triad.json`) as a fast artifact; **`k07`**
    (Orion) **decides** shape and writes; **Warden** still gates mutation;
    **Tape** still owns proof rows in `var/` / tape chain.
-4. **Relationship to `mem/{hot,deep,context}`:** **hot** holds the
+5. **Relationship to `mem/{hot,deep,context}`:** **hot** holds the
    **working triad** and ephemeral scoring; **deep** holds ranked graph
    stores the **Shard** points at; **context** holds session slices the
    **Scope** names.
 
-**One-line law**
+**Engraved law (ο + belt + Ω)**
+
+> **`ο{}` names a memory field; heat moves the field; the belt orders how a field may enter the graph; Ω proves what changed.**
+
+**Prior shape law (triad roles)**
 
 > **Orion's Belt = three beacons, one job: bind scope, carry compressed meaning, latch continuity — then the graph may run.**
 
