@@ -1,0 +1,20 @@
+# Encoder Phase 1 — hex index + optional line-1 chip fixture
+name: encoder
+
+on:
+  push:
+    branches: [main, '3ox.agent/**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate hex.index.json
+        run: python3 scripts/encoder_validate.py
+
+      - name: Validate fixture doc line-1 chip
+        run: python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.md
