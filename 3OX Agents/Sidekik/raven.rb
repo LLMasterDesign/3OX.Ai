@@ -1,17 +1,17 @@
 #!/usr/bin/env ruby
-# status:[ACTIVE] ver:[0.1.0] created:[26.05.04]
+# status:[ACTIVE] ver:[0.3.0] created:[26.05.04]
 # doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
-# RAVEN SUITE — Sidekik supervisor loop.
+# RAVEN SUITE — edge-driven supervisor for 3OX.Sidekik.
 #
-# Single-process, single-operator supervisor for 3OX.Sidekik.
-# Polls .raven/inbox for intents, dispatches, refreshes status.
-# This is the "always-on" face of the Suite when speaker-mesh /
-# teleprompter aren't available locally.
+# Each invocation = one rotor edge. Drains the inbox, writes status,
+# exits. NO loops. NO sleep. NO daemon. NO PID files. The rotor is
+# the clock — TPW.SPIN (hex 0x003 / k00) drives Pulse (k02) edges,
+# and either the systemd path-unit on .raven/inbox or the operator
+# CLI invokes us per edge.
 
 require 'json'
 require 'time'
 require 'fileutils'
-require 'optparse'
 
 CUBE_ROOT  = File.expand_path(__dir__)
 RAVEN_ROOT = File.join(CUBE_ROOT, '.raven')
@@ -21,7 +21,6 @@ TAPE_DIR   = File.join(RAVEN_ROOT, 'tape')
 TAPE_FILE  = File.join(TAPE_DIR, 'tape.jsonl')
 PULSE_RT   = File.join(CUBE_ROOT, '.3ox', '(6)Pulse', 'runtime')
 LOG_DIR    = File.join(PULSE_RT, 'logs')
-PID_FILE   = File.join(PULSE_RT, 'raven.pid')
 LOG_FILE   = File.join(LOG_DIR, 'raven.log')
 
 PULSE_RB   = File.join(CUBE_ROOT, '.3ox', '(6)Pulse', 'run.rb')
@@ -31,64 +30,13 @@ PULSE_RB   = File.join(CUBE_ROOT, '.3ox', '(6)Pulse', 'run.rb')
 def now; Time.now.utc.iso8601; end
 def log(msg); File.open(LOG_FILE, 'a') { |f| f.puts("[#{now}] #{msg}") }; end
 
-def running?
-  return false unless File.exist?(PID_FILE)
-  pid = File.read(PID_FILE).to_i
-  return false if pid <= 0
-  Process.kill(0, pid); true
-rescue Errno::ESRCH, Errno::EPERM
-  false
-end
-
 def cycle
   intents = Dir.glob(File.join(INBOX, '*.intent.json')).size
   if intents.positive?
-    log("dispatch start (n=#{intents})")
+    log("edge: dispatch (n=#{intents})")
     system('ruby', PULSE_RB, 'dispatch') || log('dispatch returned non-zero')
   end
   system('ruby', PULSE_RB, 'status', out: File::NULL)
-end
-
-def loop_forever(interval)
-  log("raven up (interval=#{interval}s)")
-  trap('TERM') { log('raven term'); exit(0) }
-  trap('INT')  { log('raven int');  exit(0) }
-  loop do
-    cycle
-    sleep interval
-  end
-end
-
-def start(interval)
-  if running?
-    puts "raven already running (pid=#{File.read(PID_FILE).strip})"
-    return
-  end
-  pid = fork do
-    Process.setsid
-    out = File.open(LOG_FILE, 'a')
-    $stdout.reopen(out); $stderr.reopen(out)
-    $stdout.sync = true; $stderr.sync = true
-    File.write(PID_FILE, Process.pid.to_s)
-    begin
-      loop_forever(interval)
-    ensure
-      FileUtils.rm_f(PID_FILE)
-      log('raven down')
-    end
-  end
-  Process.detach(pid)
-  puts "raven started (pid=#{pid}, interval=#{interval}s)"
-end
-
-def stop
-  unless running?
-    puts 'raven not running'
-    return
-  end
-  pid = File.read(PID_FILE).to_i
-  Process.kill('TERM', pid)
-  puts "raven stop signal sent to pid=#{pid}"
 end
 
 def status
@@ -96,9 +44,6 @@ def status
 end
 
 def aliveness
-  # Sidekik treats its own status.json as Pulse, .raven/tape as Tape,
-  # and cube limits.toml as Warden. This is local aliveness — the root
-  # repo aliveness check (.vec3/rc/run.rb) still owns kernel verdict.
   status_path = File.join(PULSE_RT, 'status.json')
   unless File.exist?(status_path)
     puts JSON.pretty_generate({ 'authoritative' => false, 'reason' => 'no_status_yet' })
@@ -124,25 +69,24 @@ def aliveness
   exit(authoritative ? 0 : 1)
 end
 
-interval = (ENV['RAVEN_INTERVAL'] || '5').to_i
 cmd = ARGV[0]
 case cmd
-when 'start'     then start(interval)
-when 'stop'      then stop
-when 'status'    then status
-when 'aliveness' then aliveness
-when 'once'      then cycle; status
-when 'tick'      then cycle
+when 'tick', 'edge', 'once', nil then cycle; status
+when 'status'                    then status
+when 'aliveness'                 then aliveness
 else
   puts <<~USAGE
-    Usage: ruby raven.rb [start|stop|status|once|tick|aliveness]
+    Usage: ruby raven.rb [tick|edge|once|status|aliveness]
 
-    start      # detach supervisor loop (env RAVEN_INTERVAL=5)
-    stop       # signal TERM to running supervisor
-    status     # write + print latest status snapshot
-    once       # one cycle (dispatch + status), then exit
-    tick       # one dispatch+status cycle, no detach
-    aliveness  # local Box-aliveness verdict for Sidekik
+    tick | edge | once   one rotor edge: dispatch + status (default)
+    status               print latest status snapshot
+    aliveness            local Box-aliveness verdict (exit 0 = authoritative)
+
+    NO loops, NO sleep, NO daemon. The rotor is the clock.
+    Wire the edge via:
+      - systemd path-unit on .raven/inbox  (raven.path → raven.service)
+      - operator CLI: ./sidekik tick
+      - rotor tail in TelePromptR/merge.sh
   USAGE
   exit 1
 end
