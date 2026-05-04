@@ -1,7 +1,14 @@
 #!/usr/bin/env ruby
-# status:[ACTIVE] ver:[1.0.0] created:[26.03.09]
-# doc:[PARTIAL] modified:[26.03.09] auth:[3OX.AI]
-# Root 3OX launcher and single-process station supervisor.
+# status:[ACTIVE] ver:[2.0.0] created:[26.03.09]
+# doc:[PARTIAL] modified:[26.05.04] auth:[3OX.AI]
+# Root 3OX launcher — edge-only. NO supervisor loop, NO sleep, NO PID
+# file, NO HEARTBEAT_SECONDS. Each invocation is one rotor edge:
+#   - `queue <cmd>` enqueues
+#   - `once <cmd>`  runs one job synchronously
+#   - `tick`        drains the queue once and exits
+# Pair `tick` with a systemd path-unit on (6)Pulse/runtime/queue if you
+# want the kernel to ride filesystem edges. Honors Ring.C.C4
+# law{event_driven_not_polling}.
 
 require 'json'
 require 'fileutils'
@@ -12,12 +19,10 @@ PULSE_ROOT = File.join(__dir__, '(6)Pulse')
 RUNTIME = File.join(PULSE_ROOT, 'runtime')
 QUEUE_DIR = File.join(RUNTIME, 'queue')
 LOG_DIR = File.join(RUNTIME, 'logs')
-PID_FILE = File.join(RUNTIME, 'station.pid')
 STATUS_FILE = File.join(RUNTIME, 'status.json')
 QUEUE_FILE = File.join(QUEUE_DIR, 'jobs.json')
 ACTIVITY_LOG = File.join(LOG_DIR, 'station.log')
 
-HEARTBEAT_SECONDS = (ENV['THREEOX_HEARTBEAT_SECONDS'] || '5').to_i
 MAX_STREAM_LINES = (ENV['THREEOX_STREAM_LINES'] || '5').to_i
 
 FileUtils.mkdir_p([RUNTIME, QUEUE_DIR, LOG_DIR])
@@ -147,10 +152,9 @@ def run_job(job)
     success = $?.success?
   when 'noop'
     3.times do |i|
-      line = "heartbeat-step=#{i + 1}/3"
+      line = "edge-step=#{i + 1}/3"
       output << line
       stream_progress(job, line)
-      sleep 1
     end
     success = true
   else
@@ -179,70 +183,22 @@ def run_job(job)
   append_log("#{result['status']} #{job['id']}")
 end
 
-def station_running?
-  return false unless File.exist?(PID_FILE)
-
-  pid = File.read(PID_FILE).to_i
-  return false if pid <= 0
-
-  Process.kill(0, pid)
-  true
-rescue Errno::ESRCH, Errno::EPERM
-  false
-end
-
-def start_station
-  if station_running?
-    puts "station already running (pid=#{File.read(PID_FILE).strip})"
-    return
+def tick_once
+  drained = 0
+  while (job = shift_job)
+    run_job(job)
+    drained += 1
   end
-
-  pid = fork do
-    Process.setsid
-    stdout_log = File.open(ACTIVITY_LOG, 'a')
-    $stdout.reopen(stdout_log)
-    $stderr.reopen(stdout_log)
-    $stdout.sync = true
-    $stderr.sync = true
-
-    trap('TERM') { exit(0) }
-    trap('INT') { exit(0) }
-
-    File.open(PID_FILE, 'w') { |f| f.puts(Process.pid) }
-    append_log('station started')
-    mark_services('standby')
-
-    loop do
-      job = shift_job
-      if job
-        run_job(job)
-      else
-        update_status do |s|
-          s['mode'] = 'idle'
-          s['services']['pulse'] = 'watching'
-        end
-        append_log('heartbeat idle')
-        sleep HEARTBEAT_SECONDS
-      end
+  if drained.zero?
+    update_status do |s|
+      s['mode'] = 'idle'
+      s['services']['pulse'] = 'watching'
     end
-  ensure
-    FileUtils.rm_f(PID_FILE)
-    append_log('station stopped')
+    append_log('edge idle (no jobs)')
+  else
+    append_log("edge drained #{drained} job#{'s' unless drained == 1}")
   end
-
-  Process.detach(pid)
-  puts "station started (pid=#{pid})"
-end
-
-def stop_station
-  unless station_running?
-    puts 'station not running'
-    return
-  end
-
-  pid = File.read(PID_FILE).to_i
-  Process.kill('TERM', pid)
-  puts "stop signal sent to pid=#{pid}"
+  drained
 end
 
 def show_status
@@ -267,10 +223,6 @@ command = ARGV[0]
 args = ARGV[1..]
 
 case command
-when 'start'
-  start_station
-when 'stop'
-  stop_station
 when 'status'
   show_status
 when 'queue'
@@ -282,22 +234,29 @@ when 'once'
   command_name = args[0] || 'noop'
   command_args = args[1..]
   run_once(command_name, command_args)
+when 'tick', 'edge'
+  drained = tick_once
+  show_status
+  exit(drained.zero? ? 0 : 0)
 when 'teleprompt', 'analyze'
   run_once(command, args)
 when 'aliveness'
   exec('ruby', File.join(ROOT, '.vec3', 'rc', 'run.rb'), 'aliveness')
 else
   puts <<~USAGE
-    Usage: ruby .3ox/run.rb [start|stop|status|queue|once|teleprompt|analyze|aliveness]
+    Usage: ruby .3ox/run.rb [status|queue|once|tick|teleprompt|analyze|aliveness]
 
-    start                      # start station supervisor loop in background
-    stop                       # stop station supervisor loop
     status                     # show current status json
     queue <cmd> [args...]      # enqueue a job (cmd: noop|teleprompt|analyze)
     once <cmd> [args...]       # run one job synchronously
+    tick | edge                # drain queue once and exit (one rotor edge)
     teleprompt [args...]       # convenience wrapper (once teleprompt)
     analyze [args...]          # convenience wrapper (once analyze)
     aliveness                  # delegate to .vec3/rc/run.rb aliveness
+
+    NOTE: there is no `start`/`stop` daemon. The rotor is the clock —
+    pair `tick` with a systemd path-unit on (6)Pulse/runtime/queue if
+    you want automatic edges, or call it from the rotor's tail.
   USAGE
   exit 1
 end
