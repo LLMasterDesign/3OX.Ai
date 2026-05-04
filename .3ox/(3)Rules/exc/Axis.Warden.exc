@@ -1,0 +1,12 @@
+EXC[exc://core-axis-warden-v1]
+(ρ ⊗ φ ⊗ τ) ⇨ (⊢ ∙ ⇨ ∙ ⟿ ∙ ▷) ⟿ PRISM
+≡ Ξ{verify.source ∙ re-validate{ρ φ τ}} ∙ ν{fallback}
+
+ρ{read://.3ox/(3)Rules/limits.toml#limits+write_policy+scope+hashing}
+φ{preserve://write_policy.order+protected.paths+deny_overrides}
+τ{emit://warden.verdict+policy_digest_refs}
+⊢{ingest://limits.paths+meta.contracts}
+⇨{validate://scope+write_policy+token+bounds}
+⟿{carry://warden.context+internal_frame_vs_external_boundary}
+▷{emit://PASS|FALLBACK+reason_code}
+ν{fallback://read-only-warden+deny-all-writes-on-parse-fail}

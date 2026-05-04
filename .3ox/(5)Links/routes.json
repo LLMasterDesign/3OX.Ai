@@ -1,6 +1,464 @@
 {
   "agent": "AGENT_NAME",
   "version": "1.0.0",
+  "links": {
+    "hex_index_json": "hex.index.json"
+  },
+  "core": {
+    "version": "1",
+    "brand": {
+      "written": "3OX",
+      "spoken": "BOX",
+      "product": "BOX.Ai",
+      "note": "3 as triadic mark for B; not three-ox"
+    },
+    "grammar": {
+      "preferred": [
+        "3OX.Core{}",
+        "3OX.Core{Axis}",
+        "3OX.Core{Encode}",
+        "3OX.Core{Ring}",
+        "3OX.Core{System}"
+      ],
+      "avoid_top_level": ["3OX.Axis"]
+    },
+    "equation": "Axis[3] + Encode[6] + Ring[9] + System[9] = 27",
+    "description": "3OX.Core{} protected 27-slot κ chamber; encoder proves through Ring; Leo E101 is ξ proof only",
+    "laws": [
+      "Axis authorizes; Encode transforms; Ring sequences; System protects",
+      "Nothing leaves Core{} unencoded",
+      "No operation bypasses Axis",
+      "No route bypasses Ring",
+      "No memory bypasses Tape",
+      "No mutation bypasses Warden",
+      "No live execution bypasses Pulse"
+    ],
+    "ring_law": "No state transition without sequence; no sequence without witness; no witness without hash",
+    "axis_language_triad": { "Warden": "Rust", "Tape": "Lisp", "Pulse": "Elixir" },
+    "slot_ladder": {
+      "axis": 3,
+      "ring": 9,
+      "core_kappa": 27,
+      "route_ring": 81,
+      "cube_xi": 216,
+      "envelope_xi_plus_kappa": 243,
+      "archive": 729,
+      "policy": "216 active xi; 27 kappa reserve; 243 envelope; 729 archive cap"
+    },
+    "system_groups": {
+      "Anchor": ["Meta", "Tron"],
+      "Control": ["Chmod", "Daemon", "Cage", "Route"],
+      "Seal": ["Hash", "Vault", "Patch"]
+    },
+    "axis": { "Warden": "k00", "Tape": "k01", "Pulse": "k02" },
+    "encode": {
+      "Intent": "k03",
+      "Authority": "k04",
+      "State": "k05",
+      "Route": "k06",
+      "Memory": "k07",
+      "Seal": "k08"
+    },
+    "ring": {
+      "Intake": "k09",
+      "Validate": "k10",
+      "Encode": "k11",
+      "Route": "k12",
+      "Execute": "k13",
+      "Observe": "k14",
+      "Digest": "k15",
+      "Commit": "k16",
+      "Recover": "k17"
+    },
+    "system": {
+      "Meta": "k18",
+      "Tron": "k19",
+      "Chmod": "k20",
+      "Daemon": "k21",
+      "Cage": "k22",
+      "Route": "k23",
+      "Hash": "k24",
+      "Vault": "k25",
+      "Patch": "k26"
+    }
+  },
+  "exc_boundary": {
+    "handoff_version": "research-v1",
+    "fixture_canonical_exc": "scripts/exc_fixtures/encoder_minimal.exc",
+    "validate_command": "python3 scripts/exc_validate.py scripts/exc_fixtures/encoder_minimal.exc",
+    "axis_warden_exc": ".3ox/(3)Rules/exc/Axis.Warden.exc",
+    "axis_warden_validate": "python3 scripts/exc_validate.py .3ox/(3)Rules/exc/Axis.Warden.exc --canonical .3ox/(3)Rules/exc/Axis.Warden.exc",
+    "axis_warden_exs": "python3 .3ox/(3)Rules/exc/Axis.Warden.exs",
+    "note": "exc_validate.py implements v1 checks; Axis.Warden is first production κ EXC (k00)"
+  },
+  "slot_index": {
+    "k00": {
+      "name": "AXIS.WARDEN",
+      "class": "κ",
+      "core": { "sector": "Axis", "seat": "Warden" },
+      "route_key": "core.axis.warden",
+      "anchors": [
+        ".3ox/(3)Rules/limits.toml",
+        ".3ox/(3)Rules/exc/Axis.Warden.exc",
+        ".3ox/(3)Rules/exc/Axis.Warden.kdl",
+        ".3ox/(3)Rules/exc/Axis.Warden.exs",
+        ".3ox/(3)Rules/exc/tpw/Axis.Warden.spec",
+        "hex:0x000",
+        "hex:0x003"
+      ]
+    },
+    "k01": {
+      "name": "AXIS.TAPE",
+      "class": "κ",
+      "core": { "sector": "Axis", "seat": "Tape" },
+      "route_key": "core.axis.tape",
+      "anchors": [
+        ".3ox/(6)Pulse/runtime/queue/jobs.json",
+        "runtime/tape/tape.jsonl",
+        ".3ox/(3)Rules/exc/tpw/Axis.Tape.spec",
+        "hex:0x001"
+      ]
+    },
+    "k02": {
+      "name": "AXIS.PULSE",
+      "class": "κ",
+      "core": { "sector": "Axis", "seat": "Pulse" },
+      "route_key": "core.axis.pulse",
+      "anchors": [
+        ".3ox/(6)Pulse/runtime/status.json",
+        ".3ox/run.rb",
+        ".3ox/(3)Rules/exc/tpw/Axis.Pulse.spec",
+        "hex:0x002"
+      ]
+    },
+    "k03": {
+      "name": "ENCODE.INTENT",
+      "class": "κ",
+      "core": { "sector": "Encode", "seat": "Intent" },
+      "route_key": "core.encode.intent",
+      "anchors": [".3ox/(1)Spark/sparkfile.md", "maps.intent"]
+    },
+    "k04": {
+      "name": "ENCODE.AUTHORITY",
+      "class": "κ",
+      "core": { "sector": "Encode", "seat": "Authority" },
+      "route_key": "core.encode.authority",
+      "anchors": [".3ox/_meta/WHOAMI.md", "exc_boundary", "owner in hex.index"]
+    },
+    "k05": {
+      "name": "ENCODE.STATE",
+      "class": "κ",
+      "core": { "sector": "Encode", "seat": "State" },
+      "route_key": "core.encode.state",
+      "anchors": ["RECEIPT v1", "encoder.map in receipt"]
+    },
+    "k06": {
+      "name": "ENCODE.ROUTE",
+      "class": "κ",
+      "core": { "sector": "Encode", "seat": "Route" },
+      "route_key": "core.encode.route",
+      "anchors": ["routes.json", "maps.hex", "slot_index"]
+    },
+    "k07": {
+      "name": "ENCODE.MEMORY",
+      "class": "κ",
+      "core": { "sector": "Encode", "seat": "Memory" },
+      "route_key": "core.encode.memory",
+      "anchors": ["hex.index.json entries", "TAPE tape.jsonl"]
+    },
+    "k08": {
+      "name": "ENCODE.SEAL",
+      "class": "κ",
+      "core": { "sector": "Encode", "seat": "Seal" },
+      "route_key": "core.encode.seal",
+      "anchors": ["sha256 external", "xxh3 frame", "EXC Ξ line", "HIRO seal sections"]
+    },
+    "k09": {
+      "name": "RING.INTAKE",
+      "class": "κ",
+      "core": { "sector": "Ring", "seat": "Intake" },
+      "route_key": "core.ring.intake",
+      "ring_a": "A0.PHENO.LEGEND",
+      "anchors": [
+        "encoder layer 0 RAW",
+        "1 SPARK",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A0.spec",
+        "hex:0x111"
+      ]
+    },
+    "k10": {
+      "name": "RING.VALIDATE",
+      "class": "κ",
+      "core": { "sector": "Ring", "seat": "Validate" },
+      "route_key": "core.ring.validate",
+      "ring_a": "A1.INPUT.GATE",
+      "anchors": [
+        "encoder_validate.py",
+        "exc_validate.py",
+        "warden checks",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A1.spec",
+        "hex:0x112"
+      ]
+    },
+    "k11": {
+      "name": "RING.ENCODE",
+      "class": "κ",
+      "core": { "sector": "Ring", "seat": "Encode" },
+      "route_key": "core.ring.encode",
+      "ring_a": "A2.BIND.GATE",
+      "anchors": [
+        "layers 2-4 PHENO PiCO PRISM",
+        "GlyphBit / EXC",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A2.spec",
+        "hex:0x113"
+      ]
+    },
+    "k12": {
+      "name": "RING.ROUTE",
+      "class": "κ",
+      "core": { "sector": "Ring", "seat": "Route" },
+      "route_key": "core.ring.route",
+      "ring_a": "A3.OUTPUT.GATE",
+      "anchors": [
+        "layer 5 MAP",
+        "encoder_dry_run.py",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A3.spec",
+        "hex:0x114"
+      ]
+    },
+    "k13": {
+      "name": "RING.EXECUTE",
+      "class": "κ",
+      "core": { "sector": "Ring", "seat": "Execute" },
+      "route_key": "core.ring.execute",
+      "ring_a": "A4.LOOP.CORE",
+      "anchors": [
+        ".3ox/run.rb run_job",
+        "Toolkit .exs",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A4.spec",
+        "hex:0x115"
+      ]
+    },
+    "k14": {
+      "name": "RING.OBSERVE",
+      "class": "κ",
+      "core": { "sector": "Ring", "seat": "Observe" },
+      "route_key": "core.ring.observe",
+      "ring_a": "A5.PiCO.TRACE",
+      "anchors": [
+        "layer 8 PULSE",
+        "status.json",
+        "logs/",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A5.spec",
+        "hex:0x116"
+      ]
+    },
+    "k15": {
+      "name": "RING.DIGEST",
+      "class": "κ",
+      "core": { "sector": "Ring", "seat": "Digest" },
+      "route_key": "core.ring.digest",
+      "ring_a": "A6.PRISM.SHAPE",
+      "anchors": [
+        "xxh3 frame / xxh128 inter-daemon",
+        "receipt hashes",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A6.spec",
+        "hex:0x117"
+      ]
+    },
+    "k16": {
+      "name": "RING.COMMIT",
+      "class": "κ",
+      "core": { "sector": "Ring", "seat": "Commit" },
+      "route_key": "core.ring.commit",
+      "ring_a": "A7.METADEX",
+      "anchors": [
+        "layer 7 TAPE append",
+        "git / explicit handoff policy",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A7.spec",
+        "hex:0x118"
+      ]
+    },
+    "k17": {
+      "name": "RING.RECOVER",
+      "class": "κ",
+      "core": { "sector": "Ring", "seat": "Recover" },
+      "route_key": "core.ring.recover",
+      "ring_a": "A8.QED.SEAL",
+      "anchors": [
+        "layer 9 LOOP",
+        "ν fallback",
+        "SESSION.CHECKPOINT",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A8.spec",
+        "hex:0x119"
+      ]
+    },
+    "k18": {
+      "name": "SYSTEM.META",
+      "class": "κ",
+      "core": { "sector": "System", "seat": "Meta" },
+      "route_key": "core.system.meta",
+      "ring_b": "B0.SUPERVISOR",
+      "anchors": [
+        "_meta/",
+        "ENCODER.*.md",
+        ".ME cards",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B0.spec",
+        "hex:0x121",
+        "hex:0x120"
+      ]
+    },
+    "k19": {
+      "name": "SYSTEM.TRON",
+      "class": "κ",
+      "core": { "sector": "System", "seat": "Tron" },
+      "route_key": "core.system.tron",
+      "ring_b": "B1.WARDEN",
+      "anchors": [
+        "_TRON/",
+        "systemd units",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B1.spec",
+        "hex:0x122"
+      ]
+    },
+    "k20": {
+      "name": "SYSTEM.CHMOD",
+      "class": "κ",
+      "core": { "sector": "System", "seat": "Chmod" },
+      "route_key": "core.system.chmod",
+      "ring_b": "B2.QUEUE",
+      "anchors": [
+        "limits.toml write_policy",
+        "scope",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B2.spec",
+        "hex:0x123"
+      ]
+    },
+    "k21": {
+      "name": "SYSTEM.DAEMON",
+      "class": "κ",
+      "core": { "sector": "System", "seat": "Daemon" },
+      "route_key": "core.system.daemon",
+      "ring_b": "B3.WORKER",
+      "anchors": [
+        ".3ox/run.rb station",
+        "HEARTBEAT",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B3.spec",
+        "hex:0x124"
+      ]
+    },
+    "k22": {
+      "name": "SYSTEM.CAGE",
+      "class": "κ",
+      "core": { "sector": "System", "seat": "Cage" },
+      "route_key": "core.system.cage",
+      "ring_b": "B4.TAPE",
+      "anchors": [
+        "sandbox policy",
+        "denied_dirs",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B4.spec",
+        "hex:0x125"
+      ]
+    },
+    "k23": {
+      "name": "SYSTEM.ROUTE",
+      "class": "κ",
+      "core": { "sector": "System", "seat": "Route" },
+      "route_key": "core.system.route",
+      "ring_b": "B5.PULSE",
+      "anchors": [
+        "(5)Links",
+        "mesh telegram routes",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B5.spec",
+        "hex:0x126"
+      ]
+    },
+    "k24": {
+      "name": "SYSTEM.HASH",
+      "class": "κ",
+      "core": { "sector": "System", "seat": "Hash" },
+      "route_key": "core.system.hash",
+      "ring_b": "B6.ROUTER",
+      "anchors": [
+        ".vec3/rc/run.rb aliveness hashes",
+        "xxh3 internal / sha256 external per limits.toml",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B6.spec",
+        "hex:0x127"
+      ]
+    },
+    "k25": {
+      "name": "SYSTEM.VAULT",
+      "class": "κ",
+      "core": { "sector": "System", "seat": "Vault" },
+      "route_key": "core.system.vault",
+      "ring_b": "B7.BRIDGE",
+      "anchors": [
+        "protected paths",
+        "receipts_tron",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B7.spec",
+        "hex:0x128"
+      ]
+    },
+    "k26": {
+      "name": "SYSTEM.PATCH",
+      "class": "κ",
+      "core": { "sector": "System", "seat": "Patch" },
+      "route_key": "core.system.patch",
+      "ring_b": "B8.SCHEDULER",
+      "anchors": [
+        "controlled updates",
+        "PR merge gates",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B8.spec",
+        "hex:0x129"
+      ]
+    },
+    "E042": {
+      "name": "ETRIOS.CORE",
+      "class": "ξ",
+      "route_key": "etrios.core",
+      "note": "example ξ workload; not a Core κ seat"
+    },
+    "E101": {
+      "name": "LEONIS.GATE",
+      "class": "ξ",
+      "route_key": "lion.gate",
+      "note": "proof GlyphBit Leo + skill Lion.Gate — validates encoder path"
+    }
+  },
+  "maps": {
+    "hex": {
+      "0x000": "k00",
+      "0x001": "k01",
+      "0x002": "k02",
+      "0x003": "k00",
+      "0x110": "k09",
+      "0x111": "k09",
+      "0x112": "k10",
+      "0x113": "k11",
+      "0x114": "k12",
+      "0x115": "k13",
+      "0x116": "k14",
+      "0x117": "k15",
+      "0x118": "k16",
+      "0x119": "k17",
+      "0x120": "k18",
+      "0x121": "k18",
+      "0x122": "k19",
+      "0x123": "k20",
+      "0x124": "k21",
+      "0x125": "k22",
+      "0x126": "k23",
+      "0x127": "k24",
+      "0x128": "k25",
+      "0x129": "k26",
+      "0x02A": "E042",
+      "0x101": "E101"
+    },
+    "intent": {
+      "etrios.core": "E042",
+      "lion.gate": "E101"
+    }
+  },
   "routes": {
     "telegram": {
       "chat_id": null,
@@ -9,6 +467,15 @@
     "mesh": {
       "speaker": "speaker-mesh",
       "config": "TPR.SPEAKER.MESH.json"
+    },
+    "etrios.core": {
+      "slot": "E042",
+      "description": "example route bound to entity slot E042"
+    },
+    "lion.gate": {
+      "slot": "E101",
+      "skill": "Lion.Gate",
+      "description": "LEONIS keeper — Leo.Bit.md + skill Lion.Gate; summon #lion #gatekeeper"
     }
   }
 }

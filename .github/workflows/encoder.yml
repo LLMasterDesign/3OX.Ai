@@ -1,0 +1,67 @@
+# Encoder Phase 1 — hex index + optional line-1 chip fixture
+name: encoder
+
+on:
+  push:
+    branches: [main, '3ox.agent/**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate hex.index.json
+        run: python3 scripts/encoder_validate.py
+
+      - name: Validate fixture doc line-1 chip
+        run: python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.md
+
+      - name: TPW Axis Gensing line-1 chips (0x000-0x003)
+        run: |
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Warden.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Tape.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/Axis.Pulse.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/tpw/TPW.SPIN.spec
+
+      - name: Ring.A kernel specs line-1 chips (0x110-0x119)
+        run: |
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.BUNDLE.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A0.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A1.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A2.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A3.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A4.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A5.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A6.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A7.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-a/Ring.A.A8.spec
+
+      - name: Ring.B kernel specs line-1 chips (0x120-0x129)
+        run: |
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.BUNDLE.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B0.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B1.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B2.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B3.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B4.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B5.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B6.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B7.spec
+          python3 scripts/encoder_validate.py --doc .3ox/(3)Rules/exc/ring-b/Ring.B.B8.spec
+
+      - name: Encoder MAP dry run (receipt + tape)
+        run: python3 scripts/encoder_dry_run.py --code 0x02A
+
+      - name: EXC v1 minimal boundary (fixture)
+        run: python3 scripts/exc_validate.py scripts/exc_fixtures/encoder_minimal.exc
+
+      - name: EXC Axis.Warden (k00) canonical + limits shim
+        run: |
+          python3 scripts/exc_validate.py .3ox/(3)Rules/exc/Axis.Warden.exc --canonical .3ox/(3)Rules/exc/Axis.Warden.exc
+          python3 .3ox/(3)Rules/exc/Axis.Warden.exs
+
+      - name: 3OX.Core{} slot chamber (k00..k26)
+        run: python3 scripts/core_slots_validate.py
