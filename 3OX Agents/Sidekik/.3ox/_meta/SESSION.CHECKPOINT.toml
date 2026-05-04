@@ -1,0 +1,24 @@
+# status:[ACTIVE] ver:[0.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# 3OX.Sidekik session checkpoint — drift detection seed
+
+[checkpoint]
+last_session_id  = ""
+last_intent      = ""
+last_subagent    = ""
+last_receipt_id  = ""
+last_updated_at  = "1970-01-01T00:00:00Z"
+
+[truth_paths]
+spark   = ".3ox/(1)Spark/sparkfile.md"
+brains  = ".3ox/(2)Brains/brains.rs"
+rules   = ".3ox/(3)Rules/limits.toml"
+tools   = ".3ox/(4)Toolkit/tools.yml"
+links   = ".3ox/(5)Links/routes.json"
+pulse   = ".3ox/(6)Pulse/run.rb"
+tape    = ".raven/tape/tape.jsonl"
+status  = ".3ox/(6)Pulse/runtime/status.json"
+
+[drift]
+detected = false
+notes    = "fresh cube"

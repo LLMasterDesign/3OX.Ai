@@ -1,0 +1,43 @@
+# status:[ACTIVE] ver:[0.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# 3OX.Sidekik tools — daily-driver capabilities
+
+tools:
+  - name: inference
+    type: llm
+    enabled: true
+    serving: single_slot
+    hydrate_from:
+      - slot.receipt_tail
+      - slot.status_snapshot
+      - slot.runtime_log_slice
+
+  - name: triage
+    type: script
+    enabled: true
+    runner: ruby
+    entry: scripts/triage.rb
+
+  - name: dispatch
+    type: script
+    enabled: true
+    runner: ruby
+    entry: scripts/dispatch.rb
+
+  - name: note
+    type: script
+    enabled: true
+    runner: ruby
+    entry: scripts/note.rb
+
+  - name: status
+    type: script
+    enabled: true
+    runner: ruby
+    entry: scripts/status.rb
+
+slots:
+  E043:
+    allowed_tools: [inference, triage, dispatch, note, status]
+    allowed_adapters: [telegram, mesh]
+    allowed_scopes: [".raven/", ".3ox/(6)Pulse/runtime/"]

@@ -1,0 +1,29 @@
+# status:[ACTIVE] ver:[0.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# 3OX.Sidekik limits — daily-driver agent under Raven Suite
+
+[limits]
+max_tokens      = 4096
+max_context     = 128000
+timeout_seconds = 60
+
+[write_policy]
+allow_create = true
+allow_modify = true
+allow_delete = false
+protected    = [".3ox/", "_meta/", ".vec3/rc/", ".vec3/lib/"]
+
+[scope]
+allowed_dirs = [".", ".raven/", ".3ox/(6)Pulse/runtime/"]
+denied_dirs  = ["..", "/etc", "/root/.ssh"]
+
+[hashing]
+internal_frame    = "xxh3"
+internal_daemon   = "xxh128"
+external_boundary = "sha256"
+
+# Sidekik defers to root .3ox/(3)Rules/limits.toml for the twelve Warden laws.
+# This file only narrows scope per-agent; it never expands kernel permissions.
+[warden]
+inherits = "/.3ox/(3)Rules/limits.toml"
+mode     = "narrow_only"

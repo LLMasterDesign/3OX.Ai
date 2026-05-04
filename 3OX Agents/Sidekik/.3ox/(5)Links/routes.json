@@ -1,0 +1,46 @@
+{
+  "agent": "3OX.Sidekik",
+  "version": "0.1.0",
+  "suite": "Raven",
+  "slot": "E043",
+  "routes": {
+    "default": ".raven/inbox",
+    "inbox":   ".raven/inbox",
+    "outbox":  ".raven/outbox",
+    "tape":    ".raven/tape",
+    "logs":    ".3ox/(6)Pulse/runtime/logs"
+  },
+  "telegram": {
+    "chat_id": null,
+    "allowed_chat_ids": [],
+    "allowed_topics": []
+  },
+  "mesh": {
+    "speaker": "speaker-mesh",
+    "config": "TPR.SPEAKER.MESH.json"
+  },
+  "subagents": {
+    "money_bagz": {
+      "path": "Money.Bagz",
+      "topics": ["bills", "budget", "income", "due"]
+    },
+    "vso_agent": {
+      "path": "3OX Agents/VSO Agent",
+      "topics": ["va", "disability", "claim", "dbq"]
+    }
+  },
+  "intent_to_subagent": {
+    "bills": "money_bagz",
+    "budget": "money_bagz",
+    "va": "vso_agent",
+    "disability": "vso_agent",
+    "note": "self",
+    "plan": "self",
+    "status": "self"
+  },
+  "kernel_link": {
+    "hex_index": "/.3ox/(5)Links/hex.index.json",
+    "slot_index": "/.3ox/(5)Links/routes.json",
+    "claim": "0x02B"
+  }
+}
