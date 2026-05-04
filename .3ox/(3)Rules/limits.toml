@@ -16,3 +16,9 @@ protected    = [".3ox/", "_meta/"]
 [scope]
 allowed_dirs = ["."]
 denied_dirs  = [".."]
+
+# Hashing: fast frame / inter-daemon vs stable external receipts (3OX Core research).
+[hashing]
+internal_frame    = "xxh3"
+internal_daemon   = "xxh128"
+external_boundary = "sha256"

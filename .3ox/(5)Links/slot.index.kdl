@@ -1,0 +1,19 @@
+// status:[DRAFT] ver:[1.0.0] created:[26.05.03]
+// doc:[PARTIAL] auth:[3OX.AI]
+// 3OX.Core{} — κ k00..k26 = Axis[3]+Encode[6]+Ring[9]+System[9]
+
+document {
+  law "brand.3OX" "written_3OX_spoken_BOX_product_BOX_Ai"
+  law "core.chamber" "3OX_Core_empty_27_kappa_slots_k00_k26_protected"
+  law "grammar" "prefer_3OX_Core_Brace_Axis_Encode_Ring_System_avoid_top_level_3OX_Axis"
+  law "equation" "Axis3_plus_Encode6_plus_Ring9_plus_System9_equals_27"
+  law "ring" "no_transition_without_sequence_no_sequence_without_witness_no_witness_without_hash"
+  law "hash" "internal_xxh3_frame_xxh128_daemon_external_sha256"
+  law "ladder" "27_core_81_route_ring_216_xi_243_envelope_729_archive"
+  law "xi.proof" "E101_Leo_validates_encoder_not_Core_seat"
+  law "tpw.spec" "Axis_TPW_gensing_syntax_in_spec_under_exc_tpw_hex_0x000_to_0x003"
+  law "ring.a" "Ring_A_specs_hex_0x111_to_0x119_bundle_0x110_maps_k09_k17"
+
+  slot id=k00 class=kernel { name "AXIS.WARDEN" }
+  slot id=k26 class=kernel { name "SYSTEM.PATCH" }
+}

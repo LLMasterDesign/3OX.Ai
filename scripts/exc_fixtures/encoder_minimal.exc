@@ -1,0 +1,12 @@
+EXC[exc://encoder-minimal-001]
+(ρ ⊗ φ ⊗ τ) ⇨ (⊢ ∙ ⇨ ∙ ⟿ ∙ ▷) ⟿ PRISM
+≡ Ξ{verify.source ∙ re-validate{ρ φ τ}} ∙ ν{fallback}
+
+ρ{trigger.mythic}
+φ{bind.dragon.persona}
+τ{emit.instructor.fallback}
+⊢{bind.trigger}
+⇨{resolve.persona}
+⟿{carry.behavior}
+▷{emit.reply}
+ν{cache://encoder-receipt}
