@@ -57,7 +57,7 @@ python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.m
 | ID | Rule | Gate |
 |----|------|------|
 | W1 | All writes **MUST** respect `.3ox/(3)Rules/limits.toml` `write_policy` and `scope`. | Warden |
-| W2 | External receipts **SHOULD** record **sha256**; internal hot paths **MAY** use **xxh128** per `limits.toml`. | Review |
+| W2 | External receipts **SHOULD** record **sha256**; internal **frame** **SHOULD** align with **`internal_frame`** (xxh3); inter-daemon **MAY** use **`internal_daemon`** (xxh128) per `limits.toml`. | Review |
 
 ## D. EXC (when present)
 
@@ -87,6 +87,7 @@ python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.m
 ## Related files
 
 - `_meta/ENCODER.PRD.md` — requirements
+- `_meta/3OX.CORE.RESEARCH.md` — 3OX.Core{} brand, 27 slots, Ring laws, ladder, hashing narrative
 - `_meta/ENCODER.PLAN.md` — phases
 - `_meta/ENCODER.ARCHITECTURE.md` — diagrams + component map
 - `_meta/ENCODER.RECEIPT.schema.json` — RECEIPT v1 JSON Schema
