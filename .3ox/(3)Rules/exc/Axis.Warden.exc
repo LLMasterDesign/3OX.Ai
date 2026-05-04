@@ -2,7 +2,7 @@ EXC[exc://core-axis-warden-v1]
 (ρ ⊗ φ ⊗ τ) ⇨ (⊢ ∙ ⇨ ∙ ⟿ ∙ ▷) ⟿ PRISM
 ≡ Ξ{verify.source ∙ re-validate{ρ φ τ}} ∙ ν{fallback}
 
-ρ{read://.3ox/(3)Rules/limits.toml#limits+write_policy+scope+hashing}
+ρ{read://.3ox/(3)Rules/limits.toml#limits+write_policy+scope+hashing+warden}
 φ{preserve://write_policy.order+protected.paths+deny_overrides}
 τ{emit://warden.verdict+policy_digest_refs}
 ⊢{ingest://limits.paths+meta.contracts}

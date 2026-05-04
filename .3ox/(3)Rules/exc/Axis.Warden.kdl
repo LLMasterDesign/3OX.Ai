@@ -1,6 +1,6 @@
 exc "exc://core-axis-warden-v1" {
   pheno {
-    rho "read://.3ox/(3)Rules/limits.toml#limits+write_policy+scope+hashing"
+    rho "read://.3ox/(3)Rules/limits.toml#limits+write_policy+scope+hashing+warden"
     phi "preserve://write_policy.order+protected.paths+deny_overrides"
     tau "emit://warden.verdict+policy_digest_refs"
   }

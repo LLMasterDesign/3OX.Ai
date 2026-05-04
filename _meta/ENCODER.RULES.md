@@ -68,6 +68,25 @@ python3 scripts/core_slots_validate.py
 | W1 | All writes **MUST** respect `.3ox/(3)Rules/limits.toml` `write_policy` and `scope`. | Warden |
 | W2 | External receipts **SHOULD** record **sha256**; internal **frame** **SHOULD** align with **`internal_frame`** (xxh3); inter-daemon **MAY** use **`internal_daemon`** (xxh128) per `limits.toml`. | Review |
 
+### C1. Warden laws v1 (non-bypassable)
+
+Authoritative table: **`limits.toml`** section **`[warden]`** and **`[[warden.law]]`** (12 rows). Axis.Warden **ρ** reads **`limits+warden`**. Summary:
+
+| # | Code | One-line | Violation outcome |
+|---|------|------------|-------------------|
+| 1 | `SLOT_CAP` | No identities beyond field **27 κ + 216 ξ = 243**. | Deny + violation receipt |
+| 2 | `KERNEL_PROTECTION` | No user-facing **ξ** modifies **κ k00–k26**; κ read-only unless owner-authorized + migration-sealed. | Deny |
+| 3 | `WARDEN_FIRST` | Any mutation passes Warden first; no Worker/Route/Tool/Adapter/System mutates state directly. | Block execution |
+| 4 | `DECLARED_CAPABILITY` | Slot uses only declared tools, adapters, paths, scopes; no declaration → no permission. | Deny by default |
+| 5 | `SLOT_IDENTITY` | One slot = one function identity; files are faces, not new identities. | Reject registration |
+| 6 | `ROUTE_DETERMINISM` | Same normalized intent + same state → same route; ambiguity → halt/reject. | No execution |
+| 7 | `NO_RAW_MUTATION` | Writes only on approved surfaces (**vec3**, **`_TRON`**, slot **MAP**). | Deny |
+| 8 | `RECEIPT_COLLAPSE` | Boundary-crossing effects collapse to **receipt**; micro-spin exempt. | Degraded state |
+| 9 | `TAPE_INTEGRITY` | Proof append-only; no overwrite/delete/silent fix; fix = new compensating receipt. | Critical fault |
+| 10 | `PULSE_VISIBILITY` | Daemons + active kernel rings expose aliveness. | Degraded or restart |
+| 11 | `MIGRATION_SEAL` | Kernel law / PHENO meaning / slot identity / receipt schema changes require migration seal. | Reject upgrade |
+| 12 | `FAIL_CLOSED` | Undecidable → deny; unclear ≠ permitted. | Default (no violation class) |
+
 ## D. EXC (when present)
 
 | ID | Rule | Gate |
@@ -104,7 +123,7 @@ python3 scripts/core_slots_validate.py
 - `scripts/exc_validate.py` — boundary check for `.exc`
 - `scripts/core_slots_validate.py` — 3OX.Core{} κ chamber vs `routes.json`
 - `.3ox/(5)Links/routes.json`, `hex.index.json`
-- `.3ox/(3)Rules/limits.toml`
+- `.3ox/(3)Rules/limits.toml` — limits, write policy, scope, hashing, **warden laws v1**
 
 ---
 
