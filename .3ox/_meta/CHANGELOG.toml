@@ -24,3 +24,9 @@ summary = "Moved box-aliveness runtime contract check to .vec3/rc/run.rb and del
 date    = "26.05.04"
 type    = "research"
 summary = "Locked 3OX.Core{} as Axis[3] + Encode[6] + Ring[9] + System[9] protected 27-slot chamber"
+
+
+[[entry]]
+date    = "26.05.04"
+type    = "docs"
+summary = "Mirrored BOX brand grammar in root naming contract and clarified Box3 runtime vs Core27 contract"

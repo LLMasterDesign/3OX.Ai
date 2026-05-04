@@ -1,10 +1,25 @@
 # status:[ACTIVE] ver:[1.0.0] created:[26.03.03]
-# doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
-# Naming contract — conventions for the 3OX.Ai framework
+# doc:[COMPLETE] modified:[26.05.04] auth:[3OX.AI]
+# Naming contract — conventions for the 3OX.Ai / BOX.Ai framework
+
+[brand]
+written = "3OX"
+spoken  = "BOX"
+product = "BOX.Ai"
+note    = "3 is the triadic B-glyph; repository paths may remain 3OX.Ai while spoken product language is BOX.Ai."
 
 [naming]
 style     = "UPPER.DOT"
 separator = "."
+
+[core]
+root      = "3OX.Core{}"
+axis      = "3OX.Core{Axis}"
+encode    = "3OX.Core{Encode}"
+ring      = "3OX.Core{Ring}"
+system    = "3OX.Core{System}"
+equation  = "Axis[3] + Encode[6] + Ring[9] + System[9] = 27"
+authority = "Core members are addressed inside 3OX.Core{}, not as peer namespaces."
 
 [extensions]
 service  = ".service"

@@ -18,6 +18,8 @@ core      = ".3ox/_meta/BOX.ALIVENESS.equation"
 
 [core]
 root     = "3OX.Core{}"
+runtime  = "Box3"
+contract = "Core27"
 axis    = ["Warden", "Tape", "Pulse"]
 encode  = ["Intent", "Authority", "State", "Route", "Memory", "Seal"]
 ring    = ["Intake", "Validate", "Encode", "Route", "Execute", "Observe", "Digest", "Commit", "Recover"]

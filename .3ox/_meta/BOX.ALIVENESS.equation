@@ -24,6 +24,7 @@ Box₃(t)    ≔ Axis₃(t)
 ValidBox₃(t) ≔ I[Pulse(t)]·I[Tape(t)]·I[Warden(t)] = 1
 ValidCore₂₇(t) ≔ I[Axis₃(t)]·I[Encode₆(t)]·I[Ring₉(t)]·I[System₉(t)] = 1
 Authoritative(t) ≔ I[CanonSource(t)]·ValidBox₃(t) = 1
+CoreAuthoritative(t) ≔ Authoritative(t)·ValidCore₂₇(t) = 1
 Success(t) ≔ Authoritative(t)·I[Goal(t)=reached] = 1
 Repeatable(C) ≔ ∀t ∈ Runs(C), ValidBox₃(t)=1 under same law
 
@@ -46,6 +47,7 @@ Core{} law:
 - Ring sequences.
 - System protects.
 - Nothing leaves Core{} unencoded.
+- Current runtime aliveness checks Box₃; Core₂₇ is the protected contract layer that Box₃ sits inside.
 
 ─────────────────────────────────────────────────────────────────
 3OX MAPPING
@@ -81,6 +83,9 @@ ruby .vec3/rc/run.rb aliveness
 Pass condition:
 - authoritative = true
 - valid_box3 = true
+
+Contract extension:
+- core_authoritative = true when Core₂₇ structure is enforced in runtime output.
 
 Failure means one or more of Pulse/Tape/Warden/Canon source is broken.
 

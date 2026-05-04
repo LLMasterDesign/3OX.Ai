@@ -3,11 +3,11 @@
 
 ```elixir
 /// status:[ACTIVE] ver:[1.0.0] created:[26.03.03]
-/// doc:[PARTIAL] modified:[26.03.03] auth:[ZEN.PRO]
-/// 3OX.Ai launch plan — substrates, branches, agents, Telegram
+/// doc:[PARTIAL] modified:[26.05.04] auth:[ZEN.PRO]
+/// BOX.Ai launch plan — substrates, branches, agents, Telegram
 ```
 
-# 3OX.Ai — Launch Plan
+# BOX.Ai — Launch Plan
 
 ## GOAL
 
