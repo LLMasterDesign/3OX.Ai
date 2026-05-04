@@ -59,3 +59,7 @@ slots:
     allowed_tools: [inference]
     allowed_adapters: []
     allowed_scopes: []
+  E043:
+    allowed_tools: [inference, triage, dispatch, note, status]
+    allowed_adapters: [telegram, mesh]
+    allowed_scopes: ["3OX Agents/Sidekik/.raven/", "3OX Agents/Sidekik/.3ox/(6)Pulse/runtime/"]
