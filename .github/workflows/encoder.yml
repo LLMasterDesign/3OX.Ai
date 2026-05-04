@@ -7,9 +7,17 @@ on:
   pull_request:
     branches: [main]
 
+# Paths under .3ox/(N)... contain parentheses. Bash treats ( as subshell unless quoted.
+# Use env + "$VAR" so runners never hit: syntax error near unexpected token `('
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    env:
+      TPW_WARDEN: .3ox/(3)Rules/exc/tpw/Axis.Warden.spec
+      TPW_TAPE: .3ox/(3)Rules/exc/tpw/Axis.Tape.spec
+      TPW_PULSE: .3ox/(3)Rules/exc/tpw/Axis.Pulse.spec
+      TPW_SPIN: .3ox/(3)Rules/exc/tpw/TPW.SPIN.spec
     steps:
       - uses: actions/checkout@v4
 
@@ -18,7 +26,7 @@ jobs:
 
       - name: TPW Axis Gensing line-1 chips (0x000-0x003)
         run: |
-          python3 scripts/encoder_validate.py --doc '.3ox/(3)Rules/exc/tpw/Axis.Warden.spec'
-          python3 scripts/encoder_validate.py --doc '.3ox/(3)Rules/exc/tpw/Axis.Tape.spec'
-          python3 scripts/encoder_validate.py --doc '.3ox/(3)Rules/exc/tpw/Axis.Pulse.spec'
-          python3 scripts/encoder_validate.py --doc '.3ox/(3)Rules/exc/tpw/TPW.SPIN.spec'
+          python3 scripts/encoder_validate.py --doc "$TPW_WARDEN"
+          python3 scripts/encoder_validate.py --doc "$TPW_TAPE"
+          python3 scripts/encoder_validate.py --doc "$TPW_PULSE"
+          python3 scripts/encoder_validate.py --doc "$TPW_SPIN"
