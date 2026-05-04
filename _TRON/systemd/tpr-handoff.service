@@ -1,9 +1,14 @@
-# status:[DRAFT] ver:[1.0.0] created:[26.05.04]
+# status:[DRAFT] ver:[1.1.0] created:[26.05.04]
 # doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
-# TPR handoff consumer (oneshot). Pair with tpr-handoff.timer for periodic runs.
+# TPR handoff consumer (edge-triggered).
+#
+# Triggered by tpr-handoff.path when an agent writes a handoff JSON, or
+# directly by TelePromptR's rotor at TPW.SPIN edge. Type=oneshot so each
+# rotor edge maps to exactly one drain pass — no background timers.
 [Unit]
-Description=TPR handoff consumer (one shot)
+Description=TPR handoff consumer (edge-triggered, oneshot per rotor edge)
 After=network.target
+PartOf=tpr-handoff.path
 
 [Service]
 Type=oneshot
