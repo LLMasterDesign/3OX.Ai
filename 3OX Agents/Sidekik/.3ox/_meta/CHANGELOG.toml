@@ -1,0 +1,9 @@
+# status:[ACTIVE] ver:[0.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# 3OX.Sidekik changelog
+
+[[entry]]
+ver  = "0.1.0"
+date = "26.05.04"
+auth = "ZEN.PRO"
+note = "Cube scaffolded under Raven Suite. Slot E043 claimed (hex 0x02B). Six L2 faces + _meta + .vec3 kernel folders + Raven inbox/outbox/tape."

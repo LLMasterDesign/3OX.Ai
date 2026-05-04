@@ -1,0 +1,18 @@
+# status:[ACTIVE] ver:[0.1.0] created:[26.05.04]
+# Runtime ephemera — never commit per-host pulse / tape / inbox / outbox state.
+
+# Root cube runtime
+.3ox/(6)Pulse/runtime/
+**/.3ox/(6)Pulse/runtime/
+
+# Raven Suite live state (per agent cube)
+**/.raven/inbox/*
+**/.raven/outbox/*
+**/.raven/tape/*
+!**/.raven/inbox/.gitkeep
+!**/.raven/outbox/.gitkeep
+!**/.raven/tape/.gitkeep
+
+# Pid files / logs
+*.pid
+*.log

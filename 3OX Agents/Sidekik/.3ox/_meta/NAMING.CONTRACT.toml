@@ -1,0 +1,14 @@
+# status:[ACTIVE] ver:[0.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# Sidekik naming contract — kept narrow, defers to root NAMING.CONTRACT.
+
+[inherits]
+from = "/_meta/NAMING.CONTRACT.toml"
+
+[narrow]
+agent_prefix    = "Sidekik."
+session_prefix  = "sk-"
+receipt_prefix  = "sk.r."
+tape_filename   = "tape.jsonl"
+inbox_glob      = ".raven/inbox/*.intent.json"
+outbox_glob     = ".raven/outbox/*.reply.json"

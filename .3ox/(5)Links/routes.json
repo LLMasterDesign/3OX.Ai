@@ -644,12 +644,26 @@
       "route_key": "etrios.core",
       "code_4096": "0x02A",
       "note": "example entity slot"
+    },
+    "E043": {
+      "name": "SIDEKIK.RAVEN",
+      "class": "\u03be",
+      "route_key": "sidekik.raven",
+      "code_4096": "0x02B",
+      "agent": "3OX.Sidekik",
+      "suite": "Raven",
+      "anchors": [
+        "3OX Agents/Sidekik/.3ox/(1)Spark/sparkfile.md",
+        "3OX Agents/Sidekik/raven.rb",
+        "hex:0x02B"
+      ]
     }
   },
   "maps": {
     "trigger": {},
     "intent": {
-      "etrios.core": "E042"
+      "etrios.core": "E042",
+      "sidekik.raven": "E043"
     },
     "command": {},
     "hex": {
@@ -687,7 +701,8 @@
       "0x137": "k05",
       "0x138": "k06",
       "0x139": "k08",
-      "0x02A": "E042"
+      "0x02A": "E042",
+      "0x02B": "E043"
     },
     "hex_note": "only_codes_listed_in_hex_index_json_entries_may_appear_claim_new_rows_before_new_map_keys"
   },
@@ -703,6 +718,15 @@
     "etrios.core": {
       "slot": "E042",
       "description": "example route bound to entity slot E042"
+    },
+    "sidekik.raven": {
+      "slot": "E043",
+      "agent": "3OX.Sidekik",
+      "suite": "Raven",
+      "cube_path": "3OX Agents/Sidekik",
+      "supervisor": "3OX Agents/Sidekik/raven.rb",
+      "systemd_unit": "_TRON/systemd/raven.service",
+      "description": "Lucius's daily-driver Sidekik under the Raven Suite"
     }
   },
   "core": {

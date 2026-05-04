@@ -432,6 +432,26 @@
         "kdl": null,
         "exs": null
       }
+    },
+    "0x02B": {
+      "code": "0x02B",
+      "owner": "ZEN.PRO",
+      "title": "SIDEKIK.RAVEN",
+      "slot": "E043",
+      "route_key": "sidekik.raven",
+      "agent": "3OX.Sidekik",
+      "suite": "Raven",
+      "anchors": [
+        "3OX Agents/Sidekik/.3ox/(1)Spark/sparkfile.md",
+        "3OX Agents/Sidekik/raven.rb",
+        "_TRON/systemd/raven.service"
+      ],
+      "exc_id": null,
+      "exc_surfaces": {
+        "exc": null,
+        "kdl": null,
+        "exs": "3OX Agents/Sidekik/raven.rb"
+      }
     }
   }
 }

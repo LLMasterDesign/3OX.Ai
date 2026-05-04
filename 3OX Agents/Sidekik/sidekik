@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# status:[ACTIVE] ver:[0.1.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# sidekik — friendly CLI front for 3OX.Sidekik (Raven Suite).
+# Usage:
+#   ./sidekik say "pay the electric bill"        # triage + dispatch + status
+#   ./sidekik note "remember to call dad"
+#   ./sidekik status
+#   ./sidekik up | down | tick | alive
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PULSE="$HERE/.3ox/(6)Pulse/run.rb"
+RAVEN="$HERE/raven.rb"
+
+case "${1:-help}" in
+  say)
+    shift; ruby "$PULSE" triage "$@"; ruby "$PULSE" dispatch; ruby "$PULSE" status ;;
+  note)   shift; ruby "$PULSE" note "$@" ;;
+  status) ruby "$PULSE" status ;;
+  up)     ruby "$RAVEN" start ;;
+  down)   ruby "$RAVEN" stop ;;
+  tick)   ruby "$RAVEN" tick ;;
+  alive)  ruby "$RAVEN" aliveness ;;
+  help|*)
+    cat <<EOF
+sidekik — Raven Suite CLI
+  say "<intent>"   triage + dispatch + status
+  note "<text>"    append to tape
+  status           snapshot
+  up|down          start|stop supervisor (background)
+  tick             one supervisor cycle
+  alive            local Box-aliveness check
+EOF
+    ;;
+esac
