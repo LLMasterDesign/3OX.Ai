@@ -18,3 +18,6 @@ jobs:
 
       - name: Validate fixture doc line-1 chip
         run: python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.md
+
+      - name: Encoder MAP dry run (receipt + tape)
+        run: python3 scripts/encoder_dry_run.py --code 0x02A

@@ -19,7 +19,9 @@
       "code": "0x02A",
       "owner": "3OX.AI",
       "title": "encoder.seed",
-      "note": "baseline row for validator; expand metadata in PR follow-up"
+      "slot": "E042",
+      "route_key": "etrios.core",
+      "note": "baseline row for validator; MAP dry-run resolves to etrios.core"
     }
   }
 }

@@ -89,6 +89,7 @@ python3 scripts/encoder_validate.py --doc scripts/encoder_fixtures/valid_line1.m
 - `_meta/ENCODER.PRD.md` — requirements
 - `_meta/ENCODER.PLAN.md` — phases
 - `_meta/ENCODER.ARCHITECTURE.md` — diagrams + component map
+- `_meta/ENCODER.RECEIPT.schema.json` — RECEIPT v1 JSON Schema
 - `.3ox/(5)Links/routes.json`, `hex.index.json`
 - `.3ox/(3)Rules/limits.toml`
 

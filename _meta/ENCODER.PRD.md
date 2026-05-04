@@ -66,10 +66,15 @@ Each layer **MUST** have: name, input, output, owner component, failure mode doc
 
 ## 7. Success criteria (definition of done)
 
-- [ ] Architecture doc is the single diagram + component map for the encoder.
-- [ ] Rules file is referenced by CI or `make`/script for at least **chip + index** validation.
-- [ ] At least one **reference implementation path** (e.g. Ruby validate script or documented manual checklist) runs layers 5–9 on a sample job.
+- [x] Architecture doc is the single diagram + component map for the encoder.
+- [x] Rules file is referenced by CI or `make`/script for at least **chip + index** validation.
+- [x] At least one **reference implementation path** (`scripts/encoder_dry_run.py`) runs **MAP → RECEIPT → TAPE** (dry run); full Pulse job integration optional.
 - [ ] PRD and Plan stay in sync when scope changes (version bump in frontmatter).
+
+## 7b. Artifacts
+
+- **RECEIPT v1 schema:** `_meta/ENCODER.RECEIPT.schema.json`
+- **Dry run:** `python3 scripts/encoder_dry_run.py --code 0x02A`
 
 ## 8. Out of scope ambiguities (track in Plan)
 

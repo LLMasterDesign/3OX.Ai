@@ -53,7 +53,7 @@ flowchart TB
 | 4 PRISM | Shape | EXC invariant + presentation templates |
 | 5 MAP | Ground | `hex.index.json`, `routes.json`, `slot.index.kdl`, `maps` |
 | 6 RECEIPT | Proof of run | `(6)Pulse/runtime/logs/*.json`, future proto `Receipt` |
-| 7 TAPE | Ordered memory | `runtime/queue/jobs.json` + log chain; optional `jsonl` |
+| 7 TAPE | Ordered memory | **`(6)Pulse/runtime/tape/tape.jsonl`** — append-only, one JSON object per line (receipt proofs). **Jobs queue** remains `runtime/queue/jobs.json` (orchestration), not the proof chain. |
 | 8 PULSE | Visibility | `runtime/status.json`, heartbeat in `.3ox/run.rb` |
 | 9 LOOP | Stability | supervisor loop + policy reading `last_completed_job` / receipts |
 
@@ -81,14 +81,34 @@ Line 1 chip `::0xHHH::` → **lookup** `hex.index.json` → optional cluster (`H
 .exs  = behavior / validate-only against boundary
 ```
 
-## 6. Gensing vs ClassicMD
+## 6. RECEIPT v1 (JSON)
+
+- **Schema:** `_meta/ENCODER.RECEIPT.schema.json`
+- **Pulse alignment:** every receipt **includes** `job_id`, `completed_at`, `status`, optional `output_preview` (same keys as `run.rb` → `runtime/logs/<job_id>.json`).
+- **Encoder extension:** top-level **`receipt_version`: `"1"`** and **`encoder`** object with **`layer_6_receipt`: true**, **`code_4096`**, and **`map`** (resolved `hex.index.json` + `routes.json` `slot_index` + route keys from `maps.hex`).
+
+## 7. TAPE v1 (`tape.jsonl`)
+
+- **Path:** `.3ox/(6)Pulse/runtime/tape/tape.jsonl` (create directory on first write).
+- **Format:** newline-delimited JSON; each line is a full **RECEIPT v1** object (dry-run and tooling use full object for replay clarity).
+- **Rule:** append-only; never rewrite earlier lines.
+
+## 8. MAP resolution (deterministic order)
+
+1. Normalize chip to `0xHHH`.
+2. Load **`hex.index.json`** → `entries[code]` (owner, title, optional `slot`, `route_key`, …).
+3. **`slot_id`** = `entries[code].slot` if present, else `routes.maps.hex[code]` if present, else **null**.
+4. If **`slot_index[slot_id]`** exists → attach **`slot_row`**.
+5. Collect **`route_keys`**: any key `k` in `routes` where `routes[k]` is an object and `routes[k].slot == slot_id`.
+
+## 9. Gensing vs ClassicMD
 
 - **Gensing:** glyph spine + `::0xHHH::` + `⫸ 〔…〕` context line; dense law headers.
 - **ClassicMD GlyphBit:** HIRO seven-section + `.ME` card; unchanged dialect for GlyphBits.
 
 Encoder **does not merge** these in v1; it **routes** by file type and index metadata.
 
-## 7. Extension points
+## 10. Extension points
 
 - `hex.index.json` `entries.*` — add `files`, `cluster_role`, `encoder_layer_hooks`.
 - `routes.json` — add `encoder` block mirroring this doc for machine consumers.

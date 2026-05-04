@@ -27,11 +27,11 @@
 
 ## Phase 2 — MAP + RECEIPT + TAPE
 
-- [ ] Define **RECEIPT** JSON shape (align with existing `runtime/logs/*.json` or extend).
-- [ ] Define **append to TAPE** (queue file or dedicated `tape.jsonl` — choose one; document in ARCHITECTURE).
-- [ ] MAP resolver: chip → `hex.index.json` → `routes.json` `slot_index` / `maps`.
+- [x] Define **RECEIPT** JSON shape — `_meta/ENCODER.RECEIPT.schema.json` (extends Pulse `job_id`, `completed_at`, `status`, `output_preview` + `encoder` MAP block).
+- [x] **TAPE** — append-only **`.3ox/(6)Pulse/runtime/tape/tape.jsonl`** (NDJSON receipts); jobs queue stays `jobs.json`.
+- [x] **MAP** — `routes.json` **`maps.hex`**, **`slot_index`**, `routes.*.slot`; resolver: **`scripts/encoder_dry_run.py`**.
 
-**Exit:** One **end-to-end dry run** (noop or sample job) produces receipt + tape pointer + pulse status update.
+**Exit:** **`python3 scripts/encoder_dry_run.py --code 0x02A`** writes **`runtime/logs/dry-run-*.json`**, **`runtime/logs/dry_run_pulse.json`**, appends **TAPE**; CI runs this step after encoder_validate.
 
 ## Phase 3 — EXC boundary (optional v1.1)
 

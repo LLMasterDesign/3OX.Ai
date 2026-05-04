@@ -4,6 +4,21 @@
   "links": {
     "hex_index_json": "hex.index.json"
   },
+  "slot_index": {
+    "E042": {
+      "name": "ETRIOS.CORE",
+      "class": "ξ",
+      "route_key": "etrios.core"
+    }
+  },
+  "maps": {
+    "hex": {
+      "0x02A": "E042"
+    },
+    "intent": {
+      "etrios.core": "E042"
+    }
+  },
   "routes": {
     "telegram": {
       "chat_id": null,
@@ -12,6 +27,10 @@
     "mesh": {
       "speaker": "speaker-mesh",
       "config": "TPR.SPEAKER.MESH.json"
+    },
+    "etrios.core": {
+      "slot": "E042",
+      "description": "example route bound to entity slot E042"
     }
   }
 }
