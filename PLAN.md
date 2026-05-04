@@ -47,13 +47,14 @@ main                          ← stable releases only
 │   │   ├── (5)Links/         routes.json
 │   │   └── (6)Pulse/         run.rb, receipts
 │   │
-│   └── .vec3/                ← L3: 6 folders (runtime kernel)
-│       ├── rc/               run control, lifecycle
-│       ├── lib/              protected references
-│       ├── dev/              device bridges, IO
-│       ├── var/              state, spool, inflight
-│       ├── bin/              executables
-│       └── ops/              tool operations
+│   └── .vec3/                ← L3: 7 surfaces (runtime kernel)
+│       ├── rc/               run control, lifecycle, boot
+│       ├── lib/              protected references, snips, prompts
+│       ├── dev/              device bridges, adapters, drivers, ops
+│       ├── var/              live state, receipts mirror, cursors, metrics
+│       ├── proto/            gRPC contracts, interface definitions
+│       ├── proc/             workers, queue, agents, self, kernel
+│       └── mem/              hot, deep, context (Project Orion at k07)
 │
 └── agents/live               ← deployed agent cubes
     ├── Money.Bagz/
@@ -176,19 +177,23 @@ containing exactly 6 faces:
 | (6) Pulse | `run.rb` | Entry point, receipts, lifecycle |
 
 ────────────────────────────────────────────────
-## L3 — 6 FOLDERS (per .vec3 kernel)
+## L3 — 7 SURFACES (per .vec3 kernel)
 ────────────────────────────────────────────────
 
-Runtime kernel — sits alongside `.3ox/` as `.vec3/`:
+Runtime kernel — sits alongside `.3ox/` as `.vec3/`. Full canon:
+`_meta/VEC3.SURFACES.md`.
 
-| Folder | Purpose |
-|--------|---------|
-| `rc/` | Run control — config, lifecycle scripts, services |
-| `lib/` | Protected libraries, references (read-only) |
-| `dev/` | IO bridges (Telegram, HTTP, MQ), device ops |
-| `var/` | Variable state — spool, inflight, events, receipts |
-| `bin/` | Executables — daemon, watcher, terminal |
-| `ops/` | Tool operations — indexer, health check |
+| Surface | Role | Purpose |
+|---|---|---|
+| `rc/` | control | Law and boot — `rules.ref`, `sys.ref`, `boot.lock`, binaries |
+| `lib/` | reference | Protected logic and canon — `snips/`, `prompts/`, `static/`, `*.ref` |
+| `dev/` | action | Adapters, drivers, executable bridges, ops — outside-world surface |
+| `var/` | state | Live state, receipts mirror, cursors, metrics |
+| `proto/` | agreement | gRPC service contracts, interface definitions |
+| `proc/` | process | `workers/`, `queue/`, `agents/`, `self/`, `kernel/` (Supervisor owns lifecycle) |
+| `mem/` | continuity | `hot/`, `deep/`, `context/` — owned by `Core{Encode}.Memory` (k07, Project Orion) |
+
+Place ≠ authority. See `_meta/VEC3.SURFACES.md` §Ownership map.
 
 ────────────────────────────────────────────────
 ## _META CONTRACT (per cube)

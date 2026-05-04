@@ -21,11 +21,19 @@ Think systemd for AI agents.
 
 All tiers (T1, T2, T3) include these 7 files.
 
-**vec3 Kernel** - Four protected surfaces for agent backend:
-- `rc/` - Immutable rules (rules.ref) and control knobs (sys.ref)
-- `lib/` - Protected reference libraries (read-only guides)
-- `dev/` - External adapters (I/O bridges, ops runners)
-- `var/` - Runtime data (receipts, events, inflight, status.ref)
+**`.vec3/` Kernel** - Seven protected runtime surfaces, sibling of `.3ox/` at every cube root. `.3ox/` declares the agent (six face files); `.vec3/` runs it (seven surface folders). See [`_meta/VEC3.SURFACES.md`](_meta/VEC3.SURFACES.md) for the full canon.
+
+| Surface | Role | One-line meaning |
+|---|---|---|
+| `.vec3/rc/` | control | Law and boot — immutable `rules.ref`, `sys.ref`, `boot.lock`, binaries |
+| `.vec3/lib/` | reference | Protected logic and canon — `snips/`, `prompts/`, `static/`, `*.ref` |
+| `.vec3/dev/` | action | Adapters, drivers, executable bridges — where 3OX touches the outside world |
+| `.vec3/var/` | state | Live state, receipts mirror, cursors, metrics — what is alive right now |
+| `.vec3/proto/` | agreement | gRPC service contracts and interface definitions |
+| `.vec3/proc/` | process | Workers, queue, self, internal agents, kernel — process plane (Supervisor still owns lifecycle) |
+| `.vec3/mem/` | continuity | `hot/`, `deep/`, `context/` — what the system remembers, not what it is currently doing |
+
+Place ≠ authority. `.vec3/var/receipts/` is a mirror; **Tape** owns receipt writing. `.vec3/proc/workers/` holds manifests; **Supervisor** owns lifecycle. `.vec3/rc/rules.ref` is a file; **Warden** enforces. The full ownership map lives in `_meta/VEC3.SURFACES.md`.
 
 **Brain Compilation** - Agent configurations written in Rust, compiled to executables. Type-safe behavior rules, not prompt engineering.
 
@@ -42,10 +50,10 @@ Current AI agents:
 - Drift from original intent
 
 3OX agents:
-- Preserve state across sessions (vec3/var)
+- Preserve state across sessions (`.vec3/var`, `.vec3/mem`)
 - Generate receipts for every action
 - Enforce atomic operations with rollback
-- Follow immutable rules (vec3/rc)
+- Follow immutable rules (`.vec3/rc`)
 
 For teams building AI systems that need to be production-ready, auditable, and reliable.
 
@@ -109,7 +117,7 @@ Borrowed from operating systems:
 - Process isolation → Agent boundaries
 - Audit logs → Receipt system
 - Init systems → Operational loop
-- Device drivers → Adapters in vec3/dev
+- Device drivers → Adapters in `.vec3/dev`
 
 If you trust your OS to manage state reliably, you can trust 3OX agents the same way.
 

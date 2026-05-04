@@ -51,9 +51,18 @@ Core{} law:
 3OX MAPPING
 ─────────────────────────────────────────────────────────────────
 
-Pulse  → (6)Pulse: run.rb, 3ox.log, receipts/
-Tape   → vec3/var/receipts/, event stream, merkle.root
-Warden → limits.toml, write_policy, validate at commit
+Pulse  → (6)Pulse: run.rb, 3ox.log, receipts/; mirrored at .vec3/var/state/
+Tape   → .vec3/var/receipts/ (mirror), event stream, merkle.root
+Warden → limits.toml, write_policy, validate at commit; rules at .vec3/rc/rules.ref
+
+.vec3/ surfaces (place vs authority — see _meta/VEC3.SURFACES.md):
+- .vec3/rc/    → control       (Warden enforces)
+- .vec3/lib/   → reference      (Patch under migration seal)
+- .vec3/dev/   → action         (Warden gate + Cage sandbox + Authority registration)
+- .vec3/var/   → state          (Tape writes authoritative receipts; .vec3/var is mirror)
+- .vec3/proto/ → agreement      (Seal integrity + Route binding)
+- .vec3/proc/  → process plane  (Supervisor owns lifecycle, not proc itself)
+- .vec3/mem/   → continuity     (Core{Encode}.Memory at k07 via Project Orion)
 
 Core{} → protected 27-slot execution chamber
 Axis   → Warden, Tape, Pulse
