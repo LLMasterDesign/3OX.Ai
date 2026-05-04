@@ -50,9 +50,22 @@ _TRON/TelePromptR/
     └── test_consumer.rb         # consumer tests (Dir.mktmpdir)
 
 _TRON/systemd/
-├── tpr-handoff.service          # oneshot, ExecStart=ruby bin/tpr_handoff.rb
-└── tpr-handoff.timer            # OnUnitActiveSec=5s
+├── tpr-handoff.service          # Type=oneshot, fires per rotor edge
+└── tpr-handoff.path             # PathChanged= per agent handoff dir (edge trigger)
 ```
+
+## Why no timer
+
+The rotor **is** the clock. TPW.SPIN (Warden → Tape → Pulse, hex
+`0x003`, slot `k00`) is the rotary encoder — every spin is an edge,
+and the Pulse axis (`hex:0x002`, k02) emits aliveness on that edge.
+Polling on a wall-clock tick would be a parallel clock fighting the
+rotor. So the consumer only runs when:
+
+1. **An agent writes a handoff** (filesystem edge → systemd `path` unit), or
+2. **TelePromptR's rotor itself invokes it** at TPW.SPIN edge (e.g. via the existing `merge.sh` tail).
+
+That's it. No background daemons, no timers, no polling.
 
 ## VPS install (one time)
 
@@ -64,15 +77,20 @@ rsync -avz _TRON/TelePromptR/ root@VPS:/root/_TRON/TelePromptR/
 sudo install -m 0644 /root/_TRON/TelePromptR/agents.example.json /etc/tpr/agents.json
 sudoedit /etc/tpr/agents.json   # set runtime_root + per-agent handoff_dir
 
-# 3. Pick one of the two integration paths.
+# 3. Pick one or both integration paths. They are idempotent together.
 
-# 3a. Tail the existing merge.sh (cheapest, runs every sync):
-echo 'bash /root/_TRON/TelePromptR/bin/merge_handoff.sh' >> /root/!CMD.VPS/TelePromptR/<TPR_ZENS3N>/merge.sh
+# 3a. Rotor tail — TelePromptR's existing merge.sh runs the consumer
+#     after the per-agent fragment merge. This is the canonical
+#     "ride the rotor" path. ONE LINE:
+echo 'bash /root/_TRON/TelePromptR/bin/merge_handoff.sh' \
+  >> /root/!CMD.VPS/TelePromptR/<TPR_ZENS3N>/merge.sh
 
-# 3b. Periodic timer (runs every 5s independent of agent syncs):
-sudo cp _TRON/systemd/tpr-handoff.{service,timer} /etc/systemd/system/
+# 3b. Filesystem edge trigger — fires a oneshot service whenever any
+#     registered agent writes a handoff JSON. Edit tpr-handoff.path
+#     to add one PathChanged= line per agent, then:
+sudo cp _TRON/systemd/tpr-handoff.{service,path} /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now tpr-handoff.timer
+sudo systemctl enable --now tpr-handoff.path
 ```
 
 ## Local verification (no VPS needed)
@@ -81,6 +99,14 @@ sudo systemctl enable --now tpr-handoff.timer
 $ cd _TRON/TelePromptR
 $ ruby test/test_schema.rb         # schema tests
 $ ruby test/test_consumer.rb       # consumer tests against tmpdirs
+```
+
+The CLI also accepts an explicit edge invocation, so external rotors
+(or `inotifywait` shims) can call it the same way `merge.sh` does:
+
+```
+$ ruby _TRON/TelePromptR/bin/tpr_handoff.rb --edge
+# Same effect as one rotor edge: drain, ack, enqueue, exit 0.
 ```
 
 ## Topic resolution order

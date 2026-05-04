@@ -71,6 +71,10 @@ can collapse the lifecycle.
 
 ## Consumer behaviour
 
+The consumer rides the rotor — **one invocation = one TPW.SPIN edge**.
+No timers. The rotor (or a filesystem `path` unit on the handoff dir)
+is what triggers the drain. See README §"Why no timer".
+
 1. Walk every registered agent's `!0UT.<AGENT>/tpr/handoff/*.handoff.json` (newest last).
 2. Validate each file with `lib/tpr_handoff_schema.rb`.
 3. On valid:
@@ -80,7 +84,7 @@ can collapse the lifecycle.
 4. On invalid: move to `handoff/.rejected/` with a sibling `<id>.error.json` carrying the validation message.
 5. Records older than `TPR_HANDOFF_STALE_AFTER_HOURS` (default 72) move to `.expired/` untouched.
 
-The consumer is **idempotent** by `id`: if `.acks/<id>.ack.json` or `.rejected/<id>.error.json` already exists, the source is just moved to the matching sink without re-emitting.
+The consumer is **idempotent** by `id`: if `.acks/<id>.ack.json` or `.rejected/<id>.error.json` already exists, the source is just moved to the matching sink without re-emitting. So firing the same rotor edge twice is safe.
 
 ## Failure modes that are NOT TPR's job
 
