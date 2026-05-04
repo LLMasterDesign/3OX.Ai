@@ -181,7 +181,7 @@ containing exactly 6 faces:
 ────────────────────────────────────────────────
 
 Runtime kernel — sits alongside `.3ox/` as `.vec3/`. Full canon:
-`_meta/VEC3.SURFACES.md`.
+`_meta/canon/VEC3.SURFACES.md`.
 
 | Surface | Role | Purpose |
 |---|---|---|
@@ -193,7 +193,7 @@ Runtime kernel — sits alongside `.3ox/` as `.vec3/`. Full canon:
 | `proc/` | process | `workers/`, `queue/`, `agents/`, `self/`, `kernel/` (Supervisor owns lifecycle) |
 | `mem/` | continuity | `hot/`, `deep/`, `context/` — owned by `Core{Encode}.Memory` (k07, Project Orion) |
 
-Place ≠ authority. See `_meta/VEC3.SURFACES.md` §Ownership map.
+Place ≠ authority. See `_meta/canon/VEC3.SURFACES.md` §Ownership map.
 
 ────────────────────────────────────────────────
 ## _META CONTRACT (per cube)

@@ -55,7 +55,7 @@ Pulse  → (6)Pulse: run.rb, 3ox.log, receipts/; mirrored at .vec3/var/state/
 Tape   → .vec3/var/receipts/ (mirror), event stream, merkle.root
 Warden → limits.toml, write_policy, validate at commit; rules at .vec3/rc/rules.ref
 
-.vec3/ surfaces (place vs authority — see _meta/VEC3.SURFACES.md):
+.vec3/ surfaces (place vs authority — see _meta/canon/VEC3.SURFACES.md):
 - .vec3/rc/    → control       (Warden enforces)
 - .vec3/lib/   → reference      (Patch under migration seal)
 - .vec3/dev/   → action         (Warden gate + Cage sandbox + Authority registration)

@@ -37,7 +37,7 @@ note        = "The rotor is the clock — Pulse edges arrive only on spin."
 "Lisp→Tape"  = "superseded by ARCHITECTURE.SPEC §10: Tape (k01) is BEAM/Elixir; Lisp moves to Supervisor (k21) continuity host + .vec3/proc/agents/ entity cores"
 
 [core.daemons]
-note  = "Daemons are runtime process classes. κ27 slots are identity authorities. Two different planes — see _meta/ARCHITECTURE.SPEC.md §3 + ARCHITECTURE.RECONCILIATION.md Conflict 1."
+note  = "Daemons are runtime process classes. κ27 slots are identity authorities. Two different planes — see _meta/canon/ARCHITECTURE.SPEC.md §3 + _meta/canon/ARCHITECTURE.RECONCILIATION.md Conflict 1."
 first = ["Warden", "Tape", "Pulse"]    # κ00–k02 daemons; first three at boot
 later = ["Queue", "Worker"]            # added after the first three
 "Supervisor.formerly" = "Gatekeeper"
@@ -62,3 +62,21 @@ watch    = ".watch"
 [staging]
 prefix   = "!"                   # !CMD.VPS, !LAUNCHPAD
 output   = "!0UT"                # !0UT.BUDGET, !0UT.AGENT
+
+# Layout law — the underscore tier of the prefix system.
+#
+# CRITICAL RULE: there are exactly TWO underscore-prefixed top-level
+# directories. Not three, not four. This is fixed for Quantum reasons
+# (per Lucius, 26.05.04). Anything that feels like it needs a third
+# `_*/` directory is wrong by construction — find a subfolder home.
+[layout]
+prefix         = "_"
+maximum        = 2
+"_meta"        = "cube + canon meta — see [layout.meta] below"
+"_TRON"        = "device / runtime / receipts contract"
+quantum_lock   = "two _*/ siblings only; see Lucius ruling 26.05.04"
+
+[layout.meta]
+"_meta/cube/"  = "the project-root cube's _meta — same four files every cube has (WHOAMI, NAMING.CONTRACT, SESSION.CHECKPOINT, CHANGELOG); mirrors .3ox/_meta/ at every L2/L3 cube"
+"_meta/canon/" = "framework-wide architectural canon — ARCHITECTURE.SPEC, ARCHITECTURE.RECONCILIATION, VEC3.SURFACES, RAVEN.SUITE, ENCODER.RULES; governs ALL cubes, not specific to one"
+note           = "Top-level _meta/ is split into cube/ and canon/ subfolders. Per-cube .3ox/_meta/ contains the cube's own copies of the four canon files plus BOX.ALIVENESS.equation, no canon/ subfolder needed (cubes don't carry framework canon, they obey it)."

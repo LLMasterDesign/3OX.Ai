@@ -37,7 +37,7 @@ supervisor (`raven.rb`, oneshot per rotor edge), and a small CLI
 
 The full `.vec3/` surface canon (seven surfaces, place vs authority,
 L2/L3 split, system-level vec3) lives in
-[`_meta/VEC3.SURFACES.md`](VEC3.SURFACES.md).
+[`_meta/canon/VEC3.SURFACES.md`](VEC3.SURFACES.md).
 
 ## Layout
 
@@ -132,7 +132,7 @@ being assembled. Below is the honest verdict per layer.
 | **Warden twelve laws** | ✅ stable | PR #23 merged. `scripts/warden_laws_validate.py` enforces 12 laws, sequential ids, code set, field counts (27/216/243), hashing keys. |
 | **Ring A/B/C specs** | ✅ stable | Specs `0x110–0x139` present, line-1 chip CI passing. |
 | **Box aliveness contract** | ✅ stable | PR #13 merged. `aliveness` is binary, hashed, exit-coded. |
-| **`.vec3` runtime surfaces (7 canon: `rc`, `lib`, `dev`, `var`, `proto`, `proc`, `mem`)** | ⚠️ stubs | Folders exist with `.gitkeep` only — by design. Canon doc: `_meta/VEC3.SURFACES.md`. Telegram I/O lives in **TPR**, not under `.vec3/dev/`. Memory pipeline is Project Orion at `k07`, surfaced under `.vec3/mem/{hot,deep,context}`. |
+| **`.vec3` runtime surfaces (7 canon: `rc`, `lib`, `dev`, `var`, `proto`, `proc`, `mem`)** | ⚠️ stubs | Folders exist with `.gitkeep` only — by design. Canon doc: `_meta/canon/VEC3.SURFACES.md`. Telegram I/O lives in **TPR**, not under `.vec3/dev/`. Memory pipeline is Project Orion at `k07`, surfaced under `.vec3/mem/{hot,deep,context}`. |
 | **Sidekik scripts** | ✅ MVP | `triage`, `dispatch`, `note`, `status`, `teleprompt` round-trip works locally (verified on this branch). |
 | **TPR (TelePromptR) integration** | ✅ wired | `scripts/teleprompt.rb` emits `TPR.SPEAKER.MESH.json` + `TPR.ROUTE.MAP.json`. `sync-vps.sh` mirrors Money.Bagz pattern: rsync → `merge.sh` → `systemctl restart speaker-mesh`. Telegram chat/topic IDs in `(5)Links/routes.json` are blank until Lucius binds Sidekik to a topic. |
 | **Sub-agent fan-out** | ✅ via TPR handoff | `dispatch.rb` writes a `tpr.handoff` receipt under `!0UT.SIDEKIK/tpr/handoff/` for each non-self route. TPR consumes the handoff and re-routes to the sub-agent's topic; speaker-mesh handles inference. No agent-to-agent shell-out. |

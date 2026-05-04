@@ -320,7 +320,7 @@ the seven canon surfaces. Anything still referencing `.vec3/bin/` or
 
 - `PLAN.md` — L2/L3 layout summary (authoritative cube structure)
 - `_meta/BOX.ALIVENESS.equation` — Box₃ aliveness invariant
-- `_meta/RAVEN.SUITE.md` — daily-driver runtime overview
+- `_meta/canon/RAVEN.SUITE.md` — daily-driver runtime overview
 - `_meta/NAMING.CONTRACT.toml` — `[core]` and `[core.rotor]` naming
 - `.3ox/(5)Links/routes.json` — slot index (`k00`–`k26`, `E000`–`E215`)
 - `.3ox/(3)Rules/exc/axis/3OX.SPIN.spec` — rotary encoder of `Core{Axis}`

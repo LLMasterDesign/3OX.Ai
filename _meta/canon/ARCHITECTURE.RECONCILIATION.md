@@ -9,7 +9,7 @@
 
 # Reconciliation: Architecture Freeze ↔ Existing Canon
 
-`_meta/ARCHITECTURE.SPEC.md` (ver 1.0.0, 26.05.04) is captured verbatim
+`_meta/canon/ARCHITECTURE.SPEC.md` (ver 1.0.0, 26.05.04) is captured verbatim
 from Lucius's dictation. This file dissects it section-by-section
 against everything already locked into the repo, so nothing is
 silently overwritten.
@@ -20,7 +20,7 @@ silently overwritten.
 |---|---|---|
 | `Core{}` 27-slot chamber (κ27) | `_meta/NAMING.CONTRACT.toml [core]`, `routes.json slot_index k00..k26` | locked PR #21, #30 |
 | Warden's twelve laws | `.3ox/(3)Rules/limits.toml [[warden.law]]`, `scripts/warden_laws_validate.py` | locked PR #23 |
-| `.vec3/` seven surfaces | `_meta/VEC3.SURFACES.md` | locked PR #34 |
+| `.vec3/` seven surfaces | `_meta/canon/VEC3.SURFACES.md` | locked PR #34 |
 | 3OX.SPIN rotor (Core{Axis}) | `.3ox/(3)Rules/exc/axis/3OX.SPIN.spec` (hex 0x003 / k00) | locked PR #32 |
 | Edge-only, no clocks | PR #29 | locked |
 | Box₃ aliveness | `.3ox/_meta/BOX.ALIVENESS.equation` | locked PR #12 |
@@ -37,7 +37,7 @@ silently overwritten.
 | 4 | PRISM+ | ✅ new layer, no conflict |
 | 5 | ARC MODE | ✅ new lens, complements `Core{System}.Daemon` (k21) |
 | 6 | EVENT LAW | ✅ aligns with PR #29 edge-only; ⚠️ Scheduler ambiguity (Conflict 1) |
-| 7 | VEC3 GEOMETRY | ✅ **exact match** with `_meta/VEC3.SURFACES.md` (PR #34) |
+| 7 | VEC3 GEOMETRY | ✅ **exact match** with `_meta/canon/VEC3.SURFACES.md` (PR #34) |
 | 8 | L1/L2/L3 | 🟡 minor: `brain.rs` (doc) vs `brains.rs` (repo) — Conflict 3 |
 | 9 | FOLDER OWNERSHIP | ✅ aligns with `(1)Spark/...(6)Pulse/` |
 | 10 | LANGUAGE OWNERSHIP | ⚠️ **CONFLICT 2** — see below |
@@ -134,7 +134,7 @@ These are clean additions that don't fight anything in canon. Each gets a follow
 | N5 | Universal Envelope (12 fields in/out, strict laws) | §11 | upgrade `Ring.C.C0` spec; add `scripts/envelope_validate.py` | propose |
 | N6 | Map → Pointer (file slice, line range, hash, version) | §12 | upgrade `Ring.C.C2` spec; expand `.3ox/(5)Links/map.toml` | propose |
 | N7 | Pack law (capabilities, adapters, scopes, golden tests, sign) | §16 | new `_meta/PACK.CONTRACT.md` + `pack.toml` schema; binds to Warden Law #4 | propose |
-| N8 | L1 LITE tier (sparkfile + vec3 only, services/stations) | §8.1 | extend `_meta/VEC3.SURFACES.md` L2/L3 split; add to `PLAN.md` | propose |
+| N8 | L1 LITE tier (sparkfile + vec3 only, services/stations) | §8.1 | extend `_meta/canon/VEC3.SURFACES.md` L2/L3 split; add to `PLAN.md` | propose |
 
 ---
 
@@ -142,7 +142,7 @@ These are clean additions that don't fight anything in canon. Each gets a follow
 
 These sections of the spec confirm and reinforce existing canon. No PR needed — they're already in the repo, just newly tied to the spec language.
 
-- **§7 VEC3 :: FULL GEOMETRY** is an exact match for `_meta/VEC3.SURFACES.md` (PR #34). Same seven surfaces, same place-vs-authority, same sub-folder topology. The spec slightly extends some surfaces with extra `contains` items (`policy.wasm` at system scale for `rc/`, `*.ref` explicit in `lib/`, `pid` + `state.json` in `var/`) — all compatible additions, none contradictory.
+- **§7 VEC3 :: FULL GEOMETRY** is an exact match for `_meta/canon/VEC3.SURFACES.md` (PR #34). Same seven surfaces, same place-vs-authority, same sub-folder topology. The spec slightly extends some surfaces with extra `contains` items (`policy.wasm` at system scale for `rc/`, `*.ref` explicit in `lib/`, `pid` + `state.json` in `var/`) — all compatible additions, none contradictory.
 - **§13 RECEIPT LAW** matches Tape's authority over `.vec3/var/receipts/` (mirror) vs `_TRON/receipts/` (authoritative), and binds to Warden Law #9 TAPE_INTEGRITY (append-only, no overwrite, corrections via compensating receipts).
 - **§18 HARD LINES** are direct restatements of Warden laws + 3OX.SPIN rotor + edge-only. "no per-agent timer spam" = PR #29. "Warden fail-closed" = Warden Law #12 FAIL_CLOSED. "logs do not outrank receipts" = Warden Law #9.
 - **§14 BOOT SEQUENCE** mirrors the Box₃ aliveness flow (PR #12, #13) — register, start, emit heartbeat, mark ready only after proof.
