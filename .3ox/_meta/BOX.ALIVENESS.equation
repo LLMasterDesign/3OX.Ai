@@ -3,8 +3,8 @@
 
 ```elixir
 /// status:[DRAFT] ver:[1.0.0] created:[26.03.13]
-/// doc:[PARTIAL] modified:[26.03.13] auth:[3OX.AI]
-/// Box-aliveness equation — state and aliveness invariant for 3ox
+/// doc:[PARTIAL] modified:[26.05.04] auth:[3OX.AI]
+/// Box-aliveness equation — Core{} state and aliveness invariant for 3ox
 ```
 
 ─────────────────────────────────────────────────────────────────
@@ -14,9 +14,15 @@ BOX-ALIVENESS EQUATION — Refined for 3ox
 Pulse(t)   ≔ Δt → εt → σt
 Tape(t)    ≔ ρt → μt
 Warden(t)  ≔ Verify(Pulse(t), Tape(t))
-Box₃(t)    ≔ ⟨Pulse(t), Tape(t), Warden(t)⟩
+Axis₃(t)   ≔ ⟨Warden(t), Tape(t), Pulse(t)⟩
+Encode₆(t) ≔ ⟨Intent, Authority, State, Route, Memory, Seal⟩
+Ring₉(t)   ≔ ⟨Intake, Validate, Encode, Route, Execute, Observe, Digest, Commit, Recover⟩
+System₉(t) ≔ ⟨Meta, Tron, Chmod, Daemon, Cage, Route, Hash, Vault, Patch⟩
+Core₂₇(t)  ≔ ⟨Axis₃(t), Encode₆(t), Ring₉(t), System₉(t)⟩
+Box₃(t)    ≔ Axis₃(t)
 
 ValidBox₃(t) ≔ I[Pulse(t)]·I[Tape(t)]·I[Warden(t)] = 1
+ValidCore₂₇(t) ≔ I[Axis₃(t)]·I[Encode₆(t)]·I[Ring₉(t)]·I[System₉(t)] = 1
 Authoritative(t) ≔ I[CanonSource(t)]·ValidBox₃(t) = 1
 Success(t) ≔ Authoritative(t)·I[Goal(t)=reached] = 1
 Repeatable(C) ≔ ∀t ∈ Runs(C), ValidBox₃(t)=1 under same law
@@ -34,6 +40,13 @@ CanonSource(t) ≔ path(.3ox) ∧ exists(_meta/WHOAMI.md) ∧ exists(_meta/SESSI
 Goal(t)=reached ≔ route completed with receipt
 Goal(t)=reached ≔ ∃r ∈ Tape(t) : r.status=COMPLETE ∧ r.intent=route(t).intent
 
+Core{} law:
+- Axis authorizes.
+- Encode transforms.
+- Ring sequences.
+- System protects.
+- Nothing leaves Core{} unencoded.
+
 ─────────────────────────────────────────────────────────────────
 3OX MAPPING
 ─────────────────────────────────────────────────────────────────
@@ -41,6 +54,17 @@ Goal(t)=reached ≔ ∃r ∈ Tape(t) : r.status=COMPLETE ∧ r.intent=route(t).i
 Pulse  → (6)Pulse: run.rb, 3ox.log, receipts/
 Tape   → vec3/var/receipts/, event stream, merkle.root
 Warden → limits.toml, write_policy, validate at commit
+
+Core{} → protected 27-slot execution chamber
+Axis   → Warden, Tape, Pulse
+Encode → Intent, Authority, State, Route, Memory, Seal
+Ring   → Intake, Validate, Encode, Route, Execute, Observe, Digest, Commit, Recover
+System → Meta, Tron, Chmod, Daemon, Cage, Route, Hash, Vault, Patch
+
+System grouping:
+- Anchor[2]  → Meta, Tron
+- Control[4] → Chmod, Daemon, Cage, Route
+- Seal[3]    → Hash, Vault, Patch
 
 
 
