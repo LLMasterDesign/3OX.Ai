@@ -21,11 +21,13 @@ Think systemd for AI agents.
 
 All tiers (T1, T2, T3) include these 7 files.
 
-**vec3 Kernel** - Four protected surfaces for agent backend:
-- `rc/` - Immutable rules (rules.ref) and control knobs (sys.ref)
-- `lib/` - Protected reference libraries (read-only guides)
-- `dev/` - External adapters (I/O bridges, ops runners)
-- `var/` - Runtime data (receipts, events, inflight, status.ref)
+**`.vec3/` Kernel** - Six protected surfaces for the agent backend, sitting alongside `.3ox/`:
+- `.vec3/rc/` - Run control: immutable rules (`rules.ref`) and control knobs (`sys.ref`)
+- `.vec3/lib/` - Protected reference libraries (read-only guides)
+- `.vec3/dev/` - External adapters (I/O bridges, ops runners)
+- `.vec3/var/` - Runtime data (receipts, events, inflight, `status.ref`)
+- `.vec3/bin/` - Executables (daemon, watcher, terminal)
+- `.vec3/ops/` - Tool operations (indexer, health checks)
 
 **Brain Compilation** - Agent configurations written in Rust, compiled to executables. Type-safe behavior rules, not prompt engineering.
 
@@ -42,10 +44,10 @@ Current AI agents:
 - Drift from original intent
 
 3OX agents:
-- Preserve state across sessions (vec3/var)
+- Preserve state across sessions (`.vec3/var`)
 - Generate receipts for every action
 - Enforce atomic operations with rollback
-- Follow immutable rules (vec3/rc)
+- Follow immutable rules (`.vec3/rc`)
 
 For teams building AI systems that need to be production-ready, auditable, and reliable.
 
@@ -109,7 +111,7 @@ Borrowed from operating systems:
 - Process isolation → Agent boundaries
 - Audit logs → Receipt system
 - Init systems → Operational loop
-- Device drivers → Adapters in vec3/dev
+- Device drivers → Adapters in `.vec3/dev`
 
 If you trust your OS to manage state reliably, you can trust 3OX agents the same way.
 

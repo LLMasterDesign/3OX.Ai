@@ -52,7 +52,7 @@ Core{} law:
 ─────────────────────────────────────────────────────────────────
 
 Pulse  → (6)Pulse: run.rb, 3ox.log, receipts/
-Tape   → vec3/var/receipts/, event stream, merkle.root
+Tape   → .vec3/var/receipts/, event stream, merkle.root
 Warden → limits.toml, write_policy, validate at commit
 
 Core{} → protected 27-slot execution chamber
