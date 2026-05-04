@@ -1,0 +1,57 @@
+# status:[ACTIVE] ver:[1.0.0] created:[26.05.04]
+# doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
+# TPR handoff schema + consumer tests (stdlib minitest, no gems).
+
+name: tpr
+
+on:
+  push:
+    branches: [main, '3ox.agent/**']
+    paths:
+      - '_TRON/TelePromptR/**'
+      - '.github/workflows/tpr.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '_TRON/TelePromptR/**'
+      - '.github/workflows/tpr.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: _TRON/TelePromptR
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby (system)
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ruby-full
+          ruby --version
+
+      - name: Schema tests
+        run: ruby test/test_schema.rb
+
+      - name: Consumer tests
+        run: ruby test/test_consumer.rb
+
+      - name: Smoke run against fixtures
+        run: |
+          mkdir -p /tmp/tpr_runtime
+          mkdir -p /tmp/handoff_smoke
+          cp fixtures/handoff/valid_sidekik_money_bagz.handoff.json /tmp/handoff_smoke/
+          cp fixtures/handoff/valid_sidekik_vso_agent.handoff.json   /tmp/handoff_smoke/
+          cat > /tmp/agents.json <<EOF
+          {
+            "runtime_root": "/tmp/tpr_runtime",
+            "stale_after_hours": 72,
+            "agents": [
+              { "name": "smoke", "handoff_dir": "/tmp/handoff_smoke" }
+            ]
+          }
+          EOF
+          ruby bin/tpr_handoff.rb --agents /tmp/agents.json
+          test -f /tmp/tpr_runtime/queue/bills.jsonl
+          test -f /tmp/tpr_runtime/queue/va.jsonl
