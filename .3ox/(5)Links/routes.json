@@ -10,10 +10,27 @@
     "handoff_version": "research-v1",
     "definition": "EXC_is_non_executing_boundary_one_bounded_replayable_unit",
     "semantic_tuple": {
-      "EXC": ["id", "PHENO", "PiCO", "PRISM", "Ξ", "ν", "π_optional"],
-      "PHENO": ["ρ", "φ", "τ"],
-      "PiCO": ["⊢", "⇨", "⟿", "▷"],
-      "pi_note": "π_reserved_optional_lower_control_v1_absence_does_not_invalidate"
+      "EXC": [
+        "id",
+        "PHENO",
+        "PiCO",
+        "PRISM",
+        "\u039e",
+        "\u03bd",
+        "\u03c0_optional"
+      ],
+      "PHENO": [
+        "\u03c1",
+        "\u03c6",
+        "\u03c4"
+      ],
+      "PiCO": [
+        "\u22a2",
+        "\u21e8",
+        "\u27ff",
+        "\u25b7"
+      ],
+      "pi_note": "\u03c0_reserved_optional_lower_control_v1_absence_does_not_invalidate"
     },
     "surfaces_one_identity": {
       "law": "1_EXC_identity_=_1_.exc_+_1_.kdl_+_1_.exs_not_weighted_triple",
@@ -52,7 +69,10 @@
     },
     "wire_and_packages": {
       "note": "grpc_exc_proto_and_excR_package_are_out_of_tree_place_inst_proto_when_added",
-      "map_toml_keys": ["proto_spec_hint", "exc_runtime_faces_hint"]
+      "map_toml_keys": [
+        "proto_spec_hint",
+        "exc_runtime_faces_hint"
+      ]
     },
     "slot_index_research_placeholder": {
       "note": "handoff_used_1_to_216_receipt_slot_align_with_xi_E000_E215_or_hex_codebook_separately",
@@ -62,14 +82,17 @@
   "inference_serving": {
     "mode": "single_slot",
     "policy": "resolve_slot_then_read_slot_scope_only",
-    "omit_context": ["full_pipeline_watch", "cross_slot_live_stream"]
+    "omit_context": [
+      "full_pipeline_watch",
+      "cross_slot_live_stream"
+    ]
   },
   "gensing": {
     "lex_anchor": {
       "status": "draft_lucius_banner_spine_hex_only_in_code_slot",
       "role": "doc_key_for_index_lookup_before_bulk_body",
       "banner_line_1": {
-        "spine": "///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂ ::0xHHH::",
+        "spine": "///\u2599\u2596\u2599\u2596\u259e\u259e\u2599\u2582\u2582\u2582\u2582\u2582\u2582\u2582\u2582\u2582\u2582\u2582\u2582\u2582\u2582 ::0xHHH::",
         "note": "glyph_row_then_::0xHHH::_three_hex_digits_after_0x_always_12bit_codebook"
       },
       "colon_switch": {
@@ -84,7 +107,10 @@
         "canonical_chip": "::0xHHH::",
         "digits_after_0x": 3,
         "leading_zero_pad": true,
-        "range_inclusive": ["0x000", "0xFFF"],
+        "range_inclusive": [
+          "0x000",
+          "0xFFF"
+        ],
         "distinct_codes": 4096,
         "line_1_never": [
           "wrong_digit_count_after_0x",
@@ -97,21 +123,32 @@
           "exactly_three_hex_digits_in_chip"
         ],
         "full_precision_lookup": "hex_index_json_only_merge_claims_there",
-        "examples_valid_line_1": ["0x000", "0x02A", "0x0A4", "0xFFF"],
-        "examples_invalid": ["0xTGX", "0x42", "0xA4F2", "0xG5H", "k00_in_hex_slot"]
+        "examples_valid_line_1": [
+          "0x000",
+          "0x02A",
+          "0x0A4",
+          "0xFFF"
+        ],
+        "examples_invalid": [
+          "0xTGX",
+          "0x42",
+          "0xA4F2",
+          "0xG5H",
+          "k00_in_hex_slot"
+        ]
       },
       "reuse_theme": "fixed_spine_change_hex_only_for_10000_plus_docs",
       "glyph_density": "prefer_no_blank_space_visual_rhythm_glyphs_carry_semantics",
       "context_line": {
         "role": "fleet_triple_not_in_banner_hex_use_this_line",
-        "pattern": "⫸ 〔runtime.binding.context〕",
+        "pattern": "\u2af8 \u3014runtime.binding.context\u3015",
         "binding": "replace_runtime_binding_context_with_bracketed_triple",
         "triple_slots_in_brackets": {
           "capacity": "243_per_box_27_kappa_plus_216_xi_when_split",
           "form_examples": [
-            "⫸ 〔Ω9f2a〕〔κk00〕〔ξE042〕",
-            "⫸ 〔Ω9f2a〕〔κk12〕〔ξE000〕",
-            "⫸ 〔Ω9f2a〕〔ξE215〕"
+            "\u2af8 \u3014\u03a99f2a\u3015\u3014\u03bak00\u3015\u3014\u03beE042\u3015",
+            "\u2af8 \u3014\u03a99f2a\u3015\u3014\u03bak12\u3015\u3014\u03beE000\u3015",
+            "\u2af8 \u3014\u03a99f2a\u3015\u3014\u03beE215\u3015"
           ],
           "bracket_rule": "each_segment_one_meaning_seal_kind_slot_no_english_in_seals_use_hex_or_slot_ids"
         },
@@ -139,19 +176,363 @@
       "elixir": "runtime_only_when_spec_points_source_not_encoder_bulk"
     },
     "markers": {
-      "exc_cell": "ξ [EXC] ::"
+      "exc_cell": "\u03be [EXC] ::"
     }
   },
   "slot_index": {
     "k00": {
-      "name": "KERNEL.RESERVE",
-      "class": "κ"
+      "name": "AXIS.WARDEN",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Axis",
+        "seat": "Warden"
+      },
+      "route_key": "core.axis.warden",
+      "anchors": [
+        "TPW",
+        ".3ox/(3)Rules/exc/tpw/Axis.Warden.spec",
+        "hex:0x000",
+        "hex:0x003",
+        ".3ox/(3)Rules/exc/tpw/TPW.SPIN.spec"
+      ]
+    },
+    "k01": {
+      "name": "AXIS.TAPE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Axis",
+        "seat": "Tape"
+      },
+      "route_key": "core.axis.tape",
+      "anchors": [
+        ".3ox/(3)Rules/exc/tpw/Axis.Tape.spec",
+        "hex:0x001"
+      ]
+    },
+    "k02": {
+      "name": "AXIS.PULSE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Axis",
+        "seat": "Pulse"
+      },
+      "route_key": "core.axis.pulse",
+      "anchors": [
+        ".3ox/(3)Rules/exc/tpw/Axis.Pulse.spec",
+        "hex:0x002"
+      ]
+    },
+    "k03": {
+      "name": "ENCODE.INTENT",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Encode",
+        "seat": "Intent"
+      },
+      "route_key": "core.encode.intent",
+      "anchors": [
+        "maps.intent",
+        ".3ox/(1)Spark/sparkfile.md"
+      ]
+    },
+    "k04": {
+      "name": "ENCODE.AUTHORITY",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Encode",
+        "seat": "Authority"
+      },
+      "route_key": "core.encode.authority",
+      "anchors": [
+        ".3ox/_meta/WHOAMI.md",
+        "limits.toml"
+      ]
+    },
+    "k05": {
+      "name": "ENCODE.STATE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Encode",
+        "seat": "State"
+      },
+      "route_key": "core.encode.state",
+      "anchors": [
+        "RECEIPT v1"
+      ]
+    },
+    "k06": {
+      "name": "ENCODE.ROUTE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Encode",
+        "seat": "Route"
+      },
+      "route_key": "core.encode.route",
+      "anchors": [
+        "routes.json",
+        "maps.hex"
+      ]
+    },
+    "k07": {
+      "name": "ENCODE.MEMORY",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Encode",
+        "seat": "Memory"
+      },
+      "route_key": "core.encode.memory",
+      "anchors": [
+        "hex.index.json",
+        "tape.jsonl"
+      ]
+    },
+    "k08": {
+      "name": "ENCODE.SEAL",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Encode",
+        "seat": "Seal"
+      },
+      "route_key": "core.encode.seal",
+      "anchors": [
+        "hashing policy",
+        "EXC seal"
+      ]
+    },
+    "k09": {
+      "name": "RING.INTAKE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Ring",
+        "seat": "Intake"
+      },
+      "route_key": "core.ring.intake",
+      "anchors": [
+        "encoder layer 0 RAW",
+        "1 SPARK"
+      ]
+    },
+    "k10": {
+      "name": "RING.VALIDATE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Ring",
+        "seat": "Validate"
+      },
+      "route_key": "core.ring.validate",
+      "anchors": [
+        "encoder_validate.py",
+        "warden"
+      ]
+    },
+    "k11": {
+      "name": "RING.ENCODE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Ring",
+        "seat": "Encode"
+      },
+      "route_key": "core.ring.encode",
+      "anchors": [
+        "PHENO",
+        "PiCO",
+        "PRISM"
+      ]
+    },
+    "k12": {
+      "name": "RING.ROUTE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Ring",
+        "seat": "Route"
+      },
+      "route_key": "core.ring.route",
+      "anchors": [
+        "layer 5 MAP"
+      ]
+    },
+    "k13": {
+      "name": "RING.EXECUTE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Ring",
+        "seat": "Execute"
+      },
+      "route_key": "core.ring.execute",
+      "anchors": [
+        ".3ox/run.rb",
+        "jobs"
+      ]
+    },
+    "k14": {
+      "name": "RING.OBSERVE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Ring",
+        "seat": "Observe"
+      },
+      "route_key": "core.ring.observe",
+      "anchors": [
+        "status.json",
+        "PULSE"
+      ]
+    },
+    "k15": {
+      "name": "RING.DIGEST",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Ring",
+        "seat": "Digest"
+      },
+      "route_key": "core.ring.digest",
+      "anchors": [
+        "receipt hashes"
+      ]
+    },
+    "k16": {
+      "name": "RING.COMMIT",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Ring",
+        "seat": "Commit"
+      },
+      "route_key": "core.ring.commit",
+      "anchors": [
+        "TAPE append"
+      ]
+    },
+    "k17": {
+      "name": "RING.RECOVER",
+      "class": "\u03ba",
+      "core": {
+        "sector": "Ring",
+        "seat": "Recover"
+      },
+      "route_key": "core.ring.recover",
+      "anchors": [
+        "LOOP",
+        "SESSION.CHECKPOINT"
+      ]
+    },
+    "k18": {
+      "name": "SYSTEM.META",
+      "class": "\u03ba",
+      "core": {
+        "sector": "System",
+        "seat": "Meta"
+      },
+      "route_key": "core.system.meta",
+      "anchors": [
+        "_meta/"
+      ]
+    },
+    "k19": {
+      "name": "SYSTEM.TRON",
+      "class": "\u03ba",
+      "core": {
+        "sector": "System",
+        "seat": "Tron"
+      },
+      "route_key": "core.system.tron",
+      "anchors": [
+        "_TRON/"
+      ]
+    },
+    "k20": {
+      "name": "SYSTEM.CHMOD",
+      "class": "\u03ba",
+      "core": {
+        "sector": "System",
+        "seat": "Chmod"
+      },
+      "route_key": "core.system.chmod",
+      "anchors": [
+        "write_policy",
+        "scope"
+      ]
+    },
+    "k21": {
+      "name": "SYSTEM.DAEMON",
+      "class": "\u03ba",
+      "core": {
+        "sector": "System",
+        "seat": "Daemon"
+      },
+      "route_key": "core.system.daemon",
+      "anchors": [
+        ".3ox/run.rb station"
+      ]
+    },
+    "k22": {
+      "name": "SYSTEM.CAGE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "System",
+        "seat": "Cage"
+      },
+      "route_key": "core.system.cage",
+      "anchors": [
+        "sandbox",
+        "denied_dirs"
+      ]
+    },
+    "k23": {
+      "name": "SYSTEM.ROUTE",
+      "class": "\u03ba",
+      "core": {
+        "sector": "System",
+        "seat": "Route"
+      },
+      "route_key": "core.system.route",
+      "anchors": [
+        "(5)Links",
+        "mesh"
+      ]
+    },
+    "k24": {
+      "name": "SYSTEM.HASH",
+      "class": "\u03ba",
+      "core": {
+        "sector": "System",
+        "seat": "Hash"
+      },
+      "route_key": "core.system.hash",
+      "anchors": [
+        "xxh128",
+        "sha256"
+      ]
+    },
+    "k25": {
+      "name": "SYSTEM.VAULT",
+      "class": "\u03ba",
+      "core": {
+        "sector": "System",
+        "seat": "Vault"
+      },
+      "route_key": "core.system.vault",
+      "anchors": [
+        "protected paths"
+      ]
+    },
+    "k26": {
+      "name": "SYSTEM.PATCH",
+      "class": "\u03ba",
+      "core": {
+        "sector": "System",
+        "seat": "Patch"
+      },
+      "route_key": "core.system.patch",
+      "anchors": [
+        "PR merge",
+        "controlled updates"
+      ]
     },
     "E042": {
       "name": "ETRIOS.CORE",
-      "class": "ξ",
+      "class": "\u03be",
       "route_key": "etrios.core",
-      "code_4096": "0x02A"
+      "code_4096": "0x02A",
+      "note": "example entity slot"
     }
   },
   "maps": {
@@ -159,7 +540,15 @@
     "intent": {
       "etrios.core": "E042"
     },
-    "command": {}
+    "command": {},
+    "hex": {
+      "0x000": "k00",
+      "0x001": "k01",
+      "0x002": "k02",
+      "0x003": "k00",
+      "0x02A": "E042"
+    },
+    "hex_note": "only_codes_listed_in_hex_index_json_entries_may_appear_claim_new_rows_before_new_map_keys"
   },
   "routes": {
     "telegram": {
@@ -173,6 +562,45 @@
     "etrios.core": {
       "slot": "E042",
       "description": "example route bound to entity slot E042"
+    }
+  },
+  "core": {
+    "version": "1",
+    "equation": "Axis[3] + Encode[6] + Ring[9] + System[9] = 27",
+    "axis": {
+      "Warden": "k00",
+      "Tape": "k01",
+      "Pulse": "k02"
+    },
+    "encode": {
+      "Intent": "k03",
+      "Authority": "k04",
+      "State": "k05",
+      "Route": "k06",
+      "Memory": "k07",
+      "Seal": "k08"
+    },
+    "ring": {
+      "Intake": "k09",
+      "Validate": "k10",
+      "Encode": "k11",
+      "Route": "k12",
+      "Execute": "k13",
+      "Observe": "k14",
+      "Digest": "k15",
+      "Commit": "k16",
+      "Recover": "k17"
+    },
+    "system": {
+      "Meta": "k18",
+      "Tron": "k19",
+      "Chmod": "k20",
+      "Daemon": "k21",
+      "Cage": "k22",
+      "Route": "k23",
+      "Hash": "k24",
+      "Vault": "k25",
+      "Patch": "k26"
     }
   }
 }

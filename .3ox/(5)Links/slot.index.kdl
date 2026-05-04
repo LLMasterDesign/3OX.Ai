@@ -20,12 +20,17 @@ document {
   law "exc.dominance" "on_divergence_exc_text_wins_over_kdl_and_exs"
   law "exc.validation" "boundary_checks_only_not_domain_execution_PASS_FALLBACK_FAIL_per_handoff"
 
+  law "core.seats" "canonical_k00_k26_names_in_routes_json_slot_index_core_map"
+
   slot id=k00 class=kernel {
-    name "KERNEL.RESERVE"
-    note "warden-adjacent reserve; expand with real κ identities"
+    name "AXIS.WARDEN"
+    note "TPW; see .3ox/(5)Links/routes.json core.axis + slot_index.k00"
   }
 
-  slot id=E042 class=entity {
+  slot id=k26 class=kernel {
+    name "SYSTEM.PATCH"
+    note "System seal seat; see routes.json slot_index.k26"
+  }
     name "ETRIOS.CORE"
     route_key "etrios.core"
     note "example ξ slot; wire routes.json maps + tools.yml allowlist"
