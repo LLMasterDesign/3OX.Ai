@@ -232,8 +232,14 @@
       "route_key": "core.encode.intent",
       "anchors": [
         "maps.intent",
-        ".3ox/(1)Spark/sparkfile.md"
-      ]
+        ".3ox/(1)Spark/sparkfile.md",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C0.spec",
+        "hex:0x131",
+        "ring_c:C0",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.BUNDLE.spec",
+        "hex:0x130"
+      ],
+      "ring_c": "C0.UNIVERSAL.ENVELOPE"
     },
     "k04": {
       "name": "ENCODE.AUTHORITY",
@@ -245,8 +251,12 @@
       "route_key": "core.encode.authority",
       "anchors": [
         ".3ox/_meta/WHOAMI.md",
-        "limits.toml"
-      ]
+        "limits.toml",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C1.spec",
+        "hex:0x132",
+        "ring_c:C1"
+      ],
+      "ring_c": "C1.VEC3.RUNTIME"
     },
     "k05": {
       "name": "ENCODE.STATE",
@@ -257,8 +267,15 @@
       },
       "route_key": "core.encode.state",
       "anchors": [
-        "RECEIPT v1"
-      ]
+        "RECEIPT v1",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C2.spec",
+        "hex:0x133",
+        "ring_c:C2",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C6.spec",
+        "hex:0x137",
+        "ring_c:C6"
+      ],
+      "ring_c": "C2+C6"
     },
     "k06": {
       "name": "ENCODE.ROUTE",
@@ -270,8 +287,15 @@
       "route_key": "core.encode.route",
       "anchors": [
         "routes.json",
-        "maps.hex"
-      ]
+        "maps.hex",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C3.spec",
+        "hex:0x134",
+        "ring_c:C3",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C7.spec",
+        "hex:0x138",
+        "ring_c:C7"
+      ],
+      "ring_c": "C3+C7"
     },
     "k07": {
       "name": "ENCODE.MEMORY",
@@ -283,8 +307,12 @@
       "route_key": "core.encode.memory",
       "anchors": [
         "hex.index.json",
-        "tape.jsonl"
-      ]
+        "tape.jsonl",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C4.spec",
+        "hex:0x135",
+        "ring_c:C4"
+      ],
+      "ring_c": "C4.EVENT.CONTRACT"
     },
     "k08": {
       "name": "ENCODE.SEAL",
@@ -296,8 +324,15 @@
       "route_key": "core.encode.seal",
       "anchors": [
         "hashing policy",
-        "EXC seal"
-      ]
+        "EXC seal",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C5.spec",
+        "hex:0x136",
+        "ring_c:C5",
+        ".3ox/(3)Rules/exc/ring-c/Ring.C.C8.spec",
+        "hex:0x139",
+        "ring_c:C8"
+      ],
+      "ring_c": "C5+C8"
     },
     "k09": {
       "name": "RING.INTAKE",
@@ -309,8 +344,14 @@
       "route_key": "core.ring.intake",
       "anchors": [
         "encoder layer 0 RAW",
-        "1 SPARK"
-      ]
+        "1 SPARK",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A0.spec",
+        "hex:0x111",
+        "ring_a:A0",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.BUNDLE.spec",
+        "hex:0x110"
+      ],
+      "ring_a": "A0.PHENO.LEGEND"
     },
     "k10": {
       "name": "RING.VALIDATE",
@@ -322,8 +363,12 @@
       "route_key": "core.ring.validate",
       "anchors": [
         "encoder_validate.py",
-        "warden"
-      ]
+        "warden",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A1.spec",
+        "hex:0x112",
+        "ring_a:A1"
+      ],
+      "ring_a": "A1.INPUT.GATE"
     },
     "k11": {
       "name": "RING.ENCODE",
@@ -336,8 +381,12 @@
       "anchors": [
         "PHENO",
         "PiCO",
-        "PRISM"
-      ]
+        "PRISM",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A2.spec",
+        "hex:0x113",
+        "ring_a:A2"
+      ],
+      "ring_a": "A2.BIND.GATE"
     },
     "k12": {
       "name": "RING.ROUTE",
@@ -348,8 +397,12 @@
       },
       "route_key": "core.ring.route",
       "anchors": [
-        "layer 5 MAP"
-      ]
+        "layer 5 MAP",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A3.spec",
+        "hex:0x114",
+        "ring_a:A3"
+      ],
+      "ring_a": "A3.OUTPUT.GATE"
     },
     "k13": {
       "name": "RING.EXECUTE",
@@ -361,8 +414,12 @@
       "route_key": "core.ring.execute",
       "anchors": [
         ".3ox/run.rb",
-        "jobs"
-      ]
+        "jobs",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A4.spec",
+        "hex:0x115",
+        "ring_a:A4"
+      ],
+      "ring_a": "A4.LOOP.CORE"
     },
     "k14": {
       "name": "RING.OBSERVE",
@@ -374,8 +431,12 @@
       "route_key": "core.ring.observe",
       "anchors": [
         "status.json",
-        "PULSE"
-      ]
+        "PULSE",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A5.spec",
+        "hex:0x116",
+        "ring_a:A5"
+      ],
+      "ring_a": "A5.PiCO.TRACE"
     },
     "k15": {
       "name": "RING.DIGEST",
@@ -386,8 +447,12 @@
       },
       "route_key": "core.ring.digest",
       "anchors": [
-        "receipt hashes"
-      ]
+        "receipt hashes",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A6.spec",
+        "hex:0x117",
+        "ring_a:A6"
+      ],
+      "ring_a": "A6.PRISM.SHAPE"
     },
     "k16": {
       "name": "RING.COMMIT",
@@ -398,8 +463,12 @@
       },
       "route_key": "core.ring.commit",
       "anchors": [
-        "TAPE append"
-      ]
+        "TAPE append",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A7.spec",
+        "hex:0x118",
+        "ring_a:A7"
+      ],
+      "ring_a": "A7.METADEX"
     },
     "k17": {
       "name": "RING.RECOVER",
@@ -411,8 +480,12 @@
       "route_key": "core.ring.recover",
       "anchors": [
         "LOOP",
-        "SESSION.CHECKPOINT"
-      ]
+        "SESSION.CHECKPOINT",
+        ".3ox/(3)Rules/exc/ring-a/Ring.A.A8.spec",
+        "hex:0x119",
+        "ring_a:A8"
+      ],
+      "ring_a": "A8.QED.SEAL"
     },
     "k18": {
       "name": "SYSTEM.META",
@@ -423,8 +496,14 @@
       },
       "route_key": "core.system.meta",
       "anchors": [
-        "_meta/"
-      ]
+        "_meta/",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B0.spec",
+        "hex:0x121",
+        "ring_b:B0",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.BUNDLE.spec",
+        "hex:0x120"
+      ],
+      "ring_b": "B0.SUPERVISOR"
     },
     "k19": {
       "name": "SYSTEM.TRON",
@@ -435,8 +514,12 @@
       },
       "route_key": "core.system.tron",
       "anchors": [
-        "_TRON/"
-      ]
+        "_TRON/",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B1.spec",
+        "hex:0x122",
+        "ring_b:B1"
+      ],
+      "ring_b": "B1.WARDEN"
     },
     "k20": {
       "name": "SYSTEM.CHMOD",
@@ -448,8 +531,12 @@
       "route_key": "core.system.chmod",
       "anchors": [
         "write_policy",
-        "scope"
-      ]
+        "scope",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B2.spec",
+        "hex:0x123",
+        "ring_b:B2"
+      ],
+      "ring_b": "B2.QUEUE"
     },
     "k21": {
       "name": "SYSTEM.DAEMON",
@@ -460,8 +547,12 @@
       },
       "route_key": "core.system.daemon",
       "anchors": [
-        ".3ox/run.rb station"
-      ]
+        ".3ox/run.rb station",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B3.spec",
+        "hex:0x124",
+        "ring_b:B3"
+      ],
+      "ring_b": "B3.WORKER"
     },
     "k22": {
       "name": "SYSTEM.CAGE",
@@ -473,8 +564,12 @@
       "route_key": "core.system.cage",
       "anchors": [
         "sandbox",
-        "denied_dirs"
-      ]
+        "denied_dirs",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B4.spec",
+        "hex:0x125",
+        "ring_b:B4"
+      ],
+      "ring_b": "B4.TAPE"
     },
     "k23": {
       "name": "SYSTEM.ROUTE",
@@ -486,8 +581,12 @@
       "route_key": "core.system.route",
       "anchors": [
         "(5)Links",
-        "mesh"
-      ]
+        "mesh",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B5.spec",
+        "hex:0x126",
+        "ring_b:B5"
+      ],
+      "ring_b": "B5.PULSE"
     },
     "k24": {
       "name": "SYSTEM.HASH",
@@ -499,8 +598,12 @@
       "route_key": "core.system.hash",
       "anchors": [
         "xxh128",
-        "sha256"
-      ]
+        "sha256",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B6.spec",
+        "hex:0x127",
+        "ring_b:B6"
+      ],
+      "ring_b": "B6.ROUTER"
     },
     "k25": {
       "name": "SYSTEM.VAULT",
@@ -511,8 +614,12 @@
       },
       "route_key": "core.system.vault",
       "anchors": [
-        "protected paths"
-      ]
+        "protected paths",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B7.spec",
+        "hex:0x128",
+        "ring_b:B7"
+      ],
+      "ring_b": "B7.BRIDGE"
     },
     "k26": {
       "name": "SYSTEM.PATCH",
@@ -524,8 +631,12 @@
       "route_key": "core.system.patch",
       "anchors": [
         "PR merge",
-        "controlled updates"
-      ]
+        "controlled updates",
+        ".3ox/(3)Rules/exc/ring-b/Ring.B.B8.spec",
+        "hex:0x129",
+        "ring_b:B8"
+      ],
+      "ring_b": "B8.SCHEDULER"
     },
     "E042": {
       "name": "ETRIOS.CORE",
@@ -546,6 +657,36 @@
       "0x001": "k01",
       "0x002": "k02",
       "0x003": "k00",
+      "0x110": "k09",
+      "0x111": "k09",
+      "0x112": "k10",
+      "0x113": "k11",
+      "0x114": "k12",
+      "0x115": "k13",
+      "0x116": "k14",
+      "0x117": "k15",
+      "0x118": "k16",
+      "0x119": "k17",
+      "0x120": "k18",
+      "0x121": "k18",
+      "0x122": "k19",
+      "0x123": "k20",
+      "0x124": "k21",
+      "0x125": "k22",
+      "0x126": "k23",
+      "0x127": "k24",
+      "0x128": "k25",
+      "0x129": "k26",
+      "0x130": "k03",
+      "0x131": "k03",
+      "0x132": "k04",
+      "0x133": "k05",
+      "0x134": "k06",
+      "0x135": "k07",
+      "0x136": "k08",
+      "0x137": "k05",
+      "0x138": "k06",
+      "0x139": "k08",
       "0x02A": "E042"
     },
     "hex_note": "only_codes_listed_in_hex_index_json_entries_may_appear_claim_new_rows_before_new_map_keys"
