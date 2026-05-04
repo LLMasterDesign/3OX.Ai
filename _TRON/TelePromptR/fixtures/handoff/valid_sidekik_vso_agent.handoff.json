@@ -1,0 +1,16 @@
+{
+  "kind": "tpr.handoff",
+  "schema_version": "1",
+  "id": "sk.h.20260504T080926-fixt2",
+  "in_reply_to": "sk.i.20260504T080926-fixt2",
+  "from_agent": "3OX.Sidekik",
+  "to_agent": "vso_agent",
+  "subagent_path": "3OX Agents/VSO Agent",
+  "topics_hint": ["va", "disability", "claim", "dbq"],
+  "classified_key": "va",
+  "text": "VA disability claim for tinnitus",
+  "created_at": "2026-05-04T08:09:26Z",
+  "consumer": "TelePromptR",
+  "merge_via": "TelePromptR/<TPR_ZENS3N>/merge.sh",
+  "speaker_unit": "speaker-mesh.service"
+}
