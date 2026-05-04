@@ -9,12 +9,13 @@ cmd = ARGV[0] || 'status'
 args = ARGV[1..] || []
 
 routes = {
-  'triage'   => 'triage.rb',
-  'dispatch' => 'dispatch.rb',
-  'note'     => 'note.rb',
-  'status'   => 'status.rb',
-  'analyze'  => 'triage.rb',
-  'teleprompt' => 'triage.rb'
+  'triage'     => 'triage.rb',
+  'dispatch'   => 'dispatch.rb',
+  'note'       => 'note.rb',
+  'status'     => 'status.rb',
+  'analyze'    => 'triage.rb',
+  'teleprompt' => 'teleprompt.rb',
+  'tpr'        => 'teleprompt.rb'
 }
 
 script = routes[cmd]

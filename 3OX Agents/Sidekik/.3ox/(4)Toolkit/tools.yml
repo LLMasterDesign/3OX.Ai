@@ -36,8 +36,15 @@ tools:
     runner: ruby
     entry: scripts/status.rb
 
+  - name: teleprompt
+    type: script
+    enabled: true
+    runner: ruby
+    entry: scripts/teleprompt.rb
+    note: "Emits TPR.SPEAKER.MESH.json + TPR.ROUTE.MAP.json fragments. TPR (TelePromptR) is the only Telegram speaker; agents never call the Telegram Bot API."
+
 slots:
   E043:
-    allowed_tools: [inference, triage, dispatch, note, status]
-    allowed_adapters: [telegram, mesh]
-    allowed_scopes: [".raven/", ".3ox/(6)Pulse/runtime/"]
+    allowed_tools: [inference, triage, dispatch, note, status, teleprompt]
+    allowed_adapters: [tpr, mesh]
+    allowed_scopes: [".raven/", ".3ox/(6)Pulse/runtime/", "!0UT.SIDEKIK/tpr/"]

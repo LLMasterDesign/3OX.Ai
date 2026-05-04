@@ -8,16 +8,27 @@
     "inbox":   ".raven/inbox",
     "outbox":  ".raven/outbox",
     "tape":    ".raven/tape",
-    "logs":    ".3ox/(6)Pulse/runtime/logs"
+    "logs":    ".3ox/(6)Pulse/runtime/logs",
+    "tpr":     "!0UT.SIDEKIK/tpr"
   },
   "telegram": {
+    "_doc": "TPR (TelePromptR) is the only Telegram speaker. Agents never call the Bot API. Fill these in once Lucius binds Sidekik to a chat/topic.",
     "chat_id": null,
     "allowed_chat_ids": [],
     "allowed_topics": []
   },
+  "tpr": {
+    "_doc": "Speaker + route fragments emitted by .3ox/scripts/teleprompt.rb, merged on VPS by TelePromptR/merge.sh, then `systemctl restart speaker-mesh`.",
+    "fragment_dir": "!0UT.SIDEKIK/tpr",
+    "speaker_fragment": "TPR.SPEAKER.MESH.json",
+    "route_fragment":   "TPR.ROUTE.MAP.json",
+    "merge_script":     "TelePromptR/${TPR_ZENS3N}/merge.sh",
+    "restart_unit":     "speaker-mesh.service"
+  },
   "mesh": {
     "speaker": "speaker-mesh",
-    "config": "TPR.SPEAKER.MESH.json"
+    "config":  "TPR.SPEAKER.MESH.json",
+    "route":   "TPR.ROUTE.MAP.json"
   },
   "subagents": {
     "money_bagz": {
