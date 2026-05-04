@@ -8,7 +8,7 @@
 # fragments into the master TPR config, source this script (or call it
 # at the tail) so any pending tpr.handoff records are processed too.
 #
-# Wiring (existing merge.sh; rides TPW.SPIN — the rotor IS the clock):
+# Wiring (existing merge.sh; rides 3OX.SPIN — the Core{Axis} rotor IS the clock):
 #   # ... existing fragment merge ...
 #   bash "$(dirname "$0")/merge_handoff.sh"
 #

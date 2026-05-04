@@ -3,9 +3,10 @@
 # doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
 # tpr_handoff — drain registered agent handoff dirs ONCE per invocation.
 #
-# Designed to ride the rotor. TPW.SPIN is the rotary encoder (hex 0x003,
-# slot k00); Pulse (k02) is the aliveness edge. Each invocation = one
-# edge. NO timers. Caller is the rotor:
+# Designed to ride the rotor. 3OX.SPIN is the rotary encoder (hex 0x003,
+# slot k00) walking Core{Axis} (Warden → Tape → Pulse); Pulse (k02) is
+# the aliveness edge. Each invocation = one edge. NO timers. Caller is
+# the rotor:
 #   - TelePromptR's merge.sh (rotor tail), or
 #   - systemd path-unit on the agent handoff dir (filesystem edge).
 #

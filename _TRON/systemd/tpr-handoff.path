@@ -3,8 +3,8 @@
 # Edge-trigger for the TPR handoff consumer.
 #
 # Fires tpr-handoff.service whenever the agent handoff dir changes.
-# This is the "rotary encoder" wiring: TPW.SPIN (Warden→Tape→Pulse,
-# hex 0x003 / k00) emits the edge; we ride it. NO timers — the rotor
+# This is the "rotary encoder" wiring: 3OX.SPIN (Core{Axis}: Warden →
+# Tape → Pulse, hex 0x003 / k00) emits the edge; we ride it. NO timers — the rotor
 # itself is the clock.
 #
 # Add one PathChanged= line per registered agent. Example below shows

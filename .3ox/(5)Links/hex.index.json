@@ -40,43 +40,43 @@
     "0x000": {
       "code": "0x000",
       "owner": "3OX.AI",
-      "title": "TPW.WARDEN.spec",
+      "title": "AXIS.WARDEN.spec",
       "slot": "k00",
       "route_key": "core.axis.warden",
       "files": [
-        ".3ox/(3)Rules/exc/tpw/Axis.Warden.spec"
+        ".3ox/(3)Rules/exc/axis/Axis.Warden.spec"
       ]
     },
     "0x001": {
       "code": "0x001",
       "owner": "3OX.AI",
-      "title": "TPW.TAPE.spec",
+      "title": "AXIS.TAPE.spec",
       "slot": "k01",
       "route_key": "core.axis.tape",
       "files": [
-        ".3ox/(3)Rules/exc/tpw/Axis.Tape.spec"
+        ".3ox/(3)Rules/exc/axis/Axis.Tape.spec"
       ]
     },
     "0x002": {
       "code": "0x002",
       "owner": "3OX.AI",
-      "title": "TPW.PULSE.spec",
+      "title": "AXIS.PULSE.spec",
       "slot": "k02",
       "route_key": "core.axis.pulse",
       "files": [
-        ".3ox/(3)Rules/exc/tpw/Axis.Pulse.spec"
+        ".3ox/(3)Rules/exc/axis/Axis.Pulse.spec"
       ]
     },
     "0x003": {
       "code": "0x003",
       "owner": "3OX.AI",
-      "title": "TPW.SPIN.bundle",
+      "title": "3OX.SPIN.bundle",
       "slot": "k00",
       "route_key": "core.axis.warden",
       "files": [
-        ".3ox/(3)Rules/exc/tpw/TPW.SPIN.spec"
+        ".3ox/(3)Rules/exc/axis/3OX.SPIN.spec"
       ],
-      "note": "composite L1 rotor doc; primary slot k00"
+      "note": "composite L1 rotor doc walking Core{Axis} (Warden→Tape→Pulse); primary slot k00"
     },
     "0x110": {
       "code": "0x110",

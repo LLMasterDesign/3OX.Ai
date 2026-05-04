@@ -27,7 +27,7 @@ document {
 
   slot id=k00 class=kernel {
     name "AXIS.WARDEN"
-    note "TPW; see .3ox/(5)Links/routes.json core.axis + slot_index.k00"
+    note "Core{Axis} seat 1; rotor bundle 3OX.SPIN at hex:0x003. See .3ox/(5)Links/routes.json core.axis + slot_index.k00"
   }
 
   slot id=k26 class=kernel {

@@ -1,7 +1,7 @@
 ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂ ::0x001::
-▛//▞▞ ⟦⎊⟧ :: ⧗-26.124 // 3OX :: TPW AXIS.TAPE ▞▞
+▛//▞▞ ⟦⎊⟧ :: ⧗-26.124 // 3OX :: Core{Axis} TAPE ▞▞
 ▛▞// Tape :: order.memory.append ▹
-//▞⋮⋮ ⟦⚙️⟧ :: [tpw] [k01] [κ.spec]
+//▞⋮⋮ ⟦⚙️⟧ :: [axis] [k01] [κ.spec]
 ⫸ 〔Ω001〕〔κk01〕
 
 ▛///▞ κ [EXC] :: AXIS.TAPE

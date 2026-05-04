@@ -4,8 +4,9 @@
 #
 # Triggered by raven.path when an intent lands in .raven/inbox.
 # Type=oneshot so each edge maps to exactly one drain pass. NO timer.
-# NO Restart=always loop. The rotor (TPW.SPIN, hex 0x003 / k00) is
-# the clock; we ride its Pulse edge (k02 / hex 0x002).
+# NO Restart=always loop. The rotor (3OX.SPIN, hex 0x003 / k00) walks
+# Core{Axis} (Warden → Tape → Pulse); we ride its Pulse edge
+# (k02 / hex 0x002).
 [Unit]
 Description=Raven Suite supervisor (3OX.Sidekik) — edge-triggered, oneshot
 After=network-online.target
