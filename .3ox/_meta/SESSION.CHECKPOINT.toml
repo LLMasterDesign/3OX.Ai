@@ -1,5 +1,5 @@
 # status:[DRAFT] ver:[1.0.0] created:[26.03.03]
-# doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+# doc:[PARTIAL] modified:[26.05.04] auth:[3OX.AI]
 # Session checkpoint — resume state for this cube
 
 [checkpoint]
@@ -14,6 +14,22 @@ limits    = ".3ox/(3)Rules/limits.toml"
 tools     = ".3ox/(4)Toolkit/tools.yml"
 routes    = ".3ox/(5)Links/routes.json"
 run       = ".3ox/(6)Pulse/run.rb"
+core      = ".3ox/_meta/BOX.ALIVENESS.equation"
+
+[core]
+root     = "3OX.Core{}"
+axis    = ["Warden", "Tape", "Pulse"]
+encode  = ["Intent", "Authority", "State", "Route", "Memory", "Seal"]
+ring    = ["Intake", "Validate", "Encode", "Route", "Execute", "Observe", "Digest", "Commit", "Recover"]
+system  = ["Meta", "Tron", "Chmod", "Daemon", "Cage", "Route", "Hash", "Vault", "Patch"]
+slots   = 27
+
+[core.rotor]
+name = "3OX.SPIN"
+walks = "Core{Axis}"
+spec  = ".3ox/(3)Rules/exc/axis/3OX.SPIN.spec"
+hex   = "0x003"
+slot  = "k00"
 
 [drift]
 known = []

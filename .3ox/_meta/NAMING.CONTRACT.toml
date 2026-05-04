@@ -1,10 +1,38 @@
 # status:[DRAFT] ver:[1.0.0] created:[26.03.03]
-# doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+# doc:[PARTIAL] modified:[26.05.04] auth:[3OX.AI]
 # Naming contract — conventions for this cube
+
+[brand]
+written = "3OX"
+spoken  = "BOX"
+product = "BOX.Ai"
+note    = "3 is the triadic B-glyph; do not read 3OX as three-ox or ox."
 
 [naming]
 style = "UPPER.DOT"              # AGENT.NAME, SERVICE.NAME
 separator = "."
+
+[core]
+root      = "3OX.Core{}"
+axis     = "3OX.Core{Axis}"
+encode   = "3OX.Core{Encode}"
+ring     = "3OX.Core{Ring}"
+system   = "3OX.Core{System}"
+equation = "Axis[3] + Encode[6] + Ring[9] + System[9] = 27"
+
+[core.rotor]
+name        = "3OX.SPIN"
+walks       = "3OX.Core{Axis}"
+order       = ["Warden", "Tape", "Pulse"]
+spec        = ".3ox/(3)Rules/exc/axis/3OX.SPIN.spec"
+hex         = "0x003"
+slot        = "k00"
+note        = "The rotor is the clock — Pulse edges arrive only on spin."
+
+[core.deprecated]
+"TPW.SPIN"   = "renamed to 3OX.SPIN; rotor walks Core{Axis}"
+"TPW Triad"  = "renamed to Core{Axis} (3OX.SPIN Triad)"
+".../tpw/"   = "renamed to .../axis/ under .3ox/(3)Rules/exc/"
 
 [extensions]
 service  = ".service"

@@ -66,6 +66,100 @@ main                          ← stable releases only
 ```
 
 ────────────────────────────────────────────────
+## 3OX.Core{} — 27 SLOT EXECUTION CHAMBER
+────────────────────────────────────────────────
+
+`3OX` is written with the triadic B-glyph and spoken as `BOX`.
+The protected execution chamber is `3OX.Core{}`; members are addressed
+inside that chamber, e.g. `3OX.Core{Axis}`, not `3OX.Axis`.
+
+```
+3OX.Core{} = Axis[3] + Encode[6] + Ring[9] + System[9]
+```
+
+| Group | Slots | Purpose |
+|-------|-------|---------|
+| `Axis` | 3 | Execution authorities: Warden, Tape, Pulse |
+| `Encode` | 6 | Operation encoding gates |
+| `Ring` | 9 | Ordered sequence for every operation |
+| `System` | 9 | Protected system requirements |
+
+### Axis[3]
+
+| Slot | Duty | Language Anchor |
+|------|------|-----------------|
+| Warden | validation, permissions, boundaries | Rust |
+| Tape | memory, encoding, digest trail | Lisp |
+| Pulse | liveness, daemon state, execution flow | Elixir |
+
+#### Rotor: `3OX.SPIN`
+
+The rotary encoder of `Core{Axis}` is **`3OX.SPIN`**. One spin = one
+walk of `Warden → Tape → Pulse`. It is the system's only clock —
+edges arrive on spin, never on a wall-clock tick.
+
+| Field | Value |
+|-------|-------|
+| Spec | `.3ox/(3)Rules/exc/axis/3OX.SPIN.spec` |
+| Hex | `0x003` |
+| Slot | `k00` |
+| Bundle title | `3OX.SPIN.bundle` (in `hex.index.json`) |
+| Edge sources | operator CLI · systemd `path` units · TPR `merge.sh` tail |
+
+`3OX.SPIN` was previously labelled `TPW.SPIN` and lived under
+`.3ox/(3)Rules/exc/tpw/`. Renamed to match the canonical `Core{Axis}`
+hierarchy in this PR's sibling `3ox-spin-rename` PR.
+
+### Encode[6]
+
+| Slot | Duty |
+|------|------|
+| Intent | what wants to happen |
+| Authority | who or what may do it |
+| State | what state is touched |
+| Route | where it must travel |
+| Memory | what must be recorded |
+| Seal | how it is closed and proven |
+
+### Ring[9]
+
+1. Intake
+2. Validate
+3. Encode
+4. Route
+5. Execute
+6. Observe
+7. Digest
+8. Commit
+9. Recover
+
+### System[9]
+
+`System[9]` uses a 2-4-3 grouping:
+
+| Group | Slots | Members |
+|-------|-------|---------|
+| Anchor | 2 | Meta, Tron |
+| Control | 4 | Chmod, Daemon, Cage, Route |
+| Seal | 3 | Hash, Vault, Patch |
+
+Hash policy:
+
+| Scope | Hash |
+|-------|------|
+| Internal frame integrity | xxh3 |
+| External durable proof | sha-256 |
+
+Core laws:
+
+- Axis authorizes.
+- Encode transforms.
+- Ring sequences.
+- System protects.
+- Nothing leaves Core{} unencoded.
+- No operation bypasses Axis.
+
+────────────────────────────────────────────────
 ## L2 — 6 CORE FILES (per .3ox cube)
 ────────────────────────────────────────────────
 

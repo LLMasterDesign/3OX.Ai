@@ -18,3 +18,14 @@ summary = "Added box-aliveness runtime check command to .3ox/run.rb and linked c
 date    = "26.03.13"
 type    = "fix"
 summary = "Moved box-aliveness runtime contract check to .vec3/rc/run.rb and delegated .3ox/run.rb aliveness"
+
+
+[[entry]]
+date    = "26.05.04"
+type    = "research"
+summary = "Locked 3OX.Core{} as Axis[3] + Encode[6] + Ring[9] + System[9] protected 27-slot chamber"
+
+[[entry]]
+date    = "26.05.04"
+type    = "rename"
+summary = "3OX.SPIN is the canonical handle for the Core{Axis} rotor (formerly TPW.SPIN); spec moved to .3ox/(3)Rules/exc/axis/3OX.SPIN.spec at hex 0x003 / k00. NAMING.CONTRACT.toml gains [core.rotor] and [core.deprecated]."
