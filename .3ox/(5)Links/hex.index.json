@@ -433,6 +433,25 @@
         "exs": null
       }
     },
+    "0xA01": {
+      "code": "0xA01",
+      "owner": "3OX.AI",
+      "title": "ACCOUNTABILITY.APOLOGY.bundle",
+      "slot": "k03",
+      "route_key": "core.encode.intent",
+      "files": [
+        ".3ox/(3)Rules/exc/accountability/Accountability.Apology.exc",
+        ".3ox/(3)Rules/exc/accountability/Accountability.Apology.kdl",
+        ".3ox/(3)Rules/exc/accountability/Accountability.Apology.exs",
+        ".3ox/(3)Rules/exc/accountability/Accountability.Apology.emit.spec"
+      ],
+      "exc_surfaces": {
+        "exc": ".3ox/(3)Rules/exc/accountability/Accountability.Apology.exc",
+        "kdl": ".3ox/(3)Rules/exc/accountability/Accountability.Apology.kdl",
+        "exs": ".3ox/(3)Rules/exc/accountability/Accountability.Apology.exs"
+      },
+      "note": "apology_params in exc+kdl; emit.spec produced by Accountability.Apology.exs"
+    },
     "0x02B": {
       "code": "0x02B",
       "owner": "ZEN.PRO",
