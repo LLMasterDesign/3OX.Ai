@@ -46,11 +46,19 @@ jobs:
       RC_C6: .3ox/(3)Rules/exc/ring-c/Ring.C.C6.spec
       RC_C7: .3ox/(3)Rules/exc/ring-c/Ring.C.C7.spec
       RC_C8: .3ox/(3)Rules/exc/ring-c/Ring.C.C8.spec
+      ACC_EXS: .3ox/(3)Rules/exc/accountability/Accountability.Apology.exs
+      ACC_EMIT: .3ox/(3)Rules/exc/accountability/Accountability.Apology.emit.spec
     steps:
       - uses: actions/checkout@v4
 
       - name: Validate hex.index.json
         run: python3 scripts/encoder_validate.py
+
+      - name: Accountability apology EXC→emit (deterministic)
+        run: |
+          python3 "$ACC_EXS"
+          python3 scripts/encoder_validate.py --doc "$ACC_EMIT"
+          git diff --exit-code -- "$ACC_EMIT"
 
       - name: Warden twelve laws (limits.toml)
         run: python3 scripts/warden_laws_validate.py

@@ -21,4 +21,12 @@ CI: `python3 scripts/warden_laws_validate.py`
 
 Full `summary` and `violation` strings live in TOML only (single source of truth).
 
+## Orion belt — engraved law (ο + Ω)
+
+Cross-reference: **`_meta/canon/VEC3.SURFACES.md`** → **Orion's Belt (TRIAD)**.
+
+**Engraved law:**
+
+> **`ο{}` names a memory field; heat moves the field; the belt orders how a field may enter the graph; Ω proves what changed.**
+
 :: ∎

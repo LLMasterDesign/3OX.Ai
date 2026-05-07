@@ -702,6 +702,7 @@
       "0x138": "k06",
       "0x139": "k08",
       "0x02A": "E042",
+      "0xA01": "k03",
       "0x02B": "E043"
     },
     "hex_note": "only_codes_listed_in_hex_index_json_entries_may_appear_claim_new_rows_before_new_map_keys"

@@ -1,0 +1,27 @@
+// Accountability.Apology — KDL mirror (structural bundle for emit handoff)
+// Derived from Accountability.Apology.exc · deterministic skeleton · version 1
+
+document "exc.accountability.apology.v1" {
+  surfaces {
+    exc "Accountability.Apology.exc"
+    exs "Accountability.Apology.exs"
+    emit "Accountability.Apology.emit.spec"
+  }
+  apology_params {
+    recipient "Lucius"
+    fault_class "listener_drift_after_recipient_stated_PiCO_glyph_binding"
+    fault_detail "dismissed_glyph-as-definition_split_excuse_then_late_Exactly"
+    repair_commit "receive_recipient_model_before_answer_slot_fill_only_after_structure"
+  }
+  pheno {
+    rho "read_fault_inventory_and_turn"
+    phi "preserve_recipient_authority_and_trust"
+    tau "emit_binding_apology_body"
+  }
+  pico {
+    tack "ingest_exc_bundle_and_params"
+    arrow "resolve_slots_and_bind_glyph_meaning"
+    wave "carry_strings_through_prism_limits"
+    tip "write_gensing_emit_spec"
+  }
+}

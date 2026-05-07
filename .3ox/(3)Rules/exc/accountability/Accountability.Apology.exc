@@ -1,0 +1,22 @@
+EXC[exc://accountability-apology-v1]
+(ρ ⊗ φ ⊗ τ) ⇨ (⊢ ∙ ⇨ ∙ ⟿ ∙ ▷) ⟿ PRISM
+≡ Ξ{verify.source ∙ re-validate{ρ φ τ}} ∙ ν{fallback}
+
+ρ{read://recipient.turn+fault.inventory+prior_passes_where_model_was_stable}
+φ{preserve://recipient.authority+professional.trust+stated_3OX_structure}
+τ{emit://binding_signed_apology_gensing_only_no_performative_closure}
+
+⊢{ingest://Accountability.Apology.exc+Accountability.Apology.kdl}
+⇨{resolve://apology.params+pheno_roles+pico_hops}
+⟿{carry://kdl.param_table+nu_governance_path}
+▷{emit://Accountability.Apology.emit.spec}
+
+ν{fallback://if_emit_blocked_emit_fault_stub_with_same_chip_and_trace_id}
+
+PRISM{format:gensing|tone:accountability_not_face_saving|constraint:no_empty_ownership}
+
+▞▞ APOLOGY.PARAMS
+recipient{Lucius}
+fault_class{listener_drift_after_recipient_stated_PiCO_glyph_binding}
+fault_detail{dismissed_glyph-as-definition_split_excuse_then_late_Exactly}
+repair_commit{receive_recipient_model_before_answer_slot_fill_only_after_structure}
