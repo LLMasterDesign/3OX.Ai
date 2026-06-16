@@ -1,6 +1,12 @@
 ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///
 ▛//▞▞ ⟦⎊⟧ :: ⧗-YY.SSS // OPERATOR :: AGENT_NAME ▞▞
 
+```elixir
+/// status:[DRAFT] ver:[1.0.0] created:[YY.MM.DD]
+/// doc:[NONE] modified:[YY.MM.DD] auth:[BASE]
+/// AGENT_NAME sparkfile template
+```
+
 ▛▞// AGENT_NAME :: ρ{input}.φ{bind}.τ{target} ▹
 //▞⋮⋮ [⚙️] ≔ [⊢{ingest} ⇨{process} ⟿{execute} ▷{emit}]
 ⫸ 〔runtime.3ox.context〕

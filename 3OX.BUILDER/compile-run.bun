@@ -3,6 +3,9 @@
 // ▛▞// Build.Runner :: ρ{Input}.φ{Bind}.τ{Output} ▹
 // //▞⋮⋮ ⟦📦⟧ :: [build] [compile] [run] [vec3boot] [⊢ ⇨ ⟿ ▷]
 // ⫸ 〔runtime.build.context〕
+// status:[ACTIVE] ver:[1.0.0] created:[25.05.11]
+// doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+// Compile and run Vec3Boot via Bun
 
 import { $ } from "bun";
 

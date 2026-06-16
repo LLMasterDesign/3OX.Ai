@@ -1,8 +1,8 @@
 // ▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
 // ▛//▞▞ ⟦⎊⟧ :: ${SIRIUS_TIME} ▸ ρ{agent.brain}.φ{identity}.τ{rules}.λ{bind} ⫸ :: BRAIN.RS
-//
-// Agent Configuration and Rules
-// Version: ${VERSION}
+// status:[ACTIVE] ver:[${VERSION}] created:[${CREATED}]
+// doc:[PARTIAL] modified:[${MODIFIED}] auth:[${AUTH}]
+// VSO Agent — configuration and rules
 
 use std::env;
 

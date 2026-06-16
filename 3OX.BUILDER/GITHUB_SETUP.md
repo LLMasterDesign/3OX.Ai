@@ -5,8 +5,9 @@
 ⫸ 〔runtime.github.setup.context〕
 
 ```elixir
-/// Status: [ACTIVE] | Version: 1.0.0 | Authority: Lucius.Larz.Master | Created: 2025.12.13
-/// Guide for pushing 3OX.BUILDER to GitHub.
+/// status:[ACTIVE] ver:[1.0.0] created:[25.12.13]
+/// doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+/// Guide for pushing 3OX.BUILDER to GitHub
 ```
 
 ## GitHub Repository Setup

@@ -5,8 +5,9 @@
 ⫸ 〔runtime.install.context〕
 
 ```elixir
-/// Status: [ACTIVE] | Version: 1.0.0 | Authority: Lucius.Larz | Created: 2025.12.13
-/// Installation guide for 3OX.BUILDER on Linux/VPS.
+/// status:[ACTIVE] ver:[1.0.0] created:[25.12.13]
+/// doc:[COMPLETE] modified:[26.03.03] auth:[3OX.AI]
+/// Installation guide for 3OX.BUILDER on Linux/VPS
 ```
 
 ## Prerequisites

@@ -1,5 +1,8 @@
 // ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂| 3ox v1.0.0 |▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///
 // ▛//▞▞ ⟦⎊⟧ :: ⧗-25.122 // BRAINS-3OX-CORE :: Core Brain Library ▞▞
+// status:[ACTIVE] ver:[1.0.0] created:[25.05.02]
+// doc:[PARTIAL] modified:[26.03.03] auth:[3OX.AI]
+// Core brain library — agent identity, rules, cube context
 
 pub mod vec3;
 

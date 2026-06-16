@@ -1,6 +1,12 @@
 ///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///
 ▛//▞▞ ⟦⎊⟧ :: ${SIRIUS_TIME} // ${AGENT_BASE} :: VSO.AGENT ▞▞
 
+```elixir
+/// status:[ACTIVE] ver:[${VERSION}] created:[${CREATED}]
+/// doc:[PARTIAL] modified:[${MODIFIED}] auth:[${AUTH}]
+/// VSO Agent — Veterans Service Officer sparkfile
+```
+
 ▛▞// VSO.AGENT :: ρ{input}.φ{assess}.τ{guidance} ▹
 //▞⋮⋮ [⚙️] ≔ [⊢{ingest} ⇨{question} ⟿{evaluate} ▷{guide}]
 ⫸ 〔runtime.3ox.context〕
