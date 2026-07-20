@@ -1,0 +1,963 @@
+<!--
+///▙▖▙▖▞▞▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂///
+▛//▞▞ ⟦⎊⟧ :: ⧗-26.201 // WORKBOOK :: Ontology — Unique Binding Invariant ▞▞
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3OX.Ai :: Ontology — Unique Binding Invariant</title>
+  <meta name="description" content="3OX ⊨ ∀ λ ∈ Λᴳ, ∃! τ ∈ T : R(λ, τ) — how 3OX.Ai enforces unique governance→target binding." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:     #070b12;
+      --deep:   #0a101c;
+      --panel:  #0d1526;
+      --edge:   #1a2a44;
+      --edge2:  #243852;
+      --text:   #d4e4f7;
+      --muted:  #6d8bab;
+      --dim:    #3d5470;
+      --cyan:   #4ec8e8;
+      --lime:   #8fd94a;
+      --amber:  #e8b84a;
+      --hot:    #e85a7a;
+      --ink:    #e8f4ff;
+      --hh:     36px;
+      --mono:   "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+      --display:"Syne", "Avenir Next", "Segoe UI", sans-serif;
+      --body:   "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body {
+      background: var(--bg); color: var(--text);
+      font-family: var(--body); min-height: 100vh; overflow-x: hidden;
+      font-size: 15px; line-height: 1.55;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% -10%, rgba(78,200,232,.09), transparent 55%),
+        radial-gradient(ellipse 50% 40% at 100% 40%, rgba(143,217,74,.04), transparent 50%),
+        linear-gradient(180deg, #070b12 0%, #0a121f 40%, #070b12 100%);
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .35;
+      background-image:
+        linear-gradient(rgba(26,42,68,.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,42,68,.35) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, #000 20%, transparent 75%);
+    }
+
+    .sys-header {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--hh); z-index: 500;
+      background: rgba(7,11,18,.94); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--edge);
+      padding: 0 1.4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--mono); font-size: .68rem; color: #7da8cb; letter-spacing: .04em;
+    }
+    .h-left, .h-right { display: flex; align-items: center; gap: .55rem; }
+    .h-glyph { color: #fff; font-weight: 600; }
+    .h-sep { color: var(--edge2); }
+    .h-brand { color: #fff; font-weight: 600; letter-spacing: .08em; }
+    .h-page { color: var(--cyan); letter-spacing: .14em; font-weight: 600; }
+    .h-right a {
+      color: var(--muted); text-decoration: none; transition: color .15s;
+    }
+    .h-right a:hover { color: var(--lime); }
+    .h-live { color: var(--lime); animation: blink 2s ease infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+    .scroll-progress {
+      position: fixed; top: var(--hh); left: 0; right: 0; height: 2px; z-index: 499;
+    }
+    .scroll-progress-fill {
+      height: 100%; width: 0%; background: var(--cyan);
+      transition: width .08s linear;
+    }
+
+    /* HERO — one composition: brand + formula + one sentence + CTA */
+    .hero {
+      position: relative; z-index: 2;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: calc(var(--hh) + 2.5rem) 1.4rem 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-field {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(78,200,232,.07) 0%, transparent 42%),
+        conic-gradient(from 210deg at 50% 48%, transparent 0deg, rgba(143,217,74,.05) 40deg, transparent 90deg, rgba(78,200,232,.04) 180deg, transparent 270deg);
+      animation: field-spin 48s linear infinite;
+    }
+    @keyframes field-spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-field { animation: none; }
+    }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 920px; width: 100%; }
+
+    .hero-brand {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 8vw, 4.6rem);
+      font-weight: 800; letter-spacing: .04em;
+      color: var(--ink); line-height: .95; margin-bottom: 1.4rem;
+    }
+    .hero-brand .ox { color: var(--cyan); }
+
+    .hero-formula {
+      font-family: var(--mono);
+      font-size: clamp(.92rem, 2.6vw, 1.35rem);
+      font-weight: 600; letter-spacing: .02em;
+      color: var(--cyan);
+      padding: 1.1rem 1.4rem;
+      border: 1px solid var(--edge2);
+      border-top: 2px solid var(--cyan);
+      background: rgba(10,16,28,.82);
+      margin: 0 auto 1.5rem;
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+      animation: formula-in .9s ease both;
+    }
+    @keyframes formula-in {
+      from { opacity: 0; transform: translateY(12px); filter: blur(4px); }
+      to   { opacity: 1; transform: none; filter: none; }
+    }
+
+    .hero-line {
+      font-family: var(--display);
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      font-weight: 600; color: var(--text);
+      max-width: 560px; margin: 0 auto 1rem; line-height: 1.35;
+    }
+    .hero-sub {
+      font-size: .9rem; color: var(--muted); max-width: 520px;
+      margin: 0 auto 2rem; line-height: 1.7;
+    }
+
+    .hero-cta { display: flex; gap: .65rem; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      text-decoration: none; font-family: var(--mono); font-size: .82rem;
+      padding: .65rem 1.25rem; border-radius: 2px; transition: all .18s ease;
+      display: inline-block; cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--cyan); color: #041018; font-weight: 700; border: none;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(78,200,232,.25); }
+    .btn-ghost {
+      border: 1px solid var(--edge2); color: var(--text);
+      background: rgba(13,21,38,.7);
+    }
+    .btn-ghost:hover { border-color: var(--lime); color: var(--lime); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute; bottom: 1.6rem; left: 50%; transform: translateX(-50%);
+      font-family: var(--mono); font-size: .58rem; color: var(--dim);
+      letter-spacing: .12em; display: flex; flex-direction: column; align-items: center; gap: .35rem;
+    }
+    .scroll-line {
+      width: 1px; height: 28px;
+      background: linear-gradient(to bottom, var(--dim), transparent);
+      animation: sdrop 2s ease infinite;
+    }
+    @keyframes sdrop {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* LAYOUT */
+    .wrap {
+      position: relative; z-index: 10;
+      max-width: 980px; margin: 0 auto;
+      padding: 3rem 1.4rem 5rem;
+    }
+
+    .toc {
+      display: flex; flex-wrap: wrap; gap: .4rem .7rem;
+      margin-bottom: 3rem; padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--edge);
+      font-family: var(--mono); font-size: .68rem;
+    }
+    .toc a {
+      color: var(--muted); text-decoration: none; letter-spacing: .04em;
+      transition: color .15s;
+    }
+    .toc a:hover { color: var(--cyan); }
+    .toc .toc-sep { color: var(--dim); }
+
+    .sec {
+      margin-bottom: 3.2rem;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .sec.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .sec { opacity: 1; transform: none; transition: none; }
+      .hero-formula { animation: none; }
+    }
+
+    .sec-head {
+      display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap;
+      margin-bottom: 1rem;
+      padding-bottom: .55rem;
+      border-bottom: 1px solid var(--edge);
+    }
+    .sec-num {
+      font-family: var(--mono); font-size: .62rem; color: var(--lime);
+      letter-spacing: .1em;
+    }
+    .sec-title {
+      font-family: var(--display); font-size: 1.35rem; font-weight: 700;
+      color: var(--ink); letter-spacing: .02em;
+    }
+    .sec-sig {
+      margin-left: auto; font-family: var(--mono); font-size: .6rem;
+      color: var(--dim); letter-spacing: .08em;
+    }
+
+    .sec p {
+      color: var(--muted); font-size: .9rem; line-height: 1.75;
+      margin-bottom: .9rem; max-width: 68ch;
+    }
+    .sec p strong { color: var(--text); font-weight: 600; }
+    .sec p .em { color: var(--cyan); font-weight: 600; }
+
+    .lemma {
+      font-family: var(--mono); font-size: .88rem; color: var(--cyan);
+      border-left: 2px solid var(--cyan);
+      padding: .85rem 1.1rem;
+      background: rgba(10,16,28,.85);
+      margin: 1.2rem 0;
+      line-height: 1.7;
+    }
+
+    /* Symbol table — not cards; row lattice */
+    .sym-table {
+      width: 100%; border-collapse: collapse;
+      font-family: var(--mono); font-size: .78rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+    .sym-table th, .sym-table td {
+      text-align: left; padding: .7rem .85rem;
+      border-bottom: 1px solid var(--edge);
+      vertical-align: top;
+    }
+    .sym-table th {
+      color: var(--dim); font-weight: 500; font-size: .6rem;
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+    .sym-table td.sym {
+      color: var(--cyan); font-weight: 700; font-size: .95rem;
+      white-space: nowrap; width: 4.5rem;
+    }
+    .sym-table td.name { color: var(--ink); font-weight: 600; width: 9rem; }
+    .sym-table td.def { color: var(--muted); line-height: 1.65; }
+
+    /* Relation walk */
+    .walk {
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center; gap: .5rem;
+      margin: 1.4rem 0; font-family: var(--mono);
+    }
+    .walk-node {
+      border: 1px solid var(--edge2);
+      border-top: 2px solid var(--cyan);
+      background: var(--panel);
+      padding: .85rem .9rem; text-align: center;
+    }
+    .walk-node.tau { border-top-color: var(--lime); }
+    .walk-node.rel { border-top-color: var(--amber); }
+    .walk-glyph { font-size: 1.1rem; color: var(--cyan); font-weight: 700; margin-bottom: .25rem; }
+    .walk-node.tau .walk-glyph { color: var(--lime); }
+    .walk-node.rel .walk-glyph { color: var(--amber); }
+    .walk-label { font-size: .62rem; color: var(--dim); letter-spacing: .08em; margin-bottom: .2rem; }
+    .walk-body { font-size: .72rem; color: var(--text); line-height: 1.45; }
+    .walk-arrow { color: var(--dim); font-size: .9rem; }
+    @media (max-width: 720px) {
+      .walk { grid-template-columns: 1fr; }
+      .walk-arrow { transform: rotate(90deg); justify-self: center; }
+    }
+
+    /* Enforcement rows */
+    .law-list { margin: 1rem 0 1.4rem; border: 1px solid var(--edge); }
+    .law-row {
+      display: grid; grid-template-columns: 6.5rem 1fr;
+      border-bottom: 1px solid var(--edge);
+      font-family: var(--mono); font-size: .76rem;
+    }
+    .law-row:last-child { border-bottom: none; }
+    .law-code {
+      padding: .75rem .85rem; background: var(--deep);
+      border-right: 1px solid var(--edge);
+      color: var(--lime); font-weight: 600; font-size: .68rem;
+      letter-spacing: .04em; display: flex; align-items: center;
+    }
+    .law-body { padding: .75rem .95rem; color: var(--muted); line-height: 1.65; }
+    .law-body strong { color: var(--text); }
+
+    /* Core chamber map */
+    .core-map {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem;
+      margin: 1.2rem 0;
+    }
+    .core-col {
+      border: 1px solid var(--edge); background: var(--panel);
+      padding: .85rem .75rem;
+    }
+    .core-col h4 {
+      font-family: var(--mono); font-size: .62rem; color: var(--cyan);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: .55rem;
+    }
+    .core-col ul { list-style: none; }
+    .core-col li {
+      font-family: var(--mono); font-size: .7rem; color: var(--muted);
+      padding: .2rem 0; border-bottom: 1px solid rgba(26,42,68,.5);
+    }
+    .core-col li:last-child { border-bottom: none; }
+    .core-col li span { color: var(--dim); margin-right: .35rem; }
+    @media (max-width: 700px) {
+      .core-map { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Worked example */
+    .trace {
+      font-family: var(--mono); font-size: .74rem; line-height: 1.85;
+      background: #060a12; border: 1px solid var(--edge);
+      border-left: 2px solid var(--lime);
+      padding: 1.1rem 1.25rem; margin: 1.2rem 0; overflow-x: auto;
+    }
+    .trace .cm { color: var(--dim); }
+    .trace .kw { color: var(--amber); }
+    .trace .fn { color: var(--cyan); }
+    .trace .ok { color: var(--lime); }
+
+    /* PHENO keyring */
+    .keyring {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem;
+      margin: 1.2rem 0;
+    }
+    .key {
+      font-family: var(--mono); padding: .7rem .8rem;
+      border: 1px solid var(--edge); background: var(--deep);
+    }
+    .key-sym { font-size: 1rem; font-weight: 700; color: var(--cyan); margin-bottom: .15rem; }
+    .key-name { font-size: .68rem; color: var(--ink); margin-bottom: .25rem; }
+    .key-role { font-size: .68rem; color: var(--muted); line-height: 1.5; }
+    .key.hot { border-top: 2px solid var(--amber); }
+    .key.hot .key-sym { color: var(--amber); }
+    .key.out { border-top: 2px solid var(--lime); }
+    .key.out .key-sym { color: var(--lime); }
+    @media (max-width: 600px) {
+      .keyring { grid-template-columns: 1fr 1fr; }
+    }
+
+    .check-box {
+      margin: 1.4rem 0;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid var(--edge2);
+      background: rgba(13,21,38,.8);
+      font-family: var(--mono); font-size: .78rem;
+    }
+    .check-label {
+      font-size: .6rem; color: var(--lime); letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: .55rem;
+    }
+    .check-box code {
+      color: var(--cyan); display: block; margin: .4rem 0 .8rem;
+    }
+    .check-box p { font-size: .78rem; margin: 0; max-width: none; }
+
+    .close-band {
+      margin-top: 2rem; padding: 2.4rem 1.4rem;
+      border: 1px solid var(--edge2);
+      background: rgba(10,16,28,.75);
+      text-align: center;
+    }
+    .close-band .close-formula {
+      font-family: var(--mono); font-size: clamp(.85rem, 2.2vw, 1.1rem);
+      color: var(--cyan); font-weight: 600; margin-bottom: 1rem;
+    }
+    .close-band p {
+      color: var(--muted); font-size: .9rem; max-width: 48ch;
+      margin: 0 auto 1.4rem; line-height: 1.7;
+    }
+
+    .page-footer {
+      position: relative; z-index: 10;
+      border-top: 1px solid var(--edge); background: var(--deep);
+      padding: 2.2rem 0 1.8rem; font-family: var(--mono);
+    }
+    .footer-inner { max-width: 980px; margin: 0 auto; padding: 0 1.4rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 1.8rem;
+      padding-bottom: 1.6rem; border-bottom: 1px solid var(--edge);
+    }
+    .footer-col h4 {
+      font-size: .68rem; color: #fff; letter-spacing: .1em;
+      text-transform: uppercase; margin-bottom: .75rem;
+    }
+    .footer-col p { font-size: .74rem; color: #8aadd0; line-height: 1.7; }
+    .footer-col nav { display: flex; flex-direction: column; gap: .45rem; }
+    .footer-col nav a {
+      text-decoration: none; font-size: .74rem; color: #8aadd0;
+      transition: color .15s;
+    }
+    .footer-col nav a:hover { color: var(--lime); }
+    .f-brand { color: #fff; font-weight: 700; font-size: .95rem; margin-bottom: .5rem; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: .6rem;
+      padding-top: 1.1rem; font-size: .65rem; color: var(--dim);
+    }
+    @media (max-width: 640px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
+
+    .section-end {
+      font-family: var(--mono); font-size: .58rem; color: var(--dim);
+      letter-spacing: .1em; margin-top: .6rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="sys-header">
+  <div class="h-left">
+    <span class="h-glyph">▛▞ //</span>
+    <span class="h-sep">│</span>
+    <span class="h-brand">3OX.Ai</span>
+    <span class="h-sep">│</span>
+    <span class="h-page">ONTOLOGY</span>
+  </div>
+  <div class="h-right">
+    <a href="index.html">Home</a>
+    <span class="h-sep">│</span>
+    <a href="https://github.com/LLMasterDesign/3OX.Ai" target="_blank" rel="noreferrer">GitHub</a>
+    <span class="h-sep">│</span>
+    <span class="h-live">● LIVE</span>
+  </div>
+</header>
+<div class="scroll-progress"><div class="scroll-progress-fill" id="scroll-fill"></div></div>
+
+<section class="hero">
+  <div class="hero-field" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-brand"><span class="ox">3OX</span>.Ai</div>
+    <div class="hero-formula" id="invariant">3OX ⊨ ∀ λ ∈ Λᴳ, ∃! τ ∈ T : R(λ, τ)</div>
+    <p class="hero-line">Every governance law binds to exactly one typed target.</p>
+    <p class="hero-sub">The ontological math invariant that keeps agents deterministic, auditable, and model-agnostic.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#unpack">Inspect symbols</a>
+      <a class="btn btn-ghost" href="#enforce">See enforcement</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<main class="wrap">
+
+  <nav class="toc" aria-label="Ontology sections">
+    <a href="#unpack">01 Unpack</a><span class="toc-sep">·</span>
+    <a href="#relation">02 Relation R</a><span class="toc-sep">·</span>
+    <a href="#pheno">03 PHENO</a><span class="toc-sep">·</span>
+    <a href="#enforce">04 Enforcement</a><span class="toc-sep">·</span>
+    <a href="#core">05 Core{}</a><span class="toc-sep">·</span>
+    <a href="#trace">06 Worked trace</a><span class="toc-sep">·</span>
+    <a href="#alive">07 Aliveness</a><span class="toc-sep">·</span>
+    <a href="#share">08 Share</a>
+  </nav>
+
+  <!-- 01 -->
+  <section class="sec" id="unpack">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Symbol unpack</h2>
+      <span class="sec-sig">ρ{read}.φ{name}.τ{meaning}</span>
+    </div>
+    <p>
+      The formula is not decoration. It is the claim 3OX makes about every
+      governed action: <span class="em">governance is a total function onto typed targets</span>.
+      Ambiguous routing is not a soft failure — it is a model violation.
+    </p>
+
+    <table class="sym-table">
+      <thead>
+        <tr><th>Symbol</th><th>Name</th><th>In 3OX</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="sym">3OX</td>
+          <td class="name">Box / structure</td>
+          <td class="def">The agent cube + kernel. Spoken “BOX”. The model that satisfies the formula.</td>
+        </tr>
+        <tr>
+          <td class="sym">⊨</td>
+          <td class="name">Models</td>
+          <td class="def">Semantic satisfaction. 3OX is a structure in which the quantified claim holds for all runs under law.</td>
+        </tr>
+        <tr>
+          <td class="sym">λ</td>
+          <td class="name">Governance atom</td>
+          <td class="def">A single law, slot contract, route key, or PHENO <code>λ{Governance}</code> binding — one unit of “what may happen.”</td>
+        </tr>
+        <tr>
+          <td class="sym">Λᴳ</td>
+          <td class="name">Governance lattice</td>
+          <td class="def">The closed set of all admissible λ: Warden’s 12 laws, Core{} κ seats k00–k26, declared routes, EXC boundaries, migration seals.</td>
+        </tr>
+        <tr>
+          <td class="sym">∃!</td>
+          <td class="name">Unique existence</td>
+          <td class="def">Exactly one. Not “at least one,” not “maybe.” Fan-out and ambiguity are illegal.</td>
+        </tr>
+        <tr>
+          <td class="sym">τ</td>
+          <td class="name">Typed target</td>
+          <td class="def">PHENO <code>τ{Output}</code> — the sealed destination of a bind: response, receipt, deny, or degraded outcome.</td>
+        </tr>
+        <tr>
+          <td class="sym">T</td>
+          <td class="name">Target space</td>
+          <td class="def">All typed outputs the lattice may emit: slot seats, route destinations, receipt classes, FAIL_CLOSED denies.</td>
+        </tr>
+        <tr>
+          <td class="sym">R</td>
+          <td class="name">Binding relation</td>
+          <td class="def">The φ-mediated map: normalize intent → resolve slot → apply Warden → emit one τ. R is functional by construction.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="lemma">
+      Lemma · Unique Binding<br>
+      ∀ λ ∈ Λᴳ, |{ τ ∈ T | R(λ, τ) }| = 1
+    </div>
+    <p class="section-end">:: ∎</p>
+  </section>
+
+  <!-- 02 -->
+  <section class="sec" id="relation">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">What R(λ, τ) is</h2>
+      <span class="sec-sig">φ{bind} · route · seal</span>
+    </div>
+    <p>
+      <strong>R</strong> is not a free relation. It is the composed pipeline that turns a
+      governance atom into a typed target — and refuses everything else.
+    </p>
+
+    <div class="walk" aria-label="Binding walk">
+      <div class="walk-node">
+        <div class="walk-label">DOMAIN</div>
+        <div class="walk-glyph">λ</div>
+        <div class="walk-body">law · slot · route key · EXC id</div>
+      </div>
+      <div class="walk-arrow">→</div>
+      <div class="walk-node rel">
+        <div class="walk-label">RELATION</div>
+        <div class="walk-glyph">R</div>
+        <div class="walk-body">normalize · Warden · bind · seal</div>
+      </div>
+      <div class="walk-arrow">→</div>
+      <div class="walk-node tau">
+        <div class="walk-label">CODOMAIN</div>
+        <div class="walk-glyph">τ</div>
+        <div class="walk-body">one typed target · receipt · deny</div>
+      </div>
+    </div>
+
+    <p>
+      Operationally, R expands to the PHENO chain plus Warden gate:
+    </p>
+    <div class="trace">
+<span class="cm">// R(λ, τ)  ≔  unique_bind(λ)</span>
+<span class="kw">fn</span> <span class="fn">R</span>(λ) → τ {
+  intent  = <span class="fn">normalize</span>(λ)           <span class="cm">// Encode.Intent</span>
+  route   = <span class="fn">resolve_slot</span>(intent)   <span class="cm">// ROUTE_DETERMINISM</span>
+  <span class="fn">warden.gate</span>(route, λ)           <span class="cm">// WARDEN_FIRST</span>
+  τ       = <span class="fn">emit_typed</span>(route)      <span class="cm">// PHENO τ · RECEIPT_COLLAPSE</span>
+  <span class="kw">assert</span> |candidates| == 1        <span class="cm">// ∃!</span>
+  <span class="kw">return</span> τ
+}
+    </div>
+    <p>
+      If resolution yields zero candidates, <span class="em">FAIL_CLOSED</span> emits a deny τ.
+      If it yields more than one, <span class="em">ROUTE_DETERMINISM</span> halts — the model
+      refuses to satisfy a non-unique R. Either way, the ∀∃! shape is preserved:
+      every λ still maps to exactly one τ in T (including the typed deny).
+    </p>
+    <p class="section-end">:: ∎</p>
+  </section>
+
+  <!-- 03 -->
+  <section class="sec" id="pheno">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">PHENO keyring</h2>
+      <span class="sec-sig">A0 · 0x111 · k09</span>
+    </div>
+    <p>
+      PHENO is the I/O grammar of every EXC cell. The invariant lives inside it:
+      <strong>λ</strong> governs, <strong>φ</strong> binds, <strong>τ</strong> is the unique sealed target.
+    </p>
+
+    <div class="keyring">
+      <div class="key">
+        <div class="key-sym">ρ</div>
+        <div class="key-name">Input</div>
+        <div class="key-role">Ingest · normalize · validate what enters the box</div>
+      </div>
+      <div class="key">
+        <div class="key-sym">φ</div>
+        <div class="key-name">Bind</div>
+        <div class="key-role">Map tools, routes, limits, brain — the φ that constructs R</div>
+      </div>
+      <div class="key out">
+        <div class="key-sym">τ</div>
+        <div class="key-name">Output</div>
+        <div class="key-role">Typed emit — the unique target the formula demands</div>
+      </div>
+      <div class="key">
+        <div class="key-sym">ν</div>
+        <div class="key-name">Resilience</div>
+        <div class="key-role">Fallback body when core checks degrade — still typed</div>
+      </div>
+      <div class="key hot">
+        <div class="key-sym">λ</div>
+        <div class="key-name">Governance</div>
+        <div class="key-role">The law atom — domain of Λᴳ in the invariant</div>
+      </div>
+      <div class="key">
+        <div class="key-sym">Ω</div>
+        <div class="key-name">Seal</div>
+        <div class="key-role">Commit proof — τ becomes replayable after Ω</div>
+      </div>
+    </div>
+
+    <p>
+      Downstream of PHENO: <strong>PiCO</strong> (⊢ ⇨ ⟿ ▷) carries motion;
+      <strong>PRISM</strong> shapes actions; <strong>Ξ</strong> re-validates ρ φ τ.
+      The LLM lock equation binds them so inference cannot invent a second τ:
+    </p>
+    <div class="lemma">
+      (ρ ⊗ φ ⊗ τ) ⇨ (⊢ ∙ ⇨ ∙ ⟿ ∙ ▷) ⟿ PRISM<br>
+      ≡ LLM.Lock ∙ ν{…} ∙ π{re-validate{ρ φ τ}}
+    </div>
+    <p class="section-end">:: ∎</p>
+  </section>
+
+  <!-- 04 -->
+  <section class="sec" id="enforce">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">How 3OX enforces ∃!</h2>
+      <span class="sec-sig">Warden · 12 laws · fail-closed</span>
+    </div>
+    <p>
+      The unique-existence quantifier is not philosophical. It is compiled into
+      Warden field laws in <code>.3ox/(3)Rules/limits.toml</code>. These are the
+      teeth of Λᴳ that make R functional:
+    </p>
+
+    <div class="law-list">
+      <div class="law-row">
+        <div class="law-code">SLOT_IDENTITY</div>
+        <div class="law-body"><strong>One slot = one function identity.</strong> Files are faces of a slot, not rival identities. Prevents λ from splitting into multiple τ owners.</div>
+      </div>
+      <div class="law-row">
+        <div class="law-code">ROUTE_DETERMINISM</div>
+        <div class="law-body"><strong>Same intent + same state → same route.</strong> Ambiguous resolution halts. This is ∃! at the router.</div>
+      </div>
+      <div class="law-row">
+        <div class="law-code">DECLARED_CAPABILITY</div>
+        <div class="law-body"><strong>No declaration → no permission.</strong> Undeclared tools cannot invent alternate τ paths.</div>
+      </div>
+      <div class="law-row">
+        <div class="law-code">WARDEN_FIRST</div>
+        <div class="law-body"><strong>Mutation passes Warden before execution.</strong> R is evaluated before side effects — never after.</div>
+      </div>
+      <div class="law-row">
+        <div class="law-code">RECEIPT_COLLAPSE</div>
+        <div class="law-body"><strong>Every outcome collapses to a receipt.</strong> Success, deny, and error are all members of T — still unique.</div>
+      </div>
+      <div class="law-row">
+        <div class="law-code">FAIL_CLOSED</div>
+        <div class="law-body"><strong>If Warden cannot decide, deny.</strong> Uncertainty maps to a typed deny τ, preserving total coverage of Λᴳ.</div>
+      </div>
+      <div class="law-row">
+        <div class="law-code">MIGRATION_SEAL</div>
+        <div class="law-body"><strong>PHENO meaning cannot silently change.</strong> Λᴳ is sealed; extending the lattice requires an explicit migration Ω.</div>
+      </div>
+    </div>
+
+    <p>
+      EXC surface law reinforces uniqueness at the boundary identity layer:
+      <span class="em">1 EXC identity = 1 .exc + 1 .kdl + 1 .exs</span> — not a weighted triple.
+      If KDL or exs diverges, EXC wins. One meaning, one τ family.
+    </p>
+    <p class="section-end">:: ∎</p>
+  </section>
+
+  <!-- 05 -->
+  <section class="sec" id="core">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Core{} chamber</h2>
+      <span class="sec-sig">Axis[3]+Encode[6]+Ring[9]+System[9]=27</span>
+    </div>
+    <p>
+      Λᴳ’s kernel addresses live in the 27-slot execution chamber.
+      Each κ seat is a governance atom with a single route key — Slot Identity
+      made geometric.
+    </p>
+
+    <div class="core-map">
+      <div class="core-col">
+        <h4>Axis[3]</h4>
+        <ul>
+          <li><span>k00</span> Warden</li>
+          <li><span>k01</span> Tape</li>
+          <li><span>k02</span> Pulse</li>
+        </ul>
+      </div>
+      <div class="core-col">
+        <h4>Encode[6]</h4>
+        <ul>
+          <li><span>k03</span> Intent</li>
+          <li><span>k04</span> Authority</li>
+          <li><span>k05</span> State</li>
+          <li><span>k06</span> Route</li>
+          <li><span>k07</span> Memory</li>
+          <li><span>k08</span> Seal</li>
+        </ul>
+      </div>
+      <div class="core-col">
+        <h4>Ring[9]</h4>
+        <ul>
+          <li><span>k09</span> Intake</li>
+          <li><span>k10</span> Validate</li>
+          <li><span>k11</span> Encode</li>
+          <li><span>k12</span> Route</li>
+          <li><span>k13</span> Execute</li>
+          <li><span>k14</span> Observe</li>
+          <li><span>k15</span> Digest</li>
+          <li><span>k16</span> Commit</li>
+          <li><span>k17</span> Recover</li>
+        </ul>
+      </div>
+      <div class="core-col">
+        <h4>System[9]</h4>
+        <ul>
+          <li><span>k18</span> Meta</li>
+          <li><span>k19</span> Tron</li>
+          <li><span>k20</span> Chmod</li>
+          <li><span>k21</span> Daemon</li>
+          <li><span>k22</span> Cage</li>
+          <li><span>k23</span> Route</li>
+          <li><span>k24</span> Hash</li>
+          <li><span>k25</span> Vault</li>
+          <li><span>k26</span> Patch</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>
+      The rotor <strong>3OX.SPIN</strong> walks Warden → Tape → Pulse. Edges arrive on spin,
+      not wall-clock. Box aliveness is the runtime reading of the same invariant:
+      ValidBox₃(t) when Pulse, Tape, and Warden all pass — three authorities,
+      one coherent τ for “alive.”
+    </p>
+    <div class="lemma">
+      ValidBox₃(t) ≔ I[Pulse(t)] · I[Tape(t)] · I[Warden(t)] = 1<br>
+      Authoritative(t) ≔ I[CanonSource(t)] · ValidBox₃(t) = 1
+    </div>
+    <p class="section-end">:: ∎</p>
+  </section>
+
+  <!-- 06 -->
+  <section class="sec" id="trace">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">Worked trace</h2>
+      <span class="sec-sig">λ → R → τ · sidekik.raven</span>
+    </div>
+    <p>
+      Take a concrete λ from the route map: intent <code>sidekik.raven</code>.
+      The lattice already claims a unique binding in <code>routes.json</code>.
+    </p>
+
+    <div class="trace">
+<span class="cm">// λ ∈ Λᴳ</span>
+λ = intent<span class="fn">("sidekik.raven")</span>
+
+<span class="cm">// maps.intent → unique slot</span>
+slot = E043                    <span class="cm">// ∃! via maps.intent</span>
+route_key = <span class="fn">"sidekik.raven"</span>
+
+<span class="cm">// R(λ, τ) resolves once</span>
+cube   = <span class="fn">"3OX Agents/Sidekik"</span>
+agent  = <span class="fn">"3OX.Sidekik"</span>
+suite  = <span class="fn">"Raven"</span>
+τ      = <span class="fn">emit</span>(supervisor: raven.rb, unit: raven.service)
+
+<span class="ok">// PASS — |{τ}| = 1</span>
+<span class="cm">// A second competing route for the same normalized intent</span>
+<span class="cm">// would violate ROUTE_DETERMINISM and halt before emit.</span>
+    </div>
+
+    <p>
+      Orion’s Belt applies the same shape to memory: Scope → Shard → Latch is
+      exactly three beacons — width fixed, order fixed. Under
+      <code>λ{Governance}</code>, retention may move heat, but cannot invent a
+      fourth beacon or a second Latch for one triad. Unique structure, unique τ.
+    </p>
+    <p class="section-end">:: ∎</p>
+  </section>
+
+  <!-- 07 -->
+  <section class="sec" id="alive">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title">Runtime check</h2>
+      <span class="sec-sig">.vec3/rc · aliveness</span>
+    </div>
+    <p>
+      The invariant is inspectable. Aliveness evaluates whether the Box still
+      models ValidBox₃ — Pulse, Tape, Warden, and canon source.
+    </p>
+
+    <div class="check-box">
+      <div class="check-label">Executable check</div>
+      <code>ruby .vec3/rc/run.rb aliveness</code>
+      <p>
+        Pass when <span class="em">authoritative = true</span> and
+        <span class="em">valid_box3 = true</span>.
+        Failure means at least one of Pulse / Tape / Warden / CanonSource is broken —
+        the structure no longer satisfies the Box reading of the invariant.
+      </p>
+    </div>
+
+    <p>
+      Canon sources for this page:
+      <code>.3ox/_meta/BOX.ALIVENESS.equation</code>,
+      <code>.3ox/(3)Rules/limits.toml</code> [warden],
+      <code>.3ox/(3)Rules/exc/ring-a/Ring.A.A0.spec</code>,
+      <code>.3ox/(5)Links/routes.json</code>,
+      <code>_meta/canon/VEC3.SURFACES.md</code>.
+    </p>
+    <p class="section-end">:: ∎</p>
+  </section>
+
+  <!-- 08 -->
+  <section class="sec" id="share">
+    <div class="sec-head">
+      <span class="sec-num">08</span>
+      <h2 class="sec-title">Share the claim</h2>
+      <span class="sec-sig">copy · cite · link</span>
+    </div>
+    <p>
+      When you say 3OX is ontological math, this is the sentence:
+    </p>
+
+    <div class="close-band" id="share-block">
+      <div class="close-formula">3OX ⊨ ∀ λ ∈ Λᴳ, ∃! τ ∈ T : R(λ, τ)</div>
+      <p>
+        For every governance law in the lattice, there exists exactly one typed
+        target related by R. That is how 3OX stays agentic without becoming arbitrary.
+      </p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" type="button" id="copy-invariant">Copy invariant</button>
+        <a class="btn btn-ghost" href="index.html">← Landing</a>
+        <a class="btn btn-ghost" href="https://github.com/LLMasterDesign/3OX.Ai" target="_blank" rel="noreferrer">Canon on GitHub</a>
+      </div>
+    </div>
+    <p class="section-end">:: ∎</p>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-col">
+        <div class="f-brand">▛▞ // 3OX.Ai</div>
+        <p>Ontology of the unique binding invariant. Fixed-shape substrate for permanent agents.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <nav>
+          <a href="index.html">Landing</a>
+          <a href="ontology.html">Ontology</a>
+          <a href="https://github.com/LLMasterDesign/3OX.Ai" target="_blank" rel="noreferrer">Repository</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h4>Canon</h4>
+        <nav>
+          <a href="https://github.com/LLMasterDesign/3OX.Ai/blob/main/.3ox/_meta/BOX.ALIVENESS.equation" target="_blank" rel="noreferrer">Box aliveness</a>
+          <a href="https://github.com/LLMasterDesign/3OX.Ai/blob/main/_meta/canon/VEC3.SURFACES.md" target="_blank" rel="noreferrer">Vec3 surfaces</a>
+          <a href="https://github.com/LLMasterDesign/3OX.Ai/blob/main/.3ox/(3)Rules/limits.toml" target="_blank" rel="noreferrer">Warden laws</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Z3NSEN Systems · 3OX.Ai</div>
+      <div>///▙▖▙▖▞▞▙▂▂▂/// ▛▞ ⟦⎊⟧ :: ∎</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const fill = document.getElementById('scroll-fill');
+  function onScroll() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    fill.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const secs = document.querySelectorAll('.sec');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    secs.forEach((s) => io.observe(s));
+  } else {
+    secs.forEach((s) => s.classList.add('visible'));
+  }
+
+  const btn = document.getElementById('copy-invariant');
+  const text = '3OX ⊨ ∀ λ ∈ Λᴳ, ∃! τ ∈ T : R(λ, τ)';
+  if (btn) {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = 'Copied';
+        setTimeout(() => { btn.textContent = 'Copy invariant'; }, 1600);
+      } catch (_) {
+        btn.textContent = 'Select formula above';
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -5,7 +5,7 @@
 
 This folder now hosts a deploy-ready static landing page for **3ox.store**.
 
-## Primary File
+## Primary Files
 
 - `index.html` — complete single-page website content
   - landing paragraph for what 3OX.Ai is
@@ -13,6 +13,10 @@ This folder now hosts a deploy-ready static landing page for **3ox.store**.
   - Get Started onboarding flow
   - GitHub links
   - portfolio highlights
+- `ontology.html` — unique binding invariant page
+  - formula: `3OX ⊨ ∀ λ ∈ Λᴳ, ∃! τ ∈ T : R(λ, τ)`
+  - symbol unpack, PHENO keyring, Warden enforcement, Core{} map
+  - worked route trace + aliveness check
 
 ## Deployment Targets
 
