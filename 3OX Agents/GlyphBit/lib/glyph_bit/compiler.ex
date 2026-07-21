@@ -3,9 +3,10 @@
 
 defmodule GlyphBit.Compiler do
   @moduledoc """
-  Compile STORM.sparkfile.md → digest + validated artifact under compile/.
+  Compile STORM.sparkfile.md → BLAKE3 digest + validated artifact under compile/.
 
   Does not re-parse markdown at emit time; runtime uses GlyphBit.Storm.Harness.
+  Internal hash = BLAKE3 (see GlyphBit.Hash).
   """
 
   @spark "STORM.sparkfile.md"
@@ -19,11 +20,12 @@ defmodule GlyphBit.Compiler do
     invariants = validate_spark!(body)
     GlyphBit.Storm.Harness.validate!()
 
-    digest = :crypto.hash(:sha256, body) |> Base.encode16(case: :lower)
+    digest = GlyphBit.Hash.internal(body)
 
     artifact = %{
       source: @spark,
-      sha256: digest,
+      hash_algo: "blake3",
+      blake3: digest,
       compiled_at: DateTime.utc_now() |> DateTime.to_iso8601(),
       ontology: GlyphBit.Ontology.embed(),
       identity: GlyphBit.Storm.Harness.identity(),
@@ -35,11 +37,15 @@ defmodule GlyphBit.Compiler do
     out = Path.join(root, Path.join(@out_dir, "storm.glyphbit.artifact.exs"))
     File.write!(out, inspect(artifact, pretty: true, limit: :infinity))
 
-    digest_path = Path.join(root, Path.join(@out_dir, "storm.sha256"))
+    digest_path = Path.join(root, Path.join(@out_dir, "storm.blake3"))
     File.write!(digest_path, digest <> "\n")
 
+    # Remove legacy sha256 sidecar if present
+    legacy = Path.join(root, Path.join(@out_dir, "storm.sha256"))
+    if File.exists?(legacy), do: File.rm!(legacy)
+
     IO.puts("compiled #{@spark}")
-    IO.puts("  sha256: #{digest}")
+    IO.puts("  blake3: #{digest}")
     IO.puts("  artifact: #{out}")
     {:ok, artifact}
   end

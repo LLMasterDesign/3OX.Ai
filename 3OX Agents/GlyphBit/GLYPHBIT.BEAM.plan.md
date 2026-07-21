@@ -106,7 +106,7 @@ Compile steps:
 1. Parse lanes (SPARK…PULSE) + PHENO/PiCO/PRISM + ontology block.
 2. Validate post-only invariants (`primary=false`, `tools=[]`, `max_posts_per_turn=1`).
 3. Emit `storm.glyphbit.beam.exs` (or `.ex` module) + optional `.json` digest for Tape.
-4. Hash artifact (sha256 external / xxh128 internal) into receipt-friendly imprint.
+4. Hash artifact (**BLAKE3 internal**) into receipt-friendly imprint.
 
 Non-goals for v0:
 - Full brain.rs / vec3 L3.
@@ -203,7 +203,7 @@ Runtime dependency for MVP: Elixir/OTP only. Ruby aliveness may mirror status la
 - `GlyphBit.Ontology.assert_tau!/1`, `assert_unique_turn!/1`, `assert_post_only!/1`.
 
 ### WP3 — Compile path ✅
-- `mix glyph.compile` → `compile/storm.glyphbit.artifact.exs` + `compile/storm.sha256`.
+- `mix glyph.compile` → `compile/storm.glyphbit.artifact.exs` + `compile/storm.blake3` (BLAKE3).
 - Fails if primary/tools/uniqueness invariants missing from spark.
 
 ### WP4 — GenServer projection ✅

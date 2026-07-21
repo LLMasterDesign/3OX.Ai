@@ -107,7 +107,8 @@ defmodule GlyphBit.Storm do
         score: rate.score,
         reasons: rate.reasons,
         tau: GlyphBit.Ontology.to_wire(tau),
-        line: line
+        line: line,
+        hash: receipt_hash(tau, line, rate)
       })
 
     result = %{
@@ -119,5 +120,18 @@ defmodule GlyphBit.Storm do
     }
 
     {result, %{state | last_tau: tau, last_rate: rate}}
+  end
+
+  defp receipt_hash(tau, line, rate) do
+    payload =
+      [
+        GlyphBit.Ontology.to_wire(tau),
+        line || "",
+        to_string(rate.verdict),
+        :erlang.float_to_binary(rate.score * 1.0, decimals: 4)
+      ]
+      |> Enum.join("|")
+
+    GlyphBit.Hash.tagged_internal(payload)
   end
 end

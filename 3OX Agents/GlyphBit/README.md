@@ -33,7 +33,8 @@ GlyphBit.heartbeat()
 | `lib/glyph_bit/rate.ex` | Pure rate gate |
 | `lib/glyph_bit/ontology.ex` | Embedded Λᴳ / T / ∃! |
 | `lib/glyph_bit/storm.ex` | Pulse GenServer |
-| `lib/glyph_bit/compiler.ex` | Spark → digest artifact |
+| `lib/glyph_bit/hash.ex` | BLAKE3 internal digests |
+| `lib/glyph_bit/compiler.ex` | Spark → BLAKE3 digest artifact |
 | `GLYPHBIT.BEAM.plan.md` | Full pipeline plan |
 
 Post-only. Never owns the chat turn.

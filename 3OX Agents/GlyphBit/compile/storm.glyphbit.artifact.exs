@@ -1,5 +1,7 @@
 %{
-  compiled_at: "2026-07-21T02:00:23.043705Z",
+  blake3: "02f271e4666d1edeab08435017a67eacab90355f9b1a39073a4d7a398033e4b8",
+  compiled_at: "2026-07-21T02:25:09.470638Z",
+  hash_algo: "blake3",
   identity: %{
     arc: "HRÆSVELGR",
     autonomous: false,
@@ -34,6 +36,5 @@
    "You waited too long. That was your final warning.",
    "This is not destruction. It’s acceleration.",
    "Everything you’re clinging to is already ash. Let go."],
-  sha256: "4cd2f5026690c2886eac4416b2f6de2969ac984ad7429a639edf4db39f6b2d5f",
   source: "STORM.sparkfile.md"
 }

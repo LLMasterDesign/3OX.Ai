@@ -191,6 +191,7 @@ rate: %{
   fail_closed: true
 }
 runtime: %{module: GlyphBit.Storm, api: :after_chat}
+hashing: %{internal: "blake3", external: "sha256"}
 ```
 
 No second τ. No parallel commentary. No owning the chat.

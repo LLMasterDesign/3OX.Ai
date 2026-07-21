@@ -27,7 +27,10 @@ defmodule GlyphBit.MixProject do
   defp elixirc_paths(_), do: ["lib"]
 
   defp deps do
-    []
+    [
+      # Pure-Elixir BLAKE3 — internal GlyphBit digests (no Rust/NIF)
+      {:b3, "~> 0.2"}
+    ]
   end
 
   defp aliases do

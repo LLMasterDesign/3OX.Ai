@@ -94,12 +94,23 @@ defmodule GlyphBit.StormProofTest do
     assert "abstain.silence" in taus
   end
 
-  test "compiler validates spark and writes digest" do
+  test "compiler validates spark and writes blake3 digest" do
     {:ok, artifact} = GlyphBit.Compiler.run!()
     assert artifact.ontology.uniqueness.primary == false
-    assert artifact.sha256 != ""
-    assert File.exists?("compile/storm.sha256")
+    assert artifact.hash_algo == "blake3"
+    assert artifact.blake3 != ""
+    assert String.length(artifact.blake3) == 64
+    assert File.exists?("compile/storm.blake3")
+    refute File.exists?("compile/storm.sha256")
     assert File.exists?("compile/storm.glyphbit.artifact.exs")
+  end
+
+  test "internal hash is blake3" do
+    assert GlyphBit.Hash.algo_internal() == :blake3
+    digest = GlyphBit.Hash.internal("glyphbit-storm")
+    assert String.length(digest) == 64
+    # stable
+    assert digest == GlyphBit.Hash.internal("glyphbit-storm")
   end
 
   test "ontology rejects illegal tau" do
