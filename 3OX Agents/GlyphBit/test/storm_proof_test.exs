@@ -12,13 +12,17 @@ defmodule GlyphBit.StormProofTest do
     :ok
   end
 
-  test "P1 fire — delay keywords → post.emit one line" do
+  test "P1 fire — delay keywords → post.emit context blurb" do
     result = GlyphBit.after_chat(GlyphBit.Fixtures.p1_fire())
     assert result.tau == :post_emit
     assert result.tau_wire == "post.emit"
-    assert is_binary(result.line)
-    assert String.starts_with?(result.line, "🌪️ HRÆSVELGR:")
-    assert length(String.split(result.line, "\n")) == 1
+    assert is_binary(result.blurb)
+    assert result.blurb == result.line
+    assert String.contains?(result.blurb, "Γ STORM")
+    assert String.contains?(result.blurb, "HRÆSVELGR")
+    # deity blurb — more than a slogan line
+    assert length(String.split(result.blurb, "\n")) >= 3
+    assert String.length(result.blurb) > 120
     assert result.rate.verdict == :fire
   end
 

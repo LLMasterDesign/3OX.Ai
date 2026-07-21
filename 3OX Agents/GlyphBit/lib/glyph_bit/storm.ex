@@ -83,21 +83,21 @@ defmodule GlyphBit.Storm do
 
         tau = GlyphBit.Ontology.assert_tau!(tau)
 
-        {line, posts} =
+        {blurb, posts} =
           case tau do
             :post_emit ->
-              call = GlyphBit.Storm.Harness.pick_rupture(Map.get(context, :seed, 0))
-              {GlyphBit.Storm.Harness.format_line(call), state.posts_this_turn + 1}
+              body = GlyphBit.Storm.Harness.pick_blurb(Map.get(context, :seed, 0))
+              {GlyphBit.Storm.Harness.format_blurb(body), state.posts_this_turn + 1}
 
             :abstain_silence ->
               {nil, state.posts_this_turn}
           end
 
-        finish(tau, line, rate, %{state | posts_this_turn: posts})
+        finish(tau, blurb, rate, %{state | posts_this_turn: posts})
     end
   end
 
-  defp finish(tau, line, rate, state) do
+  defp finish(tau, blurb, rate, state) do
     GlyphBit.Ontology.assert_tau!(tau)
 
     {:ok, _row} =
@@ -107,14 +107,17 @@ defmodule GlyphBit.Storm do
         score: rate.score,
         reasons: rate.reasons,
         tau: GlyphBit.Ontology.to_wire(tau),
-        line: line,
-        hash: receipt_hash(tau, line, rate)
+        blurb: blurb,
+        line: blurb,
+        hash: receipt_hash(tau, blurb, rate)
       })
 
     result = %{
       tau: tau,
       tau_wire: GlyphBit.Ontology.to_wire(tau),
-      line: line,
+      blurb: blurb,
+      # alias — hosts that still read :line
+      line: blurb,
       rate: rate,
       lambda: GlyphBit.Ontology.lambda()
     }
@@ -122,11 +125,11 @@ defmodule GlyphBit.Storm do
     {result, %{state | last_tau: tau, last_rate: rate}}
   end
 
-  defp receipt_hash(tau, line, rate) do
+  defp receipt_hash(tau, blurb, rate) do
     payload =
       [
         GlyphBit.Ontology.to_wire(tau),
-        line || "",
+        blurb || "",
         to_string(rate.verdict),
         :erlang.float_to_binary(rate.score * 1.0, decimals: 4)
       ]

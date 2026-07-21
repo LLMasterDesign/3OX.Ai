@@ -30,7 +30,9 @@ defmodule GlyphBit.Compiler do
       ontology: GlyphBit.Ontology.embed(),
       identity: GlyphBit.Storm.Harness.identity(),
       invariants: invariants,
-      rupture_bank: GlyphBit.Storm.Harness.rupture_bank()
+      rupture_bank: GlyphBit.Storm.Harness.blurb_bank(),
+      blurb_bank: GlyphBit.Storm.Harness.blurb_bank(),
+      emit_shape: :context_blurb
     }
 
     File.mkdir_p!(Path.join(root, @out_dir))
