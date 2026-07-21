@@ -176,6 +176,23 @@ R       = LANE.5 gate → LANE.6 emit | silence
 ∃!      = max_posts_per_turn = 1 ∧ FAIL_CLOSED → silence
 ```
 
+```elixir
+# Machine-readable embed (compiled into GlyphBit.Ontology / Harness)
+ontology: %{
+  claim: "3OX ⊨ ∀ λ ∈ Λᴳ_post, ∃! τ ∈ T_post : R(λ, τ)",
+  lambda_set: ["post-output.storm"],
+  tau_set: ["post.emit", "abstain.silence"],
+  relation: "gate → emit|silence",
+  uniqueness: %{max_posts_per_turn: 1, fail_closed: true, primary: false}
+}
+rate: %{
+  keywords: ["stagnation", "delay", "later", "tomorrow", "waiting", "stuck", "loop"],
+  fire_threshold: 1.0,
+  fail_closed: true
+}
+runtime: %{module: GlyphBit.Storm, api: :after_chat}
+```
+
 No second τ. No parallel commentary. No owning the chat.
 
 ─────────────────────────────────────────────────────────────────

@@ -2,9 +2,10 @@
 ▛//▞▞ ⟦⎊⟧ :: ⧗-26.202 // WORKBOOK :: GlyphBit → BEAM proof plan ▞▞
 
 ```elixir
-/// status:[DRAFT] ver:[0.1.0] created:[26.07.21]
+/// status:[ACTIVE] ver:[0.2.0] created:[26.07.21]
 /// doc:[PARTIAL] modified:[26.07.21] auth:[ZEN.PRO]
 /// Proof of ontology math in action: rate → embed → compile → BEAM → live post-responder
+/// Built: WP0–WP5 (rate, ontology, compile, GenServer, P1–P7 proofs green)
 ```
 
 # GlyphBit Live Plan — Proof of the Math in Action
@@ -190,33 +191,26 @@ Runtime dependency for MVP: Elixir/OTP only. Ruby aliveness may mirror status la
 
 ## 6) Work packages (ordered)
 
-### WP0 — Freeze contract
-- Lock Λᴳ_post / T_post / post.lock in STORM sparkfile (already drafted).
-- Add machine-readable ontology + rate stubs into the sparkfile (or `storm.ontology.json` sibling — only if parse needs it; prefer single-file still).
+### WP0 — Freeze contract ✅
+- Lock Λᴳ_post / T_post / post.lock in STORM sparkfile (done).
+- Machine-readable ontology + rate stubs embedded in sparkfile + `GlyphBit.Ontology`.
 
-### WP1 — Rate engine (pure)
-- Implement `GlyphBit.Rate.score/1` in Elixir (pure function).
-- Fixture JSON for P1–P7 inputs.
-- No BEAM process yet — unit tests only.
+### WP1 — Rate engine (pure) ✅
+- `GlyphBit.Rate.score/1` implemented.
+- Fixtures + unit tests + proof cases.
 
-### WP2 — Ontology asserts
-- `GlyphBit.Ontology.assert_tau!/2` — rejects anything outside T_post.
-- `assert_unique_turn!/1` — enforces ∃!.
+### WP2 — Ontology asserts ✅
+- `GlyphBit.Ontology.assert_tau!/1`, `assert_unique_turn!/1`, `assert_post_only!/1`.
 
-### WP3 — Compile path
-- Script: sparkfile → Elixir module source (mix task or plain `elixir compile_storm.exs`).
-- Digest hash written beside artifact.
-- Compile must fail if `primary != false` or tools non-empty.
+### WP3 — Compile path ✅
+- `mix glyph.compile` → `compile/storm.glyphbit.artifact.exs` + `compile/storm.sha256`.
+- Fails if primary/tools/uniqueness invariants missing from spark.
 
-### WP4 — GenServer projection
-- `GlyphBit.Storm` GenServer + heartbeat.
-- `after_chat/1` API.
-- Tape mini-receipt writer (append-only file under GlyphBit outbox).
+### WP4 — GenServer projection ✅
+- `GlyphBit.Storm` GenServer + heartbeat + Tape mini-receipts (`outbox/tape.terms`).
 
-### WP5 — Proof harness
-- ExUnit (or script runner) executes P1–P7.
-- One command: `mix test` or `elixir test/storm_proof.exs`.
-- Exit nonzero if any uniqueness or post.lock violation.
+### WP5 — Proof harness ✅
+- `mix test` — P1–P7 + tape + compiler + illegal τ (12 tests).
 
 ### WP6 — Host integration (thin)
 - Document Cursor/chat addendum: load compiled bit as post-only.
