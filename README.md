@@ -57,29 +57,54 @@ Current AI agents:
 
 For teams building AI systems that need to be production-ready, auditable, and reliable.
 
+## Kernel Specification
+
+The full architecture is defined in [`_meta/canon/`](_meta/canon/):
+
+| Document | Defines |
+|---|---|
+| [KERNEL.V1](_meta/canon/KERNEL.V1.md) | 243-field kernel: 3 rings × 9 slots + 216 entity encoder |
+| [ZENOS.V1](_meta/canon/ZENOS.V1.md) | ZenOS execution substrate — tier model, lane definitions, pheno chain templates |
+| [LINUX.SYSTEM.MAPPING](_meta/canon/LINUX.SYSTEM.MAPPING.md) | How 3OX folder structure maps to Linux filesystem conventions |
+| [ARCHITECTURE.SPEC](_meta/canon/ARCHITECTURE.SPEC.md) | Full architecture freeze — 18-section dictation |
+| [VEC3.SURFACES](_meta/canon/VEC3.SURFACES.md) | The 7 `.vec3/` surfaces — place vs authority |
+
+Ring specs are expanded individually in [`.3ox/(3)Rules/exc/`](.3ox/(3)Rules/exc/) (Ring A: Pheno Grammar, Ring B: Daemon Services, Ring C: Contract Surfaces).
+
 ## Components
+
+### Runtime Stack
+
+3OX agents are orchestrated by an Elixir/OTP runtime (**ORION**) that handles dispatch, streaming, and multi-seat coordination:
+
+- **ORION GenServer** — routes requests across model seats (local Ornith 35B warden, 9B governor, cloud fallback)
+- **TPR (TelePrompter Relay)** — Elixir GenServer for streaming chunk pub/sub across surfaces
+- **CISA chain** — Cognitive Instruction Set Architecture: Θ→Ξ→κ→Σ→Δ→λ→τ→Ω→χ (heading → decode → dispatch → bind → enforce → execute → receipt → commit → ack)
+- **Receipts** — every operation writes a receipt (timestamp, actor, inputs hash, outputs, status)
 
 ### 3OX Agents
 
-Pre-built agents with full vec3 setup:
+Agents ship as self-contained cubes with `.3ox/` identity + `.vec3/` runtime:
 
-- **[VSO Agent](3OX%20Agents/VSO%20Agent/)** - Veterans Service Officer for VA disability claims. Strategic questioning, DBQ reference, deadline tracking, evidence validation.
-
-More agents coming: Education, Sysadmin, Research, Development.
+- **[VSO Agent](3OX%20Agents/VSO%20Agent/)** — Veterans Service Officer for VA disability claims
+- **[Sidekik](3OX%20Agents/Sidekik/)** — TPR-connected assistant with RAVEN dispatch
+- **[Money.Bagz](Money.Bagz/)** — Financial operations agent
 
 ### 3OX.BUILDER
 
-Framework tooling and templates:
-- Agent scaffolding
-- Brain compilation tools
-- vec3 structure generators
+Rust workspace for framework tooling:
+- `3ox` CLI — agent scaffolding and management
+- `vec3-boot` — TUI boot loader with animated splash
+- `brains-3ox-core` — core library for brain compilation
 - Tier system (T1: basic, T2: simple vec3, T3: full kernel)
 
 See [3OX.BUILDER](3OX.BUILDER/) for documentation.
 
-### Capsules (Coming)
+### TelePromptR
 
-Portable AI workspaces. Package an agent, its data, and state into a single unit. Move it between environments. State travels with the agent.
+Agent-to-agent handoff system via Telegram relay. Routes messages to correct agent seats, streams responses back. Schema-validated handoffs with Ruby consumer + minitest suite.
+
+See [_TRON/TelePromptR](_TRON/TelePromptR/) for documentation.
 
 ## Technical Details
 
@@ -121,15 +146,22 @@ Borrowed from operating systems:
 
 If you trust your OS to manage state reliably, you can trust 3OX agents the same way.
 
+## CI
+
+Three GitHub Actions workflows validate the codebase:
+- **cargo** — Rust workspace build + test (3OX.BUILDER)
+- **encoder** — Hex index + entity encoder validation
+- **tpr** — TPR handoff schema + consumer tests
+
 ## Status
 
 **Active Development**  
-Version: 1.0.0  
-Last Updated: ⧗-25.133
+Version: 1.1.0  
+Last Updated: ⧗-26.216
 
 ## License
 
-MIT License - See [LICENSE](LICENSE)
+MIT License
 
 ---
 
