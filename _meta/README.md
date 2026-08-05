@@ -28,7 +28,10 @@ _meta/
     ├── ARCHITECTURE.RECONCILIATION.md verdict + ruling log against κ27 / Warden / .vec3 canon
     ├── VEC3.SURFACES.md               the 7 .vec3/ surfaces; place vs authority
     ├── RAVEN.SUITE.md                 Sidekik runtime + edge-only law
-    └── ENCODER.RULES.md               encoder warden-laws table
+    ├── ENCODER.RULES.md               encoder warden-laws table
+    ├── KERNEL.V1.md                   κ27 kernel field: 3 rings × 9 slots + 216 encoder = 243 total
+    ├── ZENOS.V1.md                    ZenOS genesis codex: tiers, perms, lanes, pheno templates
+    └── LINUX.SYSTEM.MAPPING.md        3OX folder → Linux filesystem mapping
 ```
 
 ## Why the split
