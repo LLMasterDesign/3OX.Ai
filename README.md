@@ -21,7 +21,7 @@ Think systemd for AI agents.
 
 All tiers (T1, T2, T3) include these 7 files.
 
-**`.vec3/` Kernel** — Eight protected runtime surfaces, sibling of `.3ox/` at every cube root. `.3ox/` declares the agent (six face files); `.vec3/` runs it (eight surface folders). See [`_meta/canon/VEC3.SURFACES.md`](_meta/canon/VEC3.SURFACES.md) for the full canon.
+**`.vec3/` Kernel** — Eight protected runtime surfaces, sibling of `.3ox/` at every cube root. `.3ox/` declares the agent (six face files); `.vec3/` runs it (eight surface folders). See [`_meta/canon/VEC3.SURFACES.md`](_meta/proof/canon/VEC3.SURFACES.md) for the full canon.
 
 | Surface | Role | One-line meaning |
 |---|---|---|
@@ -60,15 +60,15 @@ For teams building AI systems that need to be production-ready, auditable, and r
 
 ## Kernel Specification
 
-The full architecture is defined in [`_meta/canon/`](_meta/canon/):
+The full architecture is defined in [`_meta/proof/canon/`](_meta/proof/canon/):
 
 | Document | Defines |
 |---|---|
-| [KERNEL.V1](_meta/canon/KERNEL.V1.md) | 243-field kernel: 3 rings × 9 slots + 216 entity encoder |
-| [ZENOS.V1](_meta/canon/ZENOS.V1.md) | ZenOS execution substrate — tier model, lane definitions, pheno chain templates |
-| [LINUX.SYSTEM.MAPPING](_meta/canon/LINUX.SYSTEM.MAPPING.md) | How 3OX folder structure maps to Linux filesystem conventions |
-| [ARCHITECTURE.SPEC](_meta/canon/ARCHITECTURE.SPEC.md) | Full architecture freeze — 18-section dictation |
-| [VEC3.SURFACES](_meta/canon/VEC3.SURFACES.md) | The 7 `.vec3/` surfaces — place vs authority |
+| [KERNEL.V1](_meta/proof/canon/KERNEL.V1.md) | 243-field kernel: 3 rings × 9 slots + 216 entity encoder |
+| [ZENOS.V1](_meta/proof/canon/ZENOS.V1.md) | ZenOS execution substrate — tier model, lane definitions, pheno chain templates |
+| [LINUX.SYSTEM.MAPPING](_meta/proof/canon/LINUX.SYSTEM.MAPPING.md) | How 3OX folder structure maps to Linux filesystem conventions |
+| [ARCHITECTURE.SPEC](_meta/proof/canon/ARCHITECTURE.SPEC.md) | Full architecture freeze — 18-section dictation |
+| [VEC3.SURFACES](_meta/proof/canon/VEC3.SURFACES.md) | The 7 `.vec3/` surfaces — place vs authority |
 
 Ring specs are expanded individually in [`.3ox/(3)Rules/exc/`](.3ox/(3)Rules/exc/) (Ring A: Pheno Grammar, Ring B: Daemon Services, Ring C: Contract Surfaces).
 
