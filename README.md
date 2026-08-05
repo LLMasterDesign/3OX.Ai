@@ -21,15 +21,16 @@ Think systemd for AI agents.
 
 All tiers (T1, T2, T3) include these 7 files.
 
-**`.vec3/` Kernel** - Seven protected runtime surfaces, sibling of `.3ox/` at every cube root. `.3ox/` declares the agent (six face files); `.vec3/` runs it (seven surface folders). See [`_meta/canon/VEC3.SURFACES.md`](_meta/canon/VEC3.SURFACES.md) for the full canon.
+**`.vec3/` Kernel** — Eight protected runtime surfaces, sibling of `.3ox/` at every cube root. `.3ox/` declares the agent (six face files); `.vec3/` runs it (eight surface folders). See [`_meta/canon/VEC3.SURFACES.md`](_meta/canon/VEC3.SURFACES.md) for the full canon.
 
 | Surface | Role | One-line meaning |
 |---|---|---|
-| `.vec3/rc/` | control | Law and boot — immutable `rules.ref`, `sys.ref`, `boot.lock`, binaries |
-| `.vec3/lib/` | reference | Protected logic and canon — `snips/`, `prompts/`, `static/`, `*.ref` |
+| `.vec3/rc/` | control | Law and boot — immutable `rules.ref`, `sys.ref`, `boot.lock` |
+| `.vec3/bin/` | executables | Scripts, compiled tools, CLI entry points — `/usr/bin` equivalent |
+| `.vec3/lib/` | reference | Protected logic and canon — `snips/`, `prompts/`, `*.ref` |
 | `.vec3/dev/` | action | Adapters, drivers, executable bridges — where 3OX touches the outside world |
-| `.vec3/var/` | state | Live state, receipts mirror, cursors, metrics — what is alive right now |
-| `.vec3/proto/` | agreement | gRPC service contracts and interface definitions |
+| `.vec3/var/` | state | Live state, receipts, cursors, metrics, `var/ops/` — what is alive right now |
+| `.vec3/index/` | addressing | Registration, entity lookup, vec3 address resolution |
 | `.vec3/proc/` | process | Workers, queue, self, internal agents, kernel — process plane (Supervisor still owns lifecycle) |
 | `.vec3/mem/` | continuity | `hot/`, `deep/`, `context/` — what the system remembers, not what it is currently doing |
 
@@ -161,7 +162,7 @@ Last Updated: ⧗-26.216
 
 ## License
 
-MIT License
+Apache License 2.0 — See [LICENSE](LICENSE)
 
 ---
 

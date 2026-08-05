@@ -4,14 +4,14 @@
 ```elixir
 /// status:[ACTIVE] ver:[1.0.0] created:[26.05.04]
 /// doc:[COMPLETE] modified:[26.05.04] auth:[ZEN.PRO]
-/// .vec3/ canon — seven runtime surfaces, place vs authority, L2/L3 split
+/// .vec3/ canon — eight runtime surfaces, place vs authority, L2/L3 split
 ```
 
 # `.vec3/` — The Runtime Surfaces
 
 `.vec3/` is the **runtime kernel**. It sits as a sibling of `.3ox/` at
 every cube root. `.3ox/` declares the agent (six face files); `.vec3/`
-runs it (seven surface folders).
+runs it (eight surface folders).
 
 The cube boundary is `_TRON ⊃ cube ⊃ {.3ox/, .vec3/}`. They are siblings,
 not parent and child — runtime is not part of identity.
@@ -36,15 +36,16 @@ Same shape for every surface. Place names where state lives; authority
 names who is allowed to mutate it. Warden Law #5 (`SLOT_IDENTITY`)
 forbids collapsing the two.
 
-## The seven surfaces
+## The eight surfaces
 
 ```
 .vec3/
 ├─ rc/      :: run control
+├─ bin/     :: executables, scripts, CLI entry points
 ├─ lib/     :: protected library logic
 ├─ dev/     :: devices, adapters, executors
-├─ var/     :: live state, receipts, cursors, metrics
-├─ proto/   :: protocol contracts and gRPC interfaces
+├─ var/     :: live state, receipts, cursors, metrics, ops/
+├─ index/   :: addressing, registration, entity lookup
 ├─ proc/    :: process plane, workers, queue, sub-agents, kernel
 └─ mem/     :: awareness and memory surfaces
 ```
@@ -113,19 +114,33 @@ now and what just happened.** Mutates constantly.
 
 Authority: **Tape** (`k01`) owns authoritative receipt writing — `var/receipts/` is a *mirror*, not the source of truth.
 
-### `.vec3/proto/` — Protocols
+### `.vec3/bin/` — Executables
 
-The interface contract plane. **How services agree before they speak.**
-Especially important for portable packs and the marketplace model
-where machines need stable contracts, not vibes.
+Scripts, compiled tools, and CLI entry points. The `/usr/bin` equivalent.
+**What the cube can run.** Distinct from `dev/` (which bridges to the
+outside world) — `bin/` holds first-party tools the cube ships with.
 
 | Holds | Purpose |
 |---|---|
-| `*.proto` | gRPC service contracts |
-| service contracts | Cross-language interface definitions |
-| RPC type defs | Wire-level type law |
+| scripts | Shell, Ruby, Python entry points |
+| compiled tools | Built binaries (brain.exe, CLI tools) |
+| symlinks | Command aliases (e.g. `cmd-task -> hands`) |
 
-Authority: **`Core{Encode}.Seal`** (`k08`) for contract integrity; **`Core{Encode}.Route`** (`k06`) for binding contracts to routes.
+Authority: **Warden** (`k00`) gates execution; contents installed by **`Core{System}.Patch`** (`k26`).
+
+### `.vec3/index/` — Addressing
+
+Registration, entity lookup, and vec3 address resolution.
+**How the cube finds things by name.** The catalog of what exists
+and where it lives.
+
+| Holds | Purpose |
+|---|---|
+| `register.md` | Entity registration manifest |
+| `vec3.md` | Vec3 surface self-description |
+| `*.index` | Lookup tables and entity maps |
+
+Authority: **`Core{Encode}.Authority`** (`k04`) for registration; **`Core{Encode}.Route`** (`k06`) for address resolution.
 
 ### `.vec3/proc/` — Process Plane
 
@@ -230,7 +245,7 @@ Examples that pin the difference:
 
 ## L2 vs L3 — compressed vs full geometry
 
-Not every cube needs the full seven-surface geometry. The canon allows
+Not every cube needs the full eight-surface geometry. The canon allows
 two scales of `.vec3/`.
 
 ### L2 (compressed base)
@@ -240,30 +255,32 @@ Six face files plus a lighter `.vec3/`:
 ```
 .vec3/
 ├─ rc/      :: optional overrides
+├─ bin/     :: scripts and entry points
 ├─ var/     :: pid, state.json
 └─ dev/     :: io buffers
 ```
 
 Used for tiny flat agents that don't need a process plane, memory
-graph, or formal protocol contracts.
+graph, or address resolution.
 
 ### L3 (full agent)
 
-The full seven-surface geometry opens:
+The full eight-surface geometry opens:
 
 ```
 .vec3/
 ├─ rc/
+├─ bin/
 ├─ lib/
 ├─ dev/
 ├─ var/
-├─ proto/
+├─ index/
 ├─ proc/
 └─ mem/
 ```
 
 Used for agents that supervise sub-workers, hold continuity across
-sessions, expose RPC, or run an internal kernel.
+sessions, resolve entity addresses, or run an internal kernel.
 
 ## Two scales of `.vec3/` — the fractal coordinate
 
@@ -304,10 +321,11 @@ because it too is a runtime, just one tier up.
 
 ```
 rc    :: control      :: law and boot
+bin   :: executables  :: scripts, tools, CLI entry points
 lib   :: reference    :: protected logic and canon
 dev   :: action       :: adapters, drivers, executable bridges
-var   :: state        :: live state, receipts, cursors, metrics
-proto :: agreement    :: service/interface contracts
+var   :: state        :: live state, receipts, cursors, metrics, ops/
+index :: addressing   :: registration, entity lookup, address resolution
 proc  :: process      :: workers, queue, self, internal agents, kernel
 mem   :: continuity   :: hot memory, deep semantic memory, context
 ```
@@ -323,7 +341,8 @@ one or more authorities elsewhere in the system. The ownership map:
 | `lib/` | Read-only canon | `Core{System}.Patch` under migration seal | `k26` |
 | `dev/` | Adapter registry | Warden (gate) + `Core{System}.Cage` (sandbox) + `Core{Encode}.Authority` (registration) | `k00`, `k22`, `k04` |
 | `var/` | Pulse heartbeat / mirror | **Tape** writes authoritative receipts; Pulse refreshes status | `k01`, `k02` |
-| `proto/` | Contract registry | `Core{Encode}.Seal` (integrity) + `Core{Encode}.Route` (binding) | `k08`, `k06` |
+| `bin/` | Executable registry | Warden (gate) + `Core{System}.Patch` (install) | `k00`, `k26` |
+| `index/` | Address catalog | `Core{Encode}.Authority` (registration) + `Core{Encode}.Route` (resolution) | `k04`, `k06` |
 | `proc/` | Process manifests | **Supervisor** (`Core{System}.Daemon`) owns lifecycle; Worker writes its own manifest | `k21` |
 | `mem/` | Awareness store | `Core{Encode}.Memory` via Project Orion | `k07` |
 
@@ -336,30 +355,22 @@ one or more authorities elsewhere in the system. The ownership map:
 
 Place ≠ authority. Warden Law #5 (`SLOT_IDENTITY`) makes this binding.
 
-## Migration notes (open question, deferred)
+## Migration notes (26.216 ruling)
 
-The previous L3 row in `PLAN.md` (locked in PR #6, March) listed six
-surfaces: `rc, lib, dev, var, bin, ops`. This canon supersedes that
-with seven surfaces: `rc, lib, dev, var, proto, proc, mem`.
+The v1.0 canon (PR #6, May) listed seven surfaces:
+`rc, lib, dev, var, proto, proc, mem`. That is now superseded.
 
-**`bin/` and `ops/` are not in the new canon.** Their content folds
-into `.vec3/dev/` (executables and operational executors live alongside
-adapters and drivers in the device-bridge layer).
-
-For backwards compatibility this PR materializes `proto/`, `proc/`,
-and `mem/` under the root cube's `.vec3/` but leaves the existing
-`bin/` and `ops/` directories in place pending a deliberate
-deprecation pass. Path:
-
-1. This PR locks the seven-surface canon and creates the three new
-   surfaces.
-2. A follow-up PR moves any actual content from `bin/` and `ops/`
-   into `dev/{ops,...}` and removes the empty directories with a
-   `_meta/CHANGELOG.toml` migration entry.
-
-Until that follow-up lands, agents may safely reference paths under
-the seven canon surfaces. Anything still referencing `.vec3/bin/` or
-`.vec3/ops/` should be flagged for migration during review.
+**26.216 rulings:**
+- **`bin/`** — restored as a first-class surface. Executables are
+  distinct from device adapters; `dev/` bridges outward, `bin/` holds
+  first-party tools.
+- **`index/`** — added as the eighth surface. Address resolution and
+  entity registration needed their own place; previously scattered
+  across `lib/` and `proc/`.
+- **`proto/`** — removed from vec3. Protocol contracts are a sysgen
+  concern, not a per-cube runtime surface.
+- **`ops/`** — renamed to `var/ops/`. Operational state belongs under
+  the variable state surface, not as a peer.
 
 ## See also
 
