@@ -1,0 +1,19 @@
+name: Finance Agent
+role: Financial Analysis
+description: Advanced financial modeling and market analysis capabilities with real-time data processing.
+tier: Professional
+icon: 💰
+version: 1.0.0
+author: 3OX Systems
+
+capabilities:
+  - Market Analysis
+  - Risk Assessment
+  - Portfolio Optimization
+  - Real-time Data Processing
+
+tools:
+  - market_scanner
+  - risk_calculator
+  - portfolio_optimizer
+  - data_processor

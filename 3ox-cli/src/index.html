@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3OX SETS Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">3OX SETS Viewer</h1>
+                <div class="header-subtitle">Agent Management Platform</div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="installed">Installed Agents</button>
+            <button class="nav-tab disabled" data-tab="marketplace">Marketplace</button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Installed Agents View -->
+            <div id="installed-view" class="tab-content active">
+                <div class="agents-container">
+                    <div class="agents-header">
+                        <h2>Your Agents</h2>
+                        <div class="agents-count">0 agents installed</div>
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div id="loading-state" class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Loading agents...</p>
+                    </div>
+
+                    <!-- Agents Grid -->
+                    <div id="agents-grid" class="agents-grid">
+                        <!-- Agent cards will be dynamically inserted here -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="empty-state" class="empty-state" style="display: none;">
+                        <div class="empty-icon">🤖</div>
+                        <h3>No agents installed</h3>
+                        <p>Add agents to 3OX.SETS/ to get started</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketplace View -->
+            <div id="marketplace-view" class="tab-content">
+                <div class="coming-soon">
+                    <div class="coming-soon-icon">🚀</div>
+                    <h2>Marketplace</h2>
+                    <p>Coming Soon</p>
+                    <p class="coming-soon-desc">Community agents for download and purchase will be available here.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Agent Detail Modal -->
+    <div id="agent-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-agent-name">Agent Name</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="agent-details">
+                    <div class="detail-section">
+                        <h3>Status</h3>
+                        <div class="status-badge" id="modal-status">Unknown</div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Description</h3>
+                        <p id="modal-description">No description available</p>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Capabilities</h3>
+                        <div id="modal-capabilities" class="capabilities-list">
+                            <!-- Capabilities will be populated here -->
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>File Verification</h3>
+                        <div id="modal-verification" class="verification-status">
+                            <!-- Verification status will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button id="modal-launch" class="btn btn-primary">Launch Agent</button>
+                    <button id="modal-stop" class="btn btn-secondary" style="display: none;">Stop Agent</button>
+                    <button id="modal-verify" class="btn btn-outline">Verify Files</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
