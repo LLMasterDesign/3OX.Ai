@@ -134,7 +134,7 @@ defmodule Boxd.B0.Proof do
     :ok = Supervisor.stop(root, :normal, 5_000)
     prove(Process.whereis(Boxd.B0) == nil, "shutdown-b0")
     prove(Process.whereis(Boxd.B0.Cubes) == nil, "shutdown-children")
-    IO.puts("BOXD_B0_RESULT status=ok stages=9")
+    IO.puts("BOXD_B0_RESULT status=ok stages=10")
   end
 end
 
