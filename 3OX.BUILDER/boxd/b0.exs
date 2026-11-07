@@ -138,7 +138,105 @@ defmodule Boxd.B0.Proof do
   end
 end
 
+# An edge metadata root is a declared filesystem address, never admission.
+# Both ".3ox/_meta/" and "_meta/" are supported, without fallback or writes.
+defmodule Boxd.B0.Metadata do
+  @meta_line ~r/^\s*meta_root(?:\s|$)/
+  @meta_value ~r/^\s*meta_root\s+"([^"\r\n]+)"\s*$/
+  @safe_edge ~r/^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,63}$/
+
+  @doc "Resolve an existing edge PID slot from an explicit *.ID declaration."
+  def resolve(identity_file, edge) when is_binary(identity_file) and is_binary(edge) do
+    root = Path.dirname(Path.expand(identity_file))
+
+    with :ok <- validate_edge(edge),
+         :ok <- require_regular(identity_file),
+         {:ok, contents} <- File.read(identity_file),
+         {:ok, declared} <- declaration(contents),
+         {:ok, parts} <- safe_meta_path(declared),
+         :ok <- require_directories(root, parts ++ ["edges", edge]),
+         meta_root = Path.join([root | parts]),
+         slot = Path.join([meta_root, "edges", edge, "pid"]),
+         :ok <- require_regular(slot),
+         {:ok, pid_text} <- File.read(slot) do
+      binding = if String.trim(pid_text) == "", do: "unbound", else: "present-unverified"
+      {:ok, %{meta_root: meta_root, edge: edge, pid_slot: slot, binding: binding}}
+    end
+  end
+
+  def resolve(_, _), do: {:error, :invalid_arguments}
+
+  defp validate_edge(edge) do
+    if Regex.match?(@safe_edge, edge), do: :ok, else: {:error, :invalid_edge}
+  end
+
+  defp declaration(contents) do
+    lines =
+      contents
+      |> String.split("\n")
+      |> Enum.filter(&Regex.match?(@meta_line, &1))
+
+    case lines do
+      [] -> {:error, :metadata_root_undeclared}
+      [line] ->
+        case Regex.run(@meta_value, line) do
+          [_, raw] -> {:ok, raw}
+          _ -> {:error, :invalid_metadata_declaration}
+        end
+      _ -> {:error, :ambiguous_metadata_declaration}
+    end
+  end
+
+  defp safe_meta_path(raw) do
+    parts = String.split(raw, "/", trim: true)
+
+    if Path.type(raw) == :relative and
+       List.last(parts) == "_meta" and
+       not Enum.any?(parts, &(&1 in [".", ".."])) and
+       not String.contains?(raw, <<0>>) do
+      {:ok, parts}
+    else
+      {:error, :unsafe_metadata_root}
+    end
+  end
+
+  defp require_directories(root, parts) do
+    Enum.reduce_while(parts, root, fn part, parent ->
+      next = Path.join(parent, part)
+
+      case File.lstat(next) do
+        {:ok, %File.Stat{type: :directory}} -> {:cont, next}
+        _ -> {:halt, {:error, :missing_or_linked_metadata_directory}}
+      end
+    end)
+    |> case do
+      {:error, reason} -> {:error, reason}
+      _ -> :ok
+    end
+  end
+
+  defp require_regular(file) do
+    case File.lstat(file) do
+      {:ok, %File.Stat{type: :regular}} -> :ok
+      _ -> {:error, :missing_or_linked_file}
+    end
+  end
+end
+
 defmodule Boxd.B0.CLI do
+  def main(["b0", "meta", identity_file, edge]) do
+    case Boxd.B0.Metadata.resolve(identity_file, edge) do
+      {:ok, resolved} ->
+        IO.puts(
+          "BOXD_B0_META_RESOLVED root=#{resolved.meta_root} edge=#{resolved.edge} " <>
+          "pid_slot=#{resolved.pid_slot} binding=#{resolved.binding}"
+        )
+      {:error, reason} ->
+        IO.puts(:stderr, "BOXD_B0_META_HOLD reason=#{reason}")
+        System.halt(2)
+    end
+  end
+
   def main(["b0", "proof"]) do
     Boxd.B0.Proof.run()
   end
@@ -162,7 +260,7 @@ defmodule Boxd.B0.CLI do
   end
 
   def main(_args) do
-    IO.puts(:stderr, "usage: elixir b0.exs b0 proof | b0 run --isolated")
+    IO.puts(:stderr, "usage: elixir b0.exs b0 proof | b0 run --isolated | b0 meta <identity.ID> <edge>")
     System.halt(64)
   end
 end
