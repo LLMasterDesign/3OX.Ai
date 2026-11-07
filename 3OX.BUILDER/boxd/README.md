@@ -118,6 +118,56 @@ startup, persistent PID binding, or migration is implied by metadata
 resolution. Changing root placement later requires an explicit approved
 move plus the updated identity declaration.
 
+## RAV3N live B0 adapter · Minsky acceptance (2026-11-07)
+
+B0 now runs as a persistent Minsky user service:
+`boxd-b0-rav3n.service`, with the Elixir application installed at
+`/home/anu/.local/share/boxd/b0.exs`. Source unit:
+`systemd/boxd-b0-rav3n.service`.
+
+Its actual registered OTP child is `RAV3N.main`, supervised by
+`Boxd.B0.Cubes`. The child probes the SysGen-declared
+`rvn-inference` endpoint at `127.0.0.1:8893/health` every ten seconds.
+The existing inference process remains independently owned by SysGen;
+B0 restarts the BEAM adapter, **never the llama-server process**.
+This is a real RAV3N monitor/adapter child, rather than direct
+supervision of the external inference OS PID.
+
+The running B0 VM writes a private, atomic, fresh status record to
+`/home/anu/PAN7HEON/7HE.RAV3N/_meta/state/b0.json`.
+The PID slot `_meta/edges/main/pid` remains empty because it is an
+OS-process record, while the registered OTP child has a BEAM PID.
+RAV3N's root identity declares `meta_root "_meta/"`.
+
+The Minsky SPR-K read-only endpoint `/sprk/b0.json` combines this
+heartbeat with the live systemd unit, /proc command line and freshness
+checks. Corbato's existing TailDeck gateway at
+`http://100.118.28.119:8150/sprk` displays the B0 supervisor and
+child registration separately from the external inference probe,
+PID record, and Warden admission. Stale or mismatched heartbeats
+fail closed as `unverified`. Warden/policy admission remains HOLD.
+
+Local acceptance:
+- Original B0 proof 10/10 PASS.
+- Actual RAV3N.main registered child and forced child restart 2/2 PASS.
+- Persistent user service active and enabled.
+- Controlled restart of **only boxd-b0-rav3n.service** recovered a new
+  BEAM VM/child, with both existing llama-server PIDs unchanged
+  (8893 PID 1826008; 8152 PID 2716862 at test time).
+- B0 status and Corbato TailDeck HTTP read-back PASS, 10-seat deck guard PASS.
+- Production SysGen, RVN startup ownership and Warden admission preserved.
+
+For an isolated child-restart proof, without changing running services:
+
+    elixir 3OX.BUILDER/boxd/b0.exs b0 raven-proof \
+      /home/anu/PAN7HEON/7HE.RAV3N/RAV3N.ID \
+      /home/anu/_TRON/sysgen/registry/v1/seats.kdl
+
+Current results establish a functioning B0 adapter, **not** an
+authorized handoff of the live inference process to B0. Actual
+inference lifecycle migration, B1–B8 startup, and edge PID semantics
+need explicit later boundaries.
+
 ## Next admission gate
 
 Reconcile Boxd B0 with the real Box.Application and the CLI's
