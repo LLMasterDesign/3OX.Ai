@@ -223,7 +223,213 @@ defmodule Boxd.B0.Metadata do
   end
 end
 
+
+# Real, separately supervised RAV3N main-edge adapter.
+# It monitors the existing SysGen-declared inference endpoint.
+# The OS inference process remains with its current lifecycle owner.
+defmodule Boxd.B0.RavenMain do
+  use GenServer
+
+  @registration "RAV3N.main"
+  @port 8893
+  @interval 10_000
+
+  def child_spec({identity_file, seats_file}) do
+    %{
+      id: {__MODULE__, @registration},
+      start: {__MODULE__, :start_link, [{identity_file, seats_file}]},
+      restart: :permanent,
+      shutdown: 5_000,
+      type: :worker
+    }
+  end
+
+  def start_link({identity_file, seats_file}) do
+    GenServer.start_link(__MODULE__, {identity_file, seats_file},
+      name: {:via, Registry, {Boxd.B0.Registry, @registration}}
+    )
+  end
+
+  def registration, do: @registration
+
+  def admit(identity_file, seats_file) do
+    DynamicSupervisor.start_child(
+      Boxd.B0.Cubes, {__MODULE__, {identity_file, seats_file}}
+    )
+  end
+
+  def status do
+    case Boxd.B0.find(@registration) do
+      {:ok, pid} -> {:ok, GenServer.call(pid, :status, 3_000)}
+      :absent -> {:error, :absent}
+    end
+  end
+
+  @impl true
+  def init({identity_file, seats_file}) do
+    with {:ok, resolved} <- Boxd.B0.Metadata.resolve(identity_file, "main"),
+         :ok <- validate_identity(identity_file),
+         :ok <- validate_seat(seats_file),
+         :ok <- start_http() do
+      state = %{
+        entity: "RAV3N", edge: "main", meta_root: resolved.meta_root,
+        pid_slot: resolved.pid_slot, pid_binding: resolved.binding,
+        external_owner: "SysGen", external_seat: "rvn-inference",
+        health_target: "127.0.0.1:#{@port}", health: "pending",
+        health_checked_at: nil, instance: System.unique_integer([:positive])
+      }
+      send(self(), :probe)
+      {:ok, state}
+    else
+      {:error, reason} -> {:stop, {:preflight, reason}}
+    end
+  end
+
+  defp validate_identity(path) do
+    case File.read(path) do
+      {:ok, content} ->
+        if String.contains?(content, ~s(entity_id "RAV3N")) and
+             String.contains?(content, ~s(host "minsky")) do
+          :ok
+        else
+          {:error, :identity_mismatch}
+        end
+      {:error, reason} -> {:error, {:identity_unavailable, reason}}
+    end
+  end
+
+  defp validate_seat(path) do
+    with {:ok, body} <- File.read(path),
+         [_, seat] <- Regex.run(~r/seat "rvn-inference" \{(.*?)^\}/ms, body),
+         true <- String.contains?(seat, ~s(port "#{@port}")),
+         true <- String.contains?(seat, "--host 127.0.0.1 --port #{@port}"),
+         true <- String.contains?(seat, "enabled #true"),
+         true <- String.contains?(seat, "keep #true") do
+      :ok
+    else
+      _ -> {:error, :sysgen_seat_contract_mismatch}
+    end
+  end
+
+  defp start_http do
+    case Application.ensure_all_started(:inets) do
+      {:ok, _} -> :ok
+      {:error, reason} -> {:error, {:http_client_start_failed, reason}}
+    end
+  end
+
+  @impl true
+  def handle_info(:probe, state) do
+    health =
+      case :httpc.request(
+             :get,
+             {~c"http://127.0.0.1:8893/health", []},
+             [timeout: 2_000, connect_timeout: 1_000],
+             [body_format: :binary]
+           ) do
+        {:ok, {{_, 200, _}, _, body}} ->
+          if String.contains?(body, ~s("status":"ok")), do: "ok", else: "unexpected-response"
+        {:ok, {{_, code, _}, _, _}} -> "http-#{code}"
+        _ -> "unreachable"
+      end
+    Process.send_after(self(), :probe, @interval)
+    {:noreply, %{state | health: health, health_checked_at: DateTime.to_iso8601(DateTime.utc_now())}}
+  end
+
+  @impl true
+  def handle_call(:status, _from, state) do
+    {:reply, Map.put(state, :beam_child, inspect(self())), state}
+  end
+end
+
+defmodule Boxd.B0.RavenService do
+  @doc "Run B0 with a real RAV3N main adapter, reporting to its sibling _meta/state."
+  def run(identity_file, seats_file) do
+    Process.flag(:trap_exit, true)
+    {:ok, root} = Boxd.B0.start_link()
+    {:ok, child} = Boxd.B0.RavenMain.admit(identity_file, seats_file)
+    IO.puts("BOXD_B0_RAVEN_READY supervisor=#{inspect(root)} child=#{inspect(child)}")
+    status_path = Path.join([Path.dirname(Path.expand(identity_file)), "_meta", "state", "b0.json"])
+    report_loop(root, status_path)
+  end
+
+  defp report_loop(root, status_path) do
+    case Boxd.B0.RavenMain.status() do
+      {:ok, state} ->
+        payload = %{
+          "schema" => "boxd.b0.rav3n-main/v1",
+          "entity" => state.entity, "edge" => state.edge,
+          "registration" => Boxd.B0.RavenMain.registration(),
+          "supervisor" => "running", "child" => "registered",
+          "beam_child" => state.beam_child,
+          "instance" => state.instance,
+          "pid_record" => state.pid_slot,
+          "pid_binding" => state.pid_binding,
+          "external_owner" => state.external_owner,
+          "external_seat" => state.external_seat,
+          "health_target" => state.health_target,
+          "health" => state.health,
+          "health_checked_at" => state.health_checked_at,
+          "host_pid" => System.pid(),
+          "observed_at_utc" => DateTime.to_iso8601(DateTime.utc_now())
+        }
+        write_status(status_path, payload)
+      {:error, :absent} ->
+        raise("RAV3N main child missing from B0 registry")
+    end
+
+    receive do
+      {:EXIT, ^root, reason} -> raise("B0 exited: #{inspect(reason)}")
+      _ -> report_loop(root, status_path)
+    after
+      5_000 -> report_loop(root, status_path)
+    end
+  end
+
+  defp write_status(path, payload) do
+    directory = Path.dirname(path)
+    case File.lstat(directory) do
+      {:ok, %File.Stat{type: :directory}} -> :ok
+      _ -> raise("B0 status directory untrusted")
+    end
+    tmp = path <> ".tmp." <> System.pid()
+    encoded = IO.iodata_to_binary(:json.encode(payload)) <> "\n"
+    :ok = File.write(tmp, encoded, [:exclusive])
+    :ok = File.chmod(tmp, 0o600)
+    :ok = File.rename(tmp, path)
+  end
+end
+
 defmodule Boxd.B0.CLI do
+  def main(["b0", "run", "--rav3n-main", identity_file, seats_file]) do
+    Boxd.B0.RavenService.run(identity_file, seats_file)
+  end
+
+  def main(["b0", "raven-proof", identity_file, seats_file]) do
+    {:ok, root} = Boxd.B0.start_link()
+    {:ok, initial} = Boxd.B0.RavenMain.admit(identity_file, seats_file)
+    {:ok, first} = Boxd.B0.RavenMain.status()
+    true = first.entity == "RAV3N" and first.edge == "main"
+    true = first.pid_binding == "unbound"
+    true = Boxd.B0.healthy?()
+    IO.puts("BOXD_RAVEN_PASS stage=real-child-registered")
+
+    Process.exit(initial, :kill)
+    replacement =
+      Enum.reduce_while(1..100, nil, fn _, _ ->
+        case Boxd.B0.find("RAV3N.main") do
+          {:ok, next} when next != initial -> {:halt, next}
+          _ -> Process.sleep(20); {:cont, nil}
+        end
+      end)
+    true = is_pid(replacement) and Process.alive?(replacement)
+    {:ok, second} = Boxd.B0.RavenMain.status()
+    true = second.instance != first.instance
+    IO.puts("BOXD_RAVEN_PASS stage=real-child-auto-restart")
+    :ok = Supervisor.stop(root)
+    IO.puts("BOXD_RAVEN_RESULT status=ok stages=2")
+  end
+
   def main(["b0", "meta", identity_file, edge]) do
     case Boxd.B0.Metadata.resolve(identity_file, edge) do
       {:ok, resolved} ->
@@ -260,7 +466,7 @@ defmodule Boxd.B0.CLI do
   end
 
   def main(_args) do
-    IO.puts(:stderr, "usage: elixir b0.exs b0 proof | b0 run --isolated | b0 meta <identity.ID> <edge>")
+    IO.puts(:stderr, "usage: elixir b0.exs b0 proof | b0 raven-proof <identity.ID> <seats.kdl> | b0 run --isolated | b0 run --rav3n-main <identity.ID> <seats.kdl> | b0 meta <identity.ID> <edge>")
     System.halt(64)
   end
 end
