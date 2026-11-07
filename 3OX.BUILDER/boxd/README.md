@@ -76,6 +76,48 @@ previous receipts are preserved.
 Receipts are retained under Minsky 3OX.Ai/_meta/proof, including the
 initial HOLD and later PASS results.
 
+## Declared metadata root · RAV3N test
+
+The cube identity and metadata location are separate contracts. B0 reads
+the entity-level identity file for the explicit entry:
+
+    meta_root ".3ox/_meta/"
+
+The same resolver accepts a future sibling declaration:
+
+    meta_root "_meta/"
+
+Both values are relative to the directory holding the identity file.
+The resolver follows the declared path only, accepts an existing
+`_meta/edges/<edge>/pid` slot, refuses path traversal and symlinked
+records, and writes zero PID data. An empty slot reports
+`binding=unbound`, rather than claiming process readiness.
+
+Read-only CLI:
+
+    elixir 3OX.BUILDER/boxd/b0.exs b0 meta \
+      /home/anu/PAN7HEON/7HE.RAV3N/RAV3N.ID main
+
+The current RAV3N identity declares `.3ox/_meta/` and its existing
+PID slot remains:
+
+    /home/anu/PAN7HEON/7HE.RAV3N/.3ox/_meta/edges/main/pid
+
+Repeatable metadata tests:
+
+    python3 3OX.BUILDER/boxd/prove_meta_root.py \
+      --b0 /absolute/path/to/b0.exs \
+      --elixir /absolute/path/to/elixir \
+      --erl-bin /absolute/path/to/erlang/bin \
+      --identity /home/anu/PAN7HEON/7HE.RAV3N/RAV3N.ID
+
+Acceptance on Minsky: 12/12 metadata cases passed, including the real
+RAV3N `main` slot and disposable nested/sibling fixtures. The earlier
+B0 Supervisor lifecycle proof still passes 10/10. No process admission,
+startup, persistent PID binding, or migration is implied by metadata
+resolution. Changing root placement later requires an explicit approved
+move plus the updated identity declaration.
+
 ## Next admission gate
 
 Reconcile Boxd B0 with the real Box.Application and the CLI's
